@@ -1,0 +1,130 @@
+<HTML>
+<HEAD>
+<TITLE>销售单</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+<LINK href="../css/printcss.css" rel=stylesheet>
+<style>
+//@media screen{.onlyPrint{display:none}}
+@media print{.onlyShow{display:none} .onlyPrint{page-break-before:always}}
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+// 这里定义每页能打印多少行
+//模拟数据
+
+function printpage(){
+for (var i=parseInt(linesPerPage.value);i<(show.children.length-1); i+=parseInt(linesPerPage.value))
+{
+var tr = show.children[i];
+tr.className = "onlyPrint"
+}
+print();
+
+}
+function prepare()
+{
+for (var i=parseInt(linesPerPage.value);i<(show.children.length-1); i+=parseInt(linesPerPage.value))
+{
+var tr = show.children[i];
+tr.className = "onlyPrint"
+}
+preView();
+}
+function pageSetup(){try{WB.ExecWB(8,1)}catch(e){alert("您的浏览器不支持此功能")}}
+function preView(){try{WB.ExecWB(7,1)}catch(e){alert("您的浏览器不支持此功能")}}
+
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+//-->
+</SCRIPT>
+</HEAD>
+
+<body text="#000000" topmargin="0" leftMargin="2" width="100%" >
+<center>
+<OBJECT classid=CLSID:8856F961-340A-11D0-A96B-00C04FD705A2 height="0" id="WB" width="0" VIEWASTEXT></OBJECT>
+<center class="onlyShow">
+设定每页打印<input id="linesPerPage" size="4" value="17">行 &nbsp; &nbsp;
+<button onclick='pageSetup()'>页面设置</button>
+&nbsp;<button onClick='prepare()'>打印预览</button>
+<button onClick="printpage()">打  印</button><BR><BR>
+</center>
+
+<div align="center" style="width:100% ">
+  <hr noshade width="100%" size="1">
+</div>
+
+ <form id="form1" name="form1" action="" method="post">
+  <input type="hidden" name="action" value="{action}">
+  <DIV>
+    <table width="99%" border="0" cellspacing="0" cellpadding="0" class="pagetitlehead">
+      <tr>
+        <td height="30" class="pagetitle" align="center" colspan=2 valign="middle"><font size="+3"><b>销售单</b></font></td>
+      </tr>
+      <tr>
+         <td width="60%" rowspan="2" align="left"><font size="+1"><b>客户：{cusname}</b></font></td>
+         <td width="40%" height="25" align="left"><b>单据编号：{no}</b></td>
+      </tr>
+      <tr>{cusname}
+         <td align="left" colspan="2" height="10"></td>
+      </tr>
+    </table>
+  </DIV>
+ <table class="tableframe" style="word-break:break-all" width="99%" cellspacing="0" cellpadding="0">
+   <tbody>
+     <tr class="listtitle">
+       <td class="listcelltitle" nowrap align="middle" height="25" width="35">批次号</td>
+       <td class="listcelltitle" nowrap align="middle">刷卡器设备号</td>
+       <td class="listcelltitle" nowrap align="middle">供应商</td>
+       <td class="listcelltitle" nowrap align="middle">商品编号</td>
+       <td class="listcelltitle" nowrap align="middle">商品名称</td>
+       <td class="listcelltitle" nowrap align="middle">数量</td>
+       <td class="listcelltitle" nowrap align="middle">收货备忘</td>
+     </tr>
+	  <tbody bgcolor="white" id="show">
+     <!-- BEGIN BXBK -->
+     <tr class="listrow1" >
+       <td class="listcellrow"  align="center" height="25">{lprobatches}&nbsp;</td>
+       <td class="listcellrow1"  align="left" >{lprokey}&nbsp;</td>
+       <td class="listcellrow"  align="left">{lprosuppname}&nbsp;</td>
+       <td class="listcellrow"  align="left">{lprono}&nbsp;</td>
+       <td class="listcellrow"  align="right">{lproname}&nbsp;</td>
+       <td class="listcellrow"  align="right">{lquantity}&nbsp;</td>
+       <td class="listcellrow1"  align="right">{lpromemo}&nbsp;</td>
+     </tr>
+     <!-- END BXBK -->
+	 </TBODY>
+     <tr  >
+       <td  class="listcellrow" align="left" height="26" colspan="4">合计：&nbsp;&nbsp;</td>
+       <td  class="listcellrow" align="right" >&nbsp;</td>
+       <td  class="listcellrow" align="right" >&nbsp;</td>
+       <td  class="listcellrow" align="right" >{lprosumnum}&nbsp;</td>
+       <td  class="listcellrow" align="right" >&nbsp;</td>
+       <td  class="listcellrow" align="right" >&nbsp;</td>
+     </tr>
+   </tbody>
+ </table>
+ <table width="99%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+         <td align="left" height="10" colspan="4"></td>
+      </tr>
+      <tr>
+     <td align="left" width="20%"><b>出仓负责人：</b></td>
+		 <td align="left" width="20%"><b>业务员：{{dealwithman}}</b></td>
+		 <td align="left" width="20%" height="35"><b>录入员：{staname}</b></td>
+		 <td align="left" width="40%"><b>派单时间：
+     <script language=javascript>
+             var date=createDatePicker("now",{year},{month},{day},0)
+     </script>
+     </b></td>
+      </tr>
+      <tr>
+         <td align="left" colspan="2" height="3"></td>
+      </tr>
+  </table>
+</FORM>
+</center>
+</BODY>
+</HTML>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<TITLE>套餐管理</TITLE>
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!-- Styles -->
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+		<link href="../colorbox/colorbox.css" rel="stylesheet" type="text/css">
+		<!-- 	<link rel="stylesheet" href="../css/framework.css"> -->
+		<!--[if IE 6]>
+			<link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css" />
+			<![endif]-->
+		<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+		<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT>
+		<script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script>
+		<script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script>
+		<script type="text/javascript" src="../colorbox/jquery.colorbox.js"></script>
+		<script type="text/javascript" language="javascript" src="../include/jquery.dataTables.gb2312.js"></script> 
+		<script type="text/javascript" src="../colorbox/jquery.colorbox.js"></script>
+	</HEAD>
+	<script language=javascript>
+		$(document).ready(function() {
+			
+		
+			showtbl('bkcardscdmsetid');
+			showtbl('bkcardpayfsetid');
+			showtbl('slotscdmsetid');
+			showtbl('slotpayfsetid');
+		});
+		function showtbl(id)
+		{
+			var gotourl="../ajaxread/readsetmeal.php?type="+id;
+			$('#'+id).dataTable({ 
+				"sDom": '<"wrapper"flipt>rtss<"bottom"ip><"clear">',
+				 "bStateSave": false,
+				  "aLengthMenu": [[5,10, 25, 50], [5,10, 25, 50]],
+				 "bLengthChange": true, 
+				 "bProcessing": true,        
+				 "iDisplayLength": 10,        
+				 "bServerSide":true,
+				 "sAjaxSource":gotourl,
+				 "sPaginationType": "full_numbers",
+				 "bFilter": false,
+				 "bSort": true,
+				 "bPaginate": true
+			 
+			});
+		}
+		
+		function checkauthor(value,type,obj)
+		{
+		
+			var szRef = "../author/checkauthor.php?listid="+value+"&type="+type;
+			$(obj).colorbox({href:szRef,iframe:true, innerWidth:1000, innerHeight:500}); 
+		}
+	</script> 
+	<BODY  topmargin="0" leftMargin="2" width="100%">
+		<div id="page">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+				<td height="30" class="pagetitle"  width="100%" valign="middle">
+					&nbsp;&nbsp; 
+					<img src="{skin}nowspace.jpg" align="absmiddle">
+					财务报表 --> 套餐管理
+				</td>
+				<tr>
+					<td align="left">
+						<div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div>
+					</td>
+				</tr>
+			</table>
+			<form action="" method="post" name="form1">
+				<div class="wrapper">
+					<div class="panel">
+						<fieldset class="form">
+						<legend>借记卡额度套餐 
+							</legend>
+							<table width="100%" border="0" cellspacing="1"  class=table id="bkcardscdmsetid">{theadth}</table>
+						</fieldset>
+					</div>
+				</div>	
+					
+				<div class="wrapper">
+					<div class="panel">
+						<fieldset class="form">
+							<legend>借记卡费率套餐 
+							</legend>						
+							<table width="100%" border="0" cellspacing="1"  class=table id="bkcardpayfsetid">{theadth1}</table>
+						</fieldset>
+					</div>
+				</div>
+                	
+				<div class="wrapper">
+					<div class="panel">
+						<fieldset class="form">
+							<legend>信用卡额度套餐 
+							</legend>						
+							<table width="100%" border="0" cellspacing="1"  class=table id="slotscdmsetid">{theadth1}</table>
+						</fieldset>
+					</div>
+				</div>
+                
+                <div class="wrapper">
+					<div class="panel">
+						<fieldset class="form">
+							<legend>信用卡费率套餐 
+							</legend>						
+							<table width="100%" border="0" cellspacing="1"  class=table id="slotpayfsetid">{theadth1}</table>
+						</fieldset>
+					</div>
+				</div>
+			</form>
+		</div>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

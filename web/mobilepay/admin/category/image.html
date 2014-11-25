@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<link rel="stylesheet" href="{skin}style.css" />
+<link rel="stylesheet" href="../colorbox/colorbox.css" />
+<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT>
+<script src="../colorbox/jquery.colorbox.js"></script>
+<script>
+			$(document).ready(function(){
+				$(".group1").colorbox({rel:'group1'});
+			});	
+function autoclick() 
+{ 
+var source=document.all.a1;// 这里是javascript注释文字：click_a 是html页面某个超链接的ID名称。
+source.click();
+} 
+window.attachEvent('onload',autoclick);
+			
+</script>
+</head>
+<body>
+
+<p><a class="group1" href="{picname}" title="{name}" id="a1">再次查看</a><input type=button name=rst class=button_recovery value="   返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" ></p>
+	
+</body>
+</html>

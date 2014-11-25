@@ -1,0 +1,116 @@
+<?php
+	require("../include/common.inc.php");
+	require("collection.class.php");
+	$db = new db_test;
+	$collection = new Collection();
+	$db->query( "SET NAMES 'utf8'" );
+	switch ($action)
+	{
+		case "new"://新增记录
+			$collection->collectionNumber = $collectionNumber;
+			$collection->businessType = $businessType;
+			$collection->bank_code = $bank_code;
+			$collection->account_type = $account_type;
+			$collection->account_no = $account_no;
+			$collection->account_name = trim($account_name);
+			$collection->province = trim($province);
+			$collection->city = trim($city);
+			$collection->bank_name = trim($bank_name);
+			$collection->account_prop = $account_prop;
+			$collection->amount = $amount;
+			$collection->currency = trim($currency);
+			$collection->id_type = trim($id_type);
+			$collection->id = trim($id);
+			$collection->tel = trim($tel);
+			$collection->GetContent();
+			break;
+		default:
+			break;
+	}
+
+	$t = new Template( "." , "keep" );
+	$t->set_file( "createfile" , "createfile.html" );
+	if ( empty( $id ) )
+	{
+		$action = "new";
+	}
+
+	//银行下拉菜单
+	unset( $query );
+	$query = "select * from fd_bank_code";
+	$db->query($query);
+	if ( $db->nf() ) {
+		while($db->next_record()){
+			$arr_bank_name[] = $db->f( fd_bank_name );
+			$arr_bank_code[] = $db->f( fd_bank_code );
+		}
+	} 
+	$bank_code = makeselect( $arr_bank_name , $fid , $arr_bank_code );
+
+	unset( $query );
+	$query = "select * from fd_region where parents_id='0'";
+	$db->query($query);
+	if ( $db->nf() )
+	{
+		while($db->next_record())
+		{
+			$arr_region_name[] = $db->f( fd_region_name );
+			$arr_region_id[] = $db->f( fd_region_id );
+		}
+	} 
+	$province = makeselect2( $arr_region_name , $fid , $arr_region_id );
+
+	$t->set_var( "bank_code" , $bank_code );
+	$t->set_var( "account_type" , $account_type ); 
+	$t->set_var( "account_no" , $account_no );
+	$t->set_var( "account_name" , $account_name);
+	$t->set_var( "province" ,$province );
+	$t->set_var( "city" ,$city );
+	$t->set_var( "bank_name" , $bank_name );
+	$t->set_var( "account_prop" ,$account_prop );
+	$t->set_var( "amount" , $amount );
+	$t->set_var( "currency" , $currency );
+	$t->set_var( "id_type" , $id_type );
+	$t->set_var( "id" , $id );
+	$t->set_var( "tel" , $tel );
+	$t->set_var( "businessType" , $businessType );
+	$t->set_var( "action" , $action );
+	$t->set_var( "gotourl" , $id );// 转用的地址
+	$t->set_var( "error" , $error );
+	// 判断权限 
+	include( "../include/checkqx.inc.php" ) ;
+	$t->set_var("skin",$loginskin);
+	$t->pparse("out", "createfile"); //最后输出界面
+	//生成选择菜单的函数
+	function makeselect( $arritem , $hadselected , $arry )
+	{ 
+		for($i=0; $i < count( $arritem ); $i++)
+		{
+			if ( $hadselected ==  $arry[$i] )
+			{
+				$x .= "<option selected value='$arry[$i]'>".$arritem[$i]."</option>" ;
+			}
+			else
+			{
+				$x .= "<option value='$arry[$i]'>".$arritem[$i]."</option>";
+			}
+		}
+		return $x ;
+	}
+
+	function makeselect2( $arritem , $hadselected , $arry )
+	{ 
+		for($i=0; $i < count( $arritem ); $i++)
+		{
+			if ( $hadselected ==  $arry[$i] )
+			{
+				$x .= "<option selected value='$arritem[$i]' parents='$arry[$i]'>".$arritem[$i]."</option>" ;
+			}
+			else
+			{
+				$x .= "<option value='$arritem[$i]' parents='$arry[$i]'>".$arritem[$i]."</option>";
+			}
+		}
+		return $x ;
+	}
+?>

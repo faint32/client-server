@@ -1,0 +1,204 @@
+<HTML>
+	<HEAD>
+		<TITLE>二级类别</TITLE>
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+		<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+		<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT> <SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> <script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script> <script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script> <SCRIPT language=javascript src="../function/function.js"></SCRIPT> 
+	</HEAD>
+	<script language=javascript>
+	<!-- 
+		function input_focus(){
+		var gg = 1;
+		if (gg == 1){
+		form1.name.focus();
+		 }
+		}
+		
+		var requestSubmitted = false;
+		
+		function submit_save() {
+			var reg=/^[0-9a-zA-Z]*$/g;
+			 if(form1.name.value==""){
+			 	  alert("请输入类别名");
+			 	  form1.name.focus();
+			 	  return;
+			 }
+			 if(form1.foldername.value==""){
+			 	  alert("请输入文件名");
+			 	  form1.phone.focus();
+			 	  return;
+			 }
+			 if(!reg.test(form1.foldername.value))
+			 {
+			 	alert("文件名只能是半角字母或数字组成");
+				return;
+			 }
+			 if(requestSubmitted == true){
+		    alert("你已经提交，请等待一下");
+		    return (false);
+		   } 
+		   if(form1.action.value=="edit")
+			{	
+				
+				if (confirm("修改成功后，与此一级分类相关的记录都会自动修改。确定要修改吗？"))
+				{
+					form1.submit();
+				}else{
+					return false;
+				}
+			}
+		  requestSubmitted = true; 
+		   sending.style.display ="";
+		   sendingbg.style.display ="";   
+			form1.submit();
+		}
+		
+		function change()
+		{	if(form1.upload.value=="0")
+			{
+				form1.display.style.display ="none";
+			}
+			else
+			{	
+				
+				form1.display.style.display ="";
+			}
+		}
+		
+				function submit_del(){
+				    if (confirm("是否删除该记录？")) {
+				        form1.action.value = "delete";
+				          sendingbg.style.display ="";  
+				          sendingdel.style.display ="";
+						  form1.submit();
+						
+				    }
+				}
+		
+		// -->
+	</script> 
+	<BODY onload=input_focus() topmargin="0" leftMargin="2" width="100%">
+		<div id="page">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+				<td height="30" class="pagetitle"  width="100%" valign="middle">
+					&nbsp;&nbsp; 
+					<img src="{skin}nowspace.jpg" align="absmiddle">
+					 基本设置 --> 上传文件子类 
+				</td>
+				<tr>
+					<td align="left">
+						<div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div>
+					</td>
+				</tr>
+			</table>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+				<tr>
+					<td class=button_labelleft></td>
+					<td class=button_label>
+						<div align="right">
+							<input type=button name=save32 class=button_help value="帮助" AccessKey=h  nClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.className='button_help_on'" onMouseOut="this.className='button_help'">
+							<span class=button_split>&nbsp;</span>
+							<input type=button name=save3 class=button_save value="保存" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt" {dissave} onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+							<span class=button_split>&nbsp;</span>
+							<input class=button_delete name=end type=button value="删除" AccessKey=d  onMouseOver="this.className='button_delete_on'" onMouseOut="this.className='button_delete'"  onClick="javascript:submit_del()" {disdel}>
+							<span class=button_split>&nbsp;</span>
+							<INPUT class=button_reset name=qqq type=reset value="撤销" AccessKey=z style="font-size:9pt" onMouseOver="this.className='button_reset_on'" onMouseOut="this.className='button_reset'">
+							<span class=button_split>&nbsp;</span>
+							<input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+						</div>
+					</td>
+					<td class=button_labelright></td>
+				</tr>
+			</table>
+			<form action="" method="post" name="form1">
+				<input type=hidden name=action value="{action}">
+				<input type=hidden name=id value="{id}">
+				<input type="hidden" name="content" value="">
+				<!-- Wrapper -->
+				<div class="wrapper">
+					<div class="panel">
+						<div id="showinfo" class="box box-info" style="display:{show_error}">
+							<p>{error}</p>
+							<a class="close">&times;</a>
+						</div>
+						<fieldset class="form">
+							<legend>
+								上传文件二级类别 
+								<small>&nbsp;上传文件二级类别</small>
+							</legend>
+							<table class="table_form">
+								<colgroup>
+									<col class="col-name" />
+									<col class="col-value" />
+								</colgroup>
+								<tr>
+									<th>上层类别：</th>
+									<td><select name=fid>
+											{fid}
+										</select></td>
+									<th></th>
+									<td></td>
+								</tr>
+								<tr >
+									<th height="30" class=form_label >类别名：</th>
+									<td height="30"  >
+										<input class=input type="text" name="name" size="20" maxlength="20" value="{name}">
+									</td>
+									<th height="30" class=form_label >文件名：</th>
+									<td height="30" >
+										<input class=input type="text" name="foldername" size="20" maxlength="20" value="{foldername}">
+									</td>
+								</tr>
+								<tr >
+									<th height="30" class=form_label >是否显示默认：</th>
+									<td height="30"  >
+										<select name=display >{display}</select>
+									</td>
+									<th height="30" class=form_label  >图片数量：</th>
+									<td height="30" >
+										<select name=upload onChange="change()">{upload}</select>
+									</td>
+								</tr>
+							</TABLE>
+						</fieldset>
+			</form>
+			</div> </div> 
+		</div>
+<div id="sending" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:40%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingdel" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:30%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在删除数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%;  z-index:100; filter: Alpha(Opacity=50);  background-color: #ffffff; display:none "> 
+
+</div>
+		</center> 
+	</BODY>
+</HTML>

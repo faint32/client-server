@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<HEAD>
+		<TITLE>APP功能设置</TITLE>
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+		<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+		<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT> <SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> <script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script> <script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script> <SCRIPT language=javascript src="../function/function.js"></SCRIPT> 
+		<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+		<script language=javascript>
+			var requestSubmitted = false;
+			function submit_save(){
+				if(form1.appmnu_name.value==""){
+				 	  alert("APP设置名称不能为空！");
+				 	  form1.appmnu_name.focus();
+				 	  return;
+				  }
+				 showtips('正在保存数据，请稍候...');  	  
+			    requestSubmitted = true; 
+				form1.submit();
+			}
+			function submit_del(){
+				        if(confirm("是否确定删除整条信息"))
+						{
+						 showtips('正在删除数据，请稍候...');  
+						form1.action.value="delete";
+					    requestSubmitted = true; 
+						form1.submit();
+						}
+					}
+		</script> 
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312"></HEAD>
+	<BODY onload=input_focus() topmargin="0" leftMargin="2" width="100%">
+		<div class="page" id="page">
+		<h4 class="icon forms">{menuname} <small></small></h4>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+				<tr>
+					<td class=button_labelleft></td>
+					<td class=button_label>
+						<div align="right">
+							<input type=button name=save32 class=button_help value="帮助" AccessKey=h  nClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.className='button_help_on'" onMouseOut="this.className='button_help'">
+							<span class=button_split>&nbsp;</span>
+							<input type=button name=save3 class=button_save value="保存" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt" {dissave} onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+							<span class=button_split>&nbsp;</span>
+							<input class=button_delete name=end type=button value="删除" AccessKey=d  onMouseOver="this.className='button_delete_on'" onMouseOut="this.className='button_delete'"  onClick="javascript:submit_del()" {disdel}>
+							<span class=button_split>&nbsp;</span>
+							<INPUT class=button_reset name=qqq type=reset value="撤销" AccessKey=z style="font-size:9pt" onMouseOver="this.className='button_reset_on'" onMouseOut="this.className='button_reset'">
+							<span class=button_split>&nbsp;</span>
+							<input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+						</div>
+					</td>
+					<td class=button_labelright></td>
+				</tr>
+			</table>
+			<!-- Wrapper -->
+			<div class="wrapper">
+				<div class="panel">
+					<form action="" method="post" listid="form3" name="form1">
+						<input class="input" type="hidden" name="listid" value="{listid}" id="listid">
+						<input class="input" type="hidden" name="action" value="{action}" id="action">
+						<div id="showinfo" class="box box-info" style="display:{show_error}"><p>{error}</p><a class="close">&times;</a></div> 
+						<fieldset class="form">
+							<legend>
+								APP功能设置 
+								<small>&nbsp;APP功能设置填写</small>
+							</legend>
+							<table class="table_form">
+								<colgroup>
+									<col class="col-name" />
+									<col class="col-value" />
+								</colgroup>
+								<tr>
+                                
+									</td>
+									<th>编号：</th>
+									<td>
+										<input class="input" id="appmnu_no" type="text" name="appmnu_no" size="30" maxlength="40" value="{appmnu_no}" >
+									</td>
+
+									<th>APP设置名称：</th>
+							  <td>
+										<input class="input" id="appmnu_name" type="text" name="appmnu_name" size="30" maxlength="40" value="{appmnu_name}" ></td>  </tr>
+                                <tr>
+                                    <th>所属分类：</th>
+                                    <td>
+                                        <select name="amtypeid">
+                                            {amtypeid}
+                                        </select>
+                                    </td>
+									<th>计入代理商分润：</th>
+							  <td>
+									<select name="iscusfenrun">{iscusfenrun}</select></td>
+								</tr>
+                                <tr>
+									<th>排序编号：</th>
+									<td>
+										<input class="input" id="appmnu_order" type="text" name="appmnu_order" size="30" maxlength="40" value="{appmnu_order}" ></td>
+									<th>APP设置url：</th>
+									<td>
+										<input class="input" id="appmnu_url" type="text" name="appmnu_url" size="30" maxlength="40" value="{appmnu_url}" >
+									</td>
+								</tr>
+                                <tr>
+									<th>APP设置默认：</th>
+									<td>
+										<input class="input" id="appmenu_default" type="text" name="appmenu_default" size="30" maxlength="40" value="{appmenu_default}" >
+                                       
+                                	<th>是否显示报表编号：</th>
+                                	<td>
+									<input type="radio" name="appmnu_istabno" value ='1' {checkd1}> 是
+									<input type="radio" name="appmnu_istabno" value ='0' {checkd2}> 否 
+									</td>
+								</tr>
+
+                                <tr>
+									<th>使用类型：</th>
+									<td>
+									<select name="appmenu_scope">
+										{appmenu_scope}
+									</select>	
+									</td>
+									<th>是否激活：</th>
+									<td>
+									<select name="appmenu_active">
+										{appmenu_active}
+									</select>	
+									</td>
+								</tr>							
+								 <tr>
+									<th>使用用户权限：</th>
+									<td>
+									<select name="appmnu_authorstate">
+										{appmnu_authorstate}
+									</select>	
+									</td>
+                                     <th>是否固定功能：</th>
+                                     <td>
+                                         <select name="isconst">
+                                             {isconst}
+                                         </select>
+                                     </td>
+
+                                </tr>
+							</table>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+{showtips}
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

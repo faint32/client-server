@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<TITLE>销售办理</TITLE>
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!-- Styles -->
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+		<!--[if IE 6]>
+			<link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css" />
+			<![endif]-->
+		<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+		<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT> 
+		<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> <script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script>
+        <script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script> <script type="text/javascript" src="../colorbox/jquery.colorbox.js"></script>
+	<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+	</HEAD>
+	<script language=javascript>
+	//禁止退格键 作用于Firefox、Opera
+document.onkeypress=banBackSpace;
+//禁止退格键 作用于IE、Chrome
+document.onkeydown=banBackSpace;
+		$(document).ready(function() {  
+		$(".searchdate").datepicker({dateFormat: $.datepicker.W3C});
+		});
+		
+		function putsta(){
+		   var arrItems=new Array();
+		   var strItem ;
+		   var szRef = "../getdata/seljbstaffer.html" ;
+		   var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+		   arrItems = strItem.split("@@@");
+		   form1.dealwithman.value = arrItems[2] ;    
+		}	
+		
+		function input_focus(){
+		var gg = 1;
+		if (gg == 1){
+		form1.listno.focus();
+		 }
+		}
+		
+		var requestSubmitted = false;
+		
+		function CheckAll(form){
+		     for (var i=0;i<form.elements.length;i++){ 
+		         var strelement = form.elements[i];
+		         if (strelement.name != 'chkall' && !strelement.disabled){
+		             strelement.checked = form.chkall.checked;
+		         }
+		      }
+		   }
+		
+		function bb(obj1,obj2)
+		{
+				if(obj1.style.display == "none"){
+					obj1.style.display = "";
+					obj2.src = "../Images/menu_open.gif";
+				}else{
+					obj1.style.display="none";
+					obj2.src = "../Images/menu_close.gif";
+				}
+		}
+		
+		
+		//获取客户
+		function procus(){
+		
+		     var arrItems=new Array();
+		     var strItem ;
+		     var szRef = "../getdata/getcus.html";
+		     var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+		     
+		     arrItems = strItem.split("@@@");
+		     form1.cusid.value    = arrItems[0];   
+		     form1.cusno.value    = arrItems[1]; 
+		     form1.cusname.value  = arrItems[2];
+		    
+		   
+		}
+		
+		//获取商品
+		function getproduct()
+		{
+		     var arrItems=new Array();
+		     var strItem ;
+		     var szRef = "../getdata/getproduct.html";
+		     var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+		     
+		     arrItems = strItem.split("@@@");
+		     form1.productid.value    = arrItems[0];   
+		     form1.productname.value    = arrItems[1]; 
+		}
+		
+		//获取刷卡器设备号
+		function getpaycard()
+		{
+			var listid=form1.listid.value;
+			location.href='jxcsale_choosepaycard.php?listid='+listid;
+		}
+		var kk=0;
+		
+		function viewall(count)
+		{
+			if(kk == 0){
+				for (i=1;i<=count;i++){
+					temptr = "tr" + i;
+					tempimg = "img" + i;
+						document.getElementById(temptr).style.display = "";
+						document.getElementById(tempimg).src = "../Images/menu_open.gif";
+				}
+				imgb = "imgb";
+				imgb1 = "imgb1";
+				document.getElementById(imgb).src = "../Images/openb.gif";
+				document.getElementById(imgb1).src = "../Images/openb.gif";
+				kk = 1;
+			}else{
+				for (i=1;i<=count;i++){
+					temptr = "tr" + i;
+					tempimg = "img" + i;
+						document.getElementById(temptr).style.display = "none";
+						document.getElementById(tempimg).src = "../Images/menu_close.gif";
+				}
+				imgb = "imgb";
+				imgb1 = "imgb1";
+				document.getElementById(imgb).src = "../Images/closeb.gif";
+				document.getElementById(imgb1).src = "../Images/closeb.gif";
+			    kk = 0;
+			}
+		}
+		
+		
+		function submit_savet() {
+		   if(form1.listno.value==""){
+			 	  alert("请输入单据编号");
+			 	  form1.listno.focus();
+			 	  return;
+			 }
+			 if(form1.cusid.value=="" || form1.cusno.value=="" || form1.cusname.value=="" ){
+			 	  alert("请选择客户");
+			 	  form1.cusno.focus();
+			 	  return;
+			 } 	
+			    //检查商品是否有库存价格
+				showtips('正在保存数据，请稍候...');
+				form1.action.value="new";
+				form1.submit();
+		
+			 
+		}
+		
+		function submit_save() {
+		   if(form1.listno.value==""){
+			 	  alert("请输入单据编号");
+			 	  form1.listno.focus();
+			 	  return;
+			 }
+			 if(form1.cusid.value=="" || form1.cusno.value=="" || form1.cusname.value=="" ){
+			 	  alert("请选择客户");
+			 	  form1.cusno.focus();
+			 	  return;
+			 } 	
+				 if(form1.ishavepaycard.value=="0"){
+			 	  alert("还没选择刷卡器,请先选择刷卡器!");
+			 	  return;
+			 }
+			 
+			 
+			 if (confirm("是否提交？提交后，该单据就等待审核，不能再更改")) {
+			    //检查商品是否有库存价格
+				showtips('正在保存数据，请稍候...');
+				  form1.end_action.value = "endsave";
+					form1.submit();
+		
+			 }
+		}
+		
+		 	function submit_del()
+			{
+				if (confirm("是否删除整条单据？")) {
+				if(requestSubmitted == true){
+					alert("你已经提交，请等待一下");
+					return (false);
+					} 
+					requestSubmitted = true; 
+					showtips('正在删除数据，请稍候...');
+					form1.end_action.value = "dellist";
+					form1.submit();
+				}
+				
+			}
+		
+function submit_checkdel(){
+
+var isempty=true;
+$("[rel='checkdata']").each(function(){
+	if($(this).attr("checked"))
+	{
+		isempty=false;
+	}
+});	
+
+if(!isempty)
+{	
+	if (confirm("是否删除所选的记录？")) {
+	if(requestSubmitted == true){
+	alert("你已经提交，请等待一下");
+	return (false);
+} 
+requestSubmitted = true; 
+showtips('正在删除数据，请稍候...');
+form1.action.value = "del";
+form1.submit();
+}
+}else{
+alert("请选择要删除的数据!");
+return (false);
+}
+}
+		
+		function edit_p(lid2){
+			location.href='jxcsale_choosepaycard.php?vid='+lid2;	
+		}
+		
+		
+		
+		function changelistno(){
+			form1.ischangelistno.value="1";
+		}
+		
+		
+		function InitAjax()
+		{
+		　var ajax=false; 
+		　try { 
+		　　ajax = new ActiveXObject("Msxml2.XMLHTTP"); 
+		　} catch (e) { 
+		　　try { 
+		　　　ajax = new ActiveXObject("Microsoft.XMLHTTP"); 
+		　　} catch (E) { 
+		　　　ajax = false; 
+		　　} 
+		　}
+		　if (!ajax && typeof XMLHttpRequest!='undefined') { 
+		　　ajax = new XMLHttpRequest(); 
+		　} 
+		　return ajax;
+		}
+		
+		function checkcomm(rowcount){
+			var checked;
+			$("#c_"+rowcount).attr("checked",true);
+			$("[rel='paycard_"+rowcount+"']").each(function(){
+				
+				if(!$(this).attr("checked"))
+				{
+					checked=false;
+				}
+			})
+			if(!checked)
+			{
+				$("#c_"+rowcount).attr("checked",checked);
+			}
+		}
+		
+		function checkallcomm(rowcount){
+		    
+		  var checked;
+			if($("#c_"+rowcount).attr("checked"))
+			{
+				checked=true;
+			}else{
+				checked=false;
+			}
+			$("[rel='paycard_"+rowcount+"']").each(function(){
+				
+				$(this).attr("checked",checked);
+			})
+				
+		}
+		
+		function showcomm(listdate,tid,cid,listid,rowcount){
+		   
+		   var zk_id   = "zk_"+listdate;
+		   var paycard_id = "paycard_"+tid;
+		   var ischeck = "0";
+		   if(document.getElementById(cid).checked){
+		     var ischeck = "1";
+		   }
+			 var showcontent='<tr id="tr_'+paycard_id+'"><td colspan="6" align="center">加载中.....</td></tr>';
+			$("#"+zk_id).attr("disabled",true);
+			 $("#"+tid).after(showcontent);
+		   if(!document.getElementById(paycard_id)){
+			 $.ajax({
+			   url: "../ajaxread/readsavepaycard.php?showtype=sale&stdetail_id="+listdate+"&ischeck="+ischeck+"&paycard_id="+paycard_id+"&rowcount="+rowcount,
+			   success: function(data) {
+			     var  arr_strItem=data.split("@@");
+				if(arr_strItem[1]==1)
+				{	
+					$("#s_"+paycard_id).hide();
+					   $("#tr_"+paycard_id).hide();
+					 $("#"+tid).after($(arr_strItem[0]).show());
+					  $("#"+zk_id).attr("disabled",false)
+					 document.getElementById(zk_id).innerHTML = "收起";
+				 }
+			   }
+			 });   
+		  
+		   }
+		   
+		   if(document.getElementById(paycard_id).style.display == "none"){
+		     document.getElementById(paycard_id).style.display = "";
+			 document.getElementById(zk_id).innerHTML = "收起";
+			  $("#tr_"+paycard_id).hide();
+			  $("#"+zk_id).attr("disabled",false);
+		   }else{
+		     document.getElementById(paycard_id).style.display = "none";
+			 document.getElementById(zk_id).innerHTML = "展开";
+			 $("#tr_"+paycard_id).hide();
+			  $("#"+zk_id).attr("disabled",false);
+		   }
+		}
+		
+		
+		function delete_one(paycard,listid)
+		{
+		
+			
+			   if (confirm("是否删除所选记录？")) {
+		        form1.action.value = "del_one";
+				$("#delseltid").attr("value",listid);
+				$("#delpaycard").attr("value",paycard);
+				showtips('正在删除数据，请稍候...');   
+				 form1.submit();
+		    }
+		}
+
+		//
+	</script> 
+	<BODY onload=input_focus() topmargin="0" leftMargin="2" width="100%">
+		<div id="page">
+		<h4 class="icon forms">{menuname} <small></small></h4>
+		<form action="" method="post" name="form1">
+			<input type=hidden name=action value="{action}">
+			<input type=hidden name=end_action value="">
+			<input type=hidden name=id value="{id}">
+			<input type=hidden name=vid value="">
+			<input type=hidden name=listid value="{listid}">
+			<input type=hidden name=ischangelistno value="">
+			<input type=hidden name=ishavepaycard value="{ishavepaycard}">
+			<input type=hidden name=delseltid id="delseltid" value="">
+			<input type=hidden name=delpaycard id="delpaycard" value="">
+			<div id="top">
+				<ul id="menu">
+					<!--<li>-->
+						<!--<a href="#" AccessKey='z' onClick="javascript:submit_savet()"-->
+							<!--title='暂存信息(ALT+z)' {dissave}>暂存</a>-->
+					<!--</li>-->
+					<li>
+						<a href="#" AccessKey='s' onClick="javascript:submit_save()" {save_dis}
+							title='提交数据到审批环节(ALT+s)'>确认发货</a>
+					</li>
+					<!--<li>-->
+						<!--<a href="#" AccessKey='d' onClick="javascript:submit_del()" {disdel} {tijiao_dis}>删除</a>-->
+					<!--</li>-->
+					<li>
+						<a href="#" AccessKey='q' onClick="javascript:location='{gotourl}'">返回</a>
+					</li>
+				</ul>
+			</div>
+			<div class="wrapper">
+				<div class="panel">
+					<div id="showinfo" class="box box-info" style="display:{show_error}">
+						<p>{error}</p>
+						<a class="close">&times;</a>
+					</div>
+					<fieldset class="form">
+						<legend>
+							刷卡器销售 
+							<small style="color:red;font-size:12px;">&nbsp;单据输入,需要刷卡器先填写单据资料,暂存后才能选择添加
+							
+							</small>
+						</legend>
+						<table width="98%" class=table_form cellspacing="0" cellpadding="0" border="0" >
+							<colgroup><col class="col-name" />
+								<col class="col-value" /></colgroup>
+							<tbody>
+								<tr >
+									<th>单据编号：</th>
+									<td>
+										<input class="input disabled" style="ime-mode:disabled" type="text" name="listno" size="20" maxlength="40" value="{listno}" onChange="changelistno()">
+										<span class="form_label">*</span>
+									</td>
+									<th>单据日期：</th>
+									<td height="25" >
+										<input name="date"  id="date" type="text"  readonly  class="input searchdate disabled"   size="20" value="{date}" >
+									</td>
+								</tr>
+								<tr >
+									<th><label class="required">代理商编号：</label></th>
+									<td height="25"  >
+										<input class="input disabled"  type="text" name="cusno" size="10" maxlength="20" value="{cusno}"  >
+										<!--<input  type=button name=save2 class=buttonsmall value="查找"  onClick="javascript:procus()" style="font-size:9pt" >-->
+									<th><label class="required">代理商全称：</label></th>
+									<td >
+										<input type="hidden" name="cusid" value="{cusid}">
+										<input class="input visiabled" type="text" name="cusname" size="20"  value="{cusname}" readonly>
+									</td>
+								</tr>
+                                <tr >
+								<th class="required">录单人：</th>
+								<td >
+									<input class="input visiabled disabled"  type="text" name="ldr" size="10" maxlength="20" value="{ldr}"  readonly="1">
+								</td>
+								<th class="required"><label class="required">经手人：</label></th>
+								<td>
+									<input class="input find disabled" type="text" name="dealwithman"
+											size="30" maxlength="20" value="{dealwithman}" readonly>	
+											<input
+											type="button" name=xuan onClick="javascript:putsta()"
+											class="btn_find">
+																	</td>
+							</tr>
+								<tr>
+									<th>收款方式：</th>
+									<td >
+										<select name="skfs">{skfs}</select>
+									</td>
+									<th>送货地址：</th>
+									<td>
+										<input class="input full disabled"  type="text" name="shaddress" size="80" value="{shaddress}">
+									</td>
+								</tr>
+                                <tr>
+                                    <th>销售方式：</th>
+                                    <td >
+                                        <select name="type">{type}</select>
+                                    </td>
+                                    <th></th>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>销售数量：</th>
+                                    <td >
+                                        <input class="input disabled "  type="text" name="allquantity" size="80" value="{allquantity}">
+                                    </td>
+                                    <th>销售单价：</th>
+                                    <td>
+                                        <input class="input disabled"  type="text" name="saleprice" size="80" value="{saleprice}">
+                                    </td>
+                                </tr>
+							</tbody>
+						</table>
+					</fieldset>
+				</div>
+			</div>
+			<div class="wrapper">
+				<div class="panel">
+					<fieldset class="form">
+						<legend>刷卡器销售 
+							<small>
+								&nbsp;已暂存刷卡器 
+							</small></legend>
+						<table class=table>
+							<thead >
+								<tr>
+									<th  >
+										<INPUT onclick=CheckAll(this.form) type=checkbox value=on name=chkall>
+									</th>
+                                    <th >序号</th>
+									<th >商品名</th>
+									<th >数量</th>
+									<th >单价</th>
+									<th >总价</th>
+									<th >操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- BEGIN prolist -->
+								<tr bgcolor="{bgcolor}" id="jqtrid_{rowcount}" >
+									<td  align="center">
+										<input type="checkbox" name="checkid[]" value="{vid}" rel="checkdata" id="c_{rowcount}" onclick="checkallcomm('{rowcount}')" >
+									</td>
+                                    <td  >&nbsp;{count}</td>
+									<td  >&nbsp;{vproductid}</td>
+									<td  align="right">{vquantity}&nbsp;</td>
+									<td  align="right">{vprice}&nbsp;</td>
+									<td  align="right">{vmoney}&nbsp;</td>
+									<td  align="center" >
+										<span  onClick="showcomm({vid},'jqtrid_{rowcount}','c_{rowcount}','{listid}','{rowcount}')" id="zk_{vid}" style=" cursor:pointer" >展开</span>
+										&nbsp; 
+										<a href="#" onClick="edit_p({vid})">编辑</a>
+									</td>
+								</tr>
+								<!-- END prolist -->
+							</tbody>
+							<tfoot>
+                            <th>&nbsp;</th>
+								<th   class=thcolor>
+									<input class=buttonsmall name=end2 type=button value="删   除" {save_dis} {disdel}  onClick="javascript:submit_checkdel()" style="font-size:9pt" {discheckdel}>
+								</th>
+								<th  class=thcolor>共&nbsp;{count}</font>&nbsp;条&nbsp;合计：</th>
+								<th  class=thcolor align="right">
+									<span id="spanallghquantityid">{vallquantity}</span>
+									&nbsp; 
+								</th>
+								<th align="right" ></th>
+								<th   align="right">
+									<span id="spanallmoneyid">{vallmoney}</span>
+									&nbsp; 
+								</th>
+								<th  class=thcolor>
+									<input type=button name=save class=buttonsmall {tijiao_dis} value="选择刷卡器发货" AccessKey=t  onClick="javascript:getpaycard()" style="font-size:9pt" >
+								</th>
+							</tfoot>
+						</table>
+					</fieldset>
+				</div>
+			</div>
+			<br>
+		</form>
+{showtips}		
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

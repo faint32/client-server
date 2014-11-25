@@ -1,0 +1,174 @@
+<HTML><HEAD><TITLE>进货历史单</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<link href="{skin}reset.css" rel="stylesheet" type="text/css">
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<SCRIPT language=javascript src="../include/dateobject.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/datepicker.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+</HEAD>
+<script language=javascript>
+<!-- 
+//禁止退格键 作用于Firefox、Opera
+document.onkeypress=banBackSpace;
+//禁止退格键 作用于IE、Chrome
+document.onkeydown=banBackSpace;
+function bb(obj1,obj2)
+{
+		if(obj1.style.display == "none"){
+			obj1.style.display = "";
+			obj2.src = "../Images/menu_open.gif";
+		}else{
+			obj1.style.display="none";
+			obj2.src = "../Images/menu_close.gif";
+		}
+}
+
+
+
+
+var kk=0;
+var imgb,imgb1;
+
+function viewall(count)
+{
+	if(kk == 0){
+		for (i=1;i<=count;i++){
+			temptr = "tr" + i;
+			tempimg = "img" + i;
+				document.getElementById(temptr).style.display = "";
+				document.getElementById(tempimg).src = "../Images/menu_open.gif";
+		}
+		imgb = "imgb";
+		imgb1 = "imgb1";
+		document.getElementById(imgb).src = "../Images/openb.gif";
+	     document.getElementById(imgb1).src = "../Images/openb.gif";
+		kk = 1;
+	}else{
+		for (i=1;i<=count;i++){
+			temptr = "tr" + i;
+			tempimg = "img" + i;
+				document.getElementById(temptr).style.display = "none";
+				document.getElementById(tempimg).src = "../Images/menu_close.gif";
+		}
+		imgb = "imgb";
+		imgb1 = "imgb1";
+		document.getElementById(imgb).src = "../Images/closeb.gif";
+		document.getElementById(imgb1).src = "../Images/closeb.gif";
+	    kk = 0;
+	}
+}
+
+
+// -->
+</script>
+<BODY topmargin="0" leftMargin="2" width="100%">
+<div id="page">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="25">
+               <td height="25" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">刷卡器入库史单</td>
+		   <tr>
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+          </tr>		
+  </table>
+<center>
+<form action="" method="post" name="form1">
+    <input type=hidden name=action value="{action}"> 
+    <input type=hidden name=listid value="{listid}">  
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+      <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right">
+          <input type=button name=rst class=button_recovery value="     返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'"></div></td>
+        <td class=button_labelright></td>
+      </tr>
+    </table>
+	
+	  <div class="wrapper">
+    <div class="panel">
+
+	  <fieldset class="form">
+	  <legend>刷卡器入库历史 <small>&nbsp;单据信息</small> </legend>
+    <table width="98%" class=table_form cellspacing="0" cellpadding="0" border="0">
+      <tbody>
+
+        <tr >
+          <td width=115 height="25" align=right class=form_label>单据编号：</td>
+          <td height="25" class=span_label>{listno}
+          </td>
+          <td width=113 height="25" align="right" class=form_label>单据日期：</td>
+          <td height="25" class=span_label><script language=javascript>
+			       var date=createDatePicker("date",{year},{month},{day},0)
+			   </script></td>
+        </tr>
+		 <tr class=InputFrameLine>
+          <td width=115 height="25" align=right class=form_label>供应商编号：</td>
+          <td height="25"  class=span_label>{suppno}              
+          </td>
+          <td width=113 height="25" align="right" class=form_label>供应商全称：</td>
+          <td  height="25" class=span_label>{suppname}</td>
+        </tr>
+          <td width=113 height="25" align="right" class=form_label>付款金额：</td>
+          <td  height="25" class=span_label>{paymoney}</td>
+        </tr>
+        <tr class=InputFrameLine>
+          <td width=115 height="30" align="right" valign="middle" class=form_label>备注：</td>
+          <td height="30" colspan="3" class=span_label>{memo_z}</td>
+        </tr>
+      </tbody>
+    </table>
+        </fieldset>
+   
+    </div>
+  </div>	
+	    <div class="wrapper">
+    <div class="panel">
+	
+	  <fieldset class="form">
+          <legend>刷卡器入库 <small>&nbsp;已存刷卡器信息</small> </legend>
+    <table width="98%" border="0" cellspacing="1"  style="display:{datashow}" class=table>
+	  <thead class=listtitle>
+        <th align="center" class="white_word">刷卡器KEY</th>
+        <th align="center" class="white_word">数量</th>
+        <th align="center" class="white_word">单价</th>
+        <th align="center" class="white_word">总价</th>
+	  </thead>
+      <!-- BEGIN prolist -->
+	  <tr onMouseOver="this.style.backgroundColor='#DAE2ED';" onMouseOut="this.style.backgroundColor='{bgcolor}'" bgcolor="{bgcolor}">
+        <td align="left" >&nbsp;{vpaycardid}</td>
+        <td align="right" >{vquantity}&nbsp;</td>
+        <td align="right" >{vprice}&nbsp;</td>
+        <td align="right" >{vmoney}&nbsp;</td>
+	  </tr>
+	   <tr id={trid} style="display:none">
+        <td align="center" class=tdcolor></td>
+        <td colspan="2" align="center" class=tdcolor>备注</td>
+        <td colspan="10" align="left" class=tdcolor>{vmemo}&nbsp;</td>
+      </tr>
+    
+	<!-- END prolist -->
+    <tr>
+        <td  align="left" class=tdcolor>
+          共&nbsp;{count}</font>&nbsp;条&nbsp;合计：
+        </td>
+
+        <td align="right" class=tdcolor>{vallquantity}</td>
+
+        <td align="center" class=tdcolor></td>
+        <td align="right" class=tdcolor>{vallmoney}</td>
+    </tr>
+    </table>
+	        </fieldset>
+   
+    </div>
+  </div>
+<br>
+</form>
+</center>
+</div>
+</BODY>
+</HTML>

@@ -1,0 +1,131 @@
+<HTML>
+<HEAD>
+<TITLE>商品入库单</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+<LINK href="../css/printcss.css" rel=stylesheet>
+<style>
+//@media screen{.onlyPrint{display:none}}
+@media print{.onlyShow{display:none} .onlyPrint{page-break-before:always}}
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+// 这里定义每页能打印多少行
+//模拟数据
+
+function printpage(){
+for (var i=parseInt(linesPerPage.value);i<(show.children.length-1); i+=parseInt(linesPerPage.value))
+{
+var tr = show.children[i];
+tr.className = "onlyPrint"
+}
+print();
+}
+function prepare()
+{
+for (var i=parseInt(linesPerPage.value);i<(show.children.length-1); i+=parseInt(linesPerPage.value))
+{
+var tr = show.children[i];
+tr.className = "onlyPrint"
+}
+preView();
+}
+function pageSetup(){try{WB.ExecWB(8,1);}catch(e){alert("您的浏览器不支持此功能");}}
+function preView(){try{WB.ExecWB(7,1);}catch(e){alert("您的浏览器不支持此功能");}}
+function printclose(){window.close();}
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+/*
+</OBJECT>
+<OBJECT ID="Z4MPlusLabel"
+CLASSID="CLSID:552947B9-7AEB-46EA-9A2C-A74AA57F888B"
+CODEBASE="Z4MPlus.CAB#version=1,0,0,0">
+*/
+
+//-->
+</SCRIPT>
+</HEAD>
+<body  text="#000000" topmargin="0" leftMargin="2" width="100%" >
+<center>
+<OBJECT classid=CLSID:8856F961-340A-11D0-A96B-00C04FD705A2 height=0 id=WB width=0 VIEWASTEXT></OBJECT>
+<center class=onlyShow>
+设定每页打印<input id=linesPerPage size=4 value=17>行 &nbsp; &nbsp;
+<button onclick='pageSetup()'>页面设置</button>
+&nbsp;<button onClick='prepare()'>打印预览</button>
+<button onClick="printpage()">打  印</button>
+<button onClick="printclose()">关  闭</button><BR><BR>
+</center>
+
+<div align="center" style="width:100% "><hr noshade width="100%" size="1"></div>
+
+ <form id=form1 name=form1 action="" method=post>
+  <input type=hidden name=action value="{action}">
+ <DIV>
+  
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="pagetitlehead">
+      <tr> 
+        <td height="30" class="pagetitle" align="center" colspan=3 valign="middle"><font size="+3"><b>商品入库单</b></font></td>
+      </tr>
+      <tr>
+         <td width="40%" rowspan="2" align="left"><font size="+1"><b>供应商：{suppname}</b></font></td>
+         <td width="30%" height="25" align="left"><b>入库单号：{no}</b></td>
+         <td width="30%" rowspan="2" align="left"><font size="+1"><b>入库日期：{now}</b></font></td>
+      </tr>
+  </table>
+ </DIV>
+ <table class=tableframe style=word-break:break-all width="99%" cellspacing="0" cellpadding="0">
+   <tbody>
+     <tr class=listtitle>
+       <td class=listcelltitle nowrap align=middle height="25" width="35">序号</td>
+       <td class=listcelltitle nowrap align=middle>商品编号</td>
+       <td class=listcelltitle nowrap align=middle>商品名称</td>
+       <td class=listcelltitle nowrap align=middle>商品批次</td>
+       <td class=listcelltitle nowrap align=middle>商品设备号</td>
+       <td class=listcelltitle nowrap align=middle>数量</td>
+       <td class=listcelltitle nowrap align=middle>单价</td>
+       <td class=listcelltitle nowrap align=middle>合计</td>
+       <td class=listcelltitle nowrap align=middle>入库备忘</td>
+     </tr>
+	  <tbody bgcolor=white id=show>
+     <!-- BEGIN prolist -->
+     <tr class=listrow1 >
+       <td class=listcellrow  align=center height="25">{count}</td>
+       <td class=listcellrow1  align=left >&nbsp;{lprono}</td>
+       <td class=listcellrow  align=left>&nbsp;{lproname}</td>
+       <td class=listcellrow  align=left>&nbsp;{batches}</td>
+       <td class=listcellrow  align=left>&nbsp;{paycardkey}</td>
+       <td class=listcellrow  align=left>&nbsp;{lquantity}</td>
+       <td class=listcellrow  align=right>{lprice}&nbsp;</td>
+       <td class=listcellrow  align=right>{lprosum}&nbsp;</td>
+       <td class=listcellrow1  align=right>{lpromemo}&nbsp;</td>
+       </tr>
+     <!-- END prolist -->
+	 </TBODY>
+     <tr  >
+       <td  class=listcellrow align=left height=26 colspan=5>合计：&nbsp;&nbsp;</td>
+       <td  class=listcellrow align=right >{lprosumnum}&nbsp;</td>
+       <td  class=listcellrow align=right >&nbsp;</td>
+       <td  class=listcellrow align=right >{lprosumprice}&nbsp;</td>
+       <td  class=listcellrow align=right >&nbsp;</td>
+     </tr>
+   </tbody>
+ </table>
+ <table width="99%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+         <td align="left" height="10" colspan="4"></td>
+      </tr>
+      <tr>
+		 <td align="left" width="30%" height="35"><b>采购员：{dealwithman}</b></td>
+         <td align="left" width="30%"><b>录单人：{ldr}</b></td>
+         <td align="left" width="20%"><b>仓库人员：</b></td>
+         <td align="left" width="20%"><b>注：盖章有效</b></td>
+      </tr>
+      <tr>
+         <td align="left" colspan=2 height="3"></td>
+      </tr>
+  </table>
+</FORM>
+</center>
+</BODY></HTML>

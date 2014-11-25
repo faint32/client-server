@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dth XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dth/xhtml1-transitional.dth">
+<HTML><HEAD><TITLE>刷卡器入库历史</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!-- Styles -->
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+		<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+</HEAD>
+<script>
+//禁止退格键 作用于Firefox、Opera
+document.onkeypress=banBackSpace;
+//禁止退格键 作用于IE、Chrome
+document.onkeydown=banBackSpace;
+</script>
+<BODY  topmargin="0" leftMargin="2" width="100%">
+<div id="page">
+  <h4 class="icon forms">{menuname} <small></small></h4>
+
+<form action="" method="post" name="form1">
+    <input type=hidden name=end_action value=""> 
+    <input type=hidden name=listid value="{listid}">
+	  <input type=hidden name=int_listcount value="{count}" >
+			<div id="top">
+				<ul id="menu">
+					<li>
+						<a href="#" AccessKey='q' onClick="javascript:location='{gotourl}'">返回</a>
+					</li>
+				</ul>
+			</div>	  
+ <div class="wrapper">
+    <div class="panel">
+	  <fieldset class="form">
+    <table  class="table_form">
+	<colgroup>
+		<col class="col-name" />
+		<col class="col-value" />
+	</colgroup>
+
+        <tr >
+          <th >单据编号：</th>
+          <td><input class="input disabled" readonly="1" style="ime-mode:disabled" type="text" name="listno" size="20" maxlength="40" value="{listno}" onChange="changelistno()">
+
+          <th>单据日期：</th>
+          <td>
+		  <input name="date"  id="date" type="text"  readonly  class="input disabled"   size="20" value="{date}"readonly="1" >
+			   </td>
+        </tr>
+		 <tr >
+          <th >供应商编号：</th>
+          <td ><input class="input disabled" type="text" name="suppno" size="10" maxlength="20" value="{suppno}"readonly="1"  >               
+          </td>
+          <th>供应商全称：</th>
+          <td>
+          <input type="hidden" name="suppid" value="{suppid}">
+          <input class="input disabled" type="text" name="suppname" size="20"  value="{suppname}" readonly="1">
+ 
+        </tr>
+
+        <tr>
+          <th >备注：</th>
+          <td colspan="3"><textarea class="textarea disabled full" name="memo_z"  readonly="1" >{memo_z}</textarea></td>
+		  
+        </tr>
+
+    </table>
+	
+        </fieldset>
+   
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="panel">
+	
+	  <fieldset class="form">
+        
+		  
+    <table class=table>
+     	
+	  <thead >
+	  <tr>
+	  <th align="center" class="white_word">商品名称</th>
+        <th align="center" class="white_word">批次号</th>
+		<th align="center" class="white_word">刷卡器设备号</th>
+        <th align="center" class="white_word">数量</th>
+        <th align="center" class="white_word">单价</th>
+        <th align="center" class="white_word">总价</th>
+		</tr>
+	  </thead>
+      <!-- BEGIN prolist -->
+	  <tbody onMouseOver="this.style.backgroundColor='#DAE2ED';" onMouseOut="this.style.backgroundColor='{bgcolor}'" bgcolor="{bgcolor}" >
+		<tr>	
+		<td align="center" >&nbsp;{vproductid}</td>  
+        <td align="center" >&nbsp;{batches}</td>       
+	   <td align="center" >&nbsp;{vpaycardid}</td>
+        <td align="right" >{vquantity}&nbsp;</td>
+        <td align="right" >{vprice}&nbsp;</td>
+
+        <td align="right" >{vmoney}&nbsp;</td>
+	</tr>
+	  </tbody>
+    
+	<!-- END prolist -->
+    <tfoot>
+	<tr>
+		 <th align="center" class=thcolor>共&nbsp;{count}</font>&nbsp;条&nbsp;合计：</th>
+<th align="right" class=thcolor></th>
+				<th align="right" class=thcolor></th>
+        <th align="right" class=thcolor><span id="spanallghquantityid">{vallquantity}</span>&nbsp;</th>
+
+		<th align="right" class=thcolor></th>
+        <th align="right" class=thcolor><span id="spanallmoneyid">{vallmoney}</span>&nbsp;</th>
+    </tr>
+	</tfoot>
+    </table>
+	        </fieldset>
+
+    </div>
+  </div>
+</form>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

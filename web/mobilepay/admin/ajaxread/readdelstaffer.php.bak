@@ -1,0 +1,24 @@
+<?   
+require("../include/common.inc.php");
+$db=new db_test;
+
+$ishvaeflage = 0 ;
+
+
+
+
+
+$query = "select * from tb_wagelistdetail  where fd_wagelistdetail_staid ='".$id."'";
+$db->query($query);    //²éÑ¯¹¤×Ê
+if($db->nf()){
+	$ishvaeflage = 1 ;
+}
+
+
+if($ishvaeflage==0){
+  $returnvalue = 0;
+}else{
+  $returnvalue = 1;
+}
+echo $returnvalue;
+?>

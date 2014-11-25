@@ -1,0 +1,197 @@
+/* W3School ���߱༭���� */
+
+*	{
+	margin:0;
+	padding:0;
+	border:0;
+	background-color:transparent;
+	}
+div#wrapper
+	{
+	margin: 0 auto;
+	text-align: left;
+	border:1px solid #c5c5c5;
+	}
+
+body#editor	{
+	text-align:left;
+	font: 12px Verdana, Arial, Helvetica, sans-serif;
+	}
+
+div#header	{
+	color:#000;
+	height:70px;
+	background:#fff;
+	border-bottom: 1px solid #c5c5c5;
+	background: #f5f5f5;
+	min-width:1000px;
+	}
+
+#header h1	{
+	margin:20px 0 0 0;
+	font-size:30px;
+	float:left;
+	color: #a5a5a5;
+	}
+
+#header #ad {
+	float:left;
+	margin:0 0 0 10px;
+	border:0px solid #fff;
+	width:728px;
+	height:90px;
+	}
+
+div#butt	{
+	height:50px;
+	border-bottom: 1px solid #c5c5c5;
+	background:#fff;
+	}
+
+div#butt input#submitTryit,.button {
+	margin:10px 0 0 10px;
+	background:red;
+	color:#fff;
+	width:150px;
+	height:30px;
+	font:14px Verdana, Arial, Helvetica, sans-serif;
+	}
+
+div#CodeArea	{
+	float:left;
+	height:435px;
+	width:50%;
+	margin-left:5px;
+	}
+
+#CodeArea h2	{
+	margin:10px 0 6px 5px;
+	color:red;
+	font-size:14px;
+	}
+
+#CodeArea textarea{
+	width:100%;
+	height:400px;
+	overflow:auto;
+	border:1px solid #c5c5c5;
+		border-right:0;
+
+	font:14px "Courier New", Courier, monospace;
+	}
+
+div#result	{
+	float:left;
+	height:435px;
+	width:49%;
+	}
+
+#result h2	{
+	margin:10px 0 6px 5px;
+	color:red;
+	font-size:14px;
+	}
+
+#result pre{
+	width:100%;
+	height:400px;
+	border:1px solid #999;
+	overflow:auto;
+	word-wrap: break-word;word-break:break-all;
+	font:14px "Courier New", Courier, monospace;
+	}
+pre{white-space:pre-wrap; white-space:-moz-pre-wrap; white-space:-pre-wrap; white-space:-o-pre-wrap; word-wrap:break-word; /*����һ���ܳ��ܳ��Ĵ��룬���һ�����ľ�У�*/}
+#footer	{
+	clear:both;
+	background:#fff;
+	border:1px solid #f5f5f5;
+	text-align:left;
+	background: #f5f5f5;
+	}
+
+#footer	p {
+	margin:10px;
+	color: #000000;
+	font-weight:bold;
+	}
+
+a:link, a:visited {
+	text-decoration : underline;
+	color : #666;
+	background : transparent; 
+	}
+table.form {
+	background:#fffbff;
+	border-collapse:collapse;
+	width:50%;
+}
+ table.form th,  table.form td {
+	padding:.2em .5em;
+}
+table.form th {
+	background:#f7f7f7;
+	text-align:right;
+	width:10px;
+	font-weight:bold;  
+       white-space:nowrap;    
+        word-break:keep-all;    
+       overflow:hidden;    
+       text-overflow:ellipsis;   
+ 
+}
+.btn {
+	display: inline-block;
+	padding: 5px 10px;
+	color: #2a2a2a !important;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 11px;
+	font-family: Tahoma, Arial, sans-serif;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	text-shadow: 0 1px 1px rgba(255,255,255,0.9);
+	position: relative;
+	cursor: pointer;
+	border:1px solid #ccc !important;
+	background:#fff url("btn-overlay.png") repeat-x !important;
+}
+.input, .textarea {
+	-webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.1);
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #ffffff;
+	background-position:0px 0px;
+	border: 1px solid #aaaaaa;
+	font-family: inherit;
+	color: #2a2a2a;
+	font-size: 9pt;
+	padding: 4px;
+	width: 200px;
+	float: left;
+	margin-right:5px;
+}
+a:hover {
+	text-decoration : underline;
+	color: #666;
+	background : transparent; 
+	}
+
+a:active {
+	text-decoration : underline;
+	color : #666;
+	background : transparent;  
+	}
+button{cursor:pointer;}
+
+BOOK
+{display:block;
+margin-top:12pt;
+font-size:10pt}
+TITLE
+{font-style:italic}
+AUTHOR
+{font-weight:bold}

@@ -1,0 +1,13 @@
+1±0±基本资料±±±1±1±±±1^2^3^4^5
+1002±1±客户资料±±../basic/tb_customer_b.php±0±3±增加^修改^删除±1^2^3
+2±0±仓库管理±±../main/right.html±1±1±±±1^2^3^4^5
+2001±2±库存查询±±../storage/storage_show.php±0±3±±1^2^3
+2002±2±库存商品流水帐±±../storage/commglide_query.php±0±3±±
+3±0±采购管理±±±1±1±±±1^2^3^4^5
+3003±3±采购收货±±../procurement/tb_stock_b.php±0±3±审批±2
+3004±3±采购收货历史±±../procurement/tb_stockview_b.php±0±3±±
+4±0±销售管理±ico_main_sale.jpg±±1±1±±±1^2^3^4^5
+4001±4±销售发货单±±../sale/tb_salelist_b.php±0±3±增加^修改^删除±1^2^3
+4002±4±销售发货历史±±../sale/tb_salelistview_b.php±0±3±±
+4003±4±销售退货单±±../sale/tb_saleback_b.php±0±3±增加^修改^删除±1^2^3
+4004±4±销售退货历史±±../sale/tb_salebackview_b.php±0±3±±

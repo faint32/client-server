@@ -1,0 +1,157 @@
+<html xmlns:ntb>
+<head>
+<title>top</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<SCRIPT language=javascript src="../include/dateobject.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/datepicker.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+
+<!-- First we include the Toolkit JavaScript -->
+<script language="javascript" src="common/script/nitobi.toolkit.js"></script>
+
+<!-- Now we include the component JavaScript -->
+<script language="javascript" src="common/script/nitobi.fisheye.js"></script>
+<script>
+	function onLoad()
+	{
+		var f3 = nitobi.loadComponent("fisheye3");
+	}
+
+</script>
+
+<style type="text/css">
+<!--
+body {	
+	margin:0px
+}
+.zicolor {
+	font-size:13px
+}
+-->
+</style></head>
+<script language="JavaScript">
+<!--
+    function logoff(){
+         if (confirm("是否确定退出系统?")) {
+	          parent.parent.window.location.href="../login/logout.php";   
+         }
+    }     
+	
+	function framesgomain(){      
+	          parent.parent.frames[2].location.href="../main/right.php";   
+        
+    }       
+    function framesprint() {
+	     parent.parent.frames[2].focus();
+	     window.print();
+    } 
+
+// -->
+</script>
+<body onLoad="onLoad()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr height="66">
+    <td  width="191" height="69" rowspan="3" valign="middle" ><img src="{skin}img/logo.jpg" border=0></td>
+   <td width="39" rowspan="3" align="left"  valign="middle" ><img src="{skin}img/top_line.jpg" border=0></td>
+   <td rowspan="3" align="left" valign="bottom" class=topfont>
+   <span class=topfont1><b>提高您营运效率的好帮手</b><br>
+   您好！用户：</span><span class=topfont2>{loginname}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+   <span class=topfont1>
+   <span class=topfont1>欢迎进入通付宝后台管理系统！</span></td>
+      <td width="162" rowspan="3" align="left" valign="bottom">
+	  
+	  <div style="margin:0px 0px 0px 0px;">
+	  <ntb:fisheye id="fisheye3" growpercent="156" opendirection="up" expanddirection="center" iconwidth="35">
+	<ntb:menuitem imagesrc="{skin}img/top_main.gif" 	label=" " onClick="framesgomain()" ></ntb:menuitem>
+	<ntb:menuitem imagesrc="{skin}img/top_print.gif"  		label=" " onClick="framesprint()"></ntb:menuitem> 
+	<ntb:menuitem imagesrc="{skin}img/top_reload.gif" 			label=" " onClick="parent.parent.frames[2].document.location.reload()"></ntb:menuitem>    
+	<ntb:menuitem imagesrc="{skin}img/top_quit.gif"  	label=" " onClick="logoff()" ></ntb:menuitem>   
+</ntb:fisheye>
+	  </div>	  </td>
+   <td width="8" height="25" align="left" valign="top" background="{skin}img/top_right.jpg"></td>  
+   <td align="right"  width="152" valign="bottom" height="25"  bgcolor="#eaeaea" class=topfontb><div style="margin:0px 0px 0px 0px;">{year}年{month}月{day}日|</div></td>
+   <td align="left" width="80" valign="bottom" height="25"   bgcolor="#eaeaea"><div style="margin:0px 0px 0px 0px;"><img src="images/time/space.gif" name="one" width="16" height="21" id="one"><img src="images/time/space.gif" name="two" width="16" height="21" id="two"><img src="images/time/dgon.gif" name="three" width="7" height="21" id="three"><img src="images/time/space.gif" name="four" width="16" height="21" id="four"><img src="images/time/space.gif" name="five" width="16" height="21" id="five"></div></td> <script language="javascript">
+<!--//
+img = new Array()
+for(var i=0; i <= 14; i++) {
+img[i] = new Image()
+}
+img[1].src = "images/time/dg0.gif"
+img[2].src = "images/time/dg1.gif"
+img[3].src = "images/time/dg2.gif"
+img[4].src = "images/time/dg3.gif"
+img[5].src = "images/time/dg4.gif"
+img[6].src = "images/time/dg5.gif"
+img[7].src = "images/time/dg6.gif"
+img[8].src = "images/time/dg7.gif"
+img[9].src = "images/time/dg8.gif"
+img[10].src = "images/time/dg9.gif"
+img[11].src = "images/time/dgon.gif"
+img[12].src = "images/time/dgoff.gif"
+img[13].src = "images/time/dgam.gif"
+img[14].src = "images/time/dgpm.gif"
+var base = "images/time/dg"
+var space = "images/time/space.gif" 
+var per = false
+
+function go() {
+per = true
+start()
+}
+
+function start() {
+if(per == true) {
+var now = new Date()
+var hours = now.getHours();
+hours = (hours > 12) ? hours + "" : hours + ""
+hours = (hours < 10) ? "0" + hours : hours + ""
+var minutes = now.getMinutes();
+minutes = (minutes < 10) ? "0" + minutes : minutes + ""
+var seconds = now.getSeconds();
+seconds = (seconds < 10) ? "0" + seconds : seconds + ""
+document.one.src = (hours.charAt(0)=="0") ? space : add(hours.charAt(0))
+document.two.src = add(hours.charAt(1))
+document.four.src = add(minutes.charAt(0))
+document.five.src = add(minutes.charAt(1))
+setTimeout("start()",1000)
+}
+}
+
+secflag=1;
+function secondgo()
+{
+document.three.src = (secflag % 2) ? add("on") : add("off")
+if (secflag==1)
+{	secflag=2;}
+else
+{	secflag=1;}
+setTimeout("secondgo()",500);
+}
+
+function add(it) {
+return base + it + ".gif"
+}
+go();
+secondgo();
+//-->
+//-->
+     </script>
+  </tr>
+  <tr  height="11">
+    <td width="8" height="3" align="left" valign="top"><img src="{skin}img/top_right_jiao.jpg" border=0></td>
+    <td height="11" colspan="2"  align="left" valign="top" background="{skin}img/top_right_line.jpg"></td>
+  </tr>
+  <tr   height="32">
+    <td height="32" colspan="3" align="left">&nbsp;</td>
+  </tr>
+
+
+  <tr>
+    <td height="14" colspan="19" background="{skin}img/top_bottom_line.jpg"></td>
+  </tr>
+</table>
+</body>
+</html>

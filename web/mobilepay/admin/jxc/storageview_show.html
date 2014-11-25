@@ -1,0 +1,188 @@
+<HTML>
+	<HEAD>
+		<TITLE>刷卡器查询</TITLE>
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<!-- Styles -->
+	<link rel="stylesheet" href="../css/styles.css">
+	<link rel="stylesheet" href="../css/custom.css">
+		<!-- Scripts -->
+		<script src="../include/jquery.js" language="javascript"></script> 
+		<script type="text/javascript" language="javascript"
+			src="../include/jquery.dataTables.gb2312.js"></script> <script language="javascript"> 
+			$(document).ready(function() {
+			
+			// $.ajaxSetup ({cache: false });	
+			      var commid=$("#commid").val();
+			var gotourl="../ajaxread/storageview_show.php?commid="+commid;
+			
+			$('#basictable').dataTable({   
+			                 "sDom": '<"wrapper"flipt>rt<"bottom"ip><"clear">',
+				 "bStateSave": true,
+				  "aLengthMenu": [[5,10, 25, 50,600], [5,10, 25, 50,600]],
+				 "bLengthChange": true, 
+				 "bProcessing": true,        
+				 "iDisplayLength": 50,        
+			                 "bServerSide":true,
+			                 "sAjaxSource":gotourl,
+				 "sPaginationType": "full_numbers"			
+			
+			              });
+			
+			
+			
+			});
+			
+			 function edit(id)
+			
+			       {
+			
+			      $("#id").attr("value",id);
+			
+			$("#form3").submit();
+			
+			       }
+			
+			 function submit_save()
+			
+			 {
+			
+			
+			$("#action").attr("value","save");
+			
+			$("#form3").submit();
+			
+			 }
+			       
+			 function del(id)
+			
+			 {
+			if (confirm("确定作废这张卡么？")) {
+			$("#id").attr("value",id);
+			
+			$("#action").attr("value","del");
+			
+			$("#form3").submit();
+			 }
+			
+			 }
+			function CheckAll(obj)
+			{
+			
+			$("[rel='arr_paycard']").each(function(){$(this).attr("checked",obj.checked);});
+			
+			}	
+			function inputfiledata(){
+			location.href="input_salercard.php";
+			}
+			function bangding(value)
+			{
+			var ischoose=0;
+			$("[rel='arr_paycard']").each(function(){
+			
+			if($(this).attr("checked"))
+			{
+			ischoose=1;
+			}
+			
+			});
+			if(!ischoose)
+			{
+			if(value=="del")
+			{
+			alert("请选择要删除的刷卡器！");
+			}else{
+			
+			alert("请选择要绑定的刷卡器！");
+			}
+			
+			return;
+			}
+			
+			$("#bangdingtype").attr("value",value);
+			
+			$("#form3").submit();
+			}
+			
+			function plinputpaycard()
+			{
+			$("#bangdingtype").attr("value","plinput");
+			$("#form3").submit();
+			}
+			
+			function closeplinput()
+			{
+			$("#showbasictable").css("display","block");
+			$("#paycardinput").css("display","none");
+			}
+			function showinputpaycard()
+			{
+			$("#showbasictable").css("display","none");
+			$("#paycardinput").css("display","block");
+			}
+			
+		</script> 
+	</HEAD>
+	<BODY>
+		<div id="page">
+		 <h4 class="icon forms">{menuname} <small></small></h4>
+			<div id="top">
+				<ul id="menu">
+					<li>
+						<a href="#" AccessKey='q' onClick="javascript:location='{gotourl}'">返回</a>
+					</li>
+				</ul>
+			</div>
+			<!-- Wrapper -->
+			<form action="bangding.php" method="post" id="form3" name="form3">
+				<div class="wrapper">
+				    <br>
+					<div class="panel" id="showbasictable">
+						<table border="0" cellspacing="1" class="table" id="basictable">
+							<thead><tr>
+									{theadth} 
+								</tr></thead>
+							<tbody>
+								<tr>
+									<td colspan="8" class="dataTables_empty">加载数据中...</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<table border="0" cellspacing="1" align="center" class="table"
+						id="paycardinput" style="display: none; width: 100px;">
+						<thead>
+							<tr>
+								<td align="right">
+									<input type=button name=save32
+										class="btn btn-green" value="关闭" onClick="javascript:closeplinput()">
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									刷卡器设备号: 
+									<input type=text
+										name="startpaycardid" class="btn btn-green" value="">
+									至 
+									<input
+										type=text name="endpaycardid" class="btn btn-green" value="">
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									<input type=button name=save32
+										class="btn btn-green" value="保存"
+										onClick="javascript:plinputpaycard()">
+								</td>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</form>
+		</div>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

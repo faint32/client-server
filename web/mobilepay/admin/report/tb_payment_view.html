@@ -1,0 +1,113 @@
+<HTML>
+<HEAD>
+<TITLE>收支报表</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="dianduo" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<script language="javascript" type="text/javascript" src="../include/ShowCalendar.js"></script>
+<script language="javascript">
+<!--
+function changedata($val){
+    document.getElementById("changeday").value = $val;
+    form1.submit(); 
+	return false;  
+}
+
+// -->
+</script>
+</HEAD>
+<body  text="#000000" topmargin="0" leftMargin="2" width="100%">
+<center>
+  <form id=form1 name=form1 action="" method=post>
+    <DIV>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td height="30" class="pagetitle"  colspan=2 valign="middle">&nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle"> <span>财务报表 --> 收支报表 </td>
+        </tr>
+        <tr>
+          <td align="left" colspan=2 height="3">{error}</td>
+        </tr>
+      </table>
+    </DIV>
+    <input name="changeday" id="changeday" type="hidden" value="">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td align="left" height="25">&nbsp;&nbsp;
+          <input name="startday" type="text" onClick="SetDate(this,'yyyy-MM-dd');"  class=textfield   size="20" value="{startday}" >-<input name="endday" type="text" onClick="SetDate(this,'yyyy-MM-dd');"  class=textfield   size="20" value="{endday}" >
+          &nbsp;&nbsp;
+          <input name="" type="submit" value="查询"></td>
+        <td align="right" >&nbsp;&nbsp;<a href="javascript:changedata('1');void(0);">当天</a>&nbsp;&nbsp;<a href="javascript:changedata('2');void(0);">一周前</a>&nbsp;&nbsp;<a href="javascript:changedata('3');void(0);">一月前</a>&nbsp;&nbsp;<a href="javascript:changedata('4');void(0);">三月前</a></td>
+      </tr>
+    </table>
+  </form>
+  <TABLE  width="100%" align=center>
+    <tr>
+      <td width="50%" valign="top"><TABLE class=tableframe style=word-break:break-all align=center>
+          <thead>
+            <tr class=listtitle>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th colspan="4">收入</th>
+            </tr>
+            <tr class=listtitle>
+              <th width="40" class=listcelltitle noWrap align=middle height="25">序号</th>
+              <th width="80" class=listcelltitle noWrap align=middle>日期</th>
+              <th width="80" class=listcelltitle noWrap align=middle>星期</th>
+              <th width="100" class=listcelltitle noWrap align=middle>转账汇款</th>
+              <th width="100" class=listcelltitle noWrap align=middle>贷款还款</th>
+              <th width="100" class=listcelltitle noWrap align=middle>信用卡还款</th>
+              <th width="100" class=listcelltitle noWrap align=middle>优惠券</th>
+            </tr>
+          </thead>
+          <TBODY>
+            <!-- BEGIN BXBK -->
+            <TR style="display:{hasdateshow}" class=listrow1 onMouseOver="this.style.backgroundColor='#F1F4F9';" onMouseOut="this.style.backgroundColor='{bgcolor}'" bgcolor="{bgcolor}">
+              <TD class=listcellrow  align=left height="25" style="{fcolor}">{tdcount}</TD>
+              <TD class=listcellrow  noWrap align=left height="25" style="{fcolor}">{curData}</TD>
+              <TD class=listcellrow  noWrap align=left height="25" style="{fcolor}">{curDataWeek}</TD>
+              <td class=listcellrow  align=left height="25" width="100">{Repaymoneygpaymoney}</td>
+              <td class=listcellrow  align=left height="25" width="100">{Transfermoneygpaymoney}</td>
+              <td class=listcellrow  align=left height="25" width="100">{Creditcardgpaymoney}</td>
+              <td class=listcellrow  align=left height="25" width="100">{Couponglidepaymoney}</td>
+            </TR>
+            <!-- END BXBK -->
+            <tr style="display:{nodateshow}">
+              <td colspan="7">没有数据</td>
+            </tr>
+          </TBODY>
+        </TABLE></td>
+      <td width="50%" valign="top"><TABLE class=tableframe style=word-break:break-all align=center>
+          <thead>
+            <tr class=listtitle>
+              <th colspan="4" >支出</th>
+            </tr>
+            <tr class=listtitle>
+              <th width="100" class=listcelltitle noWrap align=middle height="25">转账汇款</th>
+              <th width="100" class=listcelltitle noWrap align=middle>贷款还款</th>
+              <th width="100" class=listcelltitle noWrap align=middle>信用卡还款</th>
+              <th width="100" class=listcelltitle noWrap align=middle>优惠券</th>
+            </tr>
+          </thead>
+          <TBODY>
+            <tr>
+              <td colspan="4">没有数据</td>
+            </tr>
+          </TBODY>
+        </TABLE></td>
+    </tr>
+    </tr>
+    
+    <tr>
+      <td colspan="2" align="center" height="25">月底累计：   累计收入 {allmoney}   累计支出 0.00 </td>
+    </tr>
+    </td>
+    
+  </TABLE>
+  
+  </FORM>
+</center>
+</BODY>
+</HTML>

@@ -1,0 +1,124 @@
+<HTML><HEAD><TITLE>商品资料</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+
+</HEAD>
+<script>
+function sub_save()
+{	
+
+	if(form1.sxf.value=="")
+	{
+	 	  alert("请输入手续费");
+		 
+	 	  form1.sxf.focus();
+	 	  return;
+	 }
+			    sending.style.display ="";
+				sendingbg.style.display ="";	
+	form1.submit();
+}
+
+
+</script>
+<BODY  topmargin="0" leftMargin="2" width="100%">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+                   <td height="30" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	优惠卡手续费设置</td>
+			 <tr>
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+          </tr>	
+  </table>
+  <center>
+<form action="" method="post" name="form1">
+    <input type=hidden name=action value="{action}"> 
+    <input type=hidden name=listid value="{listid}">
+ 
+    <table width="98%" border="0" cellspacing="0" cellpadding="0" height="31">
+      <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right" >
+         
+          <div align="right" >
+		  <input class=button_save name=end type=button {display}  value="   保存" AccessKey=d  onclick="sub_save();" style="font-size:9pt" onMouseOver="this.style.backgroundImage='url({skin}save_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}save.jpg)'">
+
+        </div></td>
+        <td class=button_labelright></td>
+      </tr>
+  </table> 
+    <table width="700" class=InputFrameMain cellspacing="0" cellpadding="0" border="0">
+      <TBODY> 
+     <tr>
+          <td align="left" colspan="4">
+          <table width="700" cellspacing="0" cellpadding="0" border="0" >
+          <tr >
+          <td align="center" class=inputtitle width="150">资料输入</td>
+          <td align="center" class=inputtitleright >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		  <td align="center" ><font color="#FF0000" ><b>{error}</b></font></td>
+          </tr>
+          </table>          </td>
+        </tr>
+      <tr> 
+        <td colspan="4" height="10"></td>
+      </tr>
+    
+    <tr class=InputFrameLine> 
+    
+        <td  height="25" align="right" class=form_label>手续费：</td>
+        <td height="25" class=span_label align="left"><input class=input type="text" name="sxf" maxlength="6"  value="{sxf}"  onkeypress="return event.keyCode>=48&&event.keyCode<=57||event.keyCode==46"  />% </td>
+      </tr>
+	  
+      <TR> 
+        <td colspan="4" class=InputLabelCell height="10"></td>
+      </TR>
+      </TBODY> 
+    </TABLE>
+	 </form>
+<div id="sending" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:20%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%;  z-index:100; filter: Alpha(Opacity=50);  background-color: #ffffff; display:none "> 
+
+</div>
+
+<div id="helpid" STYLE="right: 1%; WIDTH: 450px; POSITION: absolute; TOP: 86px; HEIGHT: 0; display: none"> 
+ <div  align="left"   STYLE="position:absolute;left: 15px; top:15px;right:15px" >
+  1.操作：基本信息－商品信息；<br><br>
+  保存(Alt+s)：添加新商品信息和修改商品信息；<br><br>
+  删除(Alt+d)：即删除不再使用的商品信息；<br><br>
+  撤销(Alt+z)：撤销回去商品没有修改的状态；<br><br>
+  返回(Alt+q)：返回商品信息列表；<br><br>
+  帮助(Alt+h)：显示帮助信息；<br><br>
+  2.基本信息：<br><br>
+  类别：为了录入快捷和便于查询，您可为商品选择商品类别；<br><br>
+  销售单价：定义销售单价之后，做销售单时，选择了该商品，就会自动带出销售单价；<br><br>
+  库存上限：定义库存上限之后，如果该商品的库存大于库存上限，在仓库管理中的库存上限就会自动显示出该商品；<br><br>
+  库存下限：定义库存下限之后，如果该商品的库存小于库存下限，在仓库管理中的库存下限就会自动显示出该商品；<br><br>
+</div>
+</div>
+</center>
+<br />
+<br />
+<br />
+<br />
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

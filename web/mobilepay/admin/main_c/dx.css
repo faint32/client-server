@@ -1,0 +1,15 @@
+
+.dx_div {
+	color: #3D5070; 
+	FILTER: progid:DXImageTransform.Microsoft.RandomDissolve(duration=1) progid:DXImageTransform.Microsoft.Shadow(color=gray,direction=135);
+	BORDER:#000000 1px solid;
+	font-size: 12px; 
+	line-height: 150%; 
+	font-weight: normal; 
+	text-align: left; 
+	vertical-align: middle£»
+}
+.dx_span{
+  cursor:hand;
+  margin-left:10px;
+}

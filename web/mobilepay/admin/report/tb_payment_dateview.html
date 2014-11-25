@@ -1,0 +1,125 @@
+<HTML>
+<HEAD>
+<TITLE>收支报表</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="dianduo" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+<script language="javascript" type="text/javascript" src="../include/ShowCalendar.js"></script>
+<script language="javascript">
+<!--
+function changedata($val){
+    document.getElementById("changeday").value = $val;
+    form1.submit(); 
+	return false;  
+}
+
+// -->
+</script>
+</HEAD>
+<body  text="#000000" topmargin="0" leftMargin="2" width="100%">
+<center>
+  <form id=form1 name=form1 action="" method=get>
+    <DIV>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td height="30" class="pagetitle"  colspan=2 valign="middle">&nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle"> <span>财务报表 --> 收支日报表 </td>
+        </tr>
+        <tr>
+          <td align="left" colspan=2 height="3">{error}</td>
+        </tr>
+      </table>
+    </DIV>
+  
+      </table>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" height="31" style="display:{isdisplay};">
+			<tr>
+				<td class=button_labelleft></td>
+				<td class=button_label>
+					<div align="right" >
+						<input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='tb_payment_monthview.php?type={type}&typeyear={typeyear}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+					</div>
+				</td>
+				<td class=button_labelright></td>
+			</tr>
+		</table>
+    <input name="type" id="type" type="hidden" value="{type}">
+	<input name="typeyear" id="typeyear" type="hidden" value="{typeyear}">
+	
+	<input name="changeday" id="changeday" type="hidden" value="">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td align="left" height="25">&nbsp;&nbsp;
+          <input name="startday" type="text" onClick="SetDate(this,'yyyy-MM-dd');"  class=textfield   size="20" value="{startday}" >-<input name="endday" type="text" onClick="SetDate(this,'yyyy-MM-dd');"  class=textfield   size="20" value="{endday}" >
+          &nbsp;&nbsp;
+		  明盛公户:
+		  <select name="sdcrname">
+		  <option value="">请选择</option>
+		  {sdcrname}
+		  </select>
+          <input name="" type="submit" value="查询"></td>
+        <td align="right" >&nbsp;&nbsp;<a href="javascript:changedata('1');void(0);">当天</a>&nbsp;&nbsp;<a href="javascript:changedata('2');void(0);">一周前</a>&nbsp;&nbsp;<a href="javascript:changedata('3');void(0);">一月前</a></td>
+      </tr>
+    </table>
+  </form>
+<TABLE class=table style="word-break:break-all;width:150%" align=center>
+
+          <thead>
+            
+            <tr >
+              <th width="40"  height="25" rowspan='2'>序号</th>
+              <th width="80" rowspan='2'>日期</th>
+              <th width="80" rowspan='2'>星期</th>
+              <th width="80" rowspan='2'>总入款</th>
+              <th rowspan='2'>总支出</th>
+             <th rowspan='2'>总成本</th>
+             <th rowspan='2'>总收手续费</th>
+
+			  {theadth}
+            </tr>
+            <tr class=listtitle>
+             {theadth1}
+
+            </tr>
+          </thead>
+          <TBODY>
+            <!-- BEGIN BXBK -->
+            <TR>
+              <TD   align=left height="25" style="{fcolor}">{tdcount}</TD>
+              <TD   noWrap align=left height="25" style="{fcolor}">{curData}</TD>
+              <TD   noWrap align=left height="25" style="{fcolor}">{curDataWeek}</TD>
+              <TD   noWrap align=right height="25" style="{fcolor}">{alldaypaymoney}</TD>
+              <TD   noWrap align=right height="25" style="{fcolor}">{alldayagentmoney}</TD>
+              <TD   noWrap align=right height="25" style="{fcolor}">{alldaycbmoney}</TD>
+              <TD   noWrap align=right height="25" style="{fcolor}"style="border-right:1px #222 solid">{alldaypayfee}</TD>
+              
+			  {showpaytype}
+            </TR>
+            <!-- END BXBK -->
+            <tr style="display:{nodateshow}">
+              <td colspan="7">没有数据</td>
+            </tr>
+            <tr>
+			  <td colspan="3" align="center"><span style="font-size:14px; color:#FF0000;">汇总</span></td>
+              <td class="right">{allmoney}</td>
+              <td class="right">{allagentmoney}</td>
+              <td class="right">{allcbmoney}</td>
+              <td class="right" style="border-right:1px #222 solid">{allpayfee}</td>
+              
+			  
+             {showall}
+			</tr>
+          </TBODY>
+		  
+		 
+			
+        </TABLE>
+
+  
+  </FORM>
+</center>
+</BODY>
+</HTML>

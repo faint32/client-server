@@ -1,0 +1,128 @@
+.whitefont { font-size: 12px; color: white; background-color:#6E7E98; text-decoration: none; padding: 3px 0px 2px 0px}
+table { font-family: Verdana, Arial, Helvetica, sans-serif,ËÎÌו; font-size: 9pt}
+TABLE.tableframe {
+     BORDER-RIGHT: #d4d4d4 1px solid; BORDER-TOP: #d4d4d4 1px solid; MARGIN-TOP: 5px;
+	 BORDER-LEFT: #d4d4d4 1px solid; BORDER-BOTTOM: #d4d4d4 1px solid; BORDER-COLLAPSE: collapse; 
+	 BACKGROUND-COLOR: #ffffff
+}
+.Listtitle {
+	 FONT-WEIGHT: bold; 
+	 FONT-SIZE: 9pt; 
+	 BACKGROUND: #eaeaea; 
+	 COLOR: #333333;
+	 BORDER-BOTTOM: #6E7E98 1px solid; 
+	 FONT-FAMILY: ËÎÌו; 
+	 HEIGHT: 20px; TEXT-ALIGN: center;
+	 background-image: url(browse1.jpg);
+}
+.textfind
+{
+	padding:2px 8px 0pt 3px;
+	margin-left:5px;
+	border:1px solid #4D739D;
+	background:#FFF;
+	color:#003366;
+
+}
+.tdcolor,.table_bgcolor{BACKGROUND-COLOR: #ffffff;}
+
+.tdcolorred{BACKGROUND-COLOR: #ffffff;
+            color: #ff0000; 
+	          font-size: 12px; 
+	           line-height: 200%; 
+             vertical-align: middle
+             }
+
+.tableborder {
+	 margin-top:1px;
+	 BACKGROUND-COLOR: #c1bfbf ;
+	 filter: progid:DXImageTransform.Microsoft.Shadow(enabled=false,color=black,direction=135,Strength=5);
+}
+.supclass
+{
+BORDER-RIGHT: #000099 0px solid; BORDER-TOP: #000099 0px solid; MARGIN-TOP: 1px; PADDING-LEFT: 55px; FONT-SIZE: 12px; BACKGROUND: url(search_bg.gif) no-repeat; BORDER-LEFT: #000099 0px solid; WIDTH: 150px; PADDING-TOP: 3px; BORDER-BOTTOM: #000099 0px solid; 
+HEIGHT: 18px
+}
+
+.TxtUserNameCssClass {
+	BORDER-TOP-WIDTH: 0px; PADDING-LEFT: 25px; BORDER-LEFT-WIDTH: 0px; BACKGROUND: url(icon_arrow.gif) no-repeat; BORDER-BOTTOM-WIDTH: 0px; WIDTH: 165px; LINE-HEIGHT: 20px; HEIGHT: 21px; BORDER-RIGHT-WIDTH: 0px
+}
+A:visited{TEXT-DECORATION: none;Color:#333333}
+A:active{TEXT-DECORATION: none;Color:#333333}
+A:hover{TEXT-DECORATION: none;Color:#ffffff;height:1; filter: Glow(Color=#35A5E9, Strength=3);}
+A:link{text-decoration: none;Color:#333333}
+TABLE.tableend {
+	BORDER-RIGHT: #d4d4d4 1px solid; 
+	 BORDER-LEFT: #d4d4d4 1px solid; BORDER-BOTTOM: #d4d4d4 1px solid; BORDER-COLLAPSE: collapse; 
+	 BACKGROUND-COLOR: #ffffff
+}
+TD.listtai2 {
+	FONT-SIZE: 9pt; BACKGROUND: #ffffee; BORDER-BOTTOM: #d4d4d4 1px solid;HEIGHT: 18px;
+}
+TD.listtail {
+	FONT-SIZE: 9pt; BACKGROUND: #eaeaea; BORDER-BOTTOM: #d4d4d4 1px solid;
+	COLOR: #000000;
+}
+TR.Listrow1 {
+	FONT-SIZE: 9pt; FONT-FAMILY: Arial
+}
+TR.Listrow2 {
+	FONT-SIZE: 9pt; BACKGROUND: #ebf1fa; FONT-FAMILY: Arial
+}
+TD.ListCellRow {
+	word-wrap:   break-word;
+	word-break:break-all;
+	
+	BORDER-RIGHT: #d4d4d4 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: #d4d4d4 1px solid; PADDING-LEFT: 4px; PADDING-BOTTOM: 0px; BORDER-LEFT: #d4d4d4 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #d4d4d4 1px solid
+}
+TD.ListCellTitle {
+	BORDER-RIGHT: #d4d4d4 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #d4d4d4 1px solid; 
+	PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; BORDER-LEFT: #d4d4d4 1px solid; PADDING-TOP: 2px; 
+	BORDER-BOTTOM: #d4d4d4 1px solid;
+}
+
+Th.ListCellTitle {
+	BORDER-RIGHT: #d4d4d4 1px solid; 
+	PADDING-RIGHT: 2px;
+	BORDER-TOP: #d4d4d4 1px solid; 
+	PADDING-LEFT: 2px; 
+	BORDER-LEFT: #d4d4d4 1px solid; PADDING-TOP: 2px; 
+	BORDER-BOTTOM: #d4d4d4 1px solid;
+
+}
+
+INPUT.inbutton	{BORDER-TOP-WIDTH: 1px; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 9pt; BORDER-LEFT-COLOR: #cccccc; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #cccccc; PADDING-BOTTOM: 1px; BORDER-TOP-COLOR: #cccccc; PADDING-TOP: 1px; HEIGHT: 18px; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #cccccc; font-family: "ËÎÌו"; font-size: 12px}
+
+A.title:visited{TEXT-DECORATION: none;Color:#333333}
+A.title:active{TEXT-DECORATION: none;Color:#333333}
+A.title:hover{TEXT-DECORATION: none;Color:#333333}
+A.title:link{text-decoration: none;Color:#333333}
+
+.browse_pagelable {
+	color: #3D5070; 
+	font-size: 12px; 
+	line-height: 200%; 
+	font-weight: normal; 
+	text-align: right; 
+	vertical-align: middle
+}
+#dhtmltooltip{
+position: absolute;
+width: 130px;
+left: -300px;
+border: 1px solid black;
+padding: 3px;
+background-color: lightyellow;
+FONT-SIZE: 10px; COLOR: #48709B; FONT-FAMILY: Arial, Helvetica, sans-serif;
+visibility: hidden;
+z-index: 205;
+/*Remove below line to remove shadow. Below line should always appear last within this CSS*/
+filter: progid:DXImageTransform.Microsoft.Shadow(color=gray,direction=135);
+}
+
+#dhtmlpointer{
+position:absolute;
+left: -300px;
+z-index: 206;
+visibility: hidden;
+}

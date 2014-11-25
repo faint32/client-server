@@ -1,0 +1,272 @@
+<HTML><HEAD><TITLE></TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<SCRIPT language=javaScript src="../include/qshowtitle.js" type=text/javascript></SCRIPT>
+
+<SCRIPT language=JavaScript>
+var gg = 1;
+
+   var tempurl = "{url}" ;
+
+var m_prev_Common_onkeydown = null;
+m_prev_Common_onkeydown = document.onkeydown;
+document.onkeydown = _Common_document_onkeydown;
+
+function _Common_document_onkeydown(){
+	switch (event.keyCode){
+		case 65:	//A	
+			if ((event.altKey == true) && !(form1.thenew.disable)){
+				nh('{shownew}');
+			}
+			break;	
+		case 68:	//ctrl+D
+			if ((event.altKey == true) && !(form1.thedel.disable)){
+				submit_del();
+			}
+			break;
+		case 70:	//F
+			if ((event.altKey == true) && !(form1.thefind.disable)){
+				mainfind();
+			}
+			break;
+	}
+}
+
+
+   function CheckAll(form){
+     for (var i=0;i<form.elements.length;i++){ 
+         var e = form.elements[i];
+         if (e.name != 'chkall' && !e.disabled)   e.checked = form.chkall.checked;
+      }
+   }
+   
+   function viewPage(n){
+        form1.now.value = n;
+	form1.submit(); 
+   }
+   
+   function chgrows(){
+	form1.submit(); 
+   }
+   
+   function getselect(){
+     for(var i =0; i< self.form1.returnvalue.length;i++){
+         if(self.form1.returnvalue[i].checked) { return i }
+     }   
+     return 0
+   }   
+
+   function submit_ok(){
+      hadc = 0 ;
+      for (var i=0;i<form1.elements.length;i++){ 
+         var e = form1.elements[i];
+         if (e.checked) {
+         	hadc = 1;
+         	var str = e.value ;
+         }       
+      }   
+      if(hadc == 1){
+	     window.parent.kkit(str);
+      }else{
+	     alert("未选择,请选择一项!");
+      }
+   }
+   
+   function donofind(){;
+      for (var i=0;i<form1.elements.length;i++){ 
+         var e = form1.elements[i];
+         if (e.name == "whatdofind[]")   e.selectedIndex = 0;
+         if (e.name == "howdofind[]")   e.selectedIndex = 0;
+         if (e.name == "findwhat[]")   e.value = "";
+      }
+	form1.submit();
+   }
+   
+   function submit_order(done){
+    	if(form1.order.value == done){ 
+       	   if(form1.upordown.value == 'asc'){
+       	      form1.upordown.value = "desc";
+       	   }else{ 
+              form1.upordown.value = "asc";
+           }   
+        }else{
+           form1.upordown.value = "asc";
+        } 
+        form1.order.value = done;
+	form1.submit();
+   }
+     
+    function mainfind(){
+	layermove.style.visibility='visible';
+    }
+    
+    function selectit(){
+	if (gg == 1){
+     form1.elements[1].checked;
+	 gg = 0;
+     }
+	layermove.style.top = (document.body.offsetHeight - layermove.offsetHeight) / 3;
+	layermove.style.left = (document.body.offsetWidth - layermove.offsetWidth) / 2;
+	document.onmousedown = DownMouse;
+	window.document.onmousemove = MoveLayer;
+	window.document.onmouseup   = UpMouse;
+    }
+
+    var down = false; 
+    
+    function UpMouse(){ 
+    	down = false; 
+    } 
+    
+    var startX = 0; startY = 0;startLeft = 0;startTop = 0; 
+    
+    function MoveLayer(){ 
+    	if (down && (event.button==1)){
+    		layerX = startLeft+event.clientX-startX;
+    		layerY = startTop+event.clientY-startY;
+    		if(layerX<0)
+    			layerX = 0;
+    		if(layerY<0)
+    			layerY = 0;
+    		if(layerX + thelayer.offsetWidth > document.body.offsetWidth)
+    			layerX = document.body.offsetWidth - thelayer.offsetWidth;
+    		if(layerY + thelayer.offsetHeight > document.body.offsetHeight)
+    			layerY = document.body.offsetHeight - thelayer.offsetHeight;
+    		thelayer.style.pixelTop = layerY;
+    		thelayer.style.pixelLeft = layerX;
+    	}
+    }
+    
+    function DownMouse(){ 
+    	if (!document.all) return true;
+    	//alert(event.which);
+    	if ((event.srcElement.id=="tdmove" || event.srcElement.id=="fontmove") && (event.button==1)){//对应要拖动的层的name 
+    		thelayer = layermove; 
+    		down = true; 
+    		startX = event.clientX; 
+    		startY = event.clientY; 
+    		startLeft = thelayer.style.pixelLeft; 
+    		startTop = thelayer.style.pixelTop; 
+    	}
+    }    
+    
+    function hiddenfind(){
+    	layermove.style.visibility='hidden';
+    }
+    
+</SCRIPT>
+</HEAD>
+<body bgcolor="#F5F5F5" text="#000000" topmargin="0" leftMargin="2" width="100%" onLoad="return selectit()">
+<DIV class=whitefont>&nbsp;&nbsp;{prgname}</DIV>
+<TABLE class=tabletoolbar cellSpacing=1 cellPadding=0 width="98%" align=center border=0>
+  <TBODY>
+  <FORM id=form1 name=form1 action="" method=post>
+  <input type="hidden" name="now" value="{nowpage}">
+  <INPUT type=hidden name=url value={}>
+  <INPUT type=hidden name=act value="">
+  <INPUT type=hidden name=order value={order}>
+  <input type="hidden" name="upordown" value="{upordown}">
+  <TR vAlign=center>
+    <TD align=left>
+      分页：
+            {showviewpage}
+            转到:<input class=input type=text name=Pagename size=3 maxlength=10  value='1'>
+            <input type=button value="转到" class=buttonsmall onMouseOver="this.className='buttonsmall2'" onMouseOut="this.className='buttonsmall'"  onclick='viewPage(this.form.Pagename.value)'>
+      </TD>
+    <TD vAlign=bottom align=right>
+        <BUTTON class=buttonsmall onMouseOver="this.className='buttonsmall2'" onMouseOut="this.className='buttonsmall'"  onClick="javascript:mainfind()" AccessKey=f name=thefind>查 询</BUTTON>&nbsp;&nbsp;
+	<BUTTON class=buttonsmall onMouseOver="this.className='buttonsmall2'" onMouseOut="this.className='buttonsmall'"  onClick="javascript:submit_ok()" AccessKey=s name=theok>选定</BUTTON>&nbsp;&nbsp; 
+    </TD></TR>
+</TBODY></TABLE>
+{findsay}   
+<TABLE class=tableframe width="98%" align=center>
+  <TBODY>
+  <TR class=listtitle>
+    <TD class=listcelltitle align=middle>&nbsp;</TD>
+<!-- BEGIN TITLEBK -->
+    <TD {cols} class={titlecss} noWrap align=middle>{title}</TD>
+<!-- END TITLEBK -->
+  </TR>
+<!-- BEGIN DATABK -->
+	<TR class=listrow1 onmouseover="this.style.backgroundColor='#DAE2ED';" onmouseout="this.style.backgroundColor='{bgcolor}'" bgcolor="{bgcolor}">
+		<label for=check[{rowcount}]>{xi}<label>
+	</TR>
+<!-- END DATABK -->  
+</TBODY></TABLE>
+<TABLE  cellSpacing=0 cellPadding=0 width="98%" align=center border=0>
+  <TBODY>
+  <TR vAlign=center>
+    <TD  class=listtail align=left>
+      &nbsp;&nbsp;页次：{nowpage}/{pages}页 每页
+      <INPUT class=input maxLength=5 size=4 name=pagerows value={rows}>条记录
+      <input type=button value="转换" class=buttonsmall onMouseOver="this.className='buttonsmall2'" onMouseOut="this.className='buttonsmall'"  onclick='chgrows()'>
+      </TD>
+    <TD  class=listtail vAlign=bottom align=right>
+      共{total}条记录  本页显示从第{recodeform}到第{recodeto}条&nbsp;
+    </TD>
+  </TR>
+</TBODY></TABLE>
+
+<TABLE id=layermove style="Z-INDEX: 1; VISIBILITY: hidden; LEFT: 128px;WIDTH: 600px; POSITION: absolute; TOP: 81px;
+	 HEIGHT: 180px"  height=147 cellSpacing=0 cellPadding=0 width=243 border=0 class=tableframe>
+  <TBODY>
+  <TR>
+    <td>
+    <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0 >
+     <tr class=listtitle>
+     <TD id=tdmove title=移动 style="CURSOR: move" >
+       <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0 >
+        <tr > 
+          <TD  width="80" class="inputtitle" align="center"> 
+             查询
+          </TD>
+          <TD  class="inputtitleright" width="24" > 
+          </td>
+           <td style="background-color:#F1F4F9">&nbsp;
+           
+          </TD>
+        </tr>
+      </TABLE>
+     </tr>
+     </TABLE>
+    </td>
+  </TR>
+  <TR>
+    <TD vAlign=top bgColor=#cccccc height=*>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>		
+            <tr bgcolor="#F1F4F9">
+                <td width=100% align="center"><b>字段</b></td>
+                <td width=100% align="center"><b>运算</b></td>
+                <td width=100% align="center"><b>值</b></td>
+            </tr>
+<!-- BEGIN FINDBK -->            
+            <tr bgcolor="#DDDDDD">
+                <td width=100%>
+                    <select name="whatdofind[]" style="width=100%">
+                        <option value=""></option>
+                        {whatdofind}
+                    </select>     
+                </td>
+                <td width=100%>
+                    <select name="howdofind[]">
+                    	<option value=""></option>
+                    	{howdofind}
+                    </select>
+                </td>
+                <td width=100%>
+                    <input type="text" name="findwhat[]" size="40" value="{findwhat}">
+                </td>
+            </tr>
+<!-- END FINDBK -->
+         </TBODY></TABLE>
+    </TD></TR>
+    <TR  ><TD class=listtail align=center height="30" >
+         <INPUT class=buttonsmall onMouseOver="this.className='buttonsmall2'" onMouseOut="this.className='buttonsmall'"  type=submit value="确定" AccessKey=s >&nbsp;
+         <INPUT class=buttonsmall onMouseOver="this.className='buttonsmall2'" onMouseOut="this.className='buttonsmall'"  onClick="javascript:hiddenfind()" type=reset value="取消" AccessKey=z>
+    </TD></TR>
+    </FORM></TBODY></TABLE>
+</BODY></HTML>

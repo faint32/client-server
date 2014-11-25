@@ -1,0 +1,130 @@
+<HTML><HEAD><TITLE>�տ</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<SCRIPT language=javascript src="../include/dateobject.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/datepicker.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+ 
+</HEAD>
+<script language=javascript>
+<!-- 
+
+function submit_savet() {
+	 if (confirm("�Ƿ���ֳ���õ��ݣ�")) {
+	      sendingbg.style.display ="";  
+        sendingback.style.display ="";
+        form1.action = "kickback_inmoney.php";
+	      form1.submit();
+    }
+}
+
+function changedraft(){
+   if (confirm("�Ƿ����Ϊ�ݸ嵥��")) {
+        form1.actiontype.value     = "draft";	
+        sendingbg.style.display ="";  
+        sendingdraft.style.display ="";
+	      form1.submit();
+   }
+}
+
+// -->
+</script>
+<BODY topmargin="0" leftMargin="2" width="100%">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+               <td height="30" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">�տ</td>
+		  <tr>
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+          </tr>
+  </table>
+<center>
+<form action="" method="post" name="form1">
+    <input type=hidden name=listid value="{listid}">
+    <input type=hidden name=actiontype value=""> 
+  <table width="98%" border="0" cellspacing="0" cellpadding="0"  class="table_bgcolor">
+        <tr> 
+	  <td class=button_labelleft></td>
+        <td align="right" valign="middle" class=button_label>
+        <input type=button name=draft class=button_infile value="   תΪ�ݸ嵥"  onClick="javascript:changedraft()" style="font-size:9pt" {iskickback}>
+        <input type=button name=save class=button_outexcel value="  �������"  onClick="javascript:submit_savet()" style="font-size:9pt" {iskickback}>
+        <input type=button name=rst class=button_recovery value="     ����" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'"></td>
+		 <td class=button_labelright></td>
+      </tr>
+    </table>
+    <table width="98%" class=InputFrameMain cellspacing="0" cellpadding="0" border="0" >
+      <tbody>
+        <tr>
+          <td align="center" class=inputtitle>���ݲ鿴</td>
+          <td align="center" class=inputtitleright></td>
+          <td colspan="2" align="center" class=InputLabelCell><div align="center"><b><font color="#FF0000" class="error">{error}</font></b></div></td>
+        </tr>
+       
+        <tr >
+          <td width="150" class=form_label align=right >���ݱ�ţ�</td>
+          <td ><span class=form_label>{listno}</span></td>
+          <td width="150" class=form_label  align="right">�������ڣ�</td>
+          <td ><span class=form_label>
+          <script language=javascript>
+			       var date=createDatePicker("date",{year},{month},{day},0)
+			   </script><span>
+          </td>
+        </tr>
+        <tr class=InputFrameLine>
+          <td class=form_label align=right >��λ���ͣ�</td>
+          <td>
+            <span class=form_label>{clienttype}</span>
+          </td>
+          <td class=form_label  align="right">���λ:��</td>
+          <td class=span_label>���:{cusno}&nbsp;&nbsp;��ƣ�{cusname}
+          </td>
+        </tr>
+        <tr class=InputFrameLine>
+          <td class=form_label align=right >�ʻ���</td>
+          <td class=span_label>
+            {accountid}
+           </td>
+          <td class=form_label  align="right">¼���ˣ�</td>
+          <td class=span_label >
+		       {staname}
+			   </td>
+        </tr>
+        <tr class=InputFrameLine>
+          <td class=form_label align=right >�տ��</td>
+          <td><span class=form_label>
+          {payallmoney}</span>
+          </td>
+          <td class=form_label  align="right">�տ��ˣ�</td>
+          <td class=span_label>
+          {dealwithman}
+			   </td>
+        </tr>
+        <tr class=InputFrameLine>
+          <td class=form_label  align="right" valign="top" height="25">��ע��</td>
+          <td colspan="3" ><span class=form_label>{memo_z}</span></td>
+        </tr>
+      </tbody>
+    </table>
+</form>
+<div id="sendingback" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>���ڷ������ݣ����Ժ�...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingdraft" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>�������Ϊ�ݸ嵥�����Ժ�...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+</div>
+</center>
+</BODY>
+</HTML>

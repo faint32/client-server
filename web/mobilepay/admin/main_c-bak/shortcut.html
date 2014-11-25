@@ -1,0 +1,528 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb_2312-80">
+<META HTTP-EQUIV="linzhuoheng" CONTENT="no-cache">
+<script LANGUAGE="JavaScript" type="text/javascript">
+   <!--
+  document.onmouseover = doDocumentOnMouseOver ;
+  document.onmouseout = doDocumentOnMouseOut ;
+
+  function doDocumentOnMouseOver() {
+    var eSrc = window.event.srcElement ;
+    if (eSrc.className == "item") {
+      window.event.srcElement.className = "highlight";
+    }
+  }
+
+  function doDocumentOnMouseOut() {
+    var eSrc = window.event.srcElement ;
+    if (eSrc.className == "highlight") {
+      window.event.srcElement.className = "item";
+    }
+  }
+
+
+var bV=parseInt(navigator.appVersion);
+NS4=(document.layers) ? true : false;
+IE4=((document.all)&&(bV>=4)) ? true : false;
+DOM=(!document.layers && !document.all && bV>=4) ? true : false; // A hack to guess if the browser supports the DOM
+capable = (NS4 || IE4 || DOM) ? true : false;
+
+function expandIt(){return}
+function expandAll(){return}
+//-->
+</script>
+
+<script language="JavaScript1.2" type="text/javascript">
+<!--
+isExpanded = false;
+
+function getIndex(el) {
+  ind = null;
+  for (i=0; i<document.layers.length; i++) {
+    whichEl = document.layers[i];
+    if (whichEl.id == el) {
+      ind = i;
+      break;
+    }
+  }
+  return ind;
+}
+
+function arrange() {
+  nextY = document.layers[firstInd].pageY + document.layers[firstInd].document.height;
+  for (i=firstInd+1; i<document.layers.length; i++) {
+    whichEl = document.layers[i];
+    if (whichEl.visibility != "hide") {
+      whichEl.pageY = nextY;
+      nextY += whichEl.document.height;
+    }
+  }
+}
+
+function initIt(){
+  if (NS4) {
+    for (i=0; i<document.layers.length; i++) {
+      whichEl = document.layers[i];
+      if (whichEl.id.indexOf("Child") != -1) whichEl.visibility = "hide";
+    }
+    arrange();
+  } else if(IE4) {
+    tempColl = document.all.tags("DIV");
+    for (i=0; i<tempColl.length; i++) {
+      if (tempColl(i).className == "child") tempColl(i).style.display = "none";
+    }
+  } else if(DOM) {
+    tempColl = document.getElementsByTagName("DIV");
+    for (i=0; i<tempColl.length; i++) {
+      if (tempColl(i).className == "child") tempColl(i).style.display = "none";
+    }
+  }
+}
+
+function expandIt(el) {
+  if (!capable) return;
+  if (IE4) {
+    expandIE(el);
+  } else if(NS4) {
+    expandNS(el);
+  } else if(DOM) {
+    expandDOM(el);
+  }
+}
+
+function expandItEnd(el) {
+  if (!capable) return;
+  if (IE4) {
+    expandIEEnd(el);
+  } else if(NS4) {
+    expandNSEnd(el);
+  } else if(DOM) {
+    expandDOMEnd(el);
+  }
+}
+
+function expandIE(el) {
+  whichEl = eval(el + "Child");
+
+        // Modified Tobias Ratschiller 01-01-99:
+        // event.srcElement obviously only works when clicking directly
+        // on the image. Changed that to use the Images's ID instead (so
+        // you've to provide a valid ID!).
+
+  //whichIm = event.srcElement;
+        whichIm = eval(el+"Img");
+
+  if (whichEl.style.display == "none") {
+    whichEl.style.display = "block";
+    whichIm.src = "../Images/m.gif";
+  }
+  else {
+    whichEl.style.display = "none";
+    whichIm.src = "../Images/p.gif";
+  }
+    window.event.cancelBubble = true ;
+}
+
+function expandIEEnd(el) {
+  whichEl = eval(el + "Child");
+
+        // Modified Tobias Ratschiller 01-01-99:
+        // event.srcElement obviously only works when clicking directly
+        // on the image. Changed that to use the Images's ID instead (so
+        // you've to provide a valid ID!).
+
+  //whichIm = event.srcElement;
+        whichIm = eval(el+"Img");
+
+  if (whichEl.style.display == "none") {
+    whichEl.style.display = "block";
+    whichIm.src = "../Images/lm.gif";
+  }
+  else {
+    whichEl.style.display = "none";
+    whichIm.src = "../Images/lp.gif";
+  }
+    window.event.cancelBubble = true ;
+}
+
+function expandNS(el) {
+  whichEl = eval("document." + el + "Child");
+  whichIm = eval("document." + el + "Parent.document.Images['imEx']");
+  if (whichEl.visibility == "hide") {
+    whichEl.visibility = "show";
+    whichIm.src = "../Images/m.gif";
+  }
+  else {
+    whichEl.visibility = "hide";
+    whichIm.src = "../Images/p.gif";
+  }
+  arrange();
+}
+
+function expandNSEnd(el) {
+  whichEl = eval("document." + el + "Child");
+  whichIm = eval("document." + el + "Parent.document.Images['imEx']");
+  if (whichEl.visibility == "hide") {
+    whichEl.visibility = "show";
+    whichIm.src = "../Images/lm.gif";
+  }
+  else {
+    whichEl.visibility = "hide";
+    whichIm.src = "../Images/lp.gif";
+  }
+  arrange();
+}
+
+function expandDOM(el) {
+
+  whichEl = document.getElementById(el + "Child");
+    whichIm = document.getElementById(el + "Img");
+
+  if (whichEl.style.display == "none") {
+    whichEl.style.display = "block";
+    whichIm.src = "../Images/m.gif";
+  }
+  else {
+    whichEl.style.display = "none";
+    whichIm.src = "../Images/p.gif";
+  }
+
+}
+
+
+function expandDOMEnd(el) {
+
+  whichEl = document.getElementById(el + "Child");
+    whichIm = document.getElementById(el + "Img");
+
+  if (whichEl.style.display == "none") {
+    whichEl.style.display = "block";
+    whichIm.src = "../Images/m.gif";
+  }
+  else {
+    whichEl.style.display = "none";
+    whichIm.src = "../Images/p.gif";
+  }
+}
+
+function showAll() {
+  for (i=firstInd; i<document.layers.length; i++) {
+    whichEl = document.layers[i];
+    whichEl.visibility = "show";
+  }
+}
+
+function expandAll(isBot) {
+  // Brian Birtles 7-Jun-00 : This fn might be unnecessary (for phpMyAdmin).
+  // My changes are certainly untested.
+  newSrc = (isExpanded) ? "../Images/p.gif" : "../Images/m.gif";
+
+  if (NS4) {
+        // TR-02-01-99: Don't need that
+        // document.Images["imEx"].src = newSrc;
+    for (i=firstInd; i<document.layers.length; i++) {
+      whichEl = document.layers[i];
+      if (whichEl.id.indexOf("Parent") != -1) {
+        whichEl.document.Images["imEx"].src = newSrc;
+      }
+      if (whichEl.id.indexOf("Child") != -1) {
+        whichEl.visibility = (isExpanded) ? "hide" : "show";
+      }
+    }
+
+    arrange();
+   if (isBot && isExpanded) scrollTo(0,document.layers[firstInd].pageY);
+  } else if(IE4) {
+    divColl = document.all.tags("DIV");
+    for (i=0; i<divColl.length; i++) {
+      if (divColl(i).className == "child") {
+        divColl(i).style.display = (isExpanded) ? "none" : "block";
+      }
+    }
+    imColl = document.Images.item("imEx");
+    for (i=0; i<imColl.length; i++) {
+      imColl(i).src = newSrc;
+    }
+  } else if(DOM) {
+    divColl = document.getElementsByTagName("DIV");
+    for (i=0; i<divColl.length; i++) {
+      if (divColl(i).className == "child") {
+        divColl(i).style.visibility = (isExpanded) ? "none" : "block";
+      }
+    }
+    imColl = document.getElementsByName("imEx");
+    for (i=0; i<imColl.length; i++) {
+      imColl(i).src = newSrc;
+    }
+  }
+
+  isExpanded = !isExpanded;
+}
+
+with (document) {
+  if(DOM) {
+    // Brian Birtles : This is not the ideal method of doing this
+    // but under the 7th June '00 Mozilla build (and many before
+    // it) Mozilla did not treat text between <style> tags as
+    // style information unless it was written with the one call
+    // to write().
+    var lstyle = "<style type='text/css'>";
+    lstyle += ".child {font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000; text-decoration:none; display:none}";
+    lstyle += ".parent {font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000; text-decoration:none;}";
+    lstyle += ".item { color: darkblue; text-decoration:none; font-size: 9pt;}";
+    lstyle += ".highlight { color: red; font-size: 9pt;}";
+    lstyle += ".heada { font: 12px/13px; Times;font-weight: bold}";
+    lstyle += "DIV { color:black; }";
+    lstyle += "</style>";
+    write(lstyle);
+  } else {
+    write("<style type='text/css'>");
+    if (NS4) {
+            write(".parent {font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000; text-decoration:none; position:absolute; visibility:hidden; color: black;}");
+            write(".child {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt;color: #000000; position:absolute; visibility:hidden}");
+            write(".item { color: darkblue; text-decoration:none;}");
+            write(".regular {font-family: Arial,Helvetica,sans-serif; position:absolute; visibility:hidden}");
+            write("DIV { color:black; }");
+    } else if(IE4) {
+            write(".child {font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000; text-decoration:none; display:none}");
+            write(".parent {font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000; text-decoration:none}");
+            write(".item { color: darkblue; text-decoration:none; font-size: 9pt;}");
+            write(".highlight { color: red; font-size: 9pt;}");
+            write(".heada { font: 12px/13px; Times;font-weight: bold}");
+            write("DIV { color:black; }");
+    }
+    write("</style>");
+  }
+}
+
+onload = initIt;
+
+//-->
+</script>
+
+<script language=JavaScript>
+<!--
+
+function InitAjax()
+{
+　var ajax=false; 
+　try { 
+　　ajax = new ActiveXObject("Msxml2.XMLHTTP"); 
+　} catch (e) { 
+　　try { 
+　　　ajax = new ActiveXObject("Microsoft.XMLHTTP"); 
+　　} catch (E) { 
+　　　ajax = false; 
+　　} 
+　} 
+　if (!ajax && typeof XMLHttpRequest!='undefined') { 
+　　ajax = new XMLHttpRequest(); 
+　} 
+　return ajax;
+}
+
+
+var changeit = 0;
+function loader(url) {
+    clearsessionselect(url);
+}
+function addshowdiv(showname,code,changeurl){
+  var postStr ;
+　//需要进行Ajax的URL地址
+　var url = "../ajaxread/readclearselect.php";
+　//实例化Ajax对象
+　var ajax = InitAjax();
+　//使用POST方式进行请求
+　ajax.open("POST", url, true); 
+  //定义传输的文件HTTP头信息
+　ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+　//发送POST数据
+　ajax.send(postStr);
+　//获取执行状态
+　ajax.onreadystatechange = function() { 
+　　//如果执行是状态正常，那么就把返回的内容赋值给上面指定的层
+　　if (ajax.readyState == 4 && ajax.status == 200) { 
+      //获取显示层的位置   
+	  addshowdivgo(showname,code,changeurl);    
+　　} 
+　}
+}
+
+function clearsessionselect(changeurl){
+  var postStr ;
+　//需要进行Ajax的URL地址
+　var url = "../ajaxread/readclearselect.php";
+　//实例化Ajax对象
+　var ajax = InitAjax();
+　//使用POST方式进行请求
+　ajax.open("POST", url, true); 
+  //定义传输的文件HTTP头信息
+　ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+　//发送POST数据
+　ajax.send(postStr);
+　//获取执行状态
+　ajax.onreadystatechange = function() { 
+　　//如果执行是状态正常，那么就把返回的内容赋值给上面指定的层
+　　if (ajax.readyState == 4 && ajax.status == 200) { 
+      //获取显示层的位置   
+      parent.parent.frames[2].location.href = changeurl;	
+　　} 
+　}
+}
+
+function addshowdivgo(name,a,url){
+
+var arrAll= parent.parent.document.all["main"];   
+var arrAll2= parent.parent.frames[0].document.all; 
+  
+for (i=0;i <arrAll.length;i++)   
+{    
+        arrAll[i].style.display = "none";    
+}
+
+  if(parent.parent.document.getElementById("main"+ a)) 
+{ 
+  
+}else{
+
+    parent.parent.document.getElementById("addshow").innerHTML   = parent.parent.document.getElementById("addshow").innerHTML.replace(/[\r\n]/g,   " ");
+   parent.parent.document.getElementById("addshow").innerHTML =  "<IFRAME id=main"+ a +" style=\" Z-INDEX: 1; VISIBILITY: inherit; WIDTH: 100%; HEIGHT: 100%\" name=main src=\""+url+"\" frameBorder=0 scrolling=auto> </IFRAME>" +  parent.parent.document.getElementById("addshow").innerHTML;
+      parent.parent.frames[0].document.getElementById("topshow").innerHTML =  "<span name=showtop id=showtop"+ a +" style='cursor:pointer' onclick=goaddshow('"+ a +"')>"+ "| " +  name + " " + " <span style='cursor:pointer' id=showtopdel"+ a +" name=showtopdel onclick=hiddenaddshow('"+ a +"')>x</span> </span>"+   parent.parent.frames[0].document.getElementById("topshow").innerHTML;
+}  
+  
+  for (i=0;i <arrAll2.length;i++)   
+{    
+	if(arrAll2[i].name == "showtop")   
+    {   
+        arrAll2[i].style.backgroundColor = "#ffffff";   
+    }else if(arrAll2[i].name == "showtopdel")   
+    {   
+        arrAll2[i].style.display = "none";   
+    } 
+	  
+}
+   
+   parent.parent.frames[0].document.getElementById("showtop" + a).style.backgroundColor = "#eaeaea" ;
+   parent.parent.frames[0].document.getElementById("showtop" + a).style.borderLeft ="1px solid #aaaaaa";
+   parent.parent.frames[0].document.getElementById("showtop" + a).style.borderRight ="1px solid #aaaaaa";
+   parent.parent.frames[0].document.getElementById("showtopdel" + a).style.display ="";
+   parent.parent.document.getElementById("main" + a).style.display="" ;
+}
+
+
+/*
+//弹出菜单的跳转页面代码
+var changeit = 0;
+function loader(url,resize) {
+  parent.parent.frames[2].location.href = url;
+}*/
+
+//-->
+</script>
+<object id="MsgrObj" classid="clsid:B69003B3-C55E-4B48-836C-BC5946FC3B28" codetype="application/x-
+oleobject" width="0" height="0"></object>
+<script language="JavaScript">
+function click(e) {
+if (document.all) {
+if (event.button==2||event.button==3) {
+oncontextmenu='return false';
+}
+}
+if (document.layers) {
+if (e.which == 3) {
+oncontextmenu='return false';
+}
+}
+}
+if (document.layers) {
+document.captureEvents(Event.MOUSEDOWN);
+}
+document.onmousedown=click;
+document.oncontextmenu = new Function("return false;")
+</script>
+</head>
+
+
+<script language="JavaScript">
+function click(e) {
+if (document.all) {
+if (event.button==2||event.button==3) {
+oncontextmenu='return false';
+}
+}
+if (document.layers) {
+if (e.which == 3) {
+oncontextmenu='return false';
+}
+}
+}
+if (document.layers) {
+document.captureEvents(Event.MOUSEDOWN);
+}
+document.onmousedown=click;
+document.oncontextmenu = new Function("return false;")
+
+function swimg(img)
+{
+  if(document.getElementById(img).style.background=="url(../skin/skin0/img/left_name.jpg)"){    
+      document.getElementById(img).style.background="url(../skin/skin0/img/left_name2.jpg)";
+   }else{
+      document.getElementById(img).style.background="url(../skin/skin0/img/left_name.jpg)";
+   }
+
+}
+
+function swmemu(t)
+{
+  if(t==1){    
+      document.getElementById("sw_memu").style.background="url(../skin/skin0/img/left_memu.jpg)";
+	  window.location.href="left.php";
+   }else if(t==2){
+      document.getElementById("sw_memu").style.background="url(../skin/skin0/img/left_memu2.jpg)";
+	  window.location.href="shortcut.php";
+   }
+
+}
+
+function SendMSNMessage(name)
+{
+ //Send a message through MSN , only for IE
+ //and you must have installed MSN or Window Message
+ MsgrObj.InstantMessage(name); 
+}
+</script>
+
+<body oncontextmenu="return false" text="#000000" leftmargin="1" topmargin="0"  rightmargin="0" bgcolor="#f4f4f4">
+<div style="margin:2px 0px 0px 0px;">
+<table width="167" border="0" cellspacing="0" bgcolor="#ffffff">
+  <tr>
+    <td height="32" valign="bottom" background="../skin/skin0/img/left_memu2.jpg" id="sw_memu"><table width="100%" border="0" cellspacing="0">
+      <tr>
+        <td width="81" height="30" style="cursor:hand" onClick="swmemu(1)" onMouseover="ddrivetip('点击可以转换到功能菜单',100)"; onMouseout="hideddrivetip()">&nbsp;</td>
+        <td width="5"></td>
+        <td width="73" onClick="swmemu(2)" style="cursor:hand">&nbsp;</td>
+        </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td bgcolor="#f4f4f4" height="5"></td>
+  </tr>
+ 
+  <tr>
+    <td align="left" valign="middle" bgcolor="#f4f4f4">
+    <DIV ID="el0Parent" CLASS="parent">
+   <img src="../Images/materal.gif" align=absmiddle border="0">
+   <FONT color="black" class="heada">功能菜单</FONT>
+   </DIV>
+   {show}
+    </td>
+  </tr>
+  <tr>
+        <td height="108" bgcolor="#f4f4f4" class="STYLE4"></td>
+  </tr>
+</table>
+</div>
+<p>&nbsp;</p>
+</body>
+</html>

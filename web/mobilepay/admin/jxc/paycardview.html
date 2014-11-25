@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dth XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dth/xhtml1-transitional.dth">
+<HTML><HEAD><TITLE>库存查看详细</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<link href="{skin}reset.css" rel="stylesheet" type="text/css">
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<SCRIPT language=javascript src="../include/dateobject.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/datepicker.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+</HEAD>
+<script language=javascript>
+<!-- 
+//禁止退格键 作用于Firefox、Opera
+document.onkeypress=banBackSpace;
+//禁止退格键 作用于IE、Chrome
+document.onkeydown=banBackSpace;
+function bb(obj1,obj2)
+{
+		if(obj1.style.display == "none"){
+			obj1.style.display = "";
+			obj2.src = "../Images/menu_open.gif";
+		}else{
+			obj1.style.display="none";
+			obj2.src = "../Images/menu_close.gif";
+		}
+}
+
+
+
+
+var kk=0;
+var imgb,imgb1;
+
+function viewall(count)
+{
+	if(kk == 0){
+		for (i=1;i<=count;i++){
+			temptr = "tr" + i;
+			tempimg = "img" + i;
+				document.getElementById(temptr).style.display = "";
+				document.getElementById(tempimg).src = "../Images/menu_open.gif";
+		}
+		imgb = "imgb";
+		imgb1 = "imgb1";
+		document.getElementById(imgb).src = "../Images/openb.gif";
+	     document.getElementById(imgb1).src = "../Images/openb.gif";
+		kk = 1;
+	}else{
+		for (i=1;i<=count;i++){
+			temptr = "tr" + i;
+			tempimg = "img" + i;
+				document.getElementById(temptr).style.display = "none";
+				document.getElementById(tempimg).src = "../Images/menu_close.gif";
+		}
+		imgb = "imgb";
+		imgb1 = "imgb1";
+		document.getElementById(imgb).src = "../Images/closeb.gif";
+		document.getElementById(imgb1).src = "../Images/closeb.gif";
+	    kk = 0;
+	}
+}
+
+
+function changedraft(){
+   if (confirm("是否另存为草稿单？")) {
+	
+		 sending.style.display ="";
+				sendingbg.style.display ="";
+        form1.action.value     = "draft";	
+
+	      form1.submit();
+   }
+}
+
+
+
+
+
+// -->
+</script>
+<BODY topmargin="0" leftMargin="2" width="100%">
+<div id="page">
+  <h4 class="icon forms">{menuname} <small></small></h4>
+
+<form action="" method="post" name="form1">
+    <input type=hidden name=action value="{action}"> 
+    <input type=hidden name=listid value="{listid}">  
+ <table width="98%" border="0" cellspacing="0" cellpadding="0"  class="table_bgcolor" align="center">
+        <tr> 
+	  <td class=button_labelleft></td>
+        <td align="right" valign="middle" class=button_label>
+        <input type=button name=draft class=button_infile value="   转为草稿单"  onClick="javascript:changedraft()" style="font-size:9pt" >
+        <input type=button name=rst class=button_recovery value="     返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'"></td>
+		 <td class=button_labelright></td>
+      </tr>
+  </table>
+ <div class="wrapper">
+    <div class="panel">
+	<span style="color:red">{error}</span>
+	  <fieldset class="form">
+          <legend>刷卡器库存 <small>&nbsp;查看详细</small> </legend>
+    <table  class="table_form">
+	<colgroup>
+		<col class="col-name" />
+		<col class="col-value" />
+	</colgroup>
+
+        <tr >
+          <th >单据编号：</th>
+          <td><input class="input disabled" readonly="1" style="ime-mode:disabled" type="text" name="listno" size="20" maxlength="40" value="{listno}" onChange="changelistno()">
+
+          <th>单据日期：</th>
+          <td>
+		  <input name="date"  id="date" type="text"  readonly  class="input disabled"   size="20" value="{date}"readonly="1" >
+<!-- 		  <script language=javascript>
+			       var date=createDatePicker("date",{year},{month},{day})
+			   </script> -->
+			   </td>
+        </tr>
+		 <tr >
+          <th >供应商编号：</th>
+          <td ><input class="input disabled" type="text" name="suppno" size="10" maxlength="20" value="{suppno}"readonly="1"  >               
+          </td>
+          <th>供应商全称：</th>
+          <td>
+          <input type="hidden" name="suppid" value="{suppid}">
+          <input class="input disabled" type="text" name="suppname" size="20"  value="{suppname}" readonly="1">
+ 
+        </tr>
+
+        <tr  >
+          <th >备注：</th>
+          <td colspan="3"><textarea class="textarea disabled full" name="memo_z" rows="6" readonly="1" >{memo_z}</textarea></td>
+		  
+        </tr>
+
+    </table>
+	
+        </fieldset>
+   
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="panel">
+	
+	  <fieldset class="form">
+          <legend>刷卡器库存查看 <small>&nbsp;查看详细</small> </legend>
+		  
+    <table width="98%" border="0" cellspacing="1"  style="display:{datashow}" class=table>
+     	<colgroup>
+		<col class="col-name" />
+		<col class="col-value" />
+	</colgroup>
+	  <thead >
+	  <th align="center" class="white_word">商品名称</th>
+        <th align="center" class="white_word">批次号</th>
+		<th align="center" class="white_word">刷卡器设备号</th>
+        <th align="center" class="white_word">数量</th>
+        <th align="center" class="white_word">单价</th>
+        <th align="center" class="white_word">总价</th>
+	  </thead>
+      <!-- BEGIN prolist -->
+	  <tbody onMouseOver="this.style.backgroundColor='#DAE2ED';" onMouseOut="this.style.backgroundColor='{bgcolor}'" bgcolor="{bgcolor}" >
+		  <td align="center" >&nbsp;{vproductid}</td>  
+        <td align="center" >&nbsp;{batches}</td>       
+	   <td align="center" >&nbsp;{vpaycardid}</td>
+        <td align="right" >{vquantity}&nbsp;</td>
+        <td align="right" >{vprice}&nbsp;</td>
+
+        <td align="right" >{vmoney}&nbsp;</td>
+
+	  </tbody>
+    
+	<!-- END prolist -->
+    <tr>
+		 <th align="center" class=thcolor>共&nbsp;{count}</font>&nbsp;条&nbsp;合计：</th>
+<th align="right" class=thcolor></th>
+				<th align="right" class=thcolor></th>
+        <th align="right" class=thcolor><span id="spanallghquantityid">{vallquantity}</span>&nbsp;</th>
+
+		<th align="right" class=thcolor></th>
+        <th align="right" class=thcolor><span id="spanallmoneyid">{vallmoney}</span>&nbsp;</th>
+    </tr>
+    </table>
+	        </fieldset>
+
+    </div>
+  </div>
+	
+	<br>
+</form>
+<div id="sending" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:40%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在处理数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%;  z-index:100; filter: Alpha(Opacity=50);  background-color: #ffffff; display:none "> 
+
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

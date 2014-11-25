@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<TITLE>明盛网站</TITLE>
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<link href="{skin}reset.css" rel="stylesheet" type="text/css">
+<style></style>
+
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<SCRIPT type="text/javascript"  language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/dateobject.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/datepicker.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+<SCRIPT language=javascript src="../function/function.js"></SCRIPT>
+<script language=javascript>
+
+
+function submit_save(){
+	 if(form1.no.value==""){
+	    alert("请输入制造商编号!");
+		form1.no.focus();
+		return;
+	 }
+		 if(form1.allname.value==""){
+	    alert("请输入制造商全称!");
+		form1.supptype.focus();
+		return;
+	 }
+	 	 if(form1.address.value==""){
+	    alert("请输入地址!");
+		form1.address.focus();
+		return;
+	 }
+	 	 if(form1.linkman.value==""){
+	    alert("请输入联系人!");
+		form1.linkman.focus();
+		return;
+	 }
+	 	 if(form1.manphone.value==""){
+	    alert("请输入联系人电话!");
+		form1.manphone.focus();
+		return;
+	 }
+	 	if(form1.xingfen.value==""){
+	    alert("请输入省份!");
+		form1.xingfen.focus();
+		return;
+	 }
+	 	if(form1.workstatus.value=="0"){
+	    alert("请选择经营状况!");
+		form1.workstatus.focus();
+		return;
+	 }
+	form1.submit();
+}
+function input_focus(){
+var gg = 1;
+if (gg == 1){
+form1.name.focus();
+ }
+}
+
+
+
+function submit_del(){
+    if (confirm("是否删除该记录？")) {
+        getNews(form1.id.value);
+    }
+} 
+
+
+</script>
+
+</HEAD>
+
+<BODY onload=input_focus() topmargin="0" leftMargin="2" width="100%">
+<div id="page" class="page">
+		<h4 class="icon forms">{menuname} <small></small></h4>
+ <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+      <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right" >
+          <input type=button name=save32 class=button_new value="     帮助" AccessKey=h  onClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.style.backgroundImage='url({skin}new_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}new.jpg)'">
+          <input type=button name=save3 class=button_save value="     保存" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt" {dissave} onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+          <input class=button_delete name=end type=button value="     删除" AccessKey=d  onMouseOver="this.className='button_delete_on'" onMouseOut="this.className='button_delete'"  onClick="javascript:submit_del()">
+		    <INPUT class=button_reset name=qqq type=reset value="     撤销" AccessKey=z style="font-size:9pt" onMouseOver="this.className='button_reset_on'" onMouseOut="this.className='button_reset'">
+          <input type=button name=rst class=button_recovery value="     返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+        </div></td>
+        <td class=button_labelright></td>
+      </tr>
+  </table>  
+  
+  <!-- Wrapper -->
+  
+  <div class="wrapper">
+    <div class="panel">
+      <form action="" method="post"  name="form1">
+        <input class="input" type="hidden" name="listid" value="{listid}" id="listid">
+        <input class="input" type="hidden" name="action" value="{action}" id="action">
+        <fieldset class="form">
+			<span style="color:red">{error}</span>
+          <legend>制造商基本资料 <small>&nbsp;制造商基本资料填写</small> </legend>
+          <table class="table_form">
+            <colgroup>
+            <col class="col-name" />
+            <col class="col-value" />
+            </colgroup>
+            <tr>
+              <th>编号：</th>
+              <td><input class="input" id="no" type="text" name="no" size="30" maxlength="40" value="{no}" ></td>
+              <th>制造商简称：</th>
+              <td><input class="input" id="name" type="text" name="name" size="30" maxlength="40" value="{name}" >
+              </td>
+            </tr>
+            <tr>
+              <th>制造商全称：</th>
+              <td ><input class="input" id="allname" type="text" name="allname" size="30" maxlength="40" value="{allname}" ></td>
+				 <th>地址：</th>
+              <td><input name="address" type="text" id="address"   class="input" size="30" value="{address}" ></td>
+            </tr>
+
+            <tr>
+             
+              <th>联系人：</th>
+              <td><input name="linkman" type="text" id="linkman"   class="input" size="30" value="{linkman}" ></td>
+			   <th>联系人手机：</th>
+              <td><input name="manphone" type="text" id="manphone"   class="input" size="30" value="{manphone}" ></td>
+            </tr>
+            <tr>
+             
+              <th>所属省：</th>
+              <td><input name="xingfen" type="text" id="xingfen"   class="input" size="30" value="{xingfen}" ></td>
+			   <th>经营状况：</th>
+              <td >
+              	<select name="workstatus">
+				{workstatus}
+                </select>
+              </td>
+            </tr>
+
+          </table>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+</BODY>
+</HTML>

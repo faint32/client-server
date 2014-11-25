@@ -1,0 +1,489 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css">
+<!--
+.form_label {
+	color: #003366; 
+	font-size: 12px; 
+	line-height: 200%; 
+	font-weight: normal; 
+	vertical-align: middle
+}
+-->
+</style>
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+ <script LANGUAGE="JavaScript" type="text/javascript">
+   <!--
+  document.onmouseover = doDocumentOnMouseOver ;
+  document.onmouseout = doDocumentOnMouseOut ;
+
+  function doDocumentOnMouseOver() {
+    var eSrc = window.event.srcElement ;
+    if (eSrc.className == "item") {
+      window.event.srcElement.className = "highlight";
+    }
+  }
+
+  function doDocumentOnMouseOut() {
+    var eSrc = window.event.srcElement ;
+    if (eSrc.className == "highlight") {
+      window.event.srcElement.className = "item";
+    }
+  }
+
+
+var bV=parseInt(navigator.appVersion);
+NS4=(document.layers) ? true : false;
+IE4=((document.all)&&(bV>=4)) ? true : false;
+DOM=(!document.layers && !document.all && bV>=4) ? true : false; // A hack to guess if the browser supports the DOM
+capable = (NS4 || IE4 || DOM) ? true : false;
+
+function expandIt(){return}
+function expandAll(){return}
+//-->
+</script>
+
+<script language="JavaScript1.2" type="text/javascript">
+<!--
+isExpanded = false;
+
+function getIndex(el) {
+  ind = null;
+  for (i=0; i<document.layers.length; i++) {
+    whichEl = document.layers[i];
+    if (whichEl.id == el) {
+      ind = i;
+      break;
+    }
+  }
+  return ind;
+}
+
+function arrange() {
+  nextY = document.layers[firstInd].pageY + document.layers[firstInd].document.height;
+  for (i=firstInd+1; i<document.layers.length; i++) {
+    whichEl = document.layers[i];
+    if (whichEl.visibility != "hide") {
+      whichEl.pageY = nextY;
+      nextY += whichEl.document.height;
+    }
+  }
+}
+
+function initIt(){
+  if (NS4) {
+    for (i=0; i<document.layers.length; i++) {
+      whichEl = document.layers[i];
+      if (whichEl.id.indexOf("Child") != -1) whichEl.visibility = "hide";
+    }
+    arrange();
+  } else if(IE4) {
+    tempColl = document.all.tags("DIV");
+    for (i=0; i<tempColl.length; i++) {
+      if (tempColl(i).className == "child") tempColl(i).style.display = "none";
+    }
+  } else if(DOM) {
+    tempColl = document.getElementsByTagName("DIV");
+    for (i=0; i<tempColl.length; i++) {
+      if (tempColl(i).className == "child") tempColl(i).style.visibility = "hidden";
+    }
+  }
+}
+
+function expandIt(el) {
+  if (!capable) return;
+  if (IE4) {
+    expandIE(el);
+  } else if(NS4) {
+    expandNS(el);
+  } else if(DOM) {
+    expandDOM(el);
+  }
+}
+
+function expandItEnd(el) {
+  if (!capable) return;
+  if (IE4) {
+    expandIEEnd(el);
+  } else if(NS4) {
+    expandNSEnd(el);
+  } else if(DOM) {
+    expandDOMEnd(el);
+  }
+}
+
+function expandIE(el) {
+  whichEl = eval(el + "Child");
+
+        // Modified Tobias Ratschiller 01-01-99:
+        // event.srcElement obviously only works when clicking directly
+        // on the image. Changed that to use the images's ID instead (so
+        // you've to provide a valid ID!).
+
+  //whichIm = event.srcElement;
+        whichIm = eval(el+"Img");
+
+  if (whichEl.style.display == "none") {
+    whichEl.style.display = "block";
+    whichIm.src = "../skin/skin0/img/left_line2.jpg";
+    
+  }
+  else {
+    whichEl.style.display = "none";
+    whichIm.src = "../images/p.gif";
+  }
+    window.event.cancelBubble = true ;
+}
+
+function expandIEEnd(el) {
+  whichEl = eval(el + "Child");
+
+        // Modified Tobias Ratschiller 01-01-99:
+        // event.srcElement obviously only works when clicking directly
+        // on the image. Changed that to use the images's ID instead (so
+        // you've to provide a valid ID!).
+
+  //whichIm = event.srcElement;
+        whichIm = eval(el+"Img");
+
+  if (whichEl.style.display == "none") {
+    whichEl.style.display = "block";
+    whichIm.src = "../images/lm.gif";
+  }
+  else {
+    whichEl.style.display = "none";
+    whichIm.src = "../images/lp.gif";
+  }
+    window.event.cancelBubble = true ;
+}
+
+function expandNS(el) {
+  whichEl = eval("document." + el + "Child");
+  whichIm = eval("document." + el + "Parent.document.images['imEx']");
+  if (whichEl.visibility == "hide") {
+    whichEl.visibility = "show";
+    whichIm.src = "../skin/skin0/img/left_line2.jpg";
+  }
+  else {
+    whichEl.visibility = "hide";
+    whichIm.src = "../images/p.gif";
+  }
+  arrange();
+}
+
+function expandNSEnd(el) {
+  whichEl = eval("document." + el + "Child");
+  whichIm = eval("document." + el + "Parent.document.images['imEx']");
+  if (whichEl.visibility == "hide") {
+    whichEl.visibility = "show";
+    whichIm.src = "../images/lm.gif";
+  }
+  else {
+    whichEl.visibility = "hide";
+    whichIm.src = "../images/lp.gif";
+  }
+  arrange();
+}
+
+function expandDOM(el) {
+
+  whichEl = document.getElementById(el + "Child");
+    whichIm = document.getElementById(el + "Img");
+
+  if (whichEl.style.visibility != "visible") {
+    whichEl.style.visibility = "visible";
+    whichIm.src = "../skin/skin0/img/left_line2.jpg";
+  } else {
+    whichEl.style.visibility = "hidden";
+    whichIm.src = "../images/p.gif";
+  }
+
+}
+
+
+function expandDOMEnd(el) {
+
+  whichEl = document.getElementById(el + "Child");
+    whichIm = document.getElementById(el + "Img");
+
+  if (whichEl.style.visibility != "visible") {
+    whichEl.style.visibility = "visible";
+    whichIm.src = "../images/lm.gif";
+  } else {
+    whichEl.style.visibility = "hidden";
+    whichIm.src = "../images/lp.gif";
+  }
+
+}
+
+function showAll() {
+  for (i=firstInd; i<document.layers.length; i++) {
+    whichEl = document.layers[i];
+    whichEl.visibility = "show";
+  }
+}
+
+function expandAll(isBot) {
+  // Brian Birtles 7-Jun-00 : This fn might be unnecessary (for phpMyAdmin).
+  // My changes are certainly untested.
+  newSrc = (isExpanded) ? "../images/p.gif" : "../skin/skin0/img/left_line2.jpg";
+
+  if (NS4) {
+        // TR-02-01-99: Don't need that
+        // document.images["imEx"].src = newSrc;
+    for (i=firstInd; i<document.layers.length; i++) {
+      whichEl = document.layers[i];
+      if (whichEl.id.indexOf("Parent") != -1) {
+        whichEl.document.images["imEx"].src = newSrc;
+      }
+      if (whichEl.id.indexOf("Child") != -1) {
+        whichEl.visibility = (isExpanded) ? "hide" : "show";
+      }
+    }
+
+    arrange();
+   if (isBot && isExpanded) scrollTo(0,document.layers[firstInd].pageY);
+  } else if(IE4) {
+    divColl = document.all.tags("DIV");
+    for (i=0; i<divColl.length; i++) {
+      if (divColl(i).className == "child") {
+        divColl(i).style.display = (isExpanded) ? "none" : "block";
+      }
+    }
+    imColl = document.images.item("imEx");
+    for (i=0; i<imColl.length; i++) {
+      imColl(i).src = newSrc;
+    }
+  } else if(DOM) {
+    divColl = document.getElementsByTagName("DIV");
+    for (i=0; i<divColl.length; i++) {
+      if (divColl(i).className == "child") {
+        divColl(i).style.visibility = (isExpanded) ? "hidden" : "visible";
+      }
+    }
+    imColl = document.getElementsByName("imEx");
+    for (i=0; i<imColl.length; i++) {
+      imColl(i).src = newSrc;
+    }
+  }
+
+  isExpanded = !isExpanded;
+}
+
+with (document) {
+  if(DOM) {
+    // Brian Birtles : This is not the ideal method of doing this
+    // but under the 7th June '00 Mozilla build (and many before
+    // it) Mozilla did not treat text between <style> tags as
+    // style information unless it was written with the one call
+    // to write().
+    var lstyle = "<style type='text/css'>";
+    lstyle += ".child {font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000; text-decoration:none; visibility:hidden}";
+    lstyle += ".parent {font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000; text-decoration:none;}";
+    lstyle += ".item { color: darkblue; text-decoration:none; font-size: 9pt;}";
+    lstyle += ".highlight { color: red; font-size: 9pt;}";
+    lstyle += ".heada { font: 12px/13px; Times;font-weight: bold}";
+    lstyle += "DIV { color:black; }";
+    lstyle += "</style>";
+    write(lstyle);
+  } else {
+    write("<style type='text/css'>");
+    if (NS4) {
+            write(".parent {font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000; text-decoration:none; position:absolute; visibility:hidden; color: black;}");
+            write(".child {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt;color: #000000; position:absolute; visibility:hidden}");
+            write(".item { color: darkblue; text-decoration:none;}");
+            write(".regular {font-family: Arial,Helvetica,sans-serif; position:absolute; visibility:hidden}");
+            write("DIV { color:black; }");
+    } else if(IE4) {
+            write(".child {font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000; text-decoration:none; display:none}");
+            write(".parent {font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000; text-decoration:none}");
+            write(".item { color: darkblue; text-decoration:none; font-size: 9pt;}");
+            write(".highlight { color: red; font-size: 9pt;}");
+            write(".heada { font: 12px/13px; Times;font-weight: bold}");
+            write("DIV { color:black; }");
+    }
+    write("</style>");
+  }
+}
+
+onload = initIt;
+
+function swimg(img)
+{
+  if(document.getElementById(img).style.background=="url(../skin/skin0/img/left_name.jpg)"){    
+      document.getElementById(img).style.background="url(../skin/skin0/img/left_name2.jpg)";
+   }else{
+      document.getElementById(img).style.background="url(../skin/skin0/img/left_name.jpg)";
+   }
+
+}
+
+function swmemu(t)
+{
+  if(t==1){    
+      document.getElementById("sw_memu").style.background="url(../skin/skin0/img/left_memu.jpg)";
+	  window.location.href="left.php";
+   }else if(t==2){
+      document.getElementById("sw_memu").style.background="url(../skin/skin0/img/left_memu2.jpg)";
+	  window.location.href="shortcut.php";
+   }
+
+}
+
+
+//-->
+</script>
+
+<script language=JavaScript>
+<!--
+var changeit = 0;
+function loader(url) {
+	parent.parent.frames[2].location.href = url;
+}
+/*
+function loader(url,resize) {
+  parent.parent.frames[2].location.href = url;
+ if(changeit != resize){
+      if(resize == 1){
+       	parent.parent.prgcanResize = true ;
+      	parent.parent.left.document.all.viewSwitch.innerHTML = "<img src='<? echo $loginskin; ?>images/centerbar_button_up.gif' width='10' height='25'>";
+      }else{
+     	parent.parent.canResize = true ;
+      	parent.parent.changeStyle();
+      	parent.parent.prgcanResize = false ;
+      	parent.parent.left.document.all.viewSwitch.innerHTML = "<img src='<? echo $loginskin; ?>images/centerbar_button_down.gif' width='10' height='25'>";
+      }
+      changeit = resize ;
+  }
+}*/
+
+function logoff(){
+   
+   if (confirm("是否确定退出系统?")) {
+	parent.parent.window.location.href="../login/logout.php";  	
+   }
+   document.getElementById("exit").style.background="url(../skin/skin0/img/left_name2.jpg)"; 
+}
+
+function nochange(){
+      	parent.parent.canResize = true ;
+      	parent.parent.changeStyle();
+      	parent.parent.prgcanResize = false ;
+      	parent.parent.left.document.all.viewSwitch.innerHTML = "<img src='images/centerbar_button_disable.gif' width='10' height='25'>";
+}
+//-->
+</script>
+
+<style type="text/css">
+//<!--
+body {font-family: Arial, Helvetica, sans-serif; font-size: 10pt}
+BODY {
+	SCROLLBAR-FACE-COLOR: #cfcfcf;
+	SCROLLBAR-SHADOW-COLOR: #595959;
+	SCROLLBAR-3DLIGHT-COLOR: #595959;
+	SCROLLBAR-ARROW-COLOR: #ffffff;
+	SCROLLBAR-DARKSHADOW-COLOR: #ffffff;
+	SCROLLBAR-BASE-COLOR: #cfcfcf;
+	background-attachment: fixed;
+	background-color: #f4f4f4;
+}
+//.STYLE1 {font-size: 16px}
+.STYLE3 {
+	font-size: 12px;
+	font-weight: bold;
+color: #000000;
+}
+-->
+</style>
+
+<script language="JavaScript">
+function click(e) {
+if (document.all) {
+if (event.button==2||event.button==3) {
+oncontextmenu='return false';
+}
+}
+if (document.layers) {
+if (e.which == 3) {
+oncontextmenu='return false';
+}
+}
+}
+if (document.layers) {
+document.captureEvents(Event.MOUSEDOWN);
+}
+document.onmousedown=click;
+document.oncontextmenu = new Function("return false;")
+</script>
+</head>
+
+<body oncontextmenu="return false" text="#000000" leftmargin="1" topmargin="0"  rightmargin="0" >
+
+  <script LANGUAGE="JavaScript1.2">
+  
+  //parent.parent.frames[6].location.href = 'chgassiman.php' ;
+</script>
+<div style="margin:2px 0px 0px 0px;">
+<table width="167" border="0" cellspacing="0">
+  <tr>
+    <td height="32" valign="bottom" background="../skin/skin0/img/left_memu.jpg" id="sw_memu"><table width="100%" border="0" cellspacing="0">
+      <tr>
+        <td width="81" height="30" style="cursor:hand" onClick="swmemu(1)">&nbsp;</td>
+        <td width="5"></td>
+        <td width="73" onClick="swmemu(2)" style="cursor:hand">&nbsp;</td>
+        </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td bgcolor="#f4f4f4" height="5"></td>
+  </tr>
+ 
+  <tr>
+    <td align="center" valign="middle" bgcolor="#f4f4f4"><div style='margin:2px 0px 0px 0px;'><table border=0 cellspacing=0><tr><td style='cursor:hand' CLASS='parent' ID='el1Img' valign=middle background='../skin/skin0/img/left_name2.jpg' height=27; width=151 onClick="expandIt('el1'); swimg('el1Img');return false; "> <div style='height=20; width=100; margin:0px 0px 0px 37px;vertical-align:middle' ><nobr>&nbsp;<font color='white' class='heada'>基本资料</font></nobr></div>
+</td></tr></table></div><div ID="el1Child" CLASS="child" style='margin:2px 0px 0px 0px;'>
+<div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../basic/tb_area_b.php') style='color=#ffffff'>地区设置</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../basic/tb_procatalog_b.php') style='color=#ffffff'>商品类别</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../basic/tb_produre_b.php') style='color=#ffffff'>商品资料</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../basic/tb_storage_b.php') style='color=#ffffff'>仓库资料</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../basic/tb_normalunit_b.php') style='color=#ffffff'>单位设置</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../basic/tb_dept_b.php') style='color=#ffffff'>部门设置</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../basic/tb_staffer_b.php') style='color=#ffffff'>职员设置</a></nobr></div></div></div>
+<div style='margin:2px 0px 0px 0px;'><table border=0 cellspacing=0><tr><td style='cursor:hand' CLASS='parent' ID='el2Img' valign=middle background='../skin/skin0/img/left_name2.jpg' height=27; width=151 onClick="expandIt('el2'); swimg('el2Img');return false; "> <div style='height=20; width=100; margin:0px 0px 0px 37px;vertical-align:middle' ><nobr>&nbsp;<font color='white' class='heada'>仓库管理</font></nobr></div>
+</td></tr></table></div><div ID="el2Child" CLASS="child" style='margin:2px 0px 0px 0px;'>
+<div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../storage/tb_loseaccount_b.php') style='color=#ffffff'>报损登记</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../storage/tb_loseaccount_history.php') style='color=#ffffff'>报损单历史</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../storage/tb_overflowaccount_b.php') style='color=#ffffff'>报溢登记</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../storage/tb_overflowaccount_history.php') style='color=#ffffff'>报溢单历史</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../storage/tb_samepricemove_b.php') style='color=#ffffff'>同价调拨</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../storage/tb_samepricemove_history.php') style='color=#ffffff'>调拨单历史</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../storage/tb_commoditychangeprice_b.php') style='color=#ffffff'>商品调价</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../storage/tb_commoditychangeprice_history.php') style='color=#ffffff'>调价单历史</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../storage/tb_loaddown_b.php') style='color=#ffffff'>组装拆卸</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../storage/tb_loaddown_history.php') style='color=#ffffff'>组装拆卸单历史</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../storage/storageshow_query.php') style='color=#ffffff'>库存查询</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../storage/storage_uplimit.php') style='color=#ffffff'>库存上限报警</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../storage/storage_downlimit.php') style='color=#ffffff'>库存下限报警</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../storage/l&o_query.php') style='color=#ffffff'>报损报溢历史</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../storage/samepricemove_query.php') style='color=#ffffff'>调拨查询</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../storage/loaddown_query.php') style='color=#ffffff'>组装拆卸查询</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../storage/tb_check_b.php') style='color=#ffffff'>仓库盘点</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../storage/tb_check_history.php') style='color=#ffffff'>仓库盘点历史</a></nobr></div></div></div>
+<div style='margin:2px 0px 0px 0px;'><table border=0 cellspacing=0><tr><td style='cursor:hand' CLASS='parent' ID='el3Img' valign=middle background='../skin/skin0/img/left_name2.jpg' height=27; width=151 onClick="expandIt('el3'); swimg('el3Img');return false; "> <div style='height=20; width=100; margin:0px 0px 0px 37px;vertical-align:middle' ><nobr>&nbsp;<font color='white' class='heada'>采购管理</font></nobr></div>
+</td></tr></table></div><div ID="el3Child" CLASS="child" style='margin:2px 0px 0px 0px;'>
+<div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../procurement/tb_stockorder_b.php') style='color=#ffffff'>订单管理</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../procurement/tb_stockorderview_b.php') style='color=#ffffff'>订单历史</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../procurement/tb_stock_b.php') style='color=#ffffff'>收货管理</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../procurement/tb_stockview_b.php') style='color=#ffffff'>收货历史</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../procurement/tb_stockback_b.php') style='color=#ffffff'>退货处理</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../procurement/tb_stockbackview_b.php') style='color=#ffffff'>退货历史</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../procurement/stock_query.php') style='color=#ffffff'>进货分析</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../procurement/stockback_query.php') style='color=#ffffff'>退货分析</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../procurement/tb_suppliertype_b.php') style='color=#ffffff'>供应商类型</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../procurement/tb_supplier_b.php') style='color=#ffffff'>供应商资料</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../procurement/tb_supplierevaluation_b.php') style='color=#ffffff'>供应商评估</a></nobr></div></div></div>
+<div style='margin:2px 0px 0px 0px;'><table border=0 cellspacing=0><tr><td style='cursor:hand' CLASS='parent' ID='el4Img' valign=middle background='../skin/skin0/img/left_name2.jpg' height=27; width=151 onClick="expandIt('el4'); swimg('el4Img');return false; "> <div style='height=20; width=100; margin:0px 0px 0px 37px;vertical-align:middle' ><nobr>&nbsp;<font color='white' class='heada'>销售管理</font></nobr></div>
+</td></tr></table></div><div ID="el4Child" CLASS="child" style='margin:2px 0px 0px 0px;'>
+<div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../sale/tb_salelist_b.php') style='color=#ffffff'>销售单管理</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../sale/tb_salelistview_b.php') style='color=#ffffff'>销售单历史</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../sale/tb_saleback_b.php') style='color=#ffffff'>退货单管理</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../sale/tb_salebackview_b.php') style='color=#ffffff'>退货单历史</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../sale/salelist_query.php') style='color=#ffffff'>销售分析</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../sale/saleback_query.php') style='color=#ffffff'>销售退货分析</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../sale/tb_customertype_b.php') style='color=#ffffff'>客户类型</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../sale/tb_customer_b.php') style='color=#ffffff'>客户资料</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../sale/tb_lendlist_b.php') style='color=#ffffff'>商品借出录入</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../sale/tb_restitute_b.php') style='color=#ffffff'>商品借据</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../sale/tb_lendlisthistory_b.php') style='color=#ffffff'>借出历史单</a></nobr></div></div></div>
+<div style='margin:2px 0px 0px 0px;'><table border=0 cellspacing=0><tr><td style='cursor:hand' CLASS='parent' ID='el5Img' valign=middle background='../skin/skin0/img/left_name2.jpg' height=27; width=151 onClick="expandIt('el5'); swimg('el5Img');return false; "> <div style='height=20; width=100; margin:0px 0px 0px 37px;vertical-align:middle' ><nobr>&nbsp;<font color='white' class='heada'>财务管理</font></nobr></div>
+</td></tr></table></div><div ID="el5Child" CLASS="child" style='margin:2px 0px 0px 0px;'>
+<div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../finance/tb_inmoneylist_b.php') style='color=#ffffff'>收款单</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../finance/tb_inmoneyhistory_b.php') style='color=#ffffff'>收款单历史</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../finance/tb_paymoneylist_b.php') style='color=#ffffff'>付款单</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../finance/tb_paymoneyhistory_b.php') style='color=#ffffff'>付款单历史</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../finance/money_query.php') style='color=#ffffff'>应收应付查询</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../finance/cashbank.php') style='color=#ffffff'>现金银行</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../finance/tb_accountmove_b.php') style='color=#ffffff'>帐户调拨</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../finance/tb_incomelist_b.php') style='color=#ffffff'>其他收入</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../finance/tb_payoutlist_b.php') style='color=#ffffff'>其他费用</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../finance/income_query.php') style='color=#ffffff'>其他收入查询</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../finance/payout_query.php') style='color=#ffffff'>其他费用查询</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../finance/tb_incometype_b.php') style='color=#ffffff'>收入类型</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../finance/tb_payouttype_b.php') style='color=#ffffff'>费用类型</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../finance/tb_account_b.php') style='color=#ffffff'>帐户基本资料</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../finance/tb_incomelisthistory_b.php') style='color=#ffffff'>其他收入历史单</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../finance/tb_payoutlisthistory_b.php') style='color=#ffffff'>其他费用历史单</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../finance/tb_accountmovehistory_b.php') style='color=#ffffff'>帐户调拨历史单</a></nobr></div></div></div>
+<div style='margin:2px 0px 0px 0px;'><table border=0 cellspacing=0><tr><td style='cursor:hand' CLASS='parent' ID='el6Img' valign=middle background='../skin/skin0/img/left_name2.jpg' height=27; width=151 onClick="expandIt('el6'); swimg('el6Img');return false; "> <div style='height=20; width=100; margin:0px 0px 0px 37px;vertical-align:middle' ><nobr>&nbsp;<font color='white' class='heada'>分析管理</font></nobr></div>
+</td></tr></table></div><div ID="el6Child" CLASS="child" style='margin:2px 0px 0px 0px;'>
+<div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../analyse/workhistory_query.php') style='color=#ffffff'>经营历程</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../analyse/produresale_rank.php') style='color=#ffffff'>商品销售排行</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../analyse/cussale_rank.php') style='color=#ffffff'>客户销售排行</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../analyse/areasale_rank.php') style='color=#ffffff'>地区销售排行</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../analyse/salecost_query.php') style='color=#ffffff'>销售成本利润表</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../analyse/unsaleable_query.php') style='color=#ffffff'>滞销商品</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../analyse/saleable_query.php') style='color=#ffffff'>畅销商品</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../analyse/produresale_query.php') style='color=#ffffff'>商品销售统计</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../analyse/produresaleback_query.php') style='color=#ffffff'>商品退货统计</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../analyse/daysale_query.php') style='color=#ffffff'>销售日报表</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../analyse/tb_answer_b.php') style='color=#ffffff'>销售月报表</a></nobr></div></div></div>
+<div style='margin:2px 0px 0px 0px;'><table border=0 cellspacing=0><tr><td style='cursor:hand' CLASS='parent' ID='el7Img' valign=middle background='../skin/skin0/img/left_name2.jpg' height=27; width=151 onClick="expandIt('el7'); swimg('el7Img');return false; "> <div style='height=20; width=100; margin:0px 0px 0px 37px;vertical-align:middle' ><nobr>&nbsp;<font color='white' class='heada'>个人管理</font></nobr></div>
+</td></tr></table></div><div ID="el7Child" CLASS="child" style='margin:2px 0px 0px 0px;'>
+<div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../individual/staffershow.php') style='color=#ffffff'>个人资料</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../individual/updatepass.php') style='color=#ffffff'>修改密码</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../individual/') style='color=#ffffff'>登陆日志</a></nobr></div></div></div>
+<div style='margin:2px 0px 0px 0px;'><table border=0 cellspacing=0><tr><td style='cursor:hand' CLASS='parent' ID='el8Img' valign=middle background='../skin/skin0/img/left_name2.jpg' height=27; width=151 onClick="expandIt('el8'); swimg('el8Img');return false; "> <div style='height=20; width=100; margin:0px 0px 0px 37px;vertical-align:middle' ><nobr>&nbsp;<font color='white' class='heada'>数据管理</font></nobr></div>
+</td></tr></table></div><div ID="el8Child" CLASS="child" style='margin:2px 0px 0px 0px;'>
+<div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../sys/sys_back_data.php') style='color=#ffffff'>数据备份/还原</a></nobr></div></div></div>
+<div style='margin:2px 0px 0px 0px;'><table border=0 cellspacing=0><tr><td style='cursor:hand' CLASS='parent' ID='el9Img' valign=middle background='../skin/skin0/img/left_name2.jpg' height=27; width=151 onClick="expandIt('el9'); swimg('el9Img');return false; "> <div style='height=20; width=100; margin:0px 0px 0px 37px;vertical-align:middle' ><nobr>&nbsp;<font color='white' class='heada'>系统管理</font></nobr></div>
+</td></tr></table></div><div ID="el9Child" CLASS="child" style='margin:2px 0px 0px 0px;'>
+<div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('') style='color=#ffffff'>用户管理</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../teller/tb_teller_b.php') style='color=#ffffff'>用户管理</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../teller/tb_usegroup_b.php') style='color=#ffffff'>用户组管理</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../teller/ownconfig.php') style='color=#ffffff'>个人设置</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../email/emaillogin.php') style='color=#ffffff'>邮件管理</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../teller/shortcutmenu.php') style='color=#ffffff'>快捷菜单设置</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('') style='color=#ffffff'>系统维护</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><img src="../images/b.gif" align=absmiddle border="0"><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../systemvindicate/monthfinish.php') style='color=#ffffff'>月结存</a></nobr></div></div><div style='background:#E7EDFA;width=149;' align=left height=19px'><nobr><div style='margin:0px 0px 0px 2px;'><img src="../images/b.gif" align=left border="0"></div><img src="../images/b.gif" align=absmiddle border="0"><div style='margin:0px 0px 0px 20px;height=19px'><img src='../skin/skin0/img/left_line2.jpg' border='0' height=19px><a class="item" HREF=javascript:loader('../systemvindicate/monthfinish_view.php') style='color=#ffffff'>月结存查看</a></nobr></div></div></div>
+</td>
+  </tr>
+  <td height="27" align="left" valign="top" bgcolor="#f4f4f4"><div style="margin:0px 0px 0px 6px;"><table  border="0" cellspacing="0">
+      <tr>
+        <td id=exit width="151" height="27" align="middle" valign="middle" background="../skin/skin0/img/left_name2.jpg"><table width="100%" border="0" cellspacing="0" onClick="swimg('exit');logoff();" style="cursor:hand">
+          <tr>
+            <td width="28%">&nbsp;</td>
+            <td width="72%"><span class="STYLE3">退出系统</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></div></td>
+  <tr>
+    <td height="108" background="../skin/skin0/img/left_bottom.jpg">&nbsp;</td>
+  </tr>
+</table>
+</div>
+<p>&nbsp;</p>
+</body>
+</html>

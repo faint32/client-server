@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<link rel="stylesheet" type="text/css" href="img/style-main.css"/>
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+<script type="text/javascript" language="javascript" src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script>
+$(document).ready(function(){
+  var tabiframe = $(window.parent.document).find("#tabiframe");
+  var main = $(window.parent.document).find("#main");
+  var thisheight = $("#tab_content").height()+5;
+ // var thisheight = document.documentElement.clientHeight+5;
+  // main.hide();
+  // tabiframe.height(thisheight); 
+  // alert(thisheight);
+   tabiframe.animate({height:thisheight, opacity: 'slideDown'}, "100"); 
+
+  // main.show("fast");
+});
+function InitAjax()
+{
+　var ajax=false; 
+　try { 
+　　ajax = new ActiveXObject("Msxml2.XMLHTTP"); 
+　} catch (e) { 
+　　try { 
+　　　ajax = new ActiveXObject("Microsoft.XMLHTTP"); 
+　　} catch (E) { 
+　　　ajax = false; 
+　　} 
+　}
+　if (!ajax && typeof XMLHttpRequest!='undefined') { 
+　　ajax = new XMLHttpRequest(); 
+　} 
+　return ajax;
+}
+function readtabedit(code,taburl,tmdetailid)
+{
+	
+  var postStr ;
+  postStr = "code="+code;
+　//需要进行Ajax的URL地址
+　var url = "../ajaxread/readtabid.php";
+　//实例化Ajax对象
+　var ajax = InitAjax();
+　//使用POST方式进行请求
+　ajax.open("POST", url, true); 
+  //定义传输的文件HTTP头信息
+　ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+　//发送POST数据
+　ajax.send(postStr);
+　//获取执行状态
+　ajax.onreadystatechange = function() { 
+　　//如果执行是状态正常，那么就把返回的内容赋值给上面指定的层
+　　if (ajax.readyState == 4 && ajax.status == 200) { 
+      //获取显示层的位置
+	  // alert(ajax.responseText);
+	   var arrAll="main"; 
+      
+		//addtooldiv(code,tmdetailid);   
+		parent.parent.document.getElementById(arrAll).src = taburl+"&"+ajax.responseText; 
+        //alert(parent.parent.document.getElementById(arrAll).src);
+
+　　} 
+　}
+	     
+}
+function addtooldiv(code,tmdetailid){
+  var postStr ;
+  postStr = "code="+code+"&tmdetailid="+tmdetailid;
+　//需要进行Ajax的URL地址
+　var url = "../ajaxread/readtabedit.php";
+　//实例化Ajax对象
+　var ajax = InitAjax();
+　//使用POST方式进行请求
+　ajax.open("POST", url, true); 
+  //定义传输的文件HTTP头信息
+　ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+　//发送POST数据
+　ajax.send(postStr);
+　//获取执行状态
+　ajax.onreadystatechange = function() { 
+　　//如果执行是状态正常，那么就把返回的内容赋值给上面指定的层
+　　if (ajax.readyState == 4 && ajax.status == 200) { 
+      //获取显示层的位置
+	   parent.parent.document.getElementById("toolshow").innerHTML =ajax.responseText;
+　　} 
+　}
+}
+
+
+function funthisclass(url,tabno)
+{
+	var olddatashowid=form1.thistab.value;
+	//alert(olddatashowid);
+	document.getElementById("tab_datashow"+olddatashowid).className="";
+	document.getElementById("tab_datashow"+tabno).className="active";
+	form1.thistab.value=tabno;
+	form1.outputurl.value=url+tabno;
+}
+function autourl()
+{
+	//alert({code});
+	//readtabedit({code},{taburl},{tmdetailid});
+}
+</script>
+<script type="text/javascript" language="javascript"  src="../main_g/img/input.js"></SCRIPT>
+<style type="text/css">
+body{ font-size:12px;};
+.ac_menu{border:1px solid #3162A6;background-color:#F6F6F6;z-index:99;cursor:default;overflow:hidden;-moz-box-sizing:border-box;height:expression((this.scrollHeight>130)?"130px":"auto")}
+.ac_menuitem{width:100%;color:#141414;padding:2px;cursor:pointer;cursor:default;}
+.ac_menuitem_selected{background-color:#D6DEEC;width:100%;color:#141414;padding:2px;cursor:default;}
+.selected{background-color:#D6DEEC;color:#141414;cursor:default;}
+</style>
+<TITLE>能力管理</TITLE>
+<BODY  topmargin="0" leftMargin="0" onLoad="autourl();" width="100%">
+<form action="#" name="form1"  method="post">
+ <input type="hidden" value="{code}" name="code" class="textfield" size="20">
+ <input type="hidden" value="{outputurl}" name="outputurl" class="textfield" size="20">
+ <input type="hidden" value="{thistab}" id="thistab" name="thistab" class="textfield" size="20">
+ <input type="hidden" value="{tabshow}" name="tabshow" class="textfield" size="20">
+<div  id="tab_content">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="38" style="border-bottom:1px #cccccc solid;">
+  <td height="38"   valign="top" style="background:url('../main_g/img/wz-tle.png') no-repeat #ffffff; padding-left:10px; padding-top:5px;">
+  <a style="font-size:16px; color:#999999; font-weight:bold;font:宋体,Georgia, 'Times New Roman', Times, serif"  >{menuname}</a>
+  <br>
+  <span style="color:#B0B0B0;font-size:12px;">{titlememo}</span>
+  </td>
+   
+  </tr>
+</table>
+<div class="api-view">
+<div class="layout-main-submenu" style="margin-top:2px; height:30px; margin-bottom:2px; width:100%;">
+					<ul>
+						<li class="main">{tabmenu}</li>
+					<!-- BEGIN order_tabmenu -->
+                         <li class="{thisclass}" id="tab_datashow{tabno}" >
+           <a   href="javascript:readtabedit('{code}','{taburl}','{tabid}');funthisclass('{thisurl}','{tabno}');">{tabname}</a></li>            
+            <!-- END order_tabmenu -->
+				</ul>  
+</div>
+ </div>
+ </div>
+ </form>
+</body>
+</html>

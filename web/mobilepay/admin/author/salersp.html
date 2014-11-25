@@ -1,0 +1,152 @@
+<HTML>
+<HEAD>
+<TITLE>明盛网站</TITLE>
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+
+<link href="{skin}reset.css" rel="stylesheet" type="text/css">
+<style></style>
+
+<!-- Scripts -->
+
+<script src="../include/jquery.js" language="javascript" ></script>
+<script type="text/javascript" language="javascript" src="../include/jquery.dataTables.gb2312.js"></script>
+<script language="javascript"> 
+
+		  $(document).ready(function() {
+
+		  $.ajaxSetup ({cache: false });	
+
+		  
+
+		  var gotourl="../ajaxread/readsalerlist.php";
+
+		  $('#basictable').dataTable({   
+                     "sDom": '<"wrapper"flipt>rt<"bottom"ip><"clear">',
+					 "bStateSave": true,
+					  "aLengthMenu": [[5,10, 25, 50,600, -1], [5,10, 25, 50,600,"全部"]],
+					 "bLengthChange": true, 
+					 "bProcessing": true,        
+					 "iDisplayLength": 25,        
+                     "bServerSide":true,
+                     "sAjaxSource":gotourl,
+					 "sPaginationType": "full_numbers"	
+
+                  });
+
+			
+
+		  });
+
+		   function edit(id)
+
+           {
+
+	         $("#id").attr("value",id);
+
+			 $("#form3").submit();
+
+           }
+
+		   function submit_save()
+
+		   {
+
+			 $("#action").attr("value","save");
+
+			 $("#form3").submit();
+
+		   }
+
+		   function del(id)
+
+		   {
+
+			 $("#id").attr("value",id);
+
+			 $("#action").attr("value","del");
+
+			 $("#form3").submit();
+
+		   }
+
+		</script>
+</HEAD>
+
+<BODY>
+<div id="page">
+  <h4 class="icon forms">{menuname} <small></small></h4>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+    <tr>
+      <td class=button_labelleft></td>
+      <td class=button_label><div align="left" > &nbsp; </div></td>
+      <td class=button_labelright></td>
+    </tr>
+  </table>
+  
+  <!-- Wrapper -->
+  
+  <div class="wrapper">
+    <div class="panel">
+      <form action="" method="post" id="form3" name="form2">
+        <input class="input" type="hidden" name="id" value="{id}" id="id">
+        <input class="input" type="hidden" name="action" value="" id="action">
+        <fieldset class="form">
+          <legend>会员管理 <small>&nbsp;会员基本资料填写</small> </legend>
+          <table class="table_form">
+            <colgroup>
+            <col class="col-name" />
+            <col class="col-value" />
+            </colgroup>
+            <tr>
+              <th>编号：</th>
+              <td><input class="input"id="no" type="text" name="truename" size="30" maxlength="40" value="{no}" ></td>
+            </tr>
+            <tr>
+              <th>用户名：</th>
+              <td><input class="input"id="name" type="text" name="name" size="30" maxlength="40" value="{name}" ></td>
+            </tr>
+            <tr>
+              <th>真实名：</th>
+              <td><input class="input"id="truename" type="text" name="truename" size="30" maxlength="40" value="{truename}" ></td>
+            </tr>
+            <tr>
+              <th>手机：</th>
+              <td><input name="phone" type="text" id="phone"   class="input" size="30" value="{phone}" ></td>
+            </tr>
+            <tr>
+              <th>注册时间：</th>
+              <td><input name="zcdate" type="text" id="zcdate"   class="input" size="30" value="{zcdate}" ></td>
+            </tr>
+            <tr>
+              <th>刷卡器开通时间：</th>
+              <td><input name="ktdate" type="text" id="ktdate"   class="input" size="30" value="{ktdate}" ></td>
+            </tr>
+            <tr>
+              <th>使用记录：</th>
+              <td><input name="usagelog" type="text" id="usagelog"   class="input" size="30" value="{usagelog}" ></td>
+            </tr>
+            <tr>
+              <th></th>
+              <td ><input type="button" id="z_save" class="btn" value="保存"  onclick="submit_save()" AccessKey=s>
+                <span>or</span>
+                <input type="reset" class="btn" value="取消" AccessKey=q></td>
+            </tr>
+          </table>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

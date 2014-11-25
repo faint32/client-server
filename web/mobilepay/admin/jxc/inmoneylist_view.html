@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dth XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dth/xhtml1-transitional.dth">
+<HTML>
+<HEAD>
+<TITLE>收款历史</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!-- Styles -->
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="../css/custom.css">
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<SCRIPT language=javascript src="../include/dateobject.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/datepicker.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+ <SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+</HEAD>
+<script language=javascript>
+<!-- 
+//禁止退格键 作用于Firefox、Opera
+document.onkeypress=banBackSpace;
+//禁止退格键 作用于IE、Chrome
+document.onkeydown=banBackSpace;
+function submit_savet() {
+	 if (confirm("是否红字冲销该单据？")) {
+	      sendingbg.style.display ="";  
+        sendingback.style.display ="";
+        form1.action = "kickback_inmoney.php";
+	      form1.submit();
+    }
+}
+
+function changedraft(){
+   if (confirm("是否另存为草稿单？")) {
+        form1.actiontype.value     = "draft";	
+        sendingbg.style.display ="";  
+        sendingdraft.style.display ="";
+	      form1.submit();
+   }
+}
+
+// -->
+</script>
+</HEAD>
+<BODY  topmargin="0" leftMargin="2" width="100%">
+    <div id="page">
+    <h4 class="icon forms">{menuname} <small></small></h4>
+    <form action="" method="post" name="form1" >
+    <input type=hidden name=listid value="{listid}">
+    <input type=hidden name=actiontype value="">  
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+<tr>
+    <td class=button_labelleft></td>
+    <td class=button_label>
+     <div align="right" >
+      <input type=button name=draft class=button_infile value="&nbsp;&nbsp;转为草稿单"  onClick="javascript:changedraft()" style="font-size:9pt" {iskickback}>
+        <input type=button name=save class=button_outexcel value="&nbsp;&nbsp;反向冲销"  onClick="javascript:submit_savet()" style="font-size:9pt" {iskickback}>
+        <input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" >
+    </div>
+	</td>
+    <td class=button_labelright></td>
+</tr>
+</table>
+<!-- Wrapper -->
+    <div class="wrapper">
+    <div class="panel">
+    <div id="showinfo" class="box box-info" style="display:{show_error}"><p>{error}</p><a class="close">&times;</a></div> 
+
+    <fieldset class="form">
+        <legend>
+            收款历史 
+            <small>&nbsp;收款详细</small>
+        </legend>
+        <br/>
+        <table  class="table_form">
+            <colgroup><col class="col-name" />
+                <col class="col-value" /></colgroup>
+       
+        <tr >
+          <th>单据编号：</th>
+          <td ><span class=form_label>{listno}</span></td>
+          <th>单据日期：</th>
+          <td ><span class=form_label>
+          <script language=javascript>
+			       var date=createDatePicker("date",{year},{month},{day},0)
+			   </script><span>
+          </td>
+        </tr>
+        <tr>
+          <th>单位类型：</th>
+          <td>
+            <span class=form_label>{clienttype}</span>
+          </td>
+          <th>付款单位:</th>
+          <td class=span_label>编号:{cusno}&nbsp;&nbsp;名称：{cusname}
+          </td>
+        </tr>
+        <tr>
+          <th>录单人：</th>
+          <td class=span_label >{staname}</td>
+		  <th>收款金额：</th>
+          <td><span class=form_label>{payallmoney}</span></td>
+        </tr>
+        <tr>
+          <th>收款人：</th>
+          <td class=span_label>{dealwithman}</td>
+        </tr>
+        <tr>
+          <th>备注：</th>
+          <td colspan="3" ><span class=form_label>{memo_z}</span></td>
+        </tr>
+      </table>
+     </fieldset>
+    </div>
+</div>
+<br>
+</form>
+<div id="sendingback" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在反向冲销单据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingdraft" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在另存为草稿单，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+</div>
+</center>
+</div>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

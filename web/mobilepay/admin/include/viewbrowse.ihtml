@@ -1,0 +1,58 @@
+<HTML><HEAD><TITLE></TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<SCRIPT language=javaScript src="../include/qshowtitle.js" type=text/javascript></SCRIPT>
+
+<SCRIPT language=JavaScript>
+function submit_order(done){
+    	if(form1.order.value == done){ 
+       	   if(form1.upordown.value == 'asc'){
+       	      form1.upordown.value = "desc";
+       	   }else{ 
+              form1.upordown.value = "asc";
+           }   
+        }else{
+           form1.upordown.value = "asc";
+        } 
+        form1.order.value = done;
+	      form1.submit();
+   }
+
+</SCRIPT>
+</HEAD>
+<body bgcolor="#F5F5F5" text="#000000" topmargin="0" leftMargin="2" width="100%">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+       <tr><td class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	{prgname}
+       </td>
+       </tr>
+       <tr>
+         <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+      </tr>
+  </table>
+  <FORM id=form1 name=form1 action="" method=post>
+  <input type="hidden" name="now" value="{nowpage}">
+  <INPUT type=hidden name=url value={}>
+  <INPUT type=hidden name=act value="">
+  <INPUT type=hidden name=order value={order}>
+  <INPUT type=hidden name=allrowcount value={allrowcount}>
+  <input type="hidden" name="upordown" value="{upordown}">
+   
+<TABLE class=tableframe width="98%" align=center>
+  <TBODY>
+  <TR class=listtitle>
+<!-- BEGIN TITLEBK -->
+    <TD {cols} class={titlecss} noWrap align=middle>{title}</TD>
+<!-- END TITLEBK -->
+  </TR>
+<!-- BEGIN DATABK -->
+	<TR class="listrow1"   onmouseover="this.style.backgroundColor='#DAE2ED';" onmouseout="this.style.backgroundColor='{bgcolor}';" bgcolor="{bgcolor}">
+		{xi}
+	</TR>
+<!-- END DATABK -->  
+</TBODY></TABLE>
+</BODY></HTML>

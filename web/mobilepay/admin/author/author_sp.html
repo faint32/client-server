@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<TITLE>待审核商户</TITLE>
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<!-- Styles -->
+	<link rel="stylesheet" href="../css/styles.css">
+	<link rel="stylesheet" href="../css/custom.css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+	<link href="../colorbox/colorbox.css" rel="stylesheet" type="text/css">
+	<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT> 
+	<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> 
+	<script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script> 
+	<script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script> 
+	<SCRIPT language=javascript src="../function/function.js"></SCRIPT> 
+<script type="text/javascript" src="../js/author.js"></script>
+<script type="text/javascript" src="../js/global.js"></script>
+<script type="text/javascript" src="../colorbox/jquery.colorbox.js"></script>
+<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+<script language=javascript>
+
+var requestSubmitted = false;
+function submit_save(){
+  showtips('正在保存数据，请稍候...');  
+   form1.action.value="save";
+    requestSubmitted = true; 
+	form1.submit();
+}
+function submit_edit(){
+  showtips('正在保存数据，请稍候...');  
+   form1.action.value="edit";
+    requestSubmitted = true; 
+	form1.submit();
+}
+function submit_del(){
+	if(confirm("是否确定删除整条信息")){
+		showtips('正在删除数据，请稍候...');  
+			form1.action.value="delete";
+		    requestSubmitted = true; 
+			form1.submit();
+	}
+		}
+</script>
+
+</HEAD>
+
+<BODY>
+<div id="page" class="page">
+<h4 class="icon forms">{menuname} <small></small></h4>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+			<tr>
+				<td class=button_labelleft></td>
+				<td class=button_label>
+					<div align="right" >
+						 <input type=button name=save32 class=button_help value="帮助" AccessKey=h  onClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.className='button_help_on'" onMouseOut="this.className='button_help'">
+                         <input type=button name=save3 class=button_save value="暂存" AccessKey=s  onClick="javascript:submit_edit()" style="font-size:9pt" {dissave} onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+						<span class=button_split>&nbsp;</span><input type=button name=save3 class=button_save value="审核" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt"  onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+						<span class=button_split>&nbsp;</span><input type=button name=save3 class=button_save value="删除" AccessKey=s  onClick="javascript:submit_del()" style="font-size:9pt"  onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+						<span class=button_split>&nbsp;</span><input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+					</div>
+				</td>
+				<td class=button_labelright></td>
+			</tr>
+		</table>
+
+<!-- Wrapper -->
+<form action="" method="post" listid="form3" name="form1">
+<div class="wrapper">
+<div class="panel">
+<input class="input" type="hidden" name="listid" value="{listid}" id="listid">
+<input class="input" type="hidden" name="action" value="{action}" id="action">
+<div id="showinfo" class="box box-info" style="display:{show_error}"><p>{error}</p><a class="close">&times;</a></div> 
+<fieldset class="form"><legend>待审核商户 <small>&nbsp;商户基本资料填写</small>
+</legend>
+<table class="table_form">
+
+	<colgroup>
+		<col class="col-name" />
+		<col class="col-value" />
+	</colgroup>
+	<tr>
+		<th>用户名：</th>
+		<td><input class="input visiabled" id="name" type="text" name="name"
+			size="30" maxlength="40" value="{name}" readonly></td>
+
+		<th>密码：</th>
+		<td><input class="input" id="userpw" type="userpw"
+			name="userpw" size="30" maxlength="40" value="{userpw}">需要修改密码填写
+		</td>
+	</tr>
+	<tr>
+		<th>真实名：</th>
+		<td><input class="input" id="truename" type="text"
+			name="truename" size="30" maxlength="40" value="{truename}"></td>
+
+		<th>手机：</th>
+		<td><input name="mobile" type="text" id="mobile" class="input"
+			size="30" value="{mobile}"></td>
+	</tr>
+	<tr>
+		<th>邮箱：</th>
+		<td><input name="email" type="text" id="email" class="input"
+			size="30" value="{email}"></td>
+
+		<th>身份证：</th>
+		<td><input name="idcard" type="text" id="idcard" class="input"
+			size="30" value="{idcard}"></td>
+	</tr>
+	<tr>
+		<th>是否冻结：</th>
+		<td><input type="radio" name="isstop" id="isstop" value="1" {checked1} />冻结
+		<input type="radio" name="isstop" id="isstop" value="0" {checked2} />正常
+		</td>
+        <th>注册时间：</th>
+		<td><input name="zcdate" type="text" id="zcdate" class="input"
+			size="30" value="{zcdate}"></td>
+        
+	</tr>
+	<tr>    
+        <th>经营状况：</th>
+              <td>
+                <input name="state" type="text" id="state" class="input visiabled"
+			size="30" value="{state}" readonly>
+              </td>
+		<th>明盛商城关联商户：</th>
+		<td><input name="shopname" type="text" id="shopname" class="input visiabled"
+			size="30" value="{shopname}" readonly></td>
+	</tr>
+	<tr>
+		<th>商户所属分类：</th>
+		<td><select name="authortypeid">{authortypeid}</select>
+		</td>
+		<th></th>
+		<td></td>
+	</tr>
+	<tr>
+		<th>商户所属行业：</th>
+		<td><select name="auindustryid">{auindustryid}</select>选择行业暂存后才可以选择套餐
+		</td>
+		<th>所属总仓</th>
+		<td><select name="sdcrid">{sdcrid}</select></td>
+	</tr>
+	<tr>
+		<th>购买信用卡额度套餐：</th>
+		<td>
+			<select name="slotscdmsetid">{slotscdmsetid}</select>
+		</td>
+		<th>购买信用卡费率套餐</th>
+		<td><select name="slotpayfsetid">{slotpayfsetid}</select></td>
+	</tr>
+	<tr>
+		<th>购买借记卡额度套餐：</th>
+		<td>
+			<select name="bkcardscdmsetid">{bkcardscdmsetid}</select>
+		</td>
+		<th>购买借记卡费率套餐</th>
+		<td><select name="bkcardpayfsetid">{bkcardpayfsetid}</select></td>
+	</tr>  
+	<tr>
+		<th>身份证管理：</th>
+		<td colspan="3">
+		<table width="600" align="left" border="0" cellspacing="0"
+			cellpadding="0">
+			<!-- BEGIN zzlist -->
+			{tr1}
+			<td align="center" height="160" width="200"><span id="{fd}_pic">{zzimg}</span><br>
+			<span style="color: #b73232">{zzname}</span><br>
+			<input type="hidden" class="ccxdshipt01" id="{fd}" name="{fd}"
+				readonly="readonly" value="{zzurl}" /> <input type="hidden"
+				class="ccxdshipt01" id="{fdid}" name="{fdid}" readonly="readonly"
+				value="{fdidval}" /> {u_btn}</td>
+			{tr2}
+			<!-- END zzlist -->
+		</table>
+		</td>
+	</tr>
+
+</table>
+</fieldset>
+
+</div>
+</div>
+			<div class="wrapper">
+				<div class="panel">
+						<fieldset class="form">
+							<legend>
+								收款账户信息
+								<small>&nbsp;收款账户基本资料填写</small>
+								
+								
+							</legend>
+							<br/>
+							<table class="table_form">
+								<colgroup>
+									<col class="col-name" />
+									<col class="col-value" />
+								</colgroup>
+
+								<tr>    
+									<th>收款人：</th>
+										  <td>
+											<input name="shoucardman" type="text" id="state" class="input "
+										size="30" value="{shoucardman}">
+										  </td>
+									<th>收款人电话：</th>
+									<td><input name="shoucardphone" type="text" id="shoucardphone" class="input "
+										size="30" value="{shoucardphone}"></td>
+								</tr>
+									<tr>    
+									<th>收款卡号：</th>
+										  <td>
+											<input name="shoucardno" type="text" id="shoucardno" class="input "
+										size="30" value="{shoucardno}">
+										  </td>
+									<th>收款银行：</th>
+									<td><input name="shoucardbank" type="text" id="shoucardbank" class="input "
+										size="30" value="{shoucardbank}"></td>
+								</tr>  								
+							</table>
+						</fieldset>
+					
+				</div>
+			</div>	
+		</form>	
+{showtips}	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

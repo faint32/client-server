@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<HTML><HEAD><TITLE>推荐品牌</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<link href="../colorbox/colorbox.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../js/jquery.min.1.7.1.js"></script>
+<script type="text/javascript" src="../colorbox/jquery.colorbox.js"></script>
+<script type="text/javascript" src="../js/global.js"></script>
+
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+
+
+</HEAD>
+<style type="text/css">
+<!--
+body{padding-top:0px;font-size:12px;}
+h2{margin:0px;padding:0px;font-size:12px;font-weight:bold;}
+.bton{border:1px solid #CCC;background:#DDD;}
+.cont{padding:10px;}
+#main{width:400px;margin:0px auto;}
+#selectItem{background:#FFF;position:absolute;top:0px;left:center;border:1px solid #000;overflow:hidden;margin-top:10px;width:520px;z-index:2;}
+#preview{margin:1px;border:1px solid #CCC;}
+#result{border:1px solid #CCC;margin-top:10px;}
+.tit{line-height:20px;height:20px;margin:1px;padding-left:10px;}
+.bgc_ccc{background:#CCC;}
+.bgc_eee{background:#eee;}
+.c_999{color:#999}
+.pointer{cursor:pointer;}
+.left{float:left;}
+.right{float:right;}
+.cls{clear:both;font-size:0px;height:0px;overflow:hidden;}
+#bg{background:#CCC;filter:alpha(opacity=70);opacity:0.7;width:100%;;position:absolute;left:0px;top:0px;display:none;z-index:1;}
+.hidden{display:none;}
+.move{cursor:move;}
+/* caselist */
+.caselist {
+	width:98%;
+	margin:30px auto;
+}
+.caselist li {
+	width:120px;
+	height:80px;
+	float:left;
+	margin:0 10px 15px 0;
+	position:relative;
+	overflow:hidden;
+}
+
+-->
+</style>
+<script language=javascript>
+$(function(){
+	if($("#action").val()=="edit")
+	{
+		$("#iareaid").find("option").first().remove();
+	}
+});
+<!-- 
+function InitAjax()
+{
+　var ajax=false; 
+　try { 
+　　ajax = new ActiveXObject("Msxml2.XMLHTTP"); 
+　} catch (e) { 
+　　try { 
+　　　ajax = new ActiveXObject("Microsoft.XMLHTTP"); 
+　　} catch (E) { 
+　　　ajax = false; 
+　　} 
+　}
+　if (!ajax && typeof XMLHttpRequest!='undefined') { 
+　　ajax = new XMLHttpRequest(); 
+　} 
+　return ajax;
+}
+
+function refeedback(scatid,dateid,act,getvalid,imgid)
+{	
+
+	form1.action.value = "";
+	form1.submit();	
+}
+
+function readmarketingparam(value){
+	
+	
+		
+	  var postStr = "authorid="+ value;
+	　//需要进行Ajax的URL地址
+	　var url = "../ajaxread/readhostprctra.php";
+	　//实例化Ajax对象
+	　var ajax = InitAjax();
+	　//使用POST方式进行请求
+	　ajax.open("POST", url, true);
+	  //定义传输的文件HTTP头信息
+	　ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+	　//发送POST数据
+	　ajax.send(postStr);
+	　//获取执行状态
+	　ajax.onreadystatechange = function() { 
+	　　//如果执行是状态正常，那么就把返回的内容赋值给上面指定的层
+	　　if (ajax.readyState == 4 && ajax.status == 200) { 
+		   var strcommArray = new Array();
+			document.getElementById("cont").innerHTML =ajax.responseText;
+			 openSelect(1);
+		
+	　　}
+	　}
+		
+}
+
+function help(){  
+   if(document.getElementById("helpid").style.pixelHeight == 0 &&  document.getElementById("helpid").style.visibility == "hidden"){      
+     document.getElementById("helpid").style.visibility = "visible";
+	   ChS();
+   }else{   
+	   HhS();    	  
+   }
+}
+
+function ChS(){
+  if(helpid.style.pixelHeight<380){
+     helpid.style.pixelHeight+=10;setTimeout("ChS()",0.5);
+  } 
+}
+
+function HhS(){
+  if(helpid.style.pixelHeight > 0){
+    helpid.style.pixelHeight-=10;setTimeout("HhS()",0.5);
+  }
+  if(helpid.style.pixelHeight == 0){
+    document.getElementById("helpid").style.visibility = "hidden";
+  }
+}
+
+
+
+function FormatNumber(srcStr,nAfterDot){
+　　var srcStr,nAfterDot;
+　　var resultStr,nTen;
+　　srcStr = ""+srcStr+"";
+　　strLen = srcStr.length;
+　　dotPos = srcStr.indexOf(".",0);
+
+　　if (dotPos == -1){
+　　　　resultStr = srcStr+".";
+　　　　for (i=0;i<nAfterDot;i++){
+　　　　　　resultStr = resultStr+"0";
+　　　　}
+　　　　return resultStr;
+　　}
+　　else{
+　　　　if ((strLen - dotPos - 1) >= nAfterDot){
+　　　　　　nAfter = dotPos + nAfterDot + 1;
+　　　　　　nTen =1;
+　　　　　　for(j=0;j<nAfterDot;j++){
+　　　　　　　　nTen = nTen*10;
+　　　　　　}
+　　　　　　resultStr = Math.round(parseFloat(srcStr)*nTen*100)/(nTen*100);    //第一次过滤掉后五位以后的
+            resultStr = Math.round(parseFloat(resultStr)*nTen*10)/(nTen*10);    //第一次过滤掉后四位以后的
+            resultStr = Math.round(parseFloat(resultStr)*nTen)/nTen; //第一次过滤掉后三位以后的
+　　　　　　return resultStr;
+　　　　}
+　　　　else{
+　　　　　　resultStr = srcStr;
+　　　　　　for (i=0;i<(nAfterDot - strLen + dotPos + 1);i++){
+　　　　　　　　resultStr = resultStr+"0";
+　　　　　　}
+　　　　　　return resultStr;
+　　　　}
+　　}
+}
+function j(o){ //获取对象
+ if(typeof(o) == "string")
+ return document.getElementById(o);
+ return o;
+}
+function openBg(state){ //遮照打开关闭控制
+ if(state == 1)
+ {
+  j("bg").style.display = "block";
+  var h = document.body.offsetHeight > document.documentElement.offsetHeight ? document.body.offsetHeight : document.documentElement.offsetHeight;
+ //alert(document.body.offsetHeight);
+ //alert(document.documentElement.offsetHeight);
+  j("bg").style.height = h + "px";
+ }
+ else
+ {
+  j("bg").style.display = "none";
+ } 
+}
+function openSelect(state){ //选择城市层关闭打开控制
+ if(state == 1) 
+ {
+  j("selectItem").style.display = "block";
+  j("selectItem").style.left = (j("bg").offsetWidth - j("selectItem").offsetWidth)/2 + "px";
+  j("selectItem").style.top = document.body.scrollTop + 100 + "px";  
+ }
+ else
+ {
+  j("selectItem").style.display = "none";
+ }
+}
+
+function addPreItem(){ 
+	
+var items = j("cont").getElementsByTagName("input");
+j("previewItem").innerHTML="";
+
+ for(var i = 0 ; i < items.length ; i++)
+ {
+  if(items[i].checked == true)
+  {
+	
+	//items[i].checked == true;
+   var mes = "<input type='checkbox' checked='true' title='"+ items[i].value +"' name='arr_content[]' value='"+ items[i].title +"' onclick='copyItem(\"previewItem\",\"previewItem\");same(this);'>" + items[i].value;
+
+
+  j("previewItem").innerHTML += mes;
+
+  }
+	
+	
+ }
+ 
+}
+function copyItem(id1,id2){
+  var mes = "";
+ var items2 = j(id1).getElementsByTagName("input");
+
+
+ for(var i = 0 ; i < items2.length ; i++)
+ {
+  if(items2[i].checked == true)
+  {
+   
+   mes += "<input type='checkbox' checked='true' value='"+ items2[i].value +"' title='"+items2[i].title+"' name='arr_procatraid[]' onclick='copyItem(\"" + id2+ "\",\""+ id1 +"\");same(this);'>" + items2[i].title;   
+  }
+ }
+  j(id2).innerHTML = "";
+  j(id2).innerHTML += mes;
+
+
+ }
+
+
+
+function copyHTML(id1,id2){
+	
+ j(id2).innerHTML = j("id1").innerHTML;
+ 
+}
+function same(ck){
+  var items = j("cont").getElementsByTagName("input");
+ for(var i = 0 ; i < items.length ; i++)
+ {
+  if(ck.value == items[i].title)
+  {
+   items[i].checked = ck.checked;
+  }
+ }
+}
+
+
+function del_p(lid2){
+
+    if (confirm("是否删除图片？")) {
+
+    	form1.vid.value =lid2;
+
+        form1.action.value = "del";
+
+	      form1.submit();
+
+    }
+
+}
+
+function set_indexrec(recprocatraid,tradindexrec)
+{
+	j("recprocatraid").value=recprocatraid;
+	j("tradindexrec").value=tradindexrec;
+	form1.action.value="indexrec";
+	 form1.submit();
+}
+// -->
+</script>
+<BODY  topmargin="0" leftMargin="0" width="100%">
+<table width="100%"border="0"cellspacing="0"cellpadding="0"height="30">
+  <td height="30"class="pagetitle"width="100%"valign="middle">&nbsp;&nbsp;<img src="{skin}nowspace.jpg"align="absmiddle">热销商品推荐</td>
+  <tr>
+    <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg"></div></td>
+  </tr>
+</table>
+<center>
+<form action="" method="post" name="form1">
+    <input type=hidden name=action id=action  value="{action}"> 
+    <input type=hidden name=listid value="{listid}">
+	<input type=hidden name=shopimg value="">
+    <input type=hidden name=vid value="">
+	<input type=hidden name=recprocatraid id="recprocatraid" value="">
+	<input type=hidden name=tradindexrec id="tradindexrec" value="">
+ 
+
+   <table width="98%" border="0" cellspacing="0" cellpadding="0" height="31">
+      <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="left" >
+		
+          <input type=button name=save32 class=button_new value="   帮助" AccessKey=h  onClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.style.backgroundImage='url({skin}new_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}new.jpg)'">   
+          
+          <input type=button name=rst class=button_recovery value="   返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.style.backgroundImage='url({skin}recovery_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}recovery.jpg)'">
+        </div></td>
+        <td class=button_labelright></td>
+      </tr>
+  </table>  
+    <table width="98%" class=InputFrameMain cellspacing="0" cellpadding="0" border="0" height="113">
+      <TBODY> 
+        <tr>
+          <td height="13" colspan="2" align="left">
+          <table width="100%" cellspacing="0" cellpadding="0" border="0" >
+          <tr >
+          <td align="center" class=inputtitle width="150">资料输入</td>
+          <td  align="center" class=inputtitleright >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td  align="center" ></td>
+          </tr>
+          </table>
+          </td>
+        </tr>
+         <tr> 
+        <td height="20" width="15%"> </td>
+       <td colspan="3" height="20" width="75%"> <b><font color="#FF0000" class="error">{error}</font></b></td>      
+      </tr>
+
+     <tr style="display:none;">
+       <td class=form_label width="15%" height="30" align="right" nowrap>店铺推荐LOGO：</td>
+      <td width="35%" colspan="4" height="30" align="left" nowrap id="s_content"></td>
+      </tr>
+        
+    
+    
+      </TBODY> 
+    </table>
+
+	 
+    <input type=button id="button_zc" name=save class=buttonsmall value="添加商品" AccessKey=t 
+     onClick="openBg(1);readmarketingparam({authorid});" style="font-size:9pt;" {distj}>
+
+<ul class="caselist"> 
+    <!-- BEGIN prolist -->
+	<li style="width:200px;">
+        {protraname}<br>
+		<a href="#" class="tagImg1" target="_blank">{vpic}</a>
+        <br>
+        {vedit}
+      
+    </li>
+
+
+	<!-- END prolist -->
+  </ul>
+	
+
+ 
+</form>
+<div id="bg">
+</div>
+
+<div id="sending" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在处理数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+</div>
+<div id="helpid" STYLE="left: 1%; WIDTH: 450px; POSITION: absolute; TOP: 86px; HEIGHT: 0; display: none"> 
+ <div  align="left"   STYLE="position:absolute;left: 15px; top:15px;right:15px" >
+  商品系列信息在建立商品资料时会使用上。<br><br>
+  操作：基本信息－商品系列信息；<br><br>
+  保存(Alt+s)：添加新商品系列信息和修改商品系列信息；<br><br>
+  删除(Alt+d)：即删除不再使用的商品系列信息；<br><br>
+  撤销(Alt+z)：撤销回去商品系列没有修改的状态；<br><br>
+  返回(Alt+q)：返回商品系列信息列表；<br><br>
+  帮助(Alt+h)：显示帮助信息；
+</div>
+</div>
+</center>
+<div id="selectItem" class="hidden" style="width:750px;">
+  <div class="tit bgc_ccc move">
+   <h2 class="left">需要的选项</h2>
+   <span class="pointer right" onClick="openBg(0);openSelect(0);">[取消]</span>
+   <span class="pointer right" onClick="makeSure();">[确定]</span>   
+  </div>
+     <div id="preview">
+   <div class="tit bgc_eee c_999">
+    <h2>您已选择</h2>
+   </div> 
+   <div class="cont" id="previewItem">
+   {preprocaid}
+   </div>
+  </div>
+  <div class="cls"></div>
+  <div class="cont" id="cont">
+
+   </div>
+
+</div>
+</BODY>
+</HTML>

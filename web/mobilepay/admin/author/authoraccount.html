@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<TITLE>商户资金账户</TITLE>
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<!-- Styles -->
+	<link rel="stylesheet" href="../css/styles.css">
+	<link rel="stylesheet" href="../css/custom.css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+	<link href="../colorbox/colorbox.css" rel="stylesheet" type="text/css">
+	<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT> 
+	<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> 
+	<script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script> 
+	<script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script> 
+	<SCRIPT language=javascript src="../function/function.js"></SCRIPT> 
+<script type="text/javascript" language="javascript"
+	src="../include/jquery.dataTables.gb2312.js"></script>
+<script language="javascript"> 
+		  $(document).ready(function() {
+		  $.ajaxSetup ({cache: false });	
+		  var authorid=$("#authorid").val()
+		  var listid  = $("#listid").val();
+		  var gotourl="../ajaxread/readaccountlist.php?authorid="+authorid+"&listid="+listid;
+		  $('#basictable').dataTable({   
+                     "sDom": '<"wrapper"flipt>rt<"bottom"ip><"clear">',
+					 "bStateSave": true,
+					  "aLengthMenu": [[5,10, 25, 50,600, -1], [5,10, 25, 50,600,"全部"]],
+					 "bLengthChange": true, 
+					 "bProcessing": true,        
+					 "iDisplayLength": 25,        
+                     "bServerSide":true,
+                     "sAjaxSource":gotourl,
+					 "sPaginationType": "full_numbers"	
+
+                  });
+
+			
+
+		  });
+		</script>
+</HEAD>
+
+<BODY>
+<div id="page" class="page">
+<h4 class="icon forms">{menuname} <small></small></h4>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+			<tr>
+				<td class=button_labelleft></td>
+				<td class=button_label>
+					<div align="right" >
+						 <input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+					</div>
+				</td>
+				<td class=button_labelright></td>
+			</tr>
+		</table>
+
+<!-- Wrapper -->
+
+<div class="wrapper">
+<div class="panel">
+<form action="" method="post" id="form3" name="form2"><input
+	class="input" type="hidden" name="listid" value="{listid}" id="listid">
+<input class="input" type="hidden" name="authorid" value="{authorid}"
+	id="authorid">
+<div id="showinfo" class="box box-info" style="display:{show_error}"><p>{error}</p><a class="close">&times;</a></div> 
+<fieldset class="form"><legend>商户资金账户<small>&nbsp;我的钱包基本资料</small>
+</legend>
+<table class="table_form">
+	<colgroup>
+		<col class="col-name" />
+		<col class="col-value" />
+	</colgroup>
+	<tr>
+		<th>用户名：</th>
+		<td>{truename}</td>
+	</tr>
+	{content}
+
+</table>
+</fieldset>
+</form>
+</div>
+<div class="panel">
+<table width="100%" border="0" cellspacing="1" class="table"
+	id="basictable">
+	<thead>
+		<tr>
+			{theadth}
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+</div>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

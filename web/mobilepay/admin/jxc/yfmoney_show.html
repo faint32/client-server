@@ -1,0 +1,169 @@
+<HTML><HEAD><TITLE>应付帐款查看</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="zjw" CONTENT="no-cache">
+<LINK href="../css/css.css" rel=stylesheet>
+<link rel="stylesheet" href="../css/button_css.css" type="text/css">
+<link rel="stylesheet" href="../css/form_css.css" type="text/css">
+<link rel="stylesheet" href="../css/table_css.css" type="text/css">
+<link rel="stylesheet" href="../css/pagetitle_css.css" type="text/css">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+</HEAD>
+<BODY >
+<center>
+<script language=javascript>
+<!-- 
+//禁止退格键 作用于Firefox、Opera
+document.onkeypress=banBackSpace;
+//禁止退格键 作用于IE、Chrome
+document.onkeydown=banBackSpace;
+var str_url = "";
+function showtable(strurl,str_cusname){
+   document.getElementById("span_cusid").innerHTML = str_cusname;
+   var objstyle=document.getElementById('layermove').style;
+   objstyle.top=parseInt((document.body.clientHeight-parseInt(objstyle.height))/2) + document.body.scrollTop; 
+   objstyle.left=parseInt((document.body.clientWidth-parseInt(objstyle.width))/2);
+   
+   layermove.style.display ="";
+   str_url = strurl;
+}
+
+function closeexceldate(){  //关闭导出excel层
+	  layermove.style.display="none";
+}
+    
+function outtoexcledata(){ //打开导出excel层
+    if(form1.isshowkickback.checked==true){
+      str_url = str_url+"&isshowkickback=1";
+    }else{
+      str_url = str_url+"&isshowkickback=0";
+    }
+    form1.action = str_url;
+    form1.submit();
+}
+
+
+function submittype(){
+   form2.submit();
+}
+
+// -->
+</script>
+
+
+
+<body>
+<div id="page">
+<form action="" method="post" name="form2">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+    <tr> 
+      <td width="23" class="page_titlebar_head">&nbsp;</td>
+      <td class="page_titlebar_bg">刷卡器购销 --> 应付帐款查看</td>
+    </tr>
+  </table>
+  <span class="page_titlebar_bg">应付帐款查看</span>
+    <table width="250" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+      <td bgcolor="#666666" height=1></td>
+  </tr>
+  <tr>
+      <td height=2></td>
+  </tr>
+  <tr>
+      <td bgcolor="#666666" height=1></td>
+  </tr>
+</table>
+
+<table width="98%" border="0" cellspacing="0" cellpadding="0">
+  <td align="left" height="25" class="table_bgcolor">
+  </td>
+  </tr>
+</table>
+  <table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#546485">
+    <!--DWLayoutTable-->
+    <TBODY class=table_bgcolor> 
+    <tr bgcolor="#E7E7E7"> 
+      <td height="30" align="center" class="table_browse_titlebar_bg" style="BORDER-top: rgb(0,0,0) 1px groove;BORDER-left: rgb(0,0,0) 1px groove;BORDER-bottom: rgb(0,0,0) 1px groove">序号</td>
+      <td style="BORDER-top: rgb(0,0,0) 1px groove;BORDER-left: rgb(0,0,0) 1px groove;BORDER-bottom: rgb(0,0,0) 1px groove"width="185" class="table_browse_titlebar_bg" align="center">往来单位编号</td>
+      <td style="BORDER-top: rgb(0,0,0) 1px groove;BORDER-left: rgb(0,0,0) 1px groove;BORDER-bottom: rgb(0,0,0) 1px groove"width="185" class="table_browse_titlebar_bg" align="center">往来单位名称</td>
+      <td style="BORDER-top: rgb(0,0,0) 1px groove;BORDER-left: rgb(0,0,0) 1px groove;BORDER-bottom: rgb(0,0,0) 1px groove"width="185" class="table_browse_titlebar_bg" align="center">类型</td>
+      <td align="center" class="table_browse_titlebar_bg" style="BORDER-top: rgb(0,0,0) 1px groove;BORDER-left: rgb(0,0,0) 1px groove;BORDER-bottom: rgb(0,0,0) 1px groove">应付款</td>
+      <td align="center"  class="table_browse_titlebar_bg" style="BORDER-top: rgb(0,0,0) 1px groove;BORDER-left: rgb(0,0,0) 1px groove;BORDER-bottom: rgb(0,0,0) 1px groove;BORDER-right: rgb(0,0,0) 1px groove">操作</td>
+      </tr>
+    <!-- BEGIN BXBK -->
+    <tr >
+      <td style="BORDER-left: rgb(0,0,0) 1px groove;BORDER-bottom: rgb(0,0,0) 1px groove" class="table_bgcolor" height="20">&nbsp;{tbcount}</td>
+      <td style="BORDER-left: rgb(0,0,0) 1px groove;BORDER-bottom: rgb(0,0,0) 1px groove" class="table_bgcolor">&nbsp;{linkno}</td>
+      <td style="BORDER-left: rgb(0,0,0) 1px groove;BORDER-bottom: rgb(0,0,0) 1px groove" class="table_bgcolor">&nbsp;{linkname}</td>
+      <td style="BORDER-left: rgb(0,0,0) 1px groove;BORDER-bottom: rgb(0,0,0) 1px groove" class="table_bgcolor">&nbsp;{linktype}</td>
+      <td align="right" class="table_bgcolor" style="BORDER-left: rgb(0,0,0) 1px groove;BORDER-bottom: rgb(0,0,0) 1px groove">&nbsp;{ysmoney}&nbsp;</td>
+      <td align="center" class="table_bgcolor" style="BORDER-left: rgb(0,0,0) 1px groove;BORDER-bottom: rgb(0,0,0) 1px groove;BORDER-right: rgb(0,0,0) 1px groove"><a  href="#none" onClick="showtable('{strurl}','{linkname}')" style="cursor:hand">往来对帐</a>&nbsp;</td>
+    </tr>
+    <!-- END BXBK -->
+    <tr> 
+      <td height="28" colspan="4" class="table_bgcolor" style="BORDER-left: rgb(0,0,0) 1px groove;BORDER-bottom: rgb(0,0,0) 1px groove" ><nobr>&nbsp;<span class="form_label">应付款合计：</td>
+      <td height="28" align="right" class="table_bgcolor" style="BORDER-left: rgb(0,0,0) 1px groove;BORDER-bottom: rgb(0,0,0) 1px groove">{allysmoney}&nbsp;</td>
+      <td height="28" align="right" class="table_bgcolor" style="BORDER-left: rgb(0,0,0) 1px groove;BORDER-right: rgb(0,0,0) 1px groove;BORDER-bottom: rgb(0,0,0) 1px groove">&nbsp;</td>
+      </tr>
+  </table>
+</form>
+<form action="" method="post" name="form1">
+<TABLE id="layermove" style="Z-INDEX: 120; display: none; LEFT: 25%;WIDTH: 350px; POSITION: absolute; TOP: 35%;
+	 HEIGHT: 100px" cellSpacing="0" cellPadding="0" width="243" border="0" class="InputFrameMain">
+          <tr> 
+             <td class="form_label">
+               往来单位：
+             </td>
+             <td class="span_label">
+              <span id="span_cusid"></span>
+             </td>
+          </tr>
+          <tr> 
+             <td class="form_label">
+               开始日期：
+             </td>
+             <td class="span_label">
+              <input type="text" name="begindate" value="{begindate}">
+             </td>
+          </tr>
+          <tr> 
+             <td class="form_label">
+               结束日期：
+             </td>
+             <td class="span_label">
+              <input type="text" name="enddate" value="{enddate}">
+             </td>
+          </tr>
+          <tr>
+            <td class="form_label">
+               日期类型：
+             </td>
+             <td class="span_label">
+             <input type="radio" name="datetype" value="0" checked>单据日期&nbsp;&nbsp;&nbsp;&nbsp;
+		         <input type="radio" name="datetype" value="1" >过帐日期
+             </td>
+	        </tr>
+          <tr> 
+             <td class="form_label">
+               显示反冲单据：
+             </td>
+             <td class="span_label">
+             <input type="checkbox" name="isshowkickback" value="1" checked>
+             </td>
+          </tr>
+          <tr> 
+               <td class="bottombotton" align="center" colspan="2">
+               <INPUT class="buttonsmall" onClick="javascript:outtoexcledata()" type=button value="确定" name="outputexceldates">
+               <INPUT class="buttonsmall" onClick="javascript:closeexceldate()" type=button value="取消" name="closeexceldates">
+               </td>
+          </tr>
+       </table>
+</form>
+</center>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

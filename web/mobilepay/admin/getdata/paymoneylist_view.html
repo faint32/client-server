@@ -1,0 +1,148 @@
+<HTML><HEAD><TITLE>付款单</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<SCRIPT language=javascript src="../include/dateobject.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/datepicker.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+ 
+</HEAD>
+<script language=javascript>
+<!-- 
+
+function submit_savet() {
+	 if (confirm("是否红字冲销该单据？")) {
+	      sendingbg.style.display ="";  
+        sendingback.style.display ="";
+        form1.action = "kickback_paymoney.php";
+	      form1.submit();
+    }
+}
+
+function changedraft(){
+   if (confirm("是否另存为草稿单？")) {
+        form1.actiontype.value     = "draft";	
+        sendingbg.style.display ="";  
+        sendingdraft.style.display ="";
+	      form1.submit();
+   }
+}
+
+// -->
+</script>
+<BODY topmargin="0" leftMargin="2" width="100%">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+               <td height="30" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">付款单</td>
+		  <tr>
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+          </tr>
+  </table>
+<center>
+<form action="" method="post" name="form1">
+    <input type=hidden name=listid value="{listid}">
+    <input type=hidden name=actiontype value=""> 
+  <table width="98%" border="0" cellspacing="0" cellpadding="0"  class="table_bgcolor">
+        <tr> 
+	  <td class=button_labelleft></td>
+        <td align="right" valign="middle" class=button_label>
+        <input type=button name=draft class=button_infile value="   转为草稿单"  onClick="javascript:changedraft()" style="font-size:9pt" {iskickback}>
+        <input type=button name=save class=button_outexcel value="  反向冲销"  onClick="javascript:submit_savet()" style="font-size:9pt" {iskickback}>
+        </td>
+		 <td class=button_labelright></td>
+      </tr>
+    </table>
+    <table width="750" class=InputFrameMain cellspacing="0" cellpadding="0" border="0" >
+      <tbody>
+        <tr>
+          <td align="center" class=inputtitle>单据查看</td>
+          <td align="center" class=inputtitleright></td>
+          <td colspan="2" align="center" class=InputLabelCell><div align="center"><b><font color="#FF0000" class="error">{error}</font></b></div></td>
+        </tr>
+       
+        <tr >
+          <td class=form_label align=right width=110>单据编号：</td>
+          <td ><span class=form_label>{listno}</span></td>
+          <td class=form_label width=138 align="right">单据日期：</td>
+          <td class=span_label>
+          <script language=javascript>
+			       var date=createDatePicker("date",{year},{month},{day},0)
+			   </script>
+          </td>
+        </tr>
+        <tr class=InputFrameLine>
+          <td class=form_label align=right width=110>单位类型：</td>
+          <td class=span_label>
+            {clienttype}
+          </td>
+          <td class=form_label width=138 align="right"></td>
+          <td class=span_label>
+          </td>
+        </tr>
+        <tr class=InputFrameLine>
+          <td class=form_label align=right width=110>收款单位编号：</td>
+          <td class=span_label>
+            {cusno}
+          </td>
+          <td class=form_label width=138 align="right">收款单位名称：</td>
+          <td class=span_label>{cusname}
+          </td>
+        </tr>
+        <tr class=InputFrameLine>
+          <td class=form_label align=right width=110>付款帐户：</td>
+          <td class=span_label>
+            {accountname}
+           </td>
+          <td class=form_label width=138 align="right">录单人：</td>
+          <td class=span_label >
+		       {staname}
+			   </td>
+        </tr>
+        <tr class=InputFrameLine>
+          <td class=form_label align=right width=110>付款金额：</td>
+          <td class=span_label>
+          {payallmoney}
+          </td>
+          <td class=form_label width=138 align="right">付款人：</td>
+          <td class=span_label>
+          {dealwithman}
+			   </td>
+        </tr>
+        <tr class=InputFrameLine >
+          <td height="25" align=right class=form_label>收款人：</td>
+          <td height="25" class="span_label">
+              {sklinkman}
+          </td>
+          <td height="25" align="right" class=form_label></td>
+          <td height="25" class="span_label">
+          </td>
+        </tr>
+        <tr class=InputFrameLine>
+          <td class=form_label width=110 align="right" valign="top" height="20">备注：</td>
+          <td colspan="3" ><span class=form_label>{memo_z}</span></td>
+        </tr>
+      </tbody>
+    </table>
+</form>
+<div id="sendingback" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在反向冲销单据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingdraft" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在另存为草稿单，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+</div>
+</center>
+</BODY>
+</HTML>

@@ -1,0 +1,307 @@
+<HTML><HEAD><TITLE>销售退货单</TITLE>
+
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<link href="{skin}/reset.css" rel="stylesheet" type="text/css">
+
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<link rel="stylesheet" href="../../colorbox/colorbox.css" />
+<script src="../../js/jquery.min.1.7.1.js"></script>
+
+
+<script type="text/javascript" src="../CKeditor/ckeditor.js"></script>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+
+<SCRIPT language=javascript src="../function/function.js"></SCRIPT>
+
+</HEAD>
+
+<script language=javascript>
+
+<!-- 
+
+$(document).ready(function(){
+				//Examples of how to assign the ColorBox event to elements
+		
+			});
+
+function submit_savve(){
+
+	form1.submit();
+
+}
+
+function submit_tipshowpic(src){
+
+ var strItem;
+ strItem=window.showModalDialog(src,"","Help=no;status:no;dialogWidth=840px;dialogHeight=400px;scroll=yes;");
+
+}
+
+function edit_p(lid2){
+
+		form1.vid.value =lid2;
+
+		form1.toaction.value ="setdef";
+
+		form1.submit();
+
+}
+
+
+
+
+
+function del_p(lid2){
+
+    if (confirm("是否删除图片？")) {
+
+    	form1.vid.value =lid2;
+
+        form1.toaction.value = "del";
+
+        sendingbg.style.display ="";  
+
+        sendingdel.style.display ="";
+
+	      form1.submit();
+
+    }
+
+} 
+function submit_save(){
+
+	sendingbg.style.display ="";  
+
+    sending.style.display ="";
+	form1.submit();
+
+}
+function submit_new(){
+
+	sendingbg.style.display ="";  
+
+    sending.style.display ="";
+	form1.toaction.value="new";
+	form1.submit();
+
+}
+function upmorefile(){
+
+   var arrItems=new Array();
+   var strItem ;
+   var url;
+   var scatid;
+   scatid =9;
+   var dataid;
+   dataid=form1.listid.value; 
+   var szRef = "http://localhost/managementfile/uplodefile/upmorefile.php?scatid="+scatid+"&dateid="+dataid;
+    strItem=window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=840px;dialogHeight=400px;scroll=yes;");
+ 	form1.toaction.value = "";
+	form1.submit();	
+}
+// -->
+</script>
+
+<BODY onload=input_focus() topmargin="0" leftMargin="2" width="100%">
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+
+               <td height="30" class="pagetitle"  width="100%" valign="middle">
+
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">设置属性</td>
+
+		   <tr>
+
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+
+          </tr>		
+
+  </table>
+<center>
+
+<form action="" method="post" name="form1">
+
+    <input type=hidden name=toaction value="{toaction}"> 
+
+    <input type=hidden name=id value="{id}">  
+
+    <input type=hidden name=vid value=""> 
+
+    <input type=hidden name=listid value="{listid}">
+
+    <input type=hidden name=brandid value="{brandid}">
+
+   
+
+ <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+
+      <tr>
+
+        <td class=button_labelleft></td>
+
+        <td class=button_label><div align="right">
+
+          <input type=button name=save32 class=button_new value="     帮助" AccessKey=h  onClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.style.backgroundImage='url({skin}new_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}new.jpg)'">     
+<input type=button name=save3 class=button_save value="    保存" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt" {dissave} onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+          <input type=button name=rst class=button_recovery value="     返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+
+        </div></td>
+
+        <td class=button_labelright></td>
+
+      </tr>
+
+    </table>
+
+
+<div class="panel">
+          <fieldset class="form">
+
+           <legend>设置属性 <small>&nbsp;</small> </legend>
+           <span id="showinfo" class="box box-error" style="display:{show_error}">{error}</span>
+            <table class="table_form" style="margin:5px;">
+               <tr>
+                <th><label class="" for="listtype">分类：</label></th>
+                <td><select name="procaid"><option>--选择分类--</option>{procaid}</select></td>
+              </tr>
+              <tr>
+
+                <th><lable class="required">品牌：</lable></th>
+                <td>
+                <select name="trademarkid">
+                <option>--选择品牌--</option>{trademarkid}</select>
+               </td>
+
+              </tr>
+			 
+              
+             </table>
+
+          </fieldset>
+
+      
+
+</div>
+
+<div class="panel" style="margin:5px;" style="display:{newhidden}">
+  <fieldset class="form">
+   <div  class="box box-success">!!!上传图片的时候，请先保存好已编辑过的内容</div>
+ <table class="table_form" width="98%" style="margin:5px;">
+ <tbody>
+     <th>品牌LOGO</th>
+
+    <td>
+     <table  width="300">
+     <!-- BEGIN prolist -->
+  
+	  <tr onMouseOver="this.style.backgroundColor='#DAE2ED';" onMouseOut="this.style.backgroundColor='{bgcolor}'" bgcolor="{bgcolor}">  
+        <td align="center" >&nbsp;{vpic}</td>
+        <td align="center" >{vdef}</td>
+	  </tr>
+
+	<!-- END prolist -->
+    </table>
+    </td>
+
+      <td align="left"><input type="button" class="buttonsmall" name="upmorefiles" value="上传图片" onClick="upmorefile()" ></td>
+       
+        </tr>
+  
+
+        </table>
+   
+
+</fieldset>
+</div>
+</form>
+
+
+
+<div id="addnewconcentbg" style="position:absolute; width:100%;height:100%; left:0px;top:0px;z-index:230; display:none"></div>
+
+<div id="addnewconcent"  style="position:absolute; left:10px;top:30px;z-index:231; display:none"></div> 
+
+
+
+<div id="sending" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在保存单据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingdel" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在删除单据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+
+</div>
+
+<div id="helpid" STYLE="right: 1%; WIDTH: 450px; POSITION: absolute; TOP: 86px; HEIGHT: 0; display: none"> 
+
+ <div  align="left"   STYLE="position:absolute;left: 15px; top:15px;right:15px" >
+
+经常活动离不开销售，系统则通过销售单来处理。销售单一方面将商品销售出库，一方面可以进行支付影响应收应付和现金银行，实现物流和钱流同步处理；<br><br>
+
+输入商品的资料时，可以在商品编号中直接查找，也可以在输入框输入，如果输入时只输前一位或几位按回车可以有相应的资料供查找。<br><br>
+
+选择商品后，商品的其他资料会自动显示出来，但需要销售的数量和销售的单价需要您输入；<br><br>
+
+但需要销售数量和销售单价需要您输入；<br><br>
+
+该仓库库存均价等于零及该商品没有入库记录时，您需要输入库存均价。<br><br>
+
+如果某商品的销售单价抵于最进的进货单价，系统会提示是否还要过帐。<br><br>
+
+确认后，请按暂存保存。
+
+  <br><br>
+
+  保存(Alt+s)：将销售单转为历史销售单，并进行相应的库存操作。历史销售单不能删除及修改，只能红字反冲；月结存后不能红字反冲。商品流水帐中能反映相应该单相应商品的变动。往来对帐单中能反映相应该单据中的往来单位的往来变动。<br><br>
+
+  删除(Alt+d)：即删除不再使用的销售单信息；<br><br>
+
+  返回(Alt+q)：返回销售登记列表；<br><br>
+
+  帮助(Alt+h)：显示帮助信息；<br><br>
+
+  暂存(Alt+t)：添加新草稿销售单，草稿销售单可以修改及删除，但不会修改库存；<br><br>
+
+  撤销(Alt+z)：撤销回去商品资料没有查找出来的状态；<br><br>
+
+</div>
+
+ </div>
+
+</center>
+
+</BODY>
+
+</HTML>
+

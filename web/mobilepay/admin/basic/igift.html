@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><TITLE>资讯管理设置</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<script type="text/javascript" src="../CKeditor/ckeditor.js"></script><!--ckeditor插件加载-->	
+</HEAD>
+<script language=javascript>
+function submit_save()
+{
+	if(form1.type.value=="")
+	{
+		 alert("请选择类型");
+	 	  form1.type.focus();
+	 	  return;
+	}
+	if(form1.title.value==""){
+	 	  alert("请输入标题");
+	 	  form1.title.focus();
+	 	  return;
+	 }
+	form1.submit();
+}
+function submit_del()
+{
+	form1.action.value="delete";
+	form1.submit();
+}
+</script>
+
+<BODY  topmargin="0" leftMargin="2" width="100%">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+       <td height="30" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	资讯管理设置
+       </td>
+	   <tr>
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+          </tr>	
+  </table>
+<center>
+<form action="" method="post" name="form1">
+	<input type=hidden name="id" value='{id}'>
+	<input type=hidden name="action" value='{action}'>
+   <table width="98%" border="0" cellspacing="0" cellpadding="0" height="31">
+      <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right" >
+         
+          <input type=button name=save3 class=button_save value="     保存" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt"  onMouseOver="this.style.backgroundImage='url({skin}save_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}save.jpg)'">
+          <input class=button_delete name=end type=button value="     删除" AccessKey=d  onClick="javascript:submit_del()" style="font-size:9pt"  onMouseOver="this.style.backgroundImage='url({skin}delete_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}delete.jpg)'">
+		  <INPUT class=button_reset name=qqq type=reset   value="     撤销" AccessKey=z style="font-size:9pt" onMouseOver="this.style.backgroundImage='url({skin}reset_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}reset.jpg)'">
+          <input type=button name=rst class=button_recovery value="   返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.style.backgroundImage='url({skin}recovery_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}recovery.jpg)'">
+        </div></td>
+        <td class=button_labelright></td>
+      </tr>
+  </table>  
+    <table width="1000" class=InputFrameMain cellspacing="0" cellpadding="0" border="0" >
+      
+        <tr>
+          <td align="left" colspan="4">
+          <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+          <td align="center" class=inputtitle width="150">资料输入</td>
+          <td align="center" class=inputtitleright >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td align="center" ><font color="#FF0000" ><b>{error}</b></font></td>
+          </tr>
+          </table>
+          </td>
+        </tr>
+		<tr> 
+        <td  height="30" class=form_label>资讯类型：</td>
+        <td height="30" >
+          <select name=type>
+		         {type}
+		      </select>        </td>  
+      </tr>
+	  	<tr> 
+        <td  height="30" class=form_label>是否置顶：</td>
+        <td height="30" >
+          <select name=newtop>
+		         {newtop}
+		      </select>        </td>  
+      </tr>
+	     <tr> 
+        <td height="30" class=form_label >资讯标签：</td>
+        <td height="30"  > 
+          <input class=input type="text" name="label" size="80" maxlength="30" value="{label}">
+       
+      </tr>
+      <tr> 
+        <td height="30" class=form_label >资讯标题：</td>
+        <td height="30"  > 
+          <input class=input type="text" name="title" size="80" maxlength="30" value="{title}">
+        <span class=form_label>*</span>	</td>	
+      </tr>
+	    <tr> 
+        <td height="30" class=form_label >资讯副标题：</td>
+        <td height="30"  > 
+          <input class=input type="text" name="futitle" size="80" maxlength="30" value="{futitle}">
+       
+      </tr>
+	   
+	  
+	  <tr> 
+        <td height="30" class=form_label >资讯内容：</td>
+        <td height="30"  > 
+          <textarea name="content" cols="60" rows="15"style="display:none;" >{content}</textarea>
+		  <script>
+			//添加ckeditor插件
+			CKEDITOR.replace('content');
+		 </script>
+        </td>	
+      </tr>
+	  
+    
+    </TABLE>
+  </form>
+
+</center>
+</BODY>
+</HTML>

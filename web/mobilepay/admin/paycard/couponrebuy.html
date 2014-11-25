@@ -1,0 +1,203 @@
+<HTML><HEAD><TITLE>意见反馈</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+<style type="text/css">
+<!--
+.STYLE2 {font-size: 12px}
+-->
+</style>
+</HEAD>
+<script language=javascript>
+<!-- 
+
+function input_focus(){
+var gg = 1;
+if (gg == 1){
+form1.no.focus();
+ }
+}
+
+var requestSubmitted = false;
+
+function submit_save(){
+    	if(form1.memo.value==""){
+	 	  alert("请输入审核意见");
+	 	  form1.memo.focus();
+	 	  return;
+	     }
+if(confirm("是否通过优惠劵回购审核？")){
+	 if(requestSubmitted == true){
+    alert("你已经提交，请等待一下");
+    return (false);
+   } 
+  requestSubmitted = true;
+   sending.style.visibility="visible";
+	 sendingbg.style.visibility="visible";  
+	 form1.action.value="pass";
+	form1.submit();
+}
+}
+
+
+function help(){  
+   if(document.getElementById("helpid").style.pixelHeight == 0 &&  document.getElementById("helpid").style.visibility == "hidden"){      
+       document.getElementById("helpid").style.visibility = "visible";
+	  ChS();
+	 
+   }else{   
+	   HhS();    	  
+   }
+}
+
+function ChS(){
+if(helpid.style.pixelHeight<250){helpid.style.pixelHeight+=10;setTimeout("ChS()",0.5);
+} 
+ document.getElementById("fid").style.display = "none";
+}
+function HhS(){
+if(helpid.style.pixelHeight > 0){helpid.style.pixelHeight-=10;setTimeout("HhS()",0.5);
+}
+if(helpid.style.pixelHeight == 0){
+ document.getElementById("helpid").style.visibility = "hidden";
+ }
+  document.getElementById("fid").style.display = "";
+}
+// -->
+</script>
+
+<BODY  onload=input_focus() topmargin="0" leftMargin="2" width="100%">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+                 <td height="30" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	优惠劵回购审核</td>
+			<tr>
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+          </tr>	
+  </table>
+  <center>
+  <form action="" method="post" name="form1">
+    <input type=hidden name=action value="{action}">
+    <input type=hidden name=listid value="{listid}">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+      <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right" >
+          <input type=button name=save32 class=button_new value="     帮助" AccessKey=h  onClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.style.backgroundImage='url({skin}new_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}new.jpg)'">
+          <input type=button name=save3 class=button_save value="     审批" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt"  onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+		    <INPUT class=button_reset name=qqq type=reset value="     撤销" AccessKey=z style="font-size:9pt" onMouseOver="this.className='button_reset_on'" onMouseOut="this.className='button_reset'">
+          <input type=button name=rst class=button_recovery value="     返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+        </div></td>
+        <td class=button_labelright></td>
+      </tr>
+  </table>  
+    <table width="700" class=InputFrameMain cellspacing="0" cellpadding="0" border="0" height="178" style="font-size:13px">
+      <TBODY> 
+         <tr>
+          <td align="left" colspan="4">
+          <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+          <td align="center" class=inputtitle width="150">审核资料</td>
+          <td align="center" class=inputtitleright >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td align="center" ><font color="#FF0000" ><b>{error}</b></font></td>
+          </tr>
+          </table>          </td>
+        </tr>
+       
+	  <tr> 
+        <td align="right" class=form_label>订单号：</td>
+        <td align="left" colspan="3">{no}</td>
+	  </tr>
+	   <tr> 
+        <td align="right" class=form_label>单据日期：</td>
+        <td align="left" colspan="3">{datetime}</td>
+	  </tr>
+	 <tr> 
+        <td align="right" class=form_label>优惠劵号：</td>
+        <td align="left" colspan="3">{couponno}</td>
+	  </tr>
+      <tr> 
+        <td class=form_label align="right">优惠劵金额：</td>
+        <td colspan="3" align="left">{couponmoney}元</td>
+       </tr>
+	   <tr> 
+        <td align="right" class=form_label>手续费：</td>
+        <td align="left" colspan="3">{sxfmoney}元</td>
+	  </tr>
+	  <tr> 
+        <td align="right" class=form_label>兑换金额：</td>
+        <td align="left" colspan="3">{money}元</td>
+	  </tr>
+	  <tr> 
+        <td class=form_label  align="right">用户账号：</td>
+        <td colspan="3" align="left">
+        	{authorusername}
+                    </td>
+        </tr>	  
+	  <tr> 
+        <td class=form_label  align="right">用户姓名：</td>
+        <td colspan="3" align="left"> 
+       {authorname}</td>
+      </tr>
+	  <tr> 
+        <td class=form_label  align="right">身份证号：</td>
+        <td colspan="3" align="left">
+        {idcard}
+                    </td>
+        </tr>	 
+      <tr> 
+        <td class=form_label  align="right">开户银行：</td>
+        <td colspan="3" align="left">
+        {bankname}
+                    </td>
+        </tr>	
+        <tr> 
+        <td class=form_label  align="right">银行账户：</td>
+        <td colspan="3" align="left">
+        {bankcardno}
+                    </td>
+        </tr>	  
+	  <tr> 
+        <td class=form_label  align="right"> 审批意见：</td>
+        <td colspan="3" align="left"> 
+       <textarea class=inputarea name="memo"  wrap="virtual" rows="6"></textarea>  
+         </td>
+      </tr>
+      </TBODY> 
+    </table>
+</form>
+<div id="sending" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; visibility: hidden"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingdel" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; visibility: hidden"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在删除数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; visibility: hidden"> 
+</div>
+<div id="helpid" STYLE="right: 1%; WIDTH: 450px; POSITION: absolute; TOP: 86px; HEIGHT: 0; visibility: hidden;"> 
+ <div  align="left"   STYLE="position:absolute;left: 15px; top:15px;right:15px" >
+  导航信息在建立职员资料时会使用上。<br><br>
+  操作：基本信息－导航信息；<br><br>
+  保存(Alt+s)：添加新导航信息和修改导航信息；<br><br>
+  删除(Alt+d)：即删除不再使用的导航信息；<br><br>
+  撤销(Alt+z)：撤销回去导航没有修改的状态；<br><br>
+  返回(Alt+q)：返回导航信息列表；<br><br>
+  帮助(Alt+h)：显示帮助信息；
+</div>
+</div>
+</center>
+{showeditdiv}
+</body>
+</html>
+

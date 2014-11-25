@@ -1,0 +1,95 @@
+<HTML>
+
+<base target="_self">
+
+<style type="text/css">
+
+<!--
+
+body{font-size: 12px}
+
+-->
+
+</style>
+
+<HEAD>
+
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+
+<TITLE></TITLE>
+
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+
+<SCRIPT language=JavaScript>
+
+function closewindow(){
+
+if (window.opener != undefined ){
+       //for chrome
+       window.opener.returnValue = "flage";
+}else{
+     window.returnValue= "flage" ;
+}
+	window.close();
+
+}
+function sub_upload()
+{
+	document.getElementById("uploading").style.display="";
+		document.getElementById("form").submit();
+	
+}
+
+</SCRIPT>
+
+
+<BODY>
+
+<form name="uploadForm" method="post" id="form" action="http://14.18.207.56/mobilepaypic/"
+    enctype="multipart/form-data">
+
+<input type="hidden" name="action" value="upload">
+<div style="border: solid 3px #FFB500; width:490px" align="center">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+
+    <tr>     
+
+    <td width="431" ><img src="images/uploadtitle.jpg"></td>
+
+    <td width="43" ><img src="images/uploadcolse.jpg" style="cursor:pointer" onClick="closewindow()"></td>
+    </tr>
+  </table>
+
+<table width="490px" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="table_bgcolor">
+
+    <tr> 
+
+      <td id="upid" height="75" >&nbsp;<span style=" font-size:14px; font-weight:bold">链接图片</span>:        
+        <input type="file" name="uploadedfile" style="width:400; "  value=""></td>
+    </tr> 
+    
+    <tr> 
+       <td  height="21" align="center" class=form_label>
+        <span  style="display:none;" id="uploading"><img border="0" src='images/indicator.gif'> 上传中...</span>      </td>
+    </tr>
+
+    <tr>
+
+      <td align="center"> 
+
+        <p> 
+		 <img src="images/uploadok.png" onClick="sub_upload();" alt="点击上传" name="upload"  style="cursor:pointer">
+       
+        <p>&nbsp; </p></td>
+    </tr>
+</table>
+</div>
+</form>
+
+</BODY>
+
+</HTML>

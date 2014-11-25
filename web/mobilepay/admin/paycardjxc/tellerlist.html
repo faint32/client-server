@@ -1,0 +1,171 @@
+<HTML><HEAD><TITLE>商品资料</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!-- Styles -->
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="../css/custom.css">
+<!-- 		<link rel="stylesheet" href="../css/framework.css"> -->
+<!--[if IE 6]>
+	<link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css" />
+	<![endif]-->
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> 
+</HEAD>
+<script>
+var requestSubmitted=false;
+
+
+
+	function CheckAll(form)
+	{
+		 for (var i=0;i<form.elements.length;i++){ 
+			 var strelement = form.elements[i];
+			 if (strelement.name != 'chkall' && !strelement.disabled){
+				 strelement.checked = form.chkall.checked;
+			 }
+		  }
+	}
+function checkallcomm(){	    
+$("[rel='checkone']").each(function(){
+	if(!$(this).attr("checked"))
+	{
+		form1.chkall.checked=false;
+	}
+})			
+}
+
+function submit_new(actionurl,listid)
+{
+	if(requestSubmitted == true){
+	alert("你已经提交，请等待一下");
+	return (false);
+	} 
+	requestSubmitted = true; 
+	
+	location.href=actionurl+'?listid='+listid;	
+}
+
+function edit_p(telid,actionurl,listid)
+{
+	if(requestSubmitted == true){
+	alert("你已经提交，请等待一下");
+	return (false);
+	} 
+	requestSubmitted = true; 
+
+	location.href=actionurl+'?telid='+telid+'&listid='+listid;	
+}
+
+function submit_del(actionurl,listid)
+{
+	var isempty=true;
+	$("[rel='checkone']").each(function(){
+			if($(this).attr("checked"))
+			{
+				isempty=false;
+			}
+	});	
+
+		if(!isempty)
+		{	
+			if (confirm("是否删除所选的记录？")) {
+				if(requestSubmitted == true){
+				alert("你已经提交，请等待一下");
+				return (false);
+				} 
+				requestSubmitted = true; 
+				form1.action.value="del_all";
+				form1.submit();
+				//location.href=actionurl+'?action=del_all&listid='+listid;	
+			}
+		}else{
+			alert("请选择要删除的数据!");
+		return (false);
+		}
+}
+
+function usegroup_p(telid,listid)
+{
+	location.href='../paycardjxc/seltelqx.php?telid='+telid+'&listid='+listid;	
+}
+</script>
+<BODY  topmargin="0" leftMargin="2" width="100%">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+                   <td height="30" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	代理商->用户设置 </td>
+			 <tr>
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+          </tr>	
+  </table>
+
+  <br><br>
+<form action="{actionurl}" method="post" name="form1">
+<input type="hidden" name="listid" value="{listid}">
+<input type="hidden" name="action" value="">
+<div id="top">
+	<ul id="menu">
+		<li>
+			<a href="#" AccessKey='z' onClick="javascript:submit_new('{actionurl}','{listid}')"
+				title='暂存信息(ALT+z)' {dissave}>新增</a>
+		</li>
+<!-- 		<li>
+			<a href="#" AccessKey='s' onClick="javascript:submit_save()"
+				title='提交数据到审批环节(ALT+s)'>提交</a>
+		</li> -->
+		<li>
+			<a href="#" AccessKey='d' onClick="javascript:submit_del()" {disdel}>删除</a>
+		</li>
+		<li>
+			<a href="#" AccessKey='q' onClick="javascript:location='{gotourl}'">返回</a>
+		</li>
+	</ul>
+</div>
+<br/>
+<div class="wrapper">
+	<div class="panel">
+		<div id="showinfo" class="box box-info" style="display:{show_error}">
+			<p>{error}</p>
+			<a class="close">&times;</a>
+		</div>
+		<fieldset class="form">
+			<legend>
+				{cusname}代理商的用户
+			</legend>
+		<br/>	
+    <table width="500" border="0" cellspacing="1"  class="table" cellpadding="2" id="basictable">
+        <thead> 
+        <tr bgcolor="#e7e7e7" height=23px align=center> 
+        	{theadth}
+        </tr>
+        </thead>
+		<tbody>
+		<!-- BEGIN prolist -->
+		<tr>
+			<td  align="center">
+				<input type="checkbox" name="checkid[]" value="{telid}" rel="checkone"  onclick="checkallcomm()" >
+			</td>
+			<td  align="center">{telname}&nbsp;</td>
+			<td  align="center">{recsts}&nbsp;</td>
+			<td  align="center" >
+				<a href="#" onClick="edit_p('{telid}','{actionurl}','{listid}')"   >修改</a>
+				&nbsp; 
+				<a href="#" onClick="usegroup_p('{telid}','{listid}')">用户功能</a>
+			</td>
+		</tr>
+		<!-- END prolist -->
+	</tbody>
+</table>
+</fieldset>
+</div>
+</div>	  
+	 </form>
+
+
+<br />
+<br />
+<br />
+<br />
+</BODY>
+</HTML>

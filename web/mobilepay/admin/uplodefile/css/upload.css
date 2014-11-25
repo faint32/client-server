@@ -1,0 +1,149 @@
+body{
+background:#e3e3e3;
+}
+.clear{
+     clear:both;
+	 float:none;
+}
+#top{
+margin-left:18px;
+}
+#middle{
+margin-top:10px;
+margin-left:18px;
+}
+.line{
+background:url(line.gif) repeat-y;
+width:7px;
+height:38px;
+float:left;
+}
+.div{
+	font-size:13px;
+	background:#fff;
+	height:37px;
+	*height:39px;
+	width:707px;
+	border:1px solid #eee;
+	border-left:none;
+	padding-left:20px;
+	*padding-top:5px;
+	color:#23abc3;
+	line-height:39px;
+	float:left;
+}
+.upload{
+	color:#858585;
+	position:relative;
+	*padding-left:0px;
+}
+.form_label{
+	text-align: left;
+	letter-spacing: normal;
+	vertical-align: middle;
+	word-spacing: normal;
+	white-space: normal;
+	height:20px;
+	border:none;
+	color:#858585;
+	line-height:30px;
+}
+.filename{
+margin-top:30px;
+*padding-top:10px;
+}
+
+.first{
+margin-top:30px;
+}
+
+.text{
+	height:20px;
+	border-right:1px solid #a5dde9;
+	line-height:20px;
+	width:598px;
+	*width:580px;
+}	/**/
+.uploads{
+	color:#23abc3;	
+	position:absolute;
+	top:7;
+	right:-2;
+	*top:4;
+	*right:2;
+	height:30px;
+	filter:alpha(opacity=0);
+	opacity:0;
+	line-height:30px;
+	cursor:pointer;
+	
+}
+.liulang{
+	color:#23abc3;	
+	*width:40px;
+	width:62px;
+	height:30px;
+	font-size:13px;
+	letter-spacing:8px;
+	background:#fff;
+	*margin-left:40px;
+	margin-left:30px;
+	font-weight:600;  
+}
+
+
+.shangzhuang{
+	color:#23abc3;	
+	width:97px;
+	height:45px;
+	font-size:13px;
+	letter-spacing:8px;
+	background:#fff url(buttons.gif);
+	margin-left:25px;
+	float:left;
+	margin-left:13px;
+	cursor:pointer;
+	font-weight:600; 
+	padding-left:25px
+}
+
+
+#display{
+	margin-top:11px;
+	margin-left:18px;
+}
+
+#content{
+	font-size:13px;
+	height:37px;
+	*height:39px;
+	width:598px;
+	border:1px solid #eee;
+	border-left:none;
+	padding-left:20px;
+	*padding-top:10px;
+	color:#23abc3;
+	line-height:39px;
+	float:left;
+	background:#fff;
+	position:relative;
+	
+}
+#showdow1{
+	width:98px;
+	height:5px;
+	position:absolute;
+	top:38;
+	left:632;
+	*left:610;
+	background:url(shdow.png) no-repeat;
+}
+#showdow2{
+	width:98px;
+	height:5px;
+	position:absolute;
+	top:38;
+	left:522;
+	*left:500;
+	background:url(shdow.png) no-repeat;
+}

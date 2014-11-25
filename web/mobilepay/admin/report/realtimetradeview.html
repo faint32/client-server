@@ -1,0 +1,165 @@
+<HTML>
+<HEAD>
+<TITLE>刷卡器交易跟踪</TITLE>
+<meta http-equiv="Refresh" content="60;" />
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+		
+<script language="javascript" type="text/javascript" src="../include/ShowCalendar.js"></script>
+<script language="javascript">
+<!--
+function changedata($val)
+{
+    document.getElementById("changeday").value = $val;
+    form1.submit();
+    return false;
+}
+// -->
+</script>
+</HEAD>
+<body  text="#000000" topmargin="0" leftMargin="2" width="100%">
+<center>
+  <form id=form1 name=form1 action="" method=post>
+    <DIV>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td height="30" class="pagetitle"  colspan=2 valign="middle" align="left">&nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle"> <span>财务报表 --> 刷卡器交易跟踪 </td>
+        </tr>
+        <tr>
+          <td align="left" colspan=2 height="3">{error}</td>
+        </tr>
+      </table>
+    </DIV>
+    <input name="changeday" id="changeday" type="hidden" value="">
+
+  </form>
+  <TABLE  width="140%" align=center>
+    <tr>
+		<td colspan="4" align="left" height="25">总额：   当天收入 {all_paymoney} &nbsp;&nbsp; &nbsp;&nbsp; 当天支出 {out_allmoney} </td>
+	</tr>
+	<tr>
+      <td width="60%" valign="top">
+	  <TABLE class=table style=word-break:break-all align=center>
+	
+		 <thead>
+            <tr>
+              <th colspan="13">收入</th>
+            </tr>
+            <tr>
+              <th width="80">刷卡器</th>
+              <th width="120">交易订单号</th>
+              <th width="120">明盛公户</th>
+              <th width="70">刷卡类型</th>
+              <th width="70">交易类型</th>
+              <th width="70">交易状态</th>
+              <th width="60">终端商户</th>
+              <th width="55">交易时间</th>
+              <th width="60">预计支出时间</th>
+              <th >交易金额</th>
+              <th >手续费收入</th>
+              <th >手续费支出</th>
+              <th >利润额</th>
+            </tr>
+          </thead>
+          <TBODY>
+            <!-- BEGIN prolist -->
+            <tr>
+              <td noWrap style="{fcolor}">{paycardkey}</td>
+              <td noWrap style="{fcolor}">{bkordernumber}</td>
+              <td>{sdcrname}</td>
+              <td noWrap style="{fcolor}">{paycardscope}</td>
+              <td>{paytype}</td>
+              <td>{payrq}</td>
+              <td>{authorname}</td>
+              <td>{paydate}</td>
+              <td>{arrivedate}</td>
+              <td align="right">{paymoney}</td>
+              <td align="right">{payfee}</td>
+              <td align="right">{sdcrpayfeemoney}</td>
+              <td align="right">{lirun}</td>
+            </tr>
+            <!-- END prolist -->
+
+            <tr>
+			  <td colspan="3" align="center"><span style="font-size:14px; color:#FF0000;">汇总</span></td>
+               <td class="right"></td>
+              <td class="right"></td>
+              <td class="right"></td>
+              <td class="right" ></td>
+			  <td class="right"></td>
+              <td class="right" ></td>
+			  <td class="right">{allpaymoney}</td>
+              <td class="right">{allpayfee}</td>
+              <td class="right">{allsdcrpayfeemoney}</td>
+              <td class="right" >{alllirun}</td>
+              
+			  
+
+			</tr>
+          </TBODY>
+        </TABLE>
+        </td>
+        <td></td>
+      <td width="39%" valign="top" >
+    <TABLE class=table style=word-break:break-all align=center >
+	
+		 <thead>
+            <tr>
+              <th colspan="8" >支出</th>
+            </tr>
+            <tr>
+              <th height="25">终端商户</th>
+              <th width="120">交易订单号</th>
+              <th>交易时间</th>
+              <th>交易类型</th>
+              <th >交易金额</th>
+              <th>预计支出时间</th>
+              <th>实际支出时间</th>
+              <th>支出人</th>
+            </tr>
+          </thead>
+          <TBODY>
+            <!-- BEGIN outpay -->
+            <tr>
+              <td>{out_authorname}</td>
+              <td>{out_bkordernumber}</td>
+              <td>{out_paydate}</td>
+              <td>{out_paycardscope}</td>
+              <td align="right">{out_paymoney}</td>
+              <td>{arrivedate}</td>
+              <td>{out_paydate}</td>
+              <td></td>
+            </tr>
+            <!-- END outpay -->
+            
+
+            <tr>
+			  <td colspan="3" align="center"><span style="font-size:14px; color:#FF0000;">汇总</span></td>
+			 <td class="right" ></td>
+			  <td class="right">{out_allpaymoney}</td>
+              <td class="right"></td>
+              <td class="right"></td>
+              <td class="right" ></td>
+            
+			</tr>
+
+          </TBODY>
+        </TABLE>
+    </td>
+    </tr>
+    </tr>
+    
+
+    </td>
+    
+  </TABLE>
+  
+  </FORM>
+</center>
+</BODY>
+</HTML>

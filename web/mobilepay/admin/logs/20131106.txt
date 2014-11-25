@@ -1,0 +1,16 @@
+---------------------------------------------------------
+2013-11-06 10:01:40####update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-11-06 10:01:40####update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-11-06 10:06:32####update web_teller set fd_tel_outtime = now(),fd_tel_isin = 0
+			 where fd_tel_id ='2'
+----------------------------------------------------------

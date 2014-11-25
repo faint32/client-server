@@ -1,0 +1,155 @@
+<HTML><HEAD><TITLE>抵用?管理 </TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+<style type="text/css">
+<!--
+.STYLE2 {font-size: 12px}
+-->
+</style>
+</HEAD>
+<script language=javascript>
+<!-- 
+
+function input_focus(){
+var gg = 1;
+if (gg == 1){
+form1.no.focus();
+ }
+}
+
+var requestSubmitted = false;
+
+function submit_save(){
+    	if(form1.money.value==""){
+	 	  alert("请输入抵用?金额");
+	 	  form1.money.focus();
+	 	  return;
+	     }
+	sending.style.display ="";
+	sendingbg.style.display ="";		 
+	form1.submit();
+}
+
+function submit_delete(){
+if(confirm("确定要删除？")){
+	sendingdel.style.display ="";
+	sendingbg.style.display ="";		
+	form1.action.value="delete";
+	 form1.submit();
+}
+}
+// -->
+</script>
+
+<BODY  onload=input_focus() topmargin="0" leftMargin="2" width="100%">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+                 <td height="30" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	抵用?管理</td>
+			<tr>
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+          </tr>	
+  </table>
+  <center>
+  <form action="" method="post" name="form1">
+    <input type=hidden name=action value="{action}">
+    <input type=hidden name=listid value="{listid}">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+      <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right" >
+              <input type=button name=save3 class=button_save value="保存" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt"  onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+		    <INPUT class=button_delete {isshow} name=qqq type=reset value="删除"  onclick="submit_delete();" AccessKey=z style="font-size:9pt" >
+          <input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+        </div></td>
+        <td class=button_labelright></td>
+      </tr>
+  </table>  
+    <table width="700" class=InputFrameMain cellspacing="0" cellpadding="0" border="0" height="178" style="font-size:13px">
+      <TBODY> 
+         <tr>
+          <td align="left" colspan="4">
+          <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+          <td align="center" class=inputtitle width="150">抵用卷资料</td>
+          <td align="center" class=inputtitleright >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td align="center" ><font color="#FF0000" ><b>{error}</b></font></td>
+          </tr>
+          </table>          </td>
+        </tr>
+       
+	  <tr {editshow}> 
+        <td height="25" align="right" class=form_label>抵用?号：</td>
+        <td height="25" colspan="3" align="left"><input class=input type="text" name="no"  value="{no}"/></td>
+	  </tr>
+	  
+      <tr> 
+        <td height="25" align="right" class=form_label>抵用额度：</td>
+        <td height="25" colspan="3" align="left"><input class=inputright type="text" name="money"  value="{money}" onKeyPress="return event.keyCode>=48&&event.keyCode<=57||event.keyCode==46"  />元</td>
+       </tr>
+         <tr>
+             <td height="25" align="right" class=form_label>购买限制数量：</td>
+             <td height="25" colspan="3" align="left"><input class=inputright type="text" name="limitnum"  value="{limitnum}" onKeyPress="return event.keyCode>=48&&event.keyCode<=57||event.keyCode==46"  /></td>
+         </tr>
+      <tr> 
+        <td height="25" align="right" class=form_label>是否激活：</td>
+        <td height="25" colspan="3" align="left"><input  type="radio" name="active"  value="0" {defalut} {select0} />否 <input type="radio" {select1} name="active"  value="1"  />是</td>
+       </tr>		
+	  <tr> 
+        <td class=form_label  align="right"> 规格说明：</td>
+        <td colspan="3" align="left"> 
+       <textarea class=inputarea name="memo"  wrap="virtual" rows="6">{memo}</textarea>        </td>
+      </tr>
+      </TBODY> 
+    </table>
+</form>
+<div id="sending" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:20%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingdel" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:20%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在删除数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%;  z-index:100; filter: Alpha(Opacity=50);  background-color: #ffffff; display:none "> 
+
+</div>
+<div id="helpid" STYLE="right: 1%; WIDTH: 450px; POSITION: absolute; TOP: 86px; HEIGHT: 0; visibility: hidden;"> 
+ <div  align="left"   STYLE="position:absolute;left: 15px; top:15px;right:15px" >
+  导航信息在建立职员资料时会使用上。<br><br>
+  操作：基本信息－导航信息；<br><br>
+  保存(Alt+s)：添加新导航信息和修改导航信息；<br><br>
+  删除(Alt+d)：即删除不再使用的导航信息；<br><br>
+  撤销(Alt+z)：撤销回去导航没有修改的状态；<br><br>
+  返回(Alt+q)：返回导航信息列表；<br><br>
+  帮助(Alt+h)：显示帮助信息；
+</div>
+</div>
+</center>
+{showeditdiv}
+</body>
+</html>
+

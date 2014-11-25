@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<SCRIPT language=JavaScript src="../include/CHIT_fadeInDialog.js"></SCRIPT>
+<SCRIPT language=JavaScript>
+
+   function secondlystep(){
+     if( (document.exc_upload.excel_file.value.length==0))
+     { 
+       alert('你必须选择文件'); 
+       return; 
+     }
+     var myFile   = document.getElementById("excel_fileid"); 
+     var filePath = myFile.value; 
+     var dotNdx   = filePath.lastIndexOf('.');                                                                         
+     var exetendName =  filePath.slice(dotNdx + 1).toLowerCase();   
+     if((exetendName == exc_upload.selfileformat.value ))   {  
+     }else{
+        alert( "选中的文件格式和你选择要导入的文件格式不一致");
+        return ;   
+     }
+	 
+
+	 
+     exc_upload.submit();
+   }
+   function thirdstep(){
+         exc_upload.submit();
+   }
+</SCRIPT>
+<script src="../include/browse.js" type="text/javascript" language="javascript"></script>
+
+</HEAD>
+<body bgcolor="ffffff" text="#000000" topmargin="0" leftMargin="2" width="100%" >
+ <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+                   <td height="30" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">导入文件
+          
+          </td>
+			<tr>
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+          </tr>	
+  </table>
+ <div align="center"> 
+{showtable}
+</div>
+
+</BODY></HTML>

@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+<TITLE>采购分析</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+<script language=javascript>
+<!-- 
+//禁止退格键 作用于Firefox、Opera
+document.onkeypress=banBackSpace;
+//禁止退格键 作用于IE、Chrome
+document.onkeydown=banBackSpace;
+function chaxun(pagename,idname,listid){
+  var szRef = "../getdata/showlistpage.php?listid="+listid+"&idname="+idname+"&pagename="+pagename;
+	var strItem = window.showModelessDialog(szRef,"","Help=no;status:no;dialogWidth=800px;dialogHeight=600px;scroll=yes;");
+}
+
+// -->
+</script>
+</HEAD>
+<body  text="#000000" topmargin="0" leftMargin="2" width="100%" >
+<div id="page">
+<center>
+ <form id=form1 name=form1 action="" method=post>
+ <DIV>
+  
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td height="30" class="pagetitle"  colspan=2 valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	<span>采购分析(日期：{begindate}至{enddate})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </td>
+      </tr>
+      <tr>
+         <td align="left" colspan=2><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+      </tr>
+      <tr>
+         <td align="left" colspan=2 height="3"></td>
+      </tr>
+  </table></DIV>
+<table width="99%" border="0" cellspacing="0" cellpadding="0"  class="table_bgcolor">
+        <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right">
+          <input type=button name=rst class=button_recovery value="     返回" AccessKey=q style="font-size:9pt" onClick="javascript:history.back()" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+        </div></td>
+        <td class=button_labelright></td>
+      </tr>
+    </table> 
+<TABLE class=tableframe style=word-break:break-all width="99%" align=center>
+  <TBODY> 
+  <TR class=listtitle>
+    <TD class=listcelltitle noWrap align=middle height="25" width="30">序号</TD>
+    <TD class=listcelltitle noWrap align=middle height="25">单据日期</TD>
+    <TD class=listcelltitle noWrap align=middle>单据编号</TD>
+    <TD class=listcelltitle noWrap align=middle>总吨数</TD>
+    <TD class=listcelltitle noWrap align=middle>总金额</TD>
+    <TD class=listcelltitle noWrap align=middle>说明</TD>
+    <TD class=listcelltitle noWrap align=middle>查看</TD>
+  </TR>
+<!-- BEGIN BXBK -->
+	<TR class=listrow1 onmouseover="this.style.backgroundColor='#F1F4F9';" onmouseout="this.style.backgroundColor='{bgcolor}'" bgcolor="{bgcolor}">
+		<TD class=listcellrow  align=left height="25">{tdcount}</TD>
+		<TD class=listcellrow  align=left height="25">{datetime}</TD>
+		<TD class=listcellrow  align=left>{listno}&nbsp;&nbsp;</TD>
+		<TD class=listcellrow  align=right>{dunshu}&nbsp;&nbsp;</TD>
+		<TD class=listcellrow  align=right>{money}&nbsp;&nbsp;</TD>
+		<TD class=listcellrow  align=left>{memo}</TD>
+		<TD class=listcellrow  align=center>{viewname}</TD>
+	</TR>
+<!-- END BXBK -->  
+  <TR vAlign=center height="25">
+    <TD  class=listtail align=left  height="25">&nbsp;&nbsp;</TD>
+    <TD  class=listtail align=right >&nbsp;</TD>
+    <TD  class=listtail align=left  height="25">&nbsp;&nbsp;</TD>
+    <TD  class=listtail align=right >{alldunshu}&nbsp;&nbsp;</TD>
+    <TD  class=listtail align=right >{allmoney}&nbsp;&nbsp;</TD>
+    <TD  class=listtail align=right >&nbsp;&nbsp;</TD>
+    <TD  class=listtail align=right >&nbsp;&nbsp;</TD>
+  </TR>
+</TBODY></TABLE>
+</FORM>
+</center>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

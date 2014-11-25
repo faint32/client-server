@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<TITLE>商户资料管理</TITLE>
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!-- Styles -->
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+		<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+		<link href="../colorbox/colorbox.css" rel="stylesheet" type="text/css">
+		<SCRIPT language=javascript src="../include/editlib.js">
+        </SCRIPT> <SCRIPT language=javascript src="../js/jquery.min.1.7.1.js">
+        </SCRIPT> <script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script>
+        <script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script> 
+		<SCRIPT language=javascript src="../function/function.js"></SCRIPT> 
+		<script type="text/javascript" src="../js/author.js"></script> 
+		<script type="text/javascript" src="../js/global.js"></script> 
+		<script type="text/javascript" src="../colorbox/jquery.colorbox.js"></script> 
+		<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+<script language=javascript>
+<!-- 
+
+function input_focus(){
+var gg = 1;
+if (gg == 1){
+form1.no.focus();
+ }
+}
+
+var requestSubmitted = false;
+
+function submit_save(){
+		/*var sendsms =$(":radio[name=sendsms]:checked").val();
+		
+    	if(sendsms=="1" &&	form1.shoucardmemo.value==""){
+	 	  alert("请填写收款短信备注");
+	 	  return;
+	     }*/	
+    	if(!form1.isok.checked){
+	 	  alert("请选择转账成功");
+	 	  return;
+	     }
+if(confirm("是否确定转账成功？")){
+			 showtips('');  	
+	 form1.action.value="pass";
+		form1.submit();
+}
+}
+
+// -->
+</script>
+ 
+	</HEAD>
+	<BODY>
+		<div id="page" class="page">
+		<h4 class="icon forms">{menuname} <small></small></h4>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+				<tr>
+					<td class=button_labelleft></td>
+					<td class=button_label>
+						<div align="right" >
+         {tj}
+		   <input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+        </div>
+					</td>
+					<td class=button_labelright></td>
+				</tr>
+			</table>
+			<!-- Wrapper -->
+			<div class="wrapper">
+				<div class="panel">
+					<form action="" method="post" listid="form3" name="form1">
+						<input
+							class="input" type="hidden" name="listid" value="{listid}" id="listid">
+						<input class="input" type="hidden" name="action" value="{action}"
+							id="action">
+						<div id="showinfo" class="box box-info" style="display:{show_error}">
+							<p>{error}</p>
+							<a class="close">&times;</a>
+						</div>
+                        {note} 
+						<fieldset class="form">
+							<legend>
+								{titlename} 
+								<small>&nbsp;{titlename}</small>
+							</legend>
+							<table class="table_form">
+								<colgroup>
+									<col class="col-name" />
+									<col class="col-value" />
+								</colgroup>
+       
+	  <tr> 
+        <th>流水号：</th>
+        <td>{no}</td>
+        <th>银行流水号：</th>
+        <td>{bkntno}</td>
+	  </tr>	  
+	   <tr> 
+        <th>刷卡器设备号：</th>
+        <td>{paycardno}</td>
+        <th>用户名：</th>
+        <td>{authorname}</td>
+	  </tr>
+      <tr> 
+        <th>交易日期：</th>
+        <td>{paydate}</td>
+        <th>币种：</th>
+        <td>{current}</td>	
+       </tr>
+	    <tr> 
+        <th>付款人：</th>
+        <td>{fucardman}</td>
+		
+		<th>付款人手机：</th>
+        <td>{fucardmobile}</td>
+        </tr>
+	   <tr> 
+        <th>付款卡号：</th>
+        <td>{fucardno}</td>
+		
+		<th>付款方开户行：</th>
+        <td>{fucardbank}</td>
+        </tr>
+	  <tr>
+
+        <th>收款人：</th>
+        <td> {shoucardman}</td>
+	    <th>收款人手机：</th>
+        <td>{shoucardmobile}</td>
+      </tr>		
+	  <tr>
+
+        <th>收款方卡号：</th>
+        <td>{shoucardno}</td>
+	    <th>收款银行：</th>
+        <td>{shoucardbank}</td>
+      </tr>
+
+     <tr> 
+        <th>交易金额：</th>
+        <td>{paymoney}</td>
+                        
+        <th>手续费：</th>
+        <td>{payfee}</td>
+    </tr>		
+
+    <tr> 
+        <th>实际刷卡金额：</th>
+        <td>{money}</td>
+        <th>交易状态：</th>
+        <td>{payrq}</td>
+    </tr>	
+    <tr> 
+        <th>到账日期：</th>
+        <td>{arrivetime}</td>
+        <th>到账模式：</th>
+        <td>{arrvename}</td>				
+    </tr>	
+    <tr> 
+        <th>是否已经代理支付：</th>
+        <td>{isagentpay}</td>
+        <th>交易摘要：</th>
+        <td>{memo}</td>
+    </tr>
+    <tr> 
+        <th>已经代理支付时间：</th>
+        <td>{agentdate}</td>
+        <th>&nbsp;</th>
+        <td>&nbsp;</td>
+    </tr>
+<!-- 			<tr> 
+				<th>是否短信提醒收款人：</th>
+				<td>
+				<input type="radio" name="sendsms" {checksendsms0} value="0">否 <input type="radio"  name="sendsms" {checksendsms1} value="1">是  
+				</td>
+			</tr>
+			<tr> 
+				<th>收款短信备注：</th>
+				<td colspan="6" align="left">
+				<textarea rows="5" cols="40" name="shoucardmemo">
+				{shoucardmemo}
+				</textarea>
+				</td>
+			</tr> -->				
+      <tr {isshowqrmsg}>
+        	<td style="padding-left:'200px'" colspan="5"   ><hr/></td>
+      </tr>		
+		<tr {isshowqrmsg}> 
+			<th><input type="checkbox" name="isok" {check} value="9">转账成功</th>
+		</tr>	
+        <tr {isshowqrmsg}> 
+            <th>信息确认人：</th>
+            <td>{qrman}</td>
+            <th>确认时间：</th>
+            <td>{qrdatetime}</td>
+        </tr>
+        </table>
+				    		</fieldset>
+    					</form>
+				    </div>
+			    </div>
+{showtips}
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

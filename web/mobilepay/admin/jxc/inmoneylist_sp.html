@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dth XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dth/xhtml1-transitional.dth">
+<HTML>
+<HEAD>
+<TITLE>收款审批</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!-- Styles -->
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="../css/custom.css">
+<!-- 		<link rel="stylesheet" href="../css/framework.css"> -->
+<!--[if IE 6]>
+    <link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css" />
+    <![endif]-->
+<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> 
+<script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script> 
+<script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+<script language=javascript>
+<!-- 
+//禁止退格键 作用于Firefox、Opera
+document.onkeypress=banBackSpace;
+//禁止退格键 作用于IE、Chrome
+document.onkeydown=banBackSpace;
+function submit_savett() {
+	 if (confirm("是否选择审核通过？")) {
+	 	form1.end_action.value = "endsave";
+	      sendingbg.style.display ="";  
+        sendingback.style.display ="";
+	      form1.submit();
+    }
+}
+
+function submit_nopasst() {
+	var hasmemo_z = document.getElementById('memo_z').value;
+			if(hasmemo_z==""){
+				alert("请输入备注内容");
+				document.getElementById('memo_z').focus();
+				return false;
+			}else{
+				 if (confirm("是否选择审核不通过？")) {
+					form1.end_action.value = "nopass";
+					  sendingbg.style.display ="";  
+					sendingback.style.display ="";
+					  form1.submit();
+				}
+			}
+}
+
+// -->
+</script>
+</HEAD>
+<BODY  topmargin="0" leftMargin="2" width="100%">
+<div id="page">
+<h4 class="icon forms">{menuname} <small></small></h4>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+<tr>
+    <td class=button_labelleft></td>
+    <td class=button_label>
+    <div align="right" >
+      <input type=button name=save class=button_save value="审核"  onClick="javascript:submit_savett()" style="font-size:9pt" >
+      <input type=button name=nopass class=button_delete value="反审"  onClick="javascript:submit_nopasst()" style="font-size:9pt" >
+      <input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" >
+    </div>
+    </td>
+    <td class=button_labelright></td>
+</tr>
+</table>
+<!-- Wrapper -->
+    <form action="" method="post" name="form1" >
+    <input type=hidden name=listid value="{listid}">
+    <input type=hidden name=end_action value=""> 
+    <div class="wrapper">
+    <div class="panel">
+    <div id="showinfo" class="box box-info" style="display:{show_error}"><p>{error}</p><a class="close">&times;</a></div> 
+
+    <fieldset class="form">
+        <legend>
+            收款审批 
+            <small>&nbsp;收款详细</small>
+        </legend>
+        <br/>
+        <table  class="table_form">
+            <colgroup><col class="col-name" />
+                <col class="col-value" /></colgroup>
+       
+        <tr >
+          <th>单据编号：</th>
+          <td ><span class=form_label>{listno}</span></td>
+         
+          <th>单据日期：</th>
+          <td >{date}</td>
+        </tr>
+      
+          <tr>
+          <th>付款单位:</th>
+          <td class=span_label>编号:{cusno}&nbsp;&nbsp;名称：{cusname}</td>
+          
+          <th>录单人：</th>
+          <td class=span_label >{staname}</td>
+        </tr>
+        <tr>
+          <th>收款金额：</th>
+          <td><span class=form_label>{payallmoney}</span></td>
+        
+          <th>收款人：</th>
+          <td class=span_label>{dealwithman}</td>
+        </tr>
+        <tr>
+          <th>备注：</th>
+          <td colspan="3" ><textarea class="textarea full" name="memo_z" rows="3" id="memo_z">{memo_z}</textarea></td>
+        </tr>
+      </table>
+     </fieldset>
+    </div>
+</div>
+<br>
+</form>
+<div id="sendingback" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在处理单据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingdraft" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在另存为草稿单，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+</div>
+</center>
+</div>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

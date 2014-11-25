@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<HEAD>
+	<TITLE>明盛网站</TITLE>
+	<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<link rel="stylesheet" href="../css/styles.css">
+	<link rel="stylesheet" href="../css/custom.css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+	<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT> 
+	<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> 
+	<script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script> 
+	<script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script> 
+	<SCRIPT language=javascript src="../function/function.js"></SCRIPT> 
+	<script language=javascript>
+		var requestSubmitted = false;
+		function submit_save(){
+			if(form1.warnleveltype.value==""){
+			 	  alert("预警设置名不能为空！");
+			 	  form1.warnleveltype.focus();
+			 	  return;
+			  }
+			if(form1.warnlevellevel.value==""){
+			 	  alert("预警设置编号不能为空！");
+			 	  form1.warnlevellevel.focus();
+			 	  return;
+			  }	 
+						    sending.style.display ="";
+				sendingbg.style.display ="";	  
+		    requestSubmitted = true; 
+			form1.submit();
+		}
+		function submit_del(){
+			if(confirm("是否确定删除整条信息"))
+			{
+						    sendingdel.style.display ="";
+				sendingbg.style.display ="";	
+			form1.action.value="delete";
+		    requestSubmitted = true; 
+			form1.submit();
+			}
+		}
+	</script> 
+</HEAD>
+<BODY onload=input_focus() topmargin="0" leftMargin="2" width="100%">
+	<div id="page" class="page">
+		<h4 class="icon forms">{menuname} <small></small></h4>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+			<tr>
+				<td class=button_labelleft></td>
+				<td class=button_label>
+					<div align="right" >
+						 <input type=button name=save32 class=button_help value="帮助" AccessKey=h  onClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.className='button_help_on'" onMouseOut="this.className='button_help'">
+						<span class=button_split>&nbsp;</span><input type=button name=save3 class=button_save value=" 保存" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt" {dissave} onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+						<span class=button_split>&nbsp;</span><input class=button_delete name=end type=button value=" 删除" AccessKey=d  onMouseOver="this.className='button_delete_on'" onMouseOut="this.className='button_delete'"  onClick="javascript:submit_del()">
+						<span class=button_split>&nbsp;</span><INPUT class=button_reset name=qqq type=reset value=" 撤销" AccessKey=z style="font-size:9pt" onMouseOver="this.className='button_reset_on'" onMouseOut="this.className='button_reset'">
+						<span class=button_split>&nbsp;</span><input type=button name=rst class=button_recovery value=" 返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+					</div>
+				</td>
+				<td class=button_labelright></td>
+			</tr>
+		</table>
+		<!-- Wrapper -->
+		<div class="wrapper">
+			<div class="panel">
+				<form action="" method="post" listid="form3" name="form1">
+					<input class="input" type="hidden" name="listid" value="{listid}" id="listid">
+					<input class="input" type="hidden" name="action" value="{action}" id="action">
+					<div id="showinfo" class="box box-info" style="display:{show_error}"><p>{error}</p><a class="close">&times;</a></div> 
+					<fieldset class="form">
+						<legend>预警设置 
+							<small>
+								&nbsp;预警设置填写
+							</small></legend>
+						<table class="table_form">
+							<colgroup><col class="col-name" />
+								<col class="col-value" /></colgroup>
+							<tr>
+								<th>预警级别：</th>
+								<td>
+                                <select name="warnlevellevel">        
+                                    {levelsel}
+                                 </select>
+								</td>
+								<th>商户分类：</th>
+								<td>
+                                <select name="warnleveltype">        
+                                    {auindustrysel}
+                                 </select>
+								</td>
+							</tr>
+                            <tr>
+								<th>信用卡刷卡总金额：</th>
+								<td>
+									<input class="input" id="creditcard" type="text" name="creditcard" size="30" maxlength="40" value="{creditcard}" >
+								</td>
+								<th>储蓄卡刷卡总金额：</th>
+								<td>
+									<input class="input" id="cashcard" type="text" name="cashcard" size="30" maxlength="40" value="{cashcard}" >
+								</td>
+							</tr>
+                            <tr>
+								<th>POS刷卡次数：</th>
+								<td>
+									<input class="input" id="postnum" type="text" name="postnum" size="30" maxlength="40" value="{postnum}" >
+								</td>
+								<th>信用卡每笔平均金额：</th>
+								<td>
+									<input class="input" id="average" type="text" name="average" size="30" maxlength="40" value="{average}" >
+								</td>
+							</tr>
+                            <tr>
+								<th>信用卡刷卡占比：</th>
+								<td>
+									<input class="input" id="scale" type="text" name="scale" size="30" maxlength="40" value="{scale}" >
+								</td>
+								</td>
+							</tr>
+						</table>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+<div id="sending" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:40%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingdel" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:30%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在删除数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%;  z-index:100; filter: Alpha(Opacity=50);  background-color: #ffffff; display:none "> 
+
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<TITLE>商户套餐查看</TITLE>
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!-- Styles -->
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+		<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+		<link href="../colorbox/colorbox.css" rel="stylesheet" type="text/css">
+		<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT> 
+		<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT>
+		<script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script> 
+		<script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script>
+		<SCRIPT language=javascript src="../function/function.js"></SCRIPT> <script type="text/javascript" src="../js/author.js"></script> 
+		<script type="text/javascript" src="../js/global.js"></script>
+		<script type="text/javascript" src="../colorbox/jquery.colorbox.js"></script>
+		<script language=javascript>
+			
+			$(document).ready(function() {  
+				$(".meal").css("display","none");
+				$("#showslotpayfsetid").css("display","block");
+				$("#slotpayfsetid").css("color","#5086a5");
+				
+				$(".showmeal").click(function(){
+					$(".showmeal").css("color","#222222");
+					$(this).css("color","#5086a5");
+					var showid =$(this).attr("id");
+					$(".meal").css("display","none");
+					$("#show"+showid).css("display","block");
+				});				
+			});
+			function checkpaycounts(authorid,obj,scope,scdmsetid,type)
+			{
+
+				var szRef='authorpayrecords.php?authorid='+authorid+"&scope="+scope+"&scdmsetid="+scdmsetid+"&type="+type;
+				  $(obj).colorbox({href:szRef,iframe:true, innerWidth:800, innerHeight:500}); 
+			}
+		</script> 
+</HEAD>
+	<BODY>
+		<div id="page" class="page">
+			<h4 class="icon forms">{menuname} <small></small></h4>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+				<tr>
+					<td class=button_labelleft></td>
+					<td class=button_label>
+						<div align="right" >
+							<input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+						</div>
+					</td>
+					<td class=button_labelright></td>
+				</tr>
+			</table>
+			<!-- Wrapper -->
+			<div class="wrapper">
+				<div class="panel">
+					
+						<fieldset class="form">
+							<legend>
+								{truename}商户套餐
+							</legend>
+						</fieldset>
+					<table class="table_form">
+						<colgroup>
+							<col class="col-name" />
+							<col class="col-value" />
+						</colgroup>
+						<th  style="text-align:center"><a href="#" class="showmeal" id="slotpayfsetid" >信用卡费率套餐</a></th>
+						<th  style="text-align:center"><a href="#" class="showmeal" id="slotscdmsetid">信用卡额度套餐</a> </th>
+						<th  style="text-align:center"><a href="#" class="showmeal" id="bkcardpayfsetid">借记卡费率套餐</a></th>
+						<th  style="text-align:center"><a href="#" class="showmeal" id="bkcardscdmsetid">借记卡额度套餐</a>  </th>		
+					</table>
+				</div>
+			</div>
+			<div class="wrapper meal " id="showslotpayfsetid">
+				<div class="panel">
+					
+						<fieldset class="form">
+							<legend>
+								信用卡费率套餐
+							</legend>
+							<br/>
+							<table class="table_form">
+								<colgroup>
+									<col class="col-name" />
+									<col class="col-value" />
+								</colgroup>
+								{showslotpayfsetid}
+							</table>
+						</fieldset>
+				</div>
+			</div>
+				<div class="wrapper meal" id="showslotscdmsetid">
+				<div class="panel">
+					
+						<fieldset class="form">
+							<legend>
+								信用卡额度套餐 
+							</legend>
+							<br/>
+							<table class="table_form">
+								<colgroup>
+									<col class="col-name" />
+									<col class="col-value" />
+								</colgroup>
+								{showslotscdmsetid}
+							</table>
+						</fieldset>
+				</div>
+			</div>	
+
+			<div class="wrapper meal" id="showbkcardpayfsetid">
+				<div class="panel">
+					
+						<fieldset class="form">
+							<legend>
+								借记卡费率套餐
+							</legend>
+							<br/>
+							<table class="table_form">
+								<colgroup>
+									<col class="col-name" />
+									<col class="col-value" />
+								</colgroup>
+								{showbkcardpayfsetid}
+							</table>
+						</fieldset>
+				</div>
+			</div>
+				<div class="wrapper meal" id="showbkcardscdmsetid">
+				<div class="panel">
+					
+						<fieldset class="form">
+							<legend>
+								借记卡额度套餐
+							</legend>
+							<br/>
+							<table class="table_form">
+								<colgroup>
+									<col class="col-name" />
+									<col class="col-value" />
+								</colgroup>
+								{showbkcardscdmsetid}
+							</table>
+						</fieldset>
+				</div>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

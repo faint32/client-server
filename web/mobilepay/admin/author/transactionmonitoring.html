@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<TITLE>商户交易实时监控</TITLE>
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!-- Styles -->
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+		<!-- 	<link rel="stylesheet" href="../css/framework.css"> -->
+		<!--[if IE 6]>
+			<link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css" />
+			<![endif]-->
+		<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+		<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> <script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script> <script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script> <script type="text/javascript" src="../colorbox/jquery.colorbox.js"></script> <script type="text/javascript" language="javascript" src="../include/jquery.dataTables.gb2312.js"></script> 
+	</HEAD>
+	<script language=javascript>
+		$(document).ready(function() {
+			$(".searchdate").datepicker({dateFormat: $.datepicker.W3C});
+			var search_authorname=$("#search_authorname").val();
+			var search_begintime=$("#search_begintime").val();	
+			var search_endtime=$("#search_endtime").val();
+			var search_time=$("#search_time").val();
+			var search_possate=$("#search_possate").val();	
+			var search_warning=$("#search_warning").val();			
+			
+		 var gotourl="../ajaxread/readauthortransction.php?search_authorname="+search_authorname+"&search_begintime="+search_begintime+"&search_endtime="+search_endtime+"&search_time="+search_time+"&search_possate="+search_possate+"&search_warning="+search_warning;
+					  $('#showtable').dataTable({ 
+							"sDom": '<"wrapper"flipt>rtss<"bottom"ip><"clear">',
+							 "bStateSave": false,
+							  "aLengthMenu": [[5,10, 25, 50], [5,10, 25, 50]],
+							 "bLengthChange": true, 
+							 "bProcessing": true,        
+							 "iDisplayLength": 10,        
+		                     "bServerSide":true,
+		                     "sAjaxSource":gotourl,
+							 "sPaginationType": "full_numbers",
+							 "bFilter": false,
+							 "bSort": true,
+						     "bPaginate": true
+							 
+		});
+		
+		});
+		function CheckAll(form){
+		     for (var i=0;i<form.elements.length;i++){ 
+		         var strelement = form.elements[i];
+		         if (strelement.name != 'chkall' && !strelement.disabled){
+		             strelement.checked = form.chkall.checked;
+		         }
+		      }
+		   }
+		function sumbit_search()
+		{
+			if(form1.search_begintime.value!="" && form1.search_endtime.value!="")
+			{
+				if(form1.search_begintime.value>form1.search_endtime.value )
+				{
+					alert("开始时间大于结束时间!");
+					form1.search_begintime.focus();
+					return false;
+				}
+			}	
+			form1.search_time.value="";
+			form1.submit();
+		}	
+		function sumbit_search_time(value)
+		{
+			
+			form1.search_begintime.value="";
+			form1.search_endtime.value="";
+			form1.search_time.value=value;
+			form1.submit();
+		}
+		function submit_possate(value)
+		{
+			form1.search_possate.value=value;
+			form1.submit();
+		}
+		
+		
+		function startup(vid)
+		{
+			form1.staruppaycardid.value=vid;
+			form1.submit();
+		}
+	</script> 
+	<BODY  topmargin="0" leftMargin="2" width="100%">
+		<div id="page">
+		<h4 class="icon forms">{menuname} <small></small></h4>
+
+			<form action="" method="post" name="form1">
+			<input type="hidden" name="search_time" id="search_time" value="{search_time}">
+			<input type="hidden" name="search_possate" id="search_possate" value="{search_possate}">
+			<input type="hidden" name="staruppaycardid" id="staruppaycardid" value="">
+				<div class="wrapper">
+					<div class="panel">
+
+						<fieldset class="form">
+
+							<table width="100%" class=table_form cellspacing="0" cellpadding="0" border="0" >	
+								<tr>
+									<th>商户名称：</th>
+									<td>
+										<input class="input full" name="search_authorname" id="search_authorname" type="text"   value="{search_authorname}" >
+									</td>
+									<th>是否预警：</th>
+									<td>
+										<select name="search_warning" id="search_warning">
+										{search_warning}
+										</select>
+									</td>
+									<td>
+										<input class="input searchdate full"  name="search_begintime" id="search_begintime" type="text"   value="{search_begintime}" >
+									</td>
+									<td>
+									-
+									</td>
+									<td>		
+										<input class="input searchdate full"  name="search_endtime" id="search_endtime" type="text"   value="{search_endtime}" >
+									</td>
+									<td>
+									<input type="button" name="search_button" onclick="sumbit_search()"  class="buttonsmall" value="搜索"/>
+									</td>
+									<td>
+									<a href="#" onclick="sumbit_search_time('now')" >当天</a>&nbsp;<a href="#" onclick="sumbit_search_time('week')" >一周前</a>&nbsp;<a href="#" onclick="sumbit_search_time('onemonth')" >一个月前</a> &nbsp;<a href="#" onclick="sumbit_search_time('threemonth')" >三个月前</a>
+									</td>
+								</tr>
+							</table>
+						</fieldset>
+					</div>
+				</div>
+				<div class="wrapper">
+					<div class="panel">
+
+						<fieldset class="form">
+
+							<table width="100%" class=table_form cellspacing="0" cellpadding="0" border="0" >	
+								<tr>
+									<td>
+									<input type="button" name="search_button"  class="buttonsmall" onclick="submit_possate('0')" value="    停用     "/>
+									<input type="button" name="search_button"  class="buttonsmall"  onclick="submit_possate('1')" value="    警告     "/>							
+									<input type="button" name="search_button"  class="buttonsmall" onclick="submit_possate('3')" value="冻结结算账户"/>
+									</td>
+								</tr>
+							</table>
+						</fieldset>
+					</div>
+				</div>					
+				<div class="wrapper">
+					<div class="panel">
+						<fieldset class="form">
+							<table width="100%" border="0" cellspacing="1"  class=table id="showtable">{theadth}</table>
+						</fieldset>
+					</div>
+				</div>
+			</form>
+		</div>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

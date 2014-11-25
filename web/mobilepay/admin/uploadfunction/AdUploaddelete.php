@@ -1,0 +1,26 @@
+<?
+function addelete($dateid,$scatid)//É¾³ý¹ã¸æÉÏ´«Í¼Æ¬
+{
+	$db = new DB_test;	
+	clearFilepath($dateid);
+	//É¾³ýÍ¼Æ¬
+	$query="select *from tb_upload_category_list where fd_cat_dateid='$dateid' and fd_cat_scatid='$scatid'";
+	$db->query($query);
+	$db->next_record();
+	$url=$db->f(fd_cat_url);
+	$thumurl=$db->f(fd_cat_thumurl);
+	@unlink($url);
+	@unlink($thumurl);
+	//É¾³ýÊý¾Ý
+	$del="delete from tb_upload_category_list  where fd_cat_dateid='$dateid' and fd_cat_scatid='$scatid'";
+	$db->query($del);
+}
+function clearFilepath($id)
+{
+	$db = new DB_test;	
+  	$query="update web_conf_ggw set  fd_ggwgl_url='',fd_ggwgl_thumurl='' where fd_ggwgl_id='$id'";
+	$db->query($query);
+	$returnvalue="success";
+	return $returnvalue;
+}
+?>

@@ -1,0 +1,151 @@
+<HTML><HEAD><TITLE>意见反馈</TITLE>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<!-- Styles -->
+	<link rel="stylesheet" href="../css/styles.css">
+	<link rel="stylesheet" href="../css/custom.css">
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/jquery.js"></SCRIPT>
+<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> 
+<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+<style type="text/css">
+<!--
+.STYLE2 {font-size: 12px}
+-->
+</style>
+</HEAD>
+<script language=javascript>
+<!-- 
+
+function input_focus(){
+var gg = 1;
+if (gg == 1){
+form1.no.focus();
+ }
+}
+
+var requestSubmitted = false;
+
+function submit_save(){
+ if(!form1.isok.checked){
+	 	  alert("请选择确定充值成功");
+	 	  return;
+	     }
+if(confirm("是否确定充值成功？")){
+		showtips('');	
+		form1.action.value="pass";
+		form1.submit();
+}
+}
+
+// -->
+</script>
+
+<BODY   topmargin="0" leftMargin="2" width="100%">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+                 <td height="30" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	{titlename}</td>
+			<tr>
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+          </tr>	
+  </table>
+  <center>
+  <form action="" method="post" name="form1">
+    <input type=hidden name=action value="{action}">
+    <input type=hidden name=listid value="{listid}">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+      <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right" >
+         <input type=button name=save3 class=button_save {isshow} value="提交" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt"  onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+		   <input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+        </div></td>
+        <td class=button_labelright></td>
+      </tr>
+  </table>  
+  
+    <div class="wrapper">
+    <div class="panel">
+
+		<div id="showinfo" class="box box-info" style="display:{show_error}"><p>{error}</p><a class="close">&times;</a></div>
+		 <fieldset class="form">
+        <legend>{titlename} <small>&nbsp;{titlename}</small> </legend>
+    <table width="700" class=table_form >
+
+          <colgroup>
+          <col class="col-name" />
+          <col class="col-value" />
+          </colgroup>
+       
+	  <tr> 
+        <th >流水号：</th>
+        <td><input class="input disabled" type="text" name="suppname" size="20"  value="{no}" readonly="1"></td> 
+        
+        <th >所属银行：</th>
+        <td ><input class="input disabled" type="text" name="suppname" size="20"  value="{bankname}" readonly="1"></td>
+	  </tr>	  
+	   <tr> 
+        <th >银行卡号：</th>
+        <td ><input class="input disabled" type="text" name="suppname" size="20"  value="{bankcardno}" readonly="1"></td>
+        
+        <th>银行流水号：</th>
+        <td><input class="input disabled" type="text" name="suppname" size="20"  value="{bkntno}" readonly="1"></td>
+       </tr>
+	    <tr> 
+        <th>充值金额：</th>
+        <td ><input class="input disabled" type="text" name="suppname" size="20"  value="{money}" readonly="1"></td>
+		
+		<th>银行卡类型：</th>
+        <td><input class="input disabled" type="text" name="suppname" size="20"  value="{banktype}" readonly="1"></td>
+        </tr>
+	   <tr> 
+        <th>充值日期：</th>
+        <td><input class="input disabled" type="text" name="suppname" size="20"  value="{datetime}" readonly="1"></td>
+         
+        <th>是否已经代理支付：</th>
+        <td><input class="input disabled" type="text" name="suppname" size="20"  value="{isagentpay}" readonly="1"></td>
+        </tr>
+        <tr> 
+        <th >已经代理支付时间：</th>
+        <td><input class="input disabled" type="text" name="suppname" size="20"  value="{agentdate}" readonly="1"></td>
+		<th ></th>
+        <td></td>
+        </tr>
+	  			<tr {isshowqrmsg} >
+			<td style="padding-left:'200px'" colspan="5"   >
+			<hr/>
+			</td>
+				</tr>		
+			<tr {isshowqrmsg}> 
+				<th><input type="checkbox" name="isok" {check} value="9">确定充值成功</th>
+				<td></td>
+				<th ></th>
+				<td></td>
+			</tr>	
+			<tr {isshowqrmsg}> 
+				<th>信息确认人：</th>
+				<td><input class="input disabled" type="text" name="suppname" size="20"  value="{qrman}" readonly="1"></td>
+				<th>确认时间：</th>
+				<td><input class="input disabled" type="text" name="suppname" size="20"  value="{qrdatetime}" readonly="1"></td>
+			</tr>	
+
+    </table>
+    <table width="700" class=InputFrameMain cellspacing="0" cellpadding="0" border="0"  style="font-size:13px">
+      <TBODY> 
+        					
+      </TBODY> 
+    </table>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+
+{showtips}
+</center>
+{showeditdiv}
+</body>
+</html>
+

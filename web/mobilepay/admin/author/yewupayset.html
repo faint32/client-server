@@ -1,0 +1,110 @@
+<HTML><HEAD><TITLE>业务规则设置</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<!-- Styles -->
+	<link rel="stylesheet" href="../css/styles.css">
+	<link rel="stylesheet" href="../css/custom.css">
+
+</HEAD>
+<script>
+function sub_save()
+{	
+
+ if(!form1.nocreditcsetfee.checked){
+
+	if(form1.creditcsetfee.value=="")
+	{
+	 	  alert("请输入手续费");
+		 
+	 	  form1.creditcsetfee.focus();
+	 	  return;
+	 }
+	 	if(form1.moneyqj.value=="")
+	{
+	 	  alert("请设置金额区间");
+		 
+	 	  form1.moneyqj.focus();
+	 	  return;
+	 }
+	}else{
+		form1.creditcsetfee.value=="";
+	}
+	
+	form1.submit();
+}
+function submit_del()
+{
+	form1.action.value="delete";
+	form1.submit();
+}
+function changefee()
+{
+	form1.nocreditcsetfee.checked=false;
+}
+
+function clearfee()
+{
+	form1.creditcsetfee.value="";
+}
+
+</script>
+<BODY  topmargin="0" leftMargin="2" width="100%">
+  <div id="page">
+		<h4 class="icon forms">{menuname} <small></small></h4>
+  <center>
+  <br><br>
+<form action="" method="post" name="form1">
+
+    <table width="500" border="0" cellspacing="1"  class="table" cellpadding="2" >
+        <thead> 
+        <trheight=23px align=center> 
+        	{theadth}
+        </tr>
+        </thead>
+       <tbody>
+       {show}
+      </tbody>
+      </table>
+	 </form>
+<div id="sending" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingdel" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在删除数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+</div>
+
+<div id="helpid" STYLE="right: 1%; WIDTH: 450px; POSITION: absolute; TOP: 86px; HEIGHT: 0; display: none"> 
+ <div  align="left"   STYLE="position:absolute;left: 15px; top:15px;right:15px" >
+  1.操作：基本信息－商品信息；<br><br>
+  保存(Alt+s)：添加新商品信息和修改商品信息；<br><br>
+  删除(Alt+d)：即删除不再使用的商品信息；<br><br>
+  撤销(Alt+z)：撤销回去商品没有修改的状态；<br><br>
+  返回(Alt+q)：返回商品信息列表；<br><br>
+  帮助(Alt+h)：显示帮助信息；<br><br>
+  2.基本信息：<br><br>
+  类别：为了录入快捷和便于查询，您可为商品选择商品类别；<br><br>
+  销售单价：定义销售单价之后，做销售单时，选择了该商品，就会自动带出销售单价；<br><br>
+  库存上限：定义库存上限之后，如果该商品的库存大于库存上限，在仓库管理中的库存上限就会自动显示出该商品；<br><br>
+  库存下限：定义库存下限之后，如果该商品的库存小于库存下限，在仓库管理中的库存下限就会自动显示出该商品；<br><br>
+</div>
+</div>
+</center>
+<br />
+<br />
+<br />
+<br />
+</div>	
+{showeditdiv}
+</BODY>
+</HTML>

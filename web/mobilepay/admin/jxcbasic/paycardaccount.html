@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<TITLE>刷卡器公户管理</TITLE>
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<link rel="stylesheet" href="../css/styles.css">
+	<link rel="stylesheet" href="../css/custom.css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+	<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT> 
+	<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> 
+	<script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script> 
+	<script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script> 
+	<SCRIPT language=javascript src="../function/function.js"></SCRIPT> 
+<script language=javascript>
+
+var requestSubmitted = false;
+function submit_save(){
+	if(form1.paycardaccount_company.value==""){
+	 	  alert("所属公司不能为空！");
+	 	  form1.paycardaccount_company.focus();
+	 	  return;
+	  }
+	if(form1.paycardaccount_accountname.value==""){
+	 	  alert("账户不能为空！");
+	 	  form1.paycardaccount_accountname.focus();
+	 	  return;
+	  }	
+	if(form1.paycardaccount_accountnum.value==""){
+	 	  alert("帐号不能为空！");
+	 	  form1.paycardaccount_accountnum.focus();
+	 	  return;
+	  }
+	if(form1.paycardaccount_bank.value==""){
+	 	  alert("开户行不能为空！");
+	 	  form1.paycardaccount_bank.focus();
+	 	  return;
+	  }	  	  	  	 
+ sending.style.display ="";
+		   sendingbg.style.display ="";   	  
+    requestSubmitted = true; 
+	form1.submit();
+}
+function submit_del(){
+	if(confirm("是否确定删除整条信息")){
+		sendingbg.style.display ="";  
+		   sendingdel.style.display ="";
+			form1.action.value="delete";
+		    requestSubmitted = true; 
+			form1.submit();
+		}
+}
+</script>
+
+</HEAD>
+
+<BODY onload=input_focus() topmargin="0" leftMargin="2" width="100%">
+<div id="page" class="page">
+  <div id="page">
+		<h4 class="icon forms">{menuname} <small></small></h4>
+ <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+			<tr>
+				<td class=button_labelleft></td>
+				<td class=button_label>
+					<div align="right" >
+						 <input type=button name=save32 class=button_help value="帮助" AccessKey=h  onClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.className='button_help_on'" onMouseOut="this.className='button_help'">
+						<span class=button_split>&nbsp;</span><input type=button name=save3 class=button_save value="保存" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt" {dissave} onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+						<span class=button_split>&nbsp;</span><input class=button_delete name=end type=button value="删除" AccessKey=d   onClick="javascript:submit_del()" onMouseOver="this.className='button_delete_on'" onMouseOut="this.className='button_delete'"  >
+						<span class=button_split>&nbsp;</span><INPUT class=button_reset name=qqq type=reset value="撤销" AccessKey=z style="font-size:9pt" onMouseOver="this.className='button_reset_on'" onMouseOut="this.className='button_reset'">
+						<span class=button_split>&nbsp;</span><input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+					</div>
+				</td>
+				<td class=button_labelright></td>
+			</tr>
+		</table>
+  
+  <!-- Wrapper -->
+  
+  <div class="wrapper">
+    <div class="panel">
+      <form action="" method="post" listid="form3" name="form1">
+        <input class="input" type="hidden" name="listid" value="{listid}" id="listid">
+        <input class="input" type="hidden" name="action" value="{action}" id="action">
+		<div id="showinfo" class="box box-info" style="display:{show_error}"><p>{error}</p><a class="close">&times;</a></div> 
+        <fieldset class="form">
+          <legend>刷卡器公户管理 <small>&nbsp;刷卡器公户管理填写</small> </legend>
+          <table class="table_form">
+            <colgroup>
+            <col class="col-name" />
+            <col class="col-value" />
+            </colgroup>
+            <tr>
+              <th>所属公司：</th>
+              <td><input class="input" id="paycardaccount_company" type="text" 
+              	name="paycardaccount_company" size="30" maxlength="40" value="{paycardaccount_company}" ></td>
+         
+              <th>账户：</th>
+              <td><input class="input" id="paycardaccount_accountname" type="text" name="paycardaccount_accountname" size="30" maxlength="40" value="{paycardaccount_accountname}" ></td>
+            </tr>	
+            <tr>
+              <th>帐号：</th>
+              <td><input class="input" id="paycardaccount_accountnum" type="text" name="paycardaccount_accountnum" size="30" maxlength="40" value="{paycardaccount_accountnum}" ></td>
+        
+              <th>开户行：</th>
+              <td><input class="input" id="paycardaccount_bank" type="text" name="paycardaccount_bank" size="30" maxlength="40" value="{paycardaccount_bank}" ></td>
+            </tr>							
+          </table>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+<div id="sending" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:40%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingdel" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:30%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在删除数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%;  z-index:100; filter: Alpha(Opacity=50);  background-color: #ffffff; display:none "> 
+
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>广州市店多软件开发有限公司图表分析</title>
+<link rel="stylesheet" href="../Contents/Style.css" type="text/css" />
+<script language="JavaScript" src="../include/FusionCharts.js"></script>
+</head>
+<SCRIPT LANGUAGE="JavaScript">
+    var data = new Array();
+		//Data for each product
+		<!-- BEGIN TITLEBK -->
+		data[{datecount}] = new Array({datecontent});
+		<!-- END TITLEBK -->
+		
+		//Flag indicating whether our chart has loaded
+		var chartLoaded = false;
+		
+		function updateChart(domId){			
+			//Update only if chart has loaded
+
+				//Get reference to chart object using Dom ID
+				var chartObj = getChartFromId(domId);
+
+				//Update it's XML - set animate Flag from AnimateChart checkbox in form
+				chartObj.setDataXML(generateXML());
+			
+		}
+		/**
+		 * generateXML method returns the XML data for the chart based on the
+		 * checkboxes which the user has checked.
+		 *	@param	animate		Boolean value indicating to  animate the chart.
+		 *	@return				XML Data for the entire chart.
+		*/		
+		function generateXML(){			
+			var strXML;
+			strXML = "<chart palette='2' caption='{caption}' subcaption='{subcaption}' xAxisName='{xAxisName}' yAxisMinValue='{yAxisMinValue}' yAxisName='{yAxisName}' numberPrefix='{numberPrefix}' "+ ((this.document.formSelector.ShowValues.checked==true)?(" showValues='1' "):(" showValues='0' "))+" rotateValues='{rotateValues}' placeValuesInside='{placeValuesInside}'>";
+						
+			//Store <categories> and child <category> elements
+			strXML = strXML + "{str_label}";
+			
+			//Based on the products for which we've to generate data, generate XML	
+			<!-- BEGIN DATESETBK -->		
+			strXML = (this.document.formSelector.{maxboxname}.checked==true)?(strXML + getProductXML({datenum})):(strXML);
+			<!-- END DATESETBK -->
+			//strXML = (this.document.formSelector.ProductB.checked==true)?(strXML + getProductXML(1)):(strXML);
+			//strXML = (this.document.formSelector.ProductC.checked==true)?(strXML + getProductXML(2)):(strXML);
+			//strXML = (this.document.formSelector.ProductD.checked==true)?(strXML + getProductXML(3)):(strXML);			
+			
+			//Close <chart> element;
+			strXML = strXML + "</chart>";
+			//Return data
+			return strXML;			
+		}
+		
+		/**
+		 * getProductXML method returns the <dataset> and <set> elements XML for
+		 * a particular product index (in data array). 
+		 *	@param	productIndex	Product index (in data array)
+		 *	@return					XML Data for the product.
+		*/
+		function getProductXML(productIndex){		
+			var productXML;
+			//Create <dataset> element			
+			productXML = "<dataset seriesName='" + data[productIndex][0] + "' >";			
+			//Create set elements
+			for (var i=1; i<={xnamecount}; i++){
+				productXML = productXML + "<set value='" + data[productIndex][i] + "' />";
+			}
+			//Close <dataset> element
+			productXML = productXML + "</dataset>";
+			//Return			
+			return productXML;			
+		}
+		
+	function showcharttile(){
+	    if(document.getElementById("charttile").style.display == "none"){
+   document.getElementById("charttile").style.display= "";
+   }else{
+   document.getElementById("charttile").style.display= "none";
+   }
+	}
+		
+</SCRIPT>
+<body>
+<FORM NAME='formSelector' Id='formSelector' action='Chart.html' method='POST'>
+<div id=showcharmenus onclick="showcharttile()" style="position:absolute; font-size:13px; z-index:260;background-color:#aAaAaA;border:#666666 1px solid;cursor:hand;filter:Alpha(Opacity=80);" title="点击弹出目录">
+&nbsp;<b><< 目录</b>
+<div id=charttile style="display:none; font-size:12px ; background:url(../Charts/images/inspectorSlide_body.jpg);z-index:180">
+			<br>
+			<img src="../Charts/images/inspectorDot_path.gif" /><b>请选择需要显示的数据:</b> <br>&nbsp;		
+			<!-- BEGIN MAXBOXBK -->	 
+			<INPUT TYPE='Checkbox' name='{maxboxname}' onClick="JavaScript:updateChart('chart1Id');" checked>&nbsp;{maxboxlabel}&nbsp;&nbsp;
+      <!-- END MAXBOXBK -->
+			
+			<BR><BR><img src="../Charts/images/inspectorDot_path.gif" /><INPUT TYPE='Checkbox' name='ShowValues' onClick="JavaScript:updateChart('chart1Id');" {ischecked}><b>是否显示数字?</b>&nbsp;&nbsp;		
+			<br><br>
+</div></div>			
+		</FORM>
+		
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td valign="top" class="text" align="center">	
+
+	        <div id="chartdiv" align="center" style="z-index:1"> 
+        FusionCharts. </div>
+      <script type="text/javascript">
+	      
+		   var chart = new FusionCharts("{charttype}", "chart1Id", "{chart_width}", "{chart_height}", "0", "1");
+		   chart.setDataXML("{strXML}");	
+		   chart.render("chartdiv");
+		</script> </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text" align="center">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text" align="center"></td>
+  </tr>
+</table>
+</body>
+</html>

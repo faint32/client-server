@@ -1,0 +1,156 @@
+<?php
+//上传的新增,修改,删除,$picid图片ID,$picpath图片路径,$uploadmethod上传动作,$uploadpictype,管理图片类型,$authorid上传者ID,$uploadmark上传结果,1成功,0失败
+function uploadaction($picid, $picpath, $uploadmethod, $uploadpictype, $uploadmark, $authorid) {
+	$dbfile = new DB_file ( );
+	switch ($uploadmethod) {
+		case "new" :
+			$query = "insert into tb_upload_category_list (fd_cat_dateid,fd_cat_scatid,fd_cat_thumurl,fd_cat_time ) value ('$authorid','$uploadpictype','$picpath',now())";
+			$dbfile->query ( $query );
+			$returnvalue ['picid'] = $dbfile->insert_id ();
+			$returnvalue ['uploadmethod'] = 'modi';
+			break;
+		case "modi" :
+			$query = "update tb_upload_category_list set fd_cat_dateid='$authorid',fd_cat_thumurl='$picpath' where fd_cat_id='$picid'";
+			$dbfile->query ( $query );
+			$returnvalue ['picid'] = $picid;
+			$returnvalue ['uploadmethod'] = 'modi';
+			break;
+		case "del" :
+			$query = "delete from tb_upload_category_list where fd_cat_id='$picid'";
+			$dbfile->query ( $query );
+			$returnvalue ['picid'] = 0;
+			$returnvalue ['uploadmethod'] = 'new';
+			break;
+	}
+	// $dbfile->query($query);
+	return $returnvalue;
+}
+
+//获取上传信息
+function getupload($uploadpictype, $authorid) {
+	
+	$dbfile = new DB_file ( );
+	$query = "select * from tb_upload_category_list where fd_cat_dateid='$authorid' and fd_cat_scatid='$uploadpictype' order by fd_cat_id desc";
+	$dbfile->query ( $query );
+	if ($dbfile->nf ()) {
+		while ( $dbfile->next_record () ) 
+		{
+			$returnvalue [] ["pic"] = $dbfile->f ( fd_cat_id );
+			$returnvalue [] ["picpath"] = $dbfile->f ( fd_cat_thumurl );
+		}
+	} else 
+	{
+		$returnvalue [] ["pic"] = "0";
+		$returnvalue [] ["picpath"] = "null";
+	}
+	
+	return $returnvalue;
+}
+//获取银行名
+function getbankname($bankid) {
+	
+	$dbfile = new DB_test ( );
+	$query = "select fd_bank_name from tb_bank where fd_bank_id='$bankid'";
+	
+	$dbfile->query ( $query );
+	
+	if ($dbfile->nf ()) {
+		$dbfile->next_record ();
+		$bankname = $dbfile->f ( fd_bank_name );
+	}
+	$returnvalue = array ("bankname" => $bankname );
+	return $returnvalue;
+}
+//获取银行id
+function getbankid($bankname) {
+	
+	$dbfile = new DB_test ( );
+	$query = "select fd_bank_id from tb_bank where fd_bank_name='$bankname'";
+	
+	$dbfile->query ( $query );
+	
+	if ($dbfile->nf ()) {
+		$dbfile->next_record ();
+		$bankid = $dbfile->f ( fd_bank_id );
+	}
+	$returnvalue = $bankid;
+	return $returnvalue;
+}
+//读取商家信息
+function getauthorshop($shopid) {
+	$dbshop = new DB_shop ( );
+	$query = "select fd_shop_name as shopname from tb_shop where fd_shop_id='$shopid'";
+	$dbshop->query ( $query );
+	$arr_msg = auto_charset ( $dbshop->getFiledData ( '' ), 'gbk', 'utf-8' );
+	return $arr_msg;
+}
+//读取银联交易流水号
+function bankpayorder($money) {
+	global $weburl;
+	// 1. 初始化
+	$cardinfo = "{".$cardinfo."}";
+	$money = round($money*100,0) + 0;
+	$payurl = $weburl . "upmp/examples/purchase.php?money={$money}&cardinfo={$cardinfo}";
+	
+	$ch = curl_init ();
+	// 2. 设置选项，包括URL
+	
+
+	curl_setopt ( $ch, CURLOPT_URL, $payurl );
+	curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
+	curl_setopt ( $ch, CURLOPT_HEADER, 0 );
+	// 3. 执行并获取HTML文档内容
+	//$arr_output[] = curl_exec($ch);
+	$output = curl_exec ( $ch );
+	if ($output === FALSE) {
+		echo "cURL Error: " . curl_error ( $ch );
+		exit ();
+	}
+	$str = str_replace ( "(", "", str_replace ( ")", "", str_replace ( "Array", "", str_replace ( " ", "", $output ) ) ) );
+	
+	$arr_value = explode ( "[", $str );
+	for($i = 0; $i < count ( $arr_value ); $i ++) {
+		$arr_valuetmp = explode ( "]=>", $arr_value [$i] );
+		$arr_bankpay [$arr_valuetmp [0]] = $arr_valuetmp [1];
+	}
+	// 4. 释放curl句柄
+	curl_close ( $ch );
+	//echo $bkntno;
+	$bkorderno = $arr_bankpay ['tn'];
+	return $bkorderno;
+}
+//读取信用卡还款/转账汇款/还贷款手续费
+function readpayfee($bankid,$money,$arriveid,$type) 
+{
+	$db = new DB_test ( );
+	// $bankid 银行id   $money 金额   $type 交易类型:1为信用卡还款,2为转账汇款,3为信贷还款
+	$query = "select fd_moneyqj_id as moneyqj from tb_moneyqj where fd_moneyqj_start >'$money' and fd_moneyqj_end <='$money'";
+	$db->query($query);
+	$arr_msg = auto_charset ( $db->getFiledData (''), 'gbk', 'utf-8' );
+	$moneyqj = $arr_msg['moneyqj'];
+	switch($type)
+	{
+		case "1":
+			$query = "select fd_creditcset_fee as fee from tb_creditcardset limit 1";
+	        $db->query($query);
+	        $arr_returnvalue = auto_charset ( $db->getFiledData (''), 'gbk', 'utf-8' );
+			break;
+		case "2":
+			$query = "select fd_transfermoneyset_fee as fee from tb_transfermoneyset 
+			          limit 1";
+	        $db->query($query);
+	        $arr_returnvalue = auto_charset ( $db->getFiledData (''), 'gbk', 'utf-8' );
+			break;
+		case "3":
+			$query = "select fd_repaymoneyset_fee as fee from tb_repaymoneyset 
+			          limit 1";
+	        $db->query($query);
+	        $arr_returnvalue = auto_charset ( $db->getFiledData (''), 'gbk', 'utf-8' );
+			break;
+		default:
+			break;
+	
+	}
+	return $arr_returnvalue;
+}
+?>

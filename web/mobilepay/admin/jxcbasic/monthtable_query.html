@@ -1,0 +1,107 @@
+<HTML>
+<HEAD>
+<TITLE>公众假期查看</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="dianduo" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<SCRIPT language=javascript src="../include/dateobject.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/datepicker.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+</HEAD>
+<script language=javascript>
+<!-- 
+
+//禁止退格键 作用于Firefox、Opera
+document.onkeypress=banBackSpace;
+//禁止退格键 作用于IE、Chrome
+document.onkeydown=banBackSpace;
+function InitAjax()
+{
+　var ajax=false; 
+　try { 
+　　ajax = new ActiveXObject("Msxml2.XMLHTTP"); 
+　} catch (e) { 
+　　try { 
+　　　ajax = new ActiveXObject("Microsoft.XMLHTTP"); 
+　　} catch (E) { 
+　　　ajax = false; 
+　　} 
+　} 
+　if (!ajax && typeof XMLHttpRequest!='undefined') { 
+　　ajax = new XMLHttpRequest(); 
+　} 
+　return ajax;
+}
+function submit_save() {
+   form1.action = "monthtable_view.php";
+	 sending.style.display ="";
+	 sendingbg.style.display ="";
+	 form1.submit();
+}
+
+// -->
+</script>
+
+<BODY>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td colspan="2" >&nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">基本设置 --> 公众假期查看</td>
+    </tr>
+	<tr>
+	 <td height="10" align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+	</tr>
+</table>
+<center>
+  <form action="monthtable_view.php" method="post" name="form1">
+ 
+  <table width="700" class=InputFrameMain cellspacing="0" cellpadding="0" border="0">
+      <tbody>
+        <tr>
+          <td align="left" colspan="4">
+          <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+          <td align="center" class=inputtitle width="150">假期</td>
+          <td align="center" class=inputtitleright >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td align="center" ><font color="#FF0000" ><b>{error}</b></font></td>
+          </tr>
+          </table>
+          </td>
+        </tr>
+		<tr>
+		  <td height="23"  align="right"  class = titlefont>&nbsp;</td>
+		  <td align="left"  class = titlefont>按年份</td>
+		  <td height="13" align="right">&nbsp;</td>
+		  <td align="left">&nbsp;</td>
+	    </tr>
+		<tr>
+		  <td height="5" colspan="4" valign="top"><img src="{skin}shortline.jpg" ></td>
+	    </tr>
+		<tr>
+		  <td height="19" colspan="3" align="right"  class="form_label">年份：</td>
+		  <td width="566"> 
+          <select name="year">{year}</select>年</td>
+	    </tr>
+		<tr>
+		  <td  height="13" colspan="4" >&nbsp;</td>
+	    <tr>
+          <td  height="20" colspan="4" class=bottombotton><div align="center" >
+            <input type=button name=save class=buttonsmall value="查   询" style="font-size:9pt" onClick="javascript:submit_save()">
+          </div></td>
+    </table> 
+  </form>
+ <div id="sending" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在处理数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+</div>
+</center>
+</BODY>
+</HTML>

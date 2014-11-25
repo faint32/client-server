@@ -1,0 +1,122 @@
+<HTML><HEAD><TITLE>牌号商标设置</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<SCRIPT language=javascript src="../function/function.js"></SCRIPT>
+</HEAD>
+<script language=javascript>
+<!-- 
+
+
+
+var requestSubmitted = false;
+
+function submit_save(){
+   if(form1.name.value==""){
+	 	  alert("请输入品牌");
+	 	  form1.name.focus();
+	 	  return;
+	 }
+
+	 if(requestSubmitted == true){
+    alert("你已经提交，请等待一下");
+    return (false);
+   }
+   requestSubmitted = true;
+   
+   sending.style.display ="";
+	 sendingbg.style.display ="";
+	 form1.submit();
+}
+
+// -->
+</script>
+
+<BODY onload=input_focus() topmargin="0" leftMargin="2" width="100%">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+                 <td height="30" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	帮助设置</td>
+			<tr>
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+          </tr>	
+  </table>
+  <center>
+  <form action="" method="post" name="form1">
+    <input type=hidden name=toaction value="{toaction}">
+    <input type=hidden name=id value="{id}">
+ <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+      <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right">
+          <input type=button name=save32 class=button_new value="     帮助" AccessKey=h  onClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.style.backgroundImage='url({skin}new_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}new.jpg)'">
+          <input type=button name=save3 class=button_save value="     保存" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt" {dissave} onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+          <input class=button_delete name=end type=button value="     删除" AccessKey=d  onClick="javascript:submit_del()" style="font-size:9pt" {tijiao_dis} onMouseOver="this.style.backgroundImage='url({skin}delete_sel.jpg)'"  onClick="javascript:submit_del()">
+          <input type=button name=rst class=button_recovery value="     返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+        </div></td>
+        <td class=button_labelright></td>
+      </tr>
+    </table>
+    <table width="700" class=InputFrameMain cellspacing="0" cellpadding="0" border="0" >
+      <TBODY> 
+         <tr>
+          <td align="left" colspan="4">
+          <table width="700" cellspacing="0" cellpadding="0" border="0" >
+          <tr >
+          <td align="center" class=inputtitle width="150">资料输入</td>
+          <td align="center" class=inputtitleright >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td align="center" ><font color="#FF0000" ><b>{error}</b></font></td>
+          </tr>
+          </table>
+          </td>
+        </tr>
+		   <tr> 
+        <td colspan="4" height="10"></td>
+      </tr>
+      <tr> 
+        <td class=form_label width="100" height="30" align="right">帮助类型：</td>
+        <td height="30" align="left" width="250"> 
+          <input class=input type="text" name="name" size="20"  value="{name}">
+        <span class=form_label>*</span></td>
+        <td height="30" class=form_label width="100"></td>
+        <td height="30" align="left"width="250">
+        </td>
+	    </tr>
+     
+      </TBODY> 
+    </table>
+</form>
+<div id="sending" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingdel" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在删除数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+</div>
+<div id="helpid" STYLE="right: 1%; WIDTH: 450px; POSITION: absolute; TOP: 86px; HEIGHT: 0; display: none"> 
+ <div  align="left"   STYLE="position:absolute;left: 15px; top:15px;right:15px" >
+  牌号商标信息在建立商品信息时会使用上。<br><br>
+  操作：基本信息－牌号商标信息；<br><br>
+  保存(Alt+s)：添加新牌号商标信息和修改牌号商标信息；<br><br>
+  删除(Alt+d)：即删除不再使用的牌号商标信息；<br><br>
+  撤销(Alt+z)：撤销回去牌号商标没有修改的状态；<br><br>
+  返回(Alt+q)：返回牌号商标信息列表；<br><br>
+  帮助(Alt+h)：显示帮助信息；
+</div>
+</div>
+
+</center>
+</body>
+</html>
+

@@ -1,0 +1,150 @@
+<HTML>
+	<HEAD>
+		<TITLE>明盛网站</TITLE>
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<!-- Styles -->
+	<link rel="stylesheet" href="../css/styles.css">
+	<link rel="stylesheet" href="../css/custom.css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+	<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT> 
+	<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> 
+	<script type="text/javascript" language="javascript"
+			src="../include/jquery.dataTables.gb2312.js"></script>
+				</HEAD>
+					<!-- Scripts -->
+				 <script language="javascript"> 
+			$(document).ready(function() {
+			$.ajaxSetup ({cache: false });	   
+			var ajaxsource =$("ajaxsource").val();	
+			$('#basictable').dataTable({   
+			                 "sDom": '<"wrapper"flipt>rt<"bottom"ip><"clear">',
+				 "bStateSave": true,
+				  "aLengthMenu": [[5,10, 25, 50,600], [5,10, 25, 50,600]],
+				 "bLengthChange": true, 
+				 "bProcessing": true,        
+				 "iDisplayLength": 10,        
+			     "bServerSide":true,
+			     "sAjaxSource":ajaxsource,
+				 "sPaginationType": "full_numbers"			
+			
+			              });
+			
+			
+			
+			});
+			
+		</script> 
+
+	<BODY>
+		<div id="page">
+		<h4 class="icon forms">{menuname} <small></small></h4>
+
+			<table width="100%" border="0" cellspacing="0" cellpadding="0"
+				height="31">
+				<tr>
+					<td class=button_labelleft></td>
+					<td class=button_label><div align="left">
+							&nbsp; 
+						</div></td>
+					<td class=button_labelright></td>
+				</tr>
+			</table>
+			<!-- Wrapper -->
+			<form action="bangding.php" method="post" id="form3" name="form3">
+				<div class="wrapper">
+					<div class="panel">
+						<input class="input" type="hidden"
+							name="ajaxsource" id="ajaxsource" value="../ajaxread/readslotcardmoneysetlist.php">
+							
+						<fieldset class="form">
+							<table class="table_form">
+								<tr>
+									<td align="left">
+										<INPUT onClick="CheckAll(this)" type=checkbox
+											class=checkbox name=chkall>
+										全 选 
+									</td>
+									<td align="right">
+										<input type=button name=save32
+											class="btn btn-green" value="批量导入刷卡器" AccessKey=h
+											onClick="javascript:showinputpaycard()" style="font-size: 9pt">
+										<!-- <input type=button name=save32 class="btn btn-green" value="导入刷卡器资料"AccessKey=h onClick="javascript:inputfiledata()"style="font-size: 9pt"> 
+											<input type="button" id="z_save" class="btn btn-red" value="批量绑定网导" AccessKey=sonclick="bangding('saler')">  -->
+										<input type="reset" class="btn" value="批量绑定银行" AccessKey=q
+											onclick="bangding('bank')">
+										<input type="reset" class="btn"
+											value="删除" onClick="bangding('del')" AccessKey=q>
+									</td>
+								</tr>
+							</table>
+						</fieldset>
+					</div>
+					<div class="panel" id="showbasictable">
+						<table border="0" cellspacing="1" class="table" id="basictable">
+							<thead>
+								<tr>
+									<th rowspan="2">编号</th>
+									<th rowspan="2">商户类型</th>
+									<th rowspan="2">卡类型</th>
+									<th rowspan="2">到帐周期</th>
+									<th colspan="4">正常额度（万）</th>
+									<th colspan="2">审批额度（万）</th>
+									<th rowspan="2">单笔额度</th>
+									<th rowspan="2">操作</th>
+								</tr>
+								<tr>
+									<th>日额度</th>
+									<th>笔数/日</th>
+									<th>月额度</th>
+									<th>笔数/月</th>
+									<th>日额度</th>
+									<th>月额度</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan="12" class="dataTables_empty">加载数据中...</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<table border="0" cellspacing="1" align="center" class="table"
+						id="paycardinput" style="display: none; width: 100px;">
+						<thead>
+							<tr>
+								<td align="right">
+									<input type=button name=save32
+										class="btn btn-green" value="关闭" onClick="javascript:closeplinput()">
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									刷卡器设备号: 
+									<input type=text
+										name="startpaycardid" class="btn btn-green" value="">
+									至 
+									<input
+										type=text name="endpaycardid" class="btn btn-green" value="">
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									<input type=button name=save32
+										class="btn btn-green" value="保存"
+										onClick="javascript:plinputpaycard()">
+								</td>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</form>
+		</div>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

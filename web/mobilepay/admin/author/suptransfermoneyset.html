@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<HEAD>
+	<TITLE>转账还款设置</TITLE>
+	<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!-- Styles -->
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+		<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+		<link href="../colorbox/colorbox.css" rel="stylesheet" type="text/css">
+		<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT> <SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> <script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script> <script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script> <SCRIPT language=javascript src="../function/function.js"></SCRIPT> <script type="text/javascript" src="../js/author.js"></script> <script type="text/javascript" src="../js/global.js"></script> <script type="text/javascript" src="../colorbox/jquery.colorbox.js"></script>
+<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+		<script language=javascript>
+			$(document).ready(function() {  
+				var modename = $("input[name='mode'][checked]").val();
+				
+		        switch(modename)
+		        {
+		        	case "fix":
+		        	$(".showper").hide();
+		        	$(".showfix").show();
+		        	    
+		        	break;
+		        	default:
+		        	
+		        	$(".showper").show();
+		        	//$("#fixdis").remove();//  
+		        	$(".showfix").hide();
+		        	break;
+		        }
+		         $("input[name='mode']").live('change', function() {   //保存seesionid 
+		         	var mode = $(this).val();
+			
+		        switch(mode)
+		        {
+		        	case "fix":
+		        		
+		        	$(".showper").hide();
+		        	$(".showfix").show();
+		        	break;
+		        	default:
+		        	$(".showper").show();
+		        	$(".showfix").hide();
+		        	break;
+		        }
+			 	});
+				});
+		var requestSubmitted = false;
+		function submit_save(){
+			if(form1.slotcardmoney.value==""){
+			 	  alert("POS刷卡金额不能为空！");
+			 	  form1.auindustryid.focus();
+			 	  return;
+			  }
+			if(form1.dayslotcardcount.value==""){
+			 	  alert("POS刷卡次数不能为空！");
+			 	  form1.no.focus();
+			 	  return;
+			  }  
+		    if (confirm("是否保存？保存后规则将不能恢复！")) {
+				 showtips('正在保存数据，请稍候...');  
+				requestSubmitted = true; 
+				form1.submit();
+			}
+		}
+			function submit_del(){
+					if (confirm("是否删除？删除后规则将不能恢复！")) {
+				 showtips('正在删除数据，请稍候...');  
+					form1.action.value="delete";
+				    requestSubmitted = true; 
+					form1.submit();
+					}
+				}
+	</script> 
+</HEAD>
+<BODY onload=input_focus() topmargin="0" leftMargin="2" width="100%">
+	<div id="page" class="page">
+		<h4 class="icon forms">{menuname} <small></small></h4>
+
+		<div id="top">
+			<ul id="menu">
+				<li>
+					<a href="#" AccessKey='s' onClick="javascript:submit_save()"
+						title='保存数据(ALT+s)'>保存</a>
+				</li>
+				<!--
+				<li class="dropdown">
+					<a href="#"><span class="caret">
+						</span></a>-->
+                <li>
+					<a href="#" AccessKey='d' onClick="javascript:submit_del()">删除</a>
+				</li>
+				<li>
+					<a href="#" AccessKey='q' onClick="javascript:location='{gotourl}'">返回</a>
+				</li>
+			</ul>
+		</div>
+		<!-- Wrapper -->
+		<div class="wrapper">
+			<div class="panel">
+				<form action="" method="post" listid="form3" name="form1">
+					<input class="input" type="hidden" name="listid" value="{listid}" id="listid">
+					<input class="input" type="hidden" name="action" value="{action}" id="action">
+					<div id="showinfo" class="box box-info" style="display:{show_error}">
+						<p>{error}</p>
+						<a class="close">&times;</a>
+					</div>
+					<fieldset class="form">
+						<legend>
+							转账还款设置 
+							<small>&nbsp;可以设置为百分比也可以是固定值</small>
+						</legend>
+						<table class="table_form">
+							<colgroup><col class="col-name" />
+								<col class="col-value" /></colgroup>
+							<tr>
+								<th>POS刷卡金额：</th>
+								<td>
+									<input class="input" id="slotcardmoney" type="text" name="slotcardmoney" size="30" maxlength="40" value="{slotcardmoney}" style="ime-mode:disabled" onKeyPress="if (event.keyCode < 40 || event.keyCode == 44 || event.keyCode > 57 )event.returnValue = false;">元/笔/天
+								</td>
+								</tr>
+							<tr>
+								<th>POS刷卡次数：</th>
+								<td>
+									<input class="input" id="dayslotcardcount" type="text" name="dayslotcardcount" size="30" maxlength="40" value="{dayslotcardcount}" style="ime-mode:disabled" onKeyPress="if (event.keyCode < 40 || event.keyCode == 44 || event.keyCode > 57 )event.returnValue = false;">次/日
+								</td>
+							</tr>
+                            <tr>
+								<th>POS转账月限额：</th>
+								<td>
+									<input class="input" id="datemaxcount" type="text" name="datemaxcount" size="30" maxlength="40" value="{datemaxcount}" style="ime-mode:disabled" onKeyPress="if (event.keyCode < 40 || event.keyCode == 44 || event.keyCode > 57 )event.returnValue = false;"><font color="#006600">限额包括转账汇款+信用卡还款</font>
+								</td>
+							</tr>
+							<tr>
+								<th>到帐周期：</th>
+								<td>
+									<select name="arriveid">{arriveid}</select>
+								</td>
+								
+							</tr>
+							<tr>
+								<th>费率扣款方向：</th>
+								<td>
+									<input type="radio" name="defeedirct" value ='f' {checkdefeedirct1}> 付款方 
+									<input type="radio" name="defeedirct" value ='s' {checkdefeedirct2} disabled> 收款方 
+								</td>
+								
+							</tr>
+							<tr>
+								<th>费率类型：</th>
+								<td>
+									<input type="radio" name="mode" value ='fix' {checkmode1}> 固定费率 
+									<input type="radio" name="mode" value ='per' {checkmode2}> 浮动费率 
+								</td>
+								
+							</tr>
+							<tr style="display:none;"  class="showfix">
+								<th>固定手续费：</th>
+								<td>
+									<input class="input" id="perfee" type="text" name="perfee" size="30" maxlength="40" value="{perfee}" style="ime-mode:disabled" onKeyPress="if (event.keyCode < 40 || event.keyCode == 44 || event.keyCode > 57 )event.returnValue = false;">
+									元/笔  
+								</td>
+							</tr>
+							<tr style="display:none;"  class="showper">
+								<th>最低费率额：</th>
+								<td>
+									<input class="input" id="minperfee" type="text" name="minperfee" size="30" maxlength="40" value="{minperfee}" style="ime-mode:disabled" onKeyPress="if (event.keyCode < 40 || event.keyCode == 44 || event.keyCode > 57 )event.returnValue = false;">
+								</td>
+							</tr>
+							<tr style="display:none;"  class="showper">
+								<th>最高费率额：</th>
+								<td>
+									<input class="input" id="maxperfee" type="text" name="maxperfee" size="30" maxlength="40" value="{maxperfee}" style="ime-mode:disabled" onKeyPress="if (event.keyCode < 40 || event.keyCode == 44 || event.keyCode > 57 )event.returnValue = false;">
+								</td>
+							</tr>
+							<tr style="display:none;" id="perdis" class="showper">
+								<th>收取费率：</th>
+								<td>
+									<input class="input" id="sqperfee" type="text" name="sqperfee" size="30" maxlength="40" value="{sqperfee}" style="ime-mode:disabled" onKeyPress="if (event.keyCode < 40 || event.keyCode == 44 || event.keyCode > 57 )event.returnValue = false;">% 
+								</td>
+							</tr>
+						</table>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+{showtips}	
+</div>
+{showeditdiv}
+</BODY>
+</HTML> 

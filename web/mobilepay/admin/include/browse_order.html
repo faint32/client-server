@@ -1,0 +1,496 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="refresh" CONTENT="300">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<SCRIPT language=javascript src="../include/dateobject.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/datepicker.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+<SCRIPT language=JavaScript>
+   var tempurl = "{url}" ;
+</SCRIPT>
+<script src="../include/browse.js" type="text/javascript" language="javascript"></script>
+<SCRIPT language="JavaScript" src="../include/magicToolTip.js"></SCRIPT>
+
+ <script type="text/javascript">
+        var docEle = function() {
+            return document.getElementById(arguments[0]) || false;
+        }
+        
+		function openNewDiv(_id) {
+		      
+		      var postStr = "";
+　            //需要进行Ajax的URL地址
+　            var url = "../order/checksh.php";
+　            //实例化Ajax对象
+　            var ajax = InitAjax();
+　            //使用POST方式进行请求
+　            ajax.open("POST", url, true); 
+              //定义传输的文件HTTP头信息
+　            ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+　            //发送POST数据
+　            ajax.send(postStr);
+　            //获取执行状态
+　            ajax.onreadystatechange = function() { 
+　            //如果执行是状态正常，那么就把返回的内容赋值给上面指定的层
+　              if(ajax.readyState == 4 && ajax.status == 200){
+	              if(ajax.responseText == 1){
+				    openNewDiv2(_id);
+				  } 
+　              }
+　            }
+			//openNewDiv2(_id);
+		}
+		
+		
+        function openNewDiv2(_id) {
+            var m = "mask";
+            if (docEle(_id)) document.body.removeChild(docEle(_id));
+            if (docEle(m)) document.body.removeChild(docEle(m));
+
+            //mask遮罩层
+            var newMask = document.createElement("div");
+            newMask.id = m;
+            newMask.style.position = "absolute";
+            newMask.style.zIndex = "1";
+            _scrollWidth = Math.max(document.body.scrollWidth, document.documentElement.scrollWidth);
+            _scrollHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+            newMask.style.width = _scrollWidth + "px";
+            newMask.style.height = _scrollHeight + "px";
+            newMask.style.top = "0px";
+            newMask.style.left = "0px";
+            newMask.style.background = "#33393C";
+            newMask.style.filter = "alpha(opacity=10)";
+            newMask.style.opacity = "0.20";
+            document.body.appendChild(newMask);
+
+            //新弹出层
+            var newDiv = document.createElement("div");
+            newDiv.id = _id;
+            newDiv.style.position = "absolute";
+            newDiv.style.zIndex = "9999";
+            newDivWidth = 1000;
+            newDivHeight = 500;
+            newDiv.style.width = newDivWidth + "px";
+            newDiv.style.height = newDivHeight + "px";
+            newDiv.style.top = (document.body.scrollTop+20 + document.body.clientHeight / 2 - newDivHeight / 2) + "px";
+            newDiv.style.left = (document.body.scrollLeft + document.body.clientWidth / 2 - newDivWidth / 2) + "px";
+            newDiv.style.background = "#EFEFEF";
+            newDiv.style.border = "1px solid #860001";
+            newDiv.style.padding = "5px";
+            newDiv.innerHTML = "<IFRAME id=carnoc style='Z-INDEX: 2; VISIBILITY: inherit; WIDTH: 98%; HEIGHT:100%' name=carnoc src='shlist.php' frameBorder=0 scrolling=yes></IFRAME>";
+            document.body.appendChild(newDiv);
+
+            //弹出层滚动居中
+
+            function newDivCenter() {
+                newDiv.style.top = (document.body.scrollTop+20 + document.body.clientHeight / 2 - newDivHeight / 2) + "px";
+                newDiv.style.left = (document.body.scrollLeft + document.body.clientWidth / 2 - newDivWidth / 2) + "px";
+            }
+            if (document.all) {
+                window.attachEvent("onscroll", newDivCenter);
+            }
+            else {
+                window.addEventListener('scroll', newDivCenter, false);
+            }
+
+            //关闭新图层和mask遮罩层
+
+            var newA = document.createElement("a");
+            newA.href = "#";
+            newA.innerHTML = "<div style='top:-20px;z-index:9999;position:absolute; cursor:pointer'><b>关闭</b></div>";
+            newA.onclick = function() {
+                if (document.all) {
+                    window.detachEvent("onscroll", newDivCenter);
+                }
+                else {
+                    window.removeEventListener('scroll', newDivCenter, false);
+                }
+                document.body.removeChild(docEle(_id));
+                document.body.removeChild(docEle(m));
+                return false;
+            }
+            newDiv.appendChild(newA);
+        }
+</script>
+
+
+<style type="text/css">
+<!--
+.flat_input {  border: #546485; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+findbox_close {  background-image: url({skin}images/browse_findbox_close.gif); height: 30px; width: 30px}
+.findbox_close { border: 0px #546485 none; background-image: url({skin}guanbi.gif); height: 30px; width: 30px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px}
+tr td:hover{font-weight:bold; font-size:14px;}
+-->
+</style>
+</HEAD>
+
+<body  text="#000000" topmargin="0" leftMargin="2" width="100%" onLoad="return selectit()">
+ <form id=form1 name=form1 action="" method=post>
+ <input type=hidden name=recodeto  value="{recodeto}">
+ <input type=hidden name=recodeform value="{recodeform}">
+ <DIV>
+  
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td height="30" valign="middle" class="pagetitle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	<span>{prglist}</span>            </td>
+      </tr>
+      <tr>
+         <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+      </tr>
+      <tr>
+         <td align="left" height="3"></td>
+      </tr>
+    <tr> 
+       
+      <td height="34" align="right"> 
+                <table class=tabletoolbar cellspacing=0 cellpadding=0 width="100%" align=center border=0>
+                  <input type="hidden" name="now" value="{nowpage}">
+                  <input type=hidden name=url value={url}>
+                  <!--2007-5-8日去掉<input type=hidden name=action value="">-->
+                  <input type=hidden name=order value={order}>
+                  <input type="hidden" name="upordown" value="{upordown}">
+                  {showhidden}   <!-----2005-10-31------->
+                  <tr valign=center> 
+                    <td valign=bottom align=left> 
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+                    <tr>
+                    <td class=button_labelleft></td>
+                    <td  class=button_label>&nbsp;&nbsp;
+                     
+                      <span style="display:{disnew}"><span onMouseover="ddrivetip('新增资料',50)"; onMouseout="hideddrivetip()">
+                      <button class=button_new onClick="javascript:newdata('{shownew}')" AccessKey=n name=thenew  onmouseover="this.style.backgroundImage='url({skin}new_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}new.jpg)'" >&nbsp;&nbsp;&nbsp;&nbsp;新增</button></span></span>
+					            <span style="display:{disedit}"><span onMouseover="ddrivetip('{editname}所选的打勾资料,在表格左上处打勾可以连续{editname}',50)"; onMouseout="hideddrivetip()">
+                      <button class=button_edit onClick="javascript:editdata('{showedit}')" AccessKey=e name=theedit  onmouseover="this.style.backgroundImage='url({skin}edit_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}edit.jpg)'" >&nbsp;&nbsp;&nbsp;&nbsp;{editname}</button></span></span>
+					            <span style="display:{disdel}"><span onMouseover="ddrivetip('{delname}所选的打勾数据，在表格左上处打勾可以全部{delname}，绑定的数据不可{delname}！',100)"; onMouseout="hideddrivetip()">
+                      <button class=button_delete onClick="javascript:submit_del()" AccessKey=d name=thedel onMouseOver="this.style.backgroundImage='url({skin}delete_sel.jpg)'"  onClick="javascript:submit_del()">&nbsp;&nbsp;&nbsp;&nbsp;{delname}</button> </span> </span>
+                      <span style="display:{disinputfile}"><span onMouseover="ddrivetip('批量导入数据，可以导入文本文档和excel文件',100)"; onMouseout="hideddrivetip()">
+                      <button class=button_infile onClick="javascript:inputfiledata('{inputfile}')" AccessKey=i name=theinputfile  onmouseover="this.style.backgroundImage='url({skin}infile_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}infile.jpg)'">&nbsp;&nbsp;&nbsp;导入文件</button></span></span> 
+                      <span style="display:{disoutexcle}"><span onMouseover="ddrivetip('把数据导出到excel表格里',100)"; onMouseout="hideddrivetip()">
+                      <button class=button_outexcel onClick="javascript:openexcledata()" AccessKey=o name=theouttoexcle  onmouseover="this.style.backgroundImage='url({skin}outexcel_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}outexcel.jpg)'">&nbsp;&nbsp;&nbsp;导出excel</button></span></span> 
+                      <span style="display:{dis_collectdata}"><span onMouseover="ddrivetip('汇总单据金额，汇总出来的数据是不计算红字反冲单据的！',100)"; onMouseout="hideddrivetip()">
+                      <button class=button_save onClick="javascript:submit_collect()"  name=thecollect onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">&nbsp;&nbsp;&nbsp;&nbsp;汇总</button></span></span>
+                      <span onMouseover="ddrivetip('查询你所需要的数据',100)"; onMouseout="hideddrivetip()"><button class=button_find onClick="javascript:mainfind()" AccessKey=f name=thefind onMouseOver="this.style.backgroundImage='url({skin}find_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}find.jpg)'" >&nbsp;&nbsp;&nbsp;&nbsp;查询</button></span> 
+					            <input type=button name=save32 class=button_new value="     帮助" AccessKey=h  onClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.style.backgroundImage='url({skin}new_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}new.jpg)'"></span>
+					            <span style="display:{disoutprint}"><span onMouseover="ddrivetip('把所需要打印的数据打印出来',100)"; onMouseout="hideddrivetip()">
+                      <button class=button_outexcel onClick="javascript:openprintdata()" AccessKey=r name=theouttoprint  onmouseover="this.style.backgroundImage='url({skin}outexcel_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}outexcel.jpg)'">&nbsp;&nbsp;&nbsp;打印数据</button></span></span>&nbsp;&nbsp;                      </td>
+                    <td class=button_label>
+                      <span style="display:{displaysel}">
+                      <select name="seldofile" style="display:{displaysel}" onChange="selecl_file()">
+                       <option value="">{firstval}</option>
+                    	 {seldofile}
+                      </select></span>
+                      &nbsp;&nbsp;&nbsp; </td>
+                      <td class="button_label" style="display:{displaybackbutton}">
+                      <span onMouseover="ddrivetip('返回上级列表',100)"; onMouseout="hideddrivetip()">
+                      <input type=button name=rst class=button_recovery value="     返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{backuppageurl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+                      </span></td>
+                    <td class=button_labelright></td>
+                   </tr>
+                   </table>                    </td>
+                    </tr>
+                    <tr valign=middle>
+                    <td align=left colspan=2 vAlign="middle" height="5">
+                    </td>
+                  </tr>
+				  <tr><td align="right"><b><font color="#FF0000">! </b></font>快速查询：<select name="whatdofind[]" id="whatdofindq" class="flat_input" style=" font-size:12px">
+              <option value="">-- 请选择查询类型 --</option>
+                        {whatdofind}                   
+              </select>&nbsp;<input type=hidden name="howdofind[]" id="howdofindq" value="like"  >
+             <input type="text" name="findwhat[]" id="findwhatq" size=20 style=" font-size:12px" onKeyPress="if (event.keyCode == 10 || event.keyCode == 13 ) cannotfind();" title="输入关键字后,按ENTER或点击“确定”进行查询!" >&nbsp;&nbsp;<input id="buttonq" type=button class=buttonsmall accesskey=s onClick="javascript:cannotfind();" value="确定" ></td></tr>
+                  <tr valign=middle>
+                   <td align=left colspan=2 vAlign="middle"  >
+                      <label class="browse_pagelable" ><b>&nbsp;共&nbsp;{pages}&nbsp;页</b> 
+                      <span onMouseover="ddrivetip('转换到第几页，在右边的输入框输入页数后，点击“转到”按钮，就可以转到你所要的页面里！',100)"; onMouseout="hideddrivetip()">
+                      <input type=button value="" class=button_go onClick='viewPage(this.form.Page.value)' name="button"></span>
+                      <input type=text class="input" name=Page size=3 maxlength=10  value='{nowpage}' style="height:17;ime-mode:disabled" onKeyPress="if ((event.keyCode < 48 && event.keyCode != 46) || event.keyCode > 57 ) event.returnValue = false;if (event.keyCode == 10 || event.keyCode == 13 ) viewPage(this.form.Page.value)" title = "输入后直接按回车与点击“转到”同等效果!"><label class="browse_pagelable" ><b>&nbsp; 页</b> 
+                      {showviewpage}
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    </td>
+                  </tr>
+                </table>        </td>
+    </tr>
+  </table>
+  {findsay} </DIV>
+  <TABLE style="display:{isshowcollecttr};BORDER-RIGHT: #6E7E98 1px solid;BORDER-LEFT: #6E7E98 1px solid; BORDER-BOTTOM: #6E7E98 1px solid; BORDER-COLLAPSE: collapse; " bgcolor="lightyellow" cellSpacing=0 cellPadding=0 width="99%" align=center border=0 height="26">
+  <TBODY> 
+  <TR vAlign=center>
+    <TD   align=left >&nbsp;&nbsp;注意：汇总出来的数据没有汇总红字反冲的单据。
+    </TD>
+    <TD  align=right >&nbsp;&nbsp;{browse_collectdata}&nbsp;&nbsp;
+    </TD>
+  </TR>
+</TBODY></TABLE>
+<TABLE class=tableframe style=word-break:break-all width="99%" align=center id="contenttableid">
+  <TBODY> 
+  <TR class=listtitle>
+    <TD class=listcelltitle align=middle {showcountforlist}><INPUT onclick=CheckAll(this.form) type=checkbox value=on name=chkall ></TD>
+<!-- BEGIN TITLEBK -->
+   <TD {cols} class={titlecss} noWrap align=middle height="25"><div onMouseover="ddrivetip('点击标题可以对列表进行升序，降序，重新排序',100)"; onMouseout="hideddrivetip()">{title}</div></TD>
+<!-- END TITLEBK -->
+  </TR>
+<!-- BEGIN DATABK -->
+<TR class=listrow1 onMouseOver="changecolor(this,'#fdfdbd','{labelnum}','#ffeecc')" onMouseOut="changecolor(this,'{bgcolor}','{labelnum}','#FFEA96')" bgcolor="{bgcolor}" onClick="changecolor(this,'{bgcolor}','{labelnum}','#FFEA96');">
+	<!--<TR class=listrow1 onMouseOver="this.style.backgroundColor='#DAE2ED';" onMouseOut="this.style.backgroundColor='{bgcolor}'" bgcolor="{bgcolor}" onclick="this.style.backgroundColor='#99FF33';">-->
+		{xi}
+	</TR>
+	{td_content}
+<!-- END DATABK -->  
+</TBODY></TABLE>
+<TABLE style="display:{isshowcollecttr};BORDER-RIGHT: #6E7E98 1px solid;BORDER-LEFT: #6E7E98 1px solid; BORDER-BOTTOM: #6E7E98 1px solid; BORDER-COLLAPSE: collapse; " bgcolor="lightyellow" cellSpacing=0 cellPadding=0 width="99%" align=center border=0 height="26">
+  <TBODY> 
+  <TR vAlign=center>
+    <TD   align=left >&nbsp;&nbsp;注意：汇总出来的数据没有汇总红字反冲的单据。
+    </TD>
+    <TD  align=right >&nbsp;&nbsp;{browse_collectdata}&nbsp;&nbsp;
+    </TD>
+  </TR>
+</TBODY></TABLE>
+<TABLE  class=tableend cellSpacing=0 cellPadding=0 width="99%" align=center border=0 height="26">
+  <TBODY> 
+  <TR vAlign=center>
+    <TD  class=listtail align=left >&nbsp;&nbsp;页码：{nowpage}/{pages}页&nbsp;&nbsp;
+      共{total}条记录  本页显示从第{recodeform}条到第{recodeto}条&nbsp;
+      </TD>
+      <a name="inputpro"> <TD  class=listtail  align=right >
+      每页显示
+      <INPUT maxLength=5 size=4 name=pagerows value={rows} class="input" onKeyPress="if ((event.keyCode < 48 && event.keyCode != 46) || event.keyCode > 57 ) event.returnValue = false;if (event.keyCode == 10 || event.keyCode == 13 ) chgrows()" style="ime-mode:disabled" title = "输入后直接按回车与点击“转换”同等效果!">&nbsp;条记录
+      <span onMouseover="ddrivetip('可以增减显示你所浏览的条数（上限为99条）；增减为本次操作，下次进入同样为你设定的固定值；如需更改固定值在系统管理中的“个人设置”！',200)"; onMouseout="hideddrivetip()">
+      <input type=button value="" class=button_changesmall onclick='chgrows()' ></span>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </TD></a>
+  </TR>
+</TBODY></TABLE>
+<center>
+<div id="exceltype" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 20%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=0 cellpadding=0  class="InputFrameMain">
+          <tr> 
+               <td   align=center>
+               本页数据：<input type="radio" name="outputexceldate" value="0">
+               </td>
+          </tr>
+          <tr> 
+               <td   align=center>
+               全部数据：<input type="radio" name="outputexceldate" value="1" checked>
+               </td>
+          </tr>
+          <tr> 
+               <td   align=center class="bottombotton">
+               <INPUT class=buttonsmall onClick="javascript:showexcledata()" type=button value="确定" name="outputexceldates">
+               <INPUT class=buttonsmall onClick="javascript:closeexceldate()" type=button value="取消" name="closeexceldates">
+               </td>
+          </tr>
+       </table>
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+</div>
+<div id="excelselect" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 20%; HEIGHT: 95%; z-index:105; display: none"> 
+       <table width=400 border=0 cellspacing=0 cellpadding=0  class="InputFrameMain">
+          <tr> <td  height=5px ></td>
+          </tr>
+		  <tr> <td   align=left>&nbsp;&nbsp;打勾的属性代表导出。</td>
+          </tr>
+          <!-- BEGIN OUTFIELD -->
+          <tr> 
+               <td align=left>&nbsp;&nbsp;<INPUT type="checkbox" value="{fieldvalue}^{fieldname}" name="outputfield" {ischeckfield}> 数据:{fieldname} 
+               </td>
+          </tr>
+          <!-- END OUTFIELD -->
+          <tr> 
+               <td align=center class="bottombotton">
+               <INPUT class=buttonsmall onClick="javascript:outtoexcledata('{outtoexcle}')" type=button value="导出" name="outputexceldates">
+               <INPUT class=buttonsmall onClick="javascript:closeexcelselect()" type=button value="取消" name="closeexceldates">
+               </td>
+          </tr>
+       </table>
+</div>
+<div id="printtype" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 20%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=0 cellpadding=0  class="InputFrameMain">
+          <tr> 
+               <td   align=center>
+               本页数据：<input type="radio" name="outputprintdate" value="0">
+               </td>
+          </tr>
+          <tr> 
+               <td   align=center>
+               全部数据：<input type="radio" name="outputprintdate" value="1" checked>
+               </td>
+          </tr>
+          <tr> 
+               <td   align=center class="bottombotton">
+               <INPUT class=buttonsmall onClick="javascript:showprintdata()" type=button value="确定" name="outputprintdates">
+               <INPUT class=buttonsmall onClick="javascript:closeprintdate()" type=button value="取消" name="closeprintdates">
+               </td>
+          </tr>
+       </table>
+</div>
+<div id="printselect" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 20%; HEIGHT: 95%; z-index:105; display: none"> 
+       <table width=400 border=0 cellspacing=0 cellpadding=0  class="InputFrameMain">
+          <tr> <td  height=5px ></td>
+          </tr>
+		  <tr> <td   align=left>&nbsp;&nbsp;打勾的属性代表导出。</td>
+          </tr>
+          <!-- BEGIN PRINTFIELD -->
+          <tr> 
+               <td align=left>&nbsp;&nbsp;<INPUT type="checkbox" value="{printfieldvalue}^{printfieldname}" name="printoutputfield" {printischeckfield}> 数据:{printfieldname} 
+               </td>
+          </tr>
+          <!-- END PRINTFIELD -->
+          <tr> 
+               <td align=center class="bottombotton">
+               <INPUT class=buttonsmall onClick="javascript:outtoprintdata('{outtoprint}')" type=button value="打印" name="outputprintdates">
+               <INPUT class=buttonsmall onClick="javascript:closeprintselect()" type=button value="取消" name="closeprintdates">
+               </td>
+          </tr>
+       </table>
+</div>
+</center>
+<TABLE id=layermove style="Z-INDEX: 1; VISIBILITY: hidden; LEFT: 90px;WIDTH: 550px; POSITION: absolute; TOP: 227px;
+	 HEIGHT: 180px"  height=130 cellSpacing=0 cellPadding=0 width=243 border=0 class=tableframe>
+  <TBODY> 
+  <TR> 
+    <td align="left" valign="top" > 
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0 style="" >
+        <tr > 
+          <TD id="tdmove" title="移动" style="CURSOR: move" width="80" class="inputtitle" align=center> 
+             查询
+          </TD>
+          <TD id="tdmove" title="移动" style="CURSOR: move" class="inputtitleright" width="24"> 
+          </td>
+           <td style="CURSOR: move" id="tdmove" title="移动" class="titlefont">
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;查询条件
+            	<input type="radio" name="allcondition" value="1" {isallcheck}>满足所有的条件&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            	<input type="radio" name="allcondition" value="0" {iseithercheck}>满足任一条件
+          </TD>
+        </tr>
+      </TABLE>
+    </td>
+  </TR>
+  <TR> 
+      <TD vAlign=top height=* align="center" > 
+        <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+          <TBODY> 
+        <tr class="titlefont"> 
+            <td colspan=3 align="center" height=10 ></td>
+        </tr>
+        <tr class="titlefont"> 
+            <td width=40% align="center" class="titlefont">查找类型</td>
+            <td width=20% align="center" class="titlefont">查找方式</td>
+            <td width=40% align="center" class="titlefont">查找内容</td>
+        </tr>
+        <!-- BEGIN FINDBK -->
+        <tr class="titlefont"> 
+            <td width=100% align="right" class="titlefont"> 
+              <select name="whatdofind[]" id="whatdofind" style="width=80%" class="flat_input" >
+              <option value=""></option>
+                        {whatdofind}                   
+              </select>&nbsp;
+            </td>
+            <td width=20% align="center" class="titlefont"> 
+              <select name="howdofind[]" id="howdofind" class="flat_input" >
+                <option value=""></option>
+                    	{howdofind}
+             </select>&nbsp;
+            </td>
+            <td width=100% > 
+              <input type="text" name="findwhat[]" id="findwhat" size=35 value="{findwhat}" class="flat_input" onKeyPress="if (event.keyCode == 10 || event.keyCode == 13 ) dofind();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </td>
+        </tr>
+        <!-- END FINDBK -->
+        </TBODY> 
+      </TABLE>
+    </TD>
+  </TR>
+  <tr class="titlefont"> 
+      <td class="titlefont">&nbsp;</td>
+   </tr>
+  <TR vAlign=top>
+    <TD align=center valign="middle" height="40" class="bottombotton"> 
+      <INPUT class=buttonsmall onClick="javascript:dofind()" AccessKey=s type=button value="确定" >
+      &nbsp;&nbsp;<input class=buttonsmall onClick="javascript:cannotfind()" AccessKey=c type=button value="清空" >
+      &nbsp;&nbsp;<input class=buttonsmall onClick="javascript:hiddenfind()" AccessKey=z type=button value="取消" name="reset">
+	  
+    </TD>
+  </TR>
+  </TBODY>
+</TABLE>
+    <div id="itemMenu" style="display:none;">
+           <table width="100"  bgcolor="#f4f4f4" style="border: 1px solid #999999;font-size:12px;" cellspacing="0">
+                  <tr>
+                      <td bgcolor="#eaeaea" style="cursor:default;border-bottom: 1px solid #999999;color:#333333" height="18" align="center" valign="bottom"  ><b>
+                      功能菜单</b>
+                      </td>
+                  </tr>
+				   <tr>
+                      <td style="cursor:default;" height="18" align="left" style="display:{disnew}" onClick="javascript:parent.newdata('{shownew}')" >&nbsp;
+                      新增
+                      </td>
+                  </tr>
+				  <tr>
+                      <td style="cursor:default;" height="18" align="left"  style="display:{disedit}" onclick = "parent.editdata('{showedit}')" >&nbsp;
+                      修改
+                      </td>
+                  </tr>
+                  <tr>
+                     <td style="cursor:default;" height="18" align="left"  style="display:{disdel}" onClick="javascript:parent.submit_del()" >&nbsp;
+                     删除
+                      </td>
+                 </tr>
+				 <tr>
+                     <td style="cursor:default; " height="18" align="left" style="display:{disinputfile}" onClick="javascript:parent.inputfiledata('{inputfile}')"  >&nbsp;
+                     导入文件
+                      </td>
+                 </tr>
+				 <tr>
+                     <td style="cursor:default; " height="18" align="left"  style="display:{disoutexcle}" onClick="javascript:parent.openexcledata()" >&nbsp;
+                     导出EXCEL
+                     </td>
+                 </tr>
+				 <tr>
+                     <td style="cursor:default;" height="18" align="left"  onClick="javascript:parent.mainfind()" >&nbsp;
+                     查询
+                      </td>
+                 </tr>
+				 <tr>
+                     <td style="cursor:default;" height="18" align="left"  onClick="javascript:parent.help()" >&nbsp;
+                     帮助
+                      </td>
+                 </tr>
+           <tr>
+                     <td  style="cursor:default;"  height="18" align="left"  onClick="parent.document.execCommand('Copy','false',null)">&nbsp;
+                     复制文字
+                      </td>
+                 </tr>
+				 
+				 				  <tr>
+                     <td style="cursor:default;" height="18" align="left"  onClick="parent.browsezhantie()" >&nbsp;
+                     粘贴文字
+                      </td>
+                 </tr>
+           </table>
+    </div> 
+</FORM>
+
+
+
+<div id="helpid" STYLE="left: 1%; WIDTH: 500px; POSITION: absolute; TOP: 70px; HEIGHT: 0; display: none;"> 
+ <div  align="left"   STYLE="position:absolute;left: 15px; top:15px;right:15px" >
+  帮助(Alt+h)：显示帮助信息；<br><br>
+  查询(Alt+f)：查询所要显示的相关内容；<br><br>
+  新增(Alt+n)：连接到新增页面中；<br><br>
+  删除(Alt+d)：即删除不再使用的相关信息；<br><br>
+  导入文件(Alt+i)：导入所需要的相关信息。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  导入文件类型分为：excel、csv格式、文本文档；<br><br>
+  导出excel(Alt+o)：把当前页面的数据或者全部数据导出到excel表格当中；<br><br>
+  每页显示多少条数据：默认是在系统管理中的个人设置中修改默认浏览数量，也可以直接在输入框里输入记录数，最大99条，然后按下转换按钮，系统就会显示你需要浏览的数量。<br><br>
+  在转到几页的输入款输入想要转到的页数，然后按下转到按钮，系统就会跳转到你想要看第几页<br><br>
+  点击标题可以对列表进行升序，降序排序。在本页新增、修改操作后，排序不变。
+</div>
+</div>
+</BODY></HTML>

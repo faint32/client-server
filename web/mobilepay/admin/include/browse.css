@@ -1,0 +1,103 @@
+.whitefont { font-size: 12px; color: white; background-color:#6E7E98; text-decoration: none; padding: 3px 0px 2px 0px}
+table { font-family: Verdana, Arial, Helvetica, sans-serif,宋体; font-size: 9pt}
+TABLE.tableframe {
+   BORDER-RIGHT: #d4d4d4 1px solid; BORDER-TOP: #d4d4d4 1px solid; MARGIN-TOP: 5px;
+	 BORDER-LEFT: #d4d4d4 1px solid; BORDER-BOTTOM: #d4d4d4 1px solid; BORDER-COLLAPSE: collapse; 
+	 BACKGROUND-COLOR: #ffffff
+}
+.Listtitle {
+	  FONT-SIZE: 9pt; BACKGROUND: #eaeaea; COLOR: #333333;
+	 BORDER-BOTTOM: #6E7E98 1px solid; FONT-FAMILY: 宋体; HEIGHT: 20px; TEXT-ALIGN: center;
+	 background-image: url(browse1.jpg);
+}
+
+.tdcolor{BACKGROUND-COLOR: #ffffff;}
+
+.tdcolorred{BACKGROUND-COLOR: #ffffff;
+            color: #ff0000; 
+	          font-size: 12px; 
+	           line-height: 200%; 
+             vertical-align: middle
+             }
+
+.tableborder {
+	 BACKGROUND-COLOR: #d4d4d4;
+}
+.inputbox
+{
+      color:#666;border:solid 1px #999;padding:0px 0px 0px 0px;
+	  font-size:9px;
+}
+
+A:visited{TEXT-DECORATION: none;Color:#333333}
+A:active{TEXT-DECORATION: none;Color:#333333}
+A:hover{TEXT-DECORATION: none;Color:#ff0000}
+A:link{text-decoration: none;Color:#333333}
+TABLE.tableend {
+	BORDER-RIGHT: #d4d4d4 1px solid; 
+	 BORDER-LEFT: #d4d4d4 1px solid; BORDER-BOTTOM: #d4d4d4 1px solid; BORDER-COLLAPSE: collapse; 
+	 BACKGROUND-COLOR: #ffffff
+}
+TD.listtai2 {
+	FONT-SIZE: 9pt; BACKGROUND: #ffffee; BORDER-BOTTOM: #d4d4d4 1px solid;HEIGHT: 18px;
+}
+TD.listtail {
+	FONT-SIZE: 9pt; BACKGROUND: #eaeaea; BORDER-BOTTOM: #d4d4d4 1px solid;HEIGHT: 18px;
+	COLOR: #000000;
+}
+TR.Listrow1 {
+	FONT-SIZE: 9pt; FONT-FAMILY: Arial
+}
+TR.Listrow2 {
+	FONT-SIZE: 9pt; BACKGROUND: #ebf1fa; FONT-FAMILY: Arial
+}
+TD.ListCellRow {
+	BORDER-RIGHT: #d4d4d4 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: #d4d4d4 1px solid; PADDING-LEFT: 4px; PADDING-BOTTOM: 0px; BORDER-LEFT: #d4d4d4 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #d4d4d4 1px solid
+}
+TD.ListCellTitle {
+	BORDER-RIGHT: #d4d4d4 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #d4d4d4 1px solid; 
+	PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; BORDER-LEFT: #d4d4d4 0px solid; PADDING-TOP: 2px; 
+	BORDER-BOTTOM: #d4d4d4 1px solid
+}
+.button {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: white 1px solid; 
+	FONT-SIZE: 9pt; OVERFLOW: hidden; BORDER-LEFT: white 1px solid; 
+	WIDTH: 76px; COLOR: #ffffff; PADDING-TOP: 2px; BORDER-BOTTOM: black 1px solid; 
+	FONT-FAMILY: 宋体; HEIGHT: 22px; BACKGROUND-COLOR: #336699; TEXT-ALIGN: center
+}
+
+INPUT.inbutton	{BORDER-TOP-WIDTH: 1px; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 9pt; BORDER-LEFT-COLOR: #cccccc; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #cccccc; PADDING-BOTTOM: 1px; BORDER-TOP-COLOR: #cccccc; PADDING-TOP: 1px; HEIGHT: 18px; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #cccccc; font-family: "宋体"; font-size: 12px}
+
+A.title:visited{TEXT-DECORATION: none;Color:#333333}
+A.title:active{TEXT-DECORATION: none;Color:#333333}
+A.title:hover{TEXT-DECORATION: none;Color:#333333}
+A.title:link{text-decoration: none;Color:#333333}
+
+.browse_pagelable {
+	color: #3D5070; 
+	font-size: 12px; 
+	line-height: 200%; 
+	font-weight: normal; 
+	text-align: right; 
+	vertical-align: middle
+}
+#dhtmltooltip{
+position: absolute;
+width: 130px;
+left: -300px;
+border: 1px solid black;
+padding: 3px;
+background-color: lightyellow;
+FONT-SIZE: 10px; COLOR: #48709B; FONT-FAMILY: Arial, Helvetica, sans-serif;
+visibility: hidden;
+z-index: 205;
+/*Remove below line to remove shadow. Below line should always appear last within this CSS*/
+filter: progid:DXImageTransform.Microsoft.Shadow(color=gray,direction=135);
+}
+
+#dhtmlpointer{
+position:absolute;
+left: -300px;
+z-index: 206;
+visibility: hidden;
+}

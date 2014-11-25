@@ -1,0 +1,79 @@
+---------------------------------------------------------
+2013-12-26 07:42:17####update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-26 07:42:18####update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-26 08:22:36####update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-26 08:22:37####update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-26 08:23:18####update tb_agentpaymoneylist set fd_agpm_state = 1 ,fd_agpm_spman = '',fd_agpm_spdate=now() where fd_agpm_id = '3454'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-26 08:23:38####insert into tb_listcount(
+	              fd_ltct_count , fd_ltct_date , fd_ltct_ltnrtypeid
+	              )values(
+	              1             , now()        , '9'
+	              )
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-26 08:23:38####insert into tb_paymoneylist(
+                fd_pymylt_no      ,  fd_pymylt_dealwithman    , fd_pymylt_date   ,
+                fd_pymylt_fkdate  ,  fd_pymylt_memo    ,fd_pymylt_paytype
+                )values(
+                'fkd20131226-001'         , ''            , '2013-12-26'          ,
+                '2013-12-26'         , ''       ,'coupon'
+                )
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-26 08:23:38####update tb_paymoneylist set fd_pymylt_money = '' where fd_pymylt_id = '879'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-26 08:23:42####update tb_agentpaymoneylist set fd_agpm_paystate = 1 where fd_agpm_id = '3454'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-26 08:23:42####insert tb_paymoneylistdetail set fd_pymyltdetail_agpmid = '3454',
+				                                           fd_pymyltdetail_paymoneylistid = '879'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-26 08:23:42####update tb_paymoneylist set fd_pymylt_money = '40.00' where fd_pymylt_id = '879'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-26 08:23:43####update tb_paymoneylist set fd_pymylt_money = '39.688' where fd_pymylt_id = '879'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-26 08:23:56####update tb_paymoneylist set
+                fd_pymylt_no     = 'fkd20131226-001'   ,  fd_pymylt_dealwithman  = ''  , fd_pymylt_date = '2013-12-26'   ,
+                fd_pymylt_fkdate = '2013-12-26'   ,  fd_pymylt_memo         = ''     ,fd_pymylt_paytype='coupon' 
+                where fd_pymylt_id = '879'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-26 08:23:56####update tb_paymoneylist set fd_pymylt_money = '39.688' where fd_pymylt_id = '879'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-26 08:23:56####update tb_paymoneylist set fd_pymylt_state = 1, fd_pymylt_datetime = now()
+                where fd_pymylt_id = '879'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-26 08:23:56####update tb_paymoneylist set fd_pymylt_money = '39.688' where fd_pymylt_id = '879'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-26 08:24:03####update tb_paymoneylist set fd_pymylt_state = 2, fd_pymylt_datetime = now()
+                where fd_pymylt_id = '879'
+----------------------------------------------------------

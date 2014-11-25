@@ -1,0 +1,111 @@
+<HTML>
+<HEAD>
+<TITLE>收支报表</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="dianduo" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+<script language="javascript" type="text/javascript" src="../include/ShowCalendar.js"></script>
+<script language="javascript">
+<!--
+function changedata($val){
+    document.getElementById("changeday").value = $val;
+    form1.submit(); 
+	return false;  
+}
+
+// -->
+</script>
+</HEAD>
+<body  text="#000000" topmargin="0" leftMargin="2" width="100%">
+<center>
+  <form id=form1 name=form1 action="" method=get>
+  <input type="hidden" name="startmonth" value="{startmonth}">
+  <input type="hidden" name="endmonth" value="{endmonth}">
+  <input type="hidden" name="type" value="{type}">
+    <DIV>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td height="30" class="pagetitle"  colspan=2 valign="middle">&nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle"> <span>财务报表 --> 收支月报表 </td>
+        </tr>
+        <tr>
+          <td align="left" colspan=2 height="3">{error}</td>
+        </tr>
+      </table>
+    </DIV>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" height="31" style="display:{isdisplay};">
+	<tr>
+	<td class=button_labelleft></td>
+	<td class=button_label>
+		<div align="right" >
+			<input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='tb_payment_yearview.php'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+		</div>
+	</td>
+	<td class=button_labelright></td>
+	</tr>
+	</table>
+    <input name="changeday" id="changeday" type="hidden" value="">
+	 <input name="typeyear" id="typeyear" type="hidden" value="{typeyear}">
+	
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td align="left" height="25">&nbsp;&nbsp;<a href="javascript:changedata('up');void(0);">上一年</a></td>
+		<td align="center" height="25">&nbsp;&nbsp;输入年份:<input type="text" name="searchyear" maxlength="4" value=""> <input name="" type="submit" value="查询"></td>
+        <td align="right" >&nbsp;&nbsp;<a href="javascript:changedata('down');void(0);">下一年</a></td>
+      </tr>
+    </table>
+  </form>
+<TABLE class=table style="word-break:break-all;width:150%" align=center>
+
+          <thead>
+            
+            <tr class=listtitle>
+              <th width="40"  height="25" rowspan='2'>序号</th>
+              <th width="80" rowspan='2' >日期</th>
+			 <th width="80" rowspan='2'>总入款</th>
+             <th rowspan='2'>总支出</th>
+             <th rowspan='2'>总成本</th>
+             <th rowspan='2'>总收手续费</th>
+
+			  {theadth}
+            </tr>
+            <tr class=listtitle>
+             {theadth1}
+            </tr>
+          </thead>
+          <TBODY>
+            <!-- BEGIN BXBK -->
+            <TR style="display:{hasdateshow}" class=listrow1 onMouseOver="this.style.backgroundColor='#F1F4F9';" onMouseOut="this.style.backgroundColor='{bgcolor}'" bgcolor="{bgcolor}">
+              <TD   align=left height="25" style="{fcolor}">{tdcount}</TD>
+              <TD   noWrap align=left height="25" style="{fcolor}"><a href='tb_payment_dateview.php?searchdate={curData}&type=month&typeyear={typeyear}'>{curData}</a></TD>
+			    <TD   align=right height="25" style="{fcolor}">{allmonthpaymoney}</TD>
+				<TD   align=right height="25" style="{fcolor}">{allmonthagentmoney}</TD>
+				<TD   align=right height="25" style="{fcolor}">{allmonthcbmoney}</TD>
+				<TD   align=right height="25" style="{fcolor}" style="border-right:1px #222 solid">{allmonthpayfee}</TD>
+			  {showpaytype}
+            </TR>
+            <!-- END BXBK -->
+            <tr style="display:{nodateshow}">
+              <td colspan="7">没有数据</td>
+            </tr>
+            <tr>
+			  <td colspan="2" align="center"><span style="font-size:14px; color:#FF0000;">汇总</span></td>
+              <td class="right">{allmoney}</td>
+              <td class="right">{allagentmoney}</td>
+              <td class="right">{allcbmoney}</td>
+              <td class="right" style="border-right:1px #222 solid">{allpayfee}</td>
+              
+			{showall}
+			</tr>
+          </TBODY>
+		  
+        </TABLE>
+
+  
+  </FORM>
+</center>
+</BODY>
+</HTML>

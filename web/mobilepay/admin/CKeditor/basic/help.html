@@ -1,0 +1,296 @@
+<HTML><HEAD><TITLE>帮助管理</TITLE>
+
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+
+<SCRIPT language=javascript src="../include/dateobject.js"></SCRIPT>
+
+<SCRIPT language=javascript src="../include/datepicker.js"></SCRIPT>
+
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+<SCRIPT language=javascript src="../function/function.js"></SCRIPT>
+
+<style type="text/css">
+
+<!--
+
+.STYLE1 {
+
+	color: #FF0000;
+
+	font-size: 12px;
+
+}
+
+-->
+
+</style>
+
+</HEAD>
+
+<script language=javascript>
+
+<!-- 
+
+var requestSubmitted = false;
+
+
+
+function submit_save(){
+
+	if(form1.name.value==""){
+
+	 	  alert("标题不能为空！");
+
+	 	  form1.name.focus();
+
+	 	  return;
+
+	  }
+
+	 if(form1.type.value==""){
+
+	    alert("请选择类型!");
+
+		form1.type.focus();
+
+		return;
+
+	 }
+
+	
+
+    requestSubmitted = true;
+
+    sending.style.visibility="visible";
+
+	sendingbg.style.visibility="visible";  
+
+	form1.submit();
+
+}
+
+
+
+
+// -->
+
+</script>
+
+
+
+<BODY  onload=input_focus() topmargin="0" leftMargin="2" width="100%">
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+
+                     <td height="30" class="pagetitle"  width="100%" valign="middle">
+
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">帮助管理</td>
+
+			<tr>
+
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+
+          </tr>	
+
+  </table>
+
+  <center>
+
+  <form action="" method="post" name="form1">
+
+    <input type=hidden name=action value="{action}">
+
+    <input type=hidden name=id value="{id}">
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+
+      <tr>
+
+        <td class=button_labelleft></td>
+
+        <td class=button_label><div align="left" style="margin:0px 0px 0px 0px">
+
+          <input type=button name=save32 class=button_new value="     帮助" AccessKey=h  onClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.style.backgroundImage='url({skin}new_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}new.jpg)'">
+
+          <input type=button name=save3 class=button_save value="     保存" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt" {dissave} onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+
+
+
+		    <INPUT class=button_reset name=qqq type=reset value="     撤销" AccessKey=z style="font-size:9pt" onMouseOver="this.className='button_reset_on'" onMouseOut="this.className='button_reset'">
+
+          <input type=button name=rst class=button_recovery value="     返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+
+        </div></td>
+
+        <td class=button_labelright></td>
+
+      </tr>
+
+  </table>  
+
+    <table width="750" class=InputFrameMain cellspacing="0" cellpadding="0" border="0" height="538">
+
+      <TBODY> 
+
+         <tr>
+
+          <td height="13" colspan="4" align="left">
+
+          <table cellspacing="0" cellpadding="0" border="0">
+
+          <tr>
+
+          <td align="center" class=inputtitle width="150">资料输入</td>
+
+          <td align="center" class=inputtitleright >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+          <td align="center" ><font color="#FF0000" ><b>{error}</b></font></td>
+
+          </tr>
+
+          </table>          </td>
+
+        </tr>
+
+	  <tr>
+
+        <td class=form_label height="35" align="right">标题：</td>
+
+        <td width="262"  height="35" align="left">
+
+        <input class=input type="text" name="name" size="30" maxlength="50" value="{name}" >
+
+          <span class="form_label">*</span> </td>
+
+        <td height="35" align="right"><span class="form_label">类型：</span></td>
+
+        <td width="266" height="35" align="left">
+
+          <select name="type">
+
+          {type}
+
+          </select>
+
+  
+
+
+
+          </td>
+
+	    </tr>
+
+
+
+	  <tr> 
+
+        <td class=form_label width="111" height="30" align="right">状态：</td>
+
+        <td height="30" align="left">
+
+         <input name="isuse" type="radio" value="1" {isuse}>
+
+        使用中&nbsp;&nbsp;
+
+         <input type="radio" name="isuse" value="2"  {isout}>
+
+        停用
+
+        </td>
+
+        <td width="111" height="30" class="form_label" align="right"></td>
+
+        <td height="30" align="left">
+
+        </td>
+
+	    </tr>
+
+	    <tr>
+
+	      <td class=form_label height="460" align="right">内容：</td>
+
+	      <td height="460" colspan="3" align="left">{fckeditor}</td>
+
+        </tr> 
+
+      </TBODY> 
+
+    </table>
+
+</form>
+
+<div id="sending" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; visibility: hidden"> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingdel" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; visibility: hidden"> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在删除数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; visibility: hidden"> 
+
+</div>
+
+<div id="helpid" STYLE="right: 1%; WIDTH: 450px; POSITION: absolute; TOP: 86px; HEIGHT: 0; visibility: hidden;"> 
+
+ <div  align="left"   STYLE="position:absolute;left: 15px; top:15px;right:15px" >
+
+  帮助内容在建立帮助资料时会使用上。<br><br>
+
+  保存(Alt+s)：添加新帮助和修改帮助；<br><br>
+
+  删除(Alt+d)：即删除不再使用的帮助；<br><br>
+
+  撤销(Alt+z)：撤销回去帮助没有修改的状态；<br><br>
+
+  返回(Alt+q)：返回帮助列表；<br><br>
+
+  帮助(Alt+h)：显示帮助；
+
+</div>
+
+</div>
+
+</center>
+
+</body>
+
+</html>
+
+
+
+
+
+
+

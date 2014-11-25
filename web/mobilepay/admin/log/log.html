@@ -1,0 +1,77 @@
+
+
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+
+<link href="{skin}/reset.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" language="javascript" src="../include/jquery.dataTables.gb2312.js"></script>
+
+ <script language="javascript"> 
+
+		  $(document).ready(function() {
+
+		 // $.ajaxSetup ({cache: false });	
+		 var log_shopid=$("#log_shopid").val();
+		  var gotourl="../ajaxread/readadminlog.php?log_shopid="+log_shopid;
+
+		  $('#basictable').dataTable({   
+                     "sDom": '<"wrapper"flipt>rt<"bottom"ip><"clear">',
+					 "bStateSave": true,
+					  "aLengthMenu": [[5,10, 25, 50,600, -1], [5,10, 25, 50,600,"全部"]],
+					 "bLengthChange": true, 
+					 "bProcessing": true,        
+					 "iDisplayLength": 10,        
+                     "bServerSide":true,
+                     "sAjaxSource":gotourl,
+					 "sPaginationType": "full_numbers"			
+
+                  });
+
+		  });
+		</script>
+
+
+
+</HEAD>
+
+
+<input type="hidden" id="log_shopid" name="log_shopid" value="{log_shopid}">
+
+
+ <table width="98%" border="0" cellspacing="1"  class="table" id="basictable">
+
+    <thead>
+
+      <tr>
+
+        {theadth}
+
+      </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td colspan="8" class="dataTables_empty">加载数据中...</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+
+
+	
+
+		
+
+ 
+
+
+
+
+
+

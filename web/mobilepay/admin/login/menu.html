@@ -1,0 +1,175 @@
+<HTML>
+<HEAD><TITLE>用户管理</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+</HEAD>
+<script language=javascript>
+<!-- 
+function submit_del(){
+    if (confirm("是否删除该记录？")) {
+		sendingdel.style.display ="";
+		sendingbg.style.display ="";	
+        form1.action.value = "delete";
+	form1.submit();
+    }
+} 
+
+function submit_new() {
+ 
+   if (confirm("是否将该记录另存为新记录？")) 
+   {
+       form1.action.value = "new";
+   }
+   
+
+   sending.style.display ="";
+   sendingbg.style.display ="";	
+   form1.submit();
+}
+
+function submit_save() {
+ 
+	sending.style.display ="";
+	sendingbg.style.display ="";	
+   form1.submit();
+}
+
+function showhidden(){
+	if(form1.checkterm.value=="2"){
+		trhidden.style.display="";
+	}else{
+		trhidden.style.display="none";
+	}
+}
+
+-->
+
+</SCRIPT>
+
+<BODY  topmargin="0" leftMargin="2" width="100%">
+<center>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+       <td height="20" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	用户管理
+       </td>
+       <tr>
+         <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+      </tr>
+  </table>
+  <form action="" method="post" name="form1">
+    <input type=hidden name=action value="{action}">
+    <input type=hidden name=id value="{id}">
+	<table width="98%" border="0" cellspacing="0" cellpadding="0"  class="table_bgcolor">
+        <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right" style="margin:-2px 0px 0px 0px">
+          <input type=button name=save3 class=button_save value="保存"  onClick="javascript:submit_save()" style="font-size:9pt" onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+          <input class=button_delete name=end type=button value="删除"  onMouseOver="this.className='button_delete_on'" onMouseOut="this.className='button_delete'"  onClick="javascript:submit_del()" >
+		    <!--<INPUT class=button_reset name=qqq type=reset value="撤销" style="font-size:9pt" onMouseOver="this.className='button_reset_on'" onMouseOut="this.className='button_reset'">-->
+          <input type=button name=rst class=button_recovery value="返回" style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+        </div></td>
+        <td class=button_labelright></td>
+      </tr>
+    </table>
+    
+    <TABLE class=InputFrameMain width=650 align=center>
+      <!--基本信息-->
+      <TBODY> 
+      <TR> 
+        <TD> 
+          <table style="MARGIN: 5px" cellspacing=0 cellpadding=0 align=center 
+      border=0 width="650">
+            <tbody> 
+            <tbody id=XX01> 
+            <tr class=InputFrameLine> 
+              <td class=form_label align=right width=121 height="30">菜单名称：</td>
+              <td  width=225 height="30"> 
+                <input class=input type="text" name="name" size="20" maxlength="20" value="{name}">
+              </td>
+              <td class=form_label align=right width=99 height="30"></td>
+              <td  width=205 height="30">              </td>
+            </tr>
+            <tr class=InputFrameLine> 
+              <td class=form_label align=right width=121 height="30">菜单代码：</td>
+              <td  width=225 height="30" > 
+                <input class=input type="text" name="code" size="20" maxlength="32" value="{code}">
+              </td>
+              <td class=form_label align=right width=99 height="30">菜单上级代码：</td>
+              <td  width=205 height="30"> 
+                <input class=input type="text" name="upcode" size="20" maxlength="32" value="{upcode}">
+              </td>
+            </tr>
+            <tr class=InputFrameLine> 
+              <td class=form_label align=right width=121 height="30">菜单图片：</td>
+              <td height="30" width="225" > 
+                <input class=input type="text" name="jpg" size="20" maxlength="32" value="{jpg}">
+              </td>
+              <td height="30" class=form_label width="99">菜单url：</td>
+              <td height="30" width="205" > 
+                <input class=input type="text" name="url" size="20" maxlength="32" value="{url}">
+              </td>
+            </tr>
+  <tr class=InputFrameLine>
+                  <td class=form_label align=right width=120 height="30">菜单hz：</td>
+                  <td height="30" width="200" ><input class=input type="text" name="hz" size="20" maxlength="32" value="{hz}"></td>
+                  <td height="30" class=form_label width="120">菜单sno：</td>
+                  <td height="30" width="200" ><input class=input type="text" name="sno" size="20" maxlength="20" value="{sno}"></td>
+                </tr>
+            <tr class=InputFrameLine> 
+              <td class=form_label align=right width=121 height="30">是否激活：</td>
+              <td height="30" width="225" > <select name="active">
+				           {active}
+               </select></td>
+              <td height="30" class=form_label width="99">&nbsp;</td>
+              <td height="30" width="205" >&nbsp;</td>
+            </tr>           
+            </tbody> 
+          </table>
+        </TD>
+      </TR>
+      <!--用户情况-->
+      <TR> 
+        <TD>&nbsp;</TD>
+      </TR>
+    
+    </TABLE>
+  <SCRIPT language=VBScript>
+<!--
+sub bb(obj)
+    if document.getElementById(obj) is nothing then
+        exit sub
+    end if
+    if document.getElementById(obj).style.display="none" then
+        document.getElementById(obj).style.display="block" 
+        document.getElementById("img" & mid(obj,3)).src="../images/menu_open.gif"
+    else
+        document.getElementById(obj).style.display="none" 
+        document.getElementById("img" & mid(obj,3)).src="../images/menu_close.gif"
+    end if
+end sub
+//-->
+</SCRIPT>
+</form>
+<div id="sending" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingdel" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在删除数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+</div>
+</center>
+</BODY>
+</HTML>

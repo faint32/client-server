@@ -1,0 +1,32 @@
+---------------------------------------------------------
+2013-12-03 03:20:41####update web_teller set fd_tel_error = fd_tel_error +1 where fd_tel_name ='cai'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-03 03:20:41####update web_teller set fd_tel_error = fd_tel_error +1 where fd_tel_name ='cai'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-03 03:20:48####update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-03 03:20:48####update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-03 03:34:33####update tb_couponset set
+ 		               fd_couponset_fee   = '1%',
+					   fd_couponset_payfeedirct   = 'order',
+					   fd_couponset_arriveid	='4', fd_couponset_maxfee = '35' 
+  		             where fd_couponset_id = '3' 
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-03 07:35:19####update tb_paymoneylist set fd_pymylt_money = '' where fd_pymylt_id = '785'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-03 09:55:30####update web_teller set fd_tel_outtime = now(),fd_tel_isin = 0
+			 where fd_tel_id =''
+----------------------------------------------------------

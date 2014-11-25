@@ -1,0 +1,148 @@
+<HTML>
+<HEAD>
+<TITLE>销售月报表</TITLE>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta HTTP-EQUIV="ljz" CONTENT="no-cache">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="../css/custom.css">
+<SCRIPT language="javascript" src="../js/global.js"></SCRIPT>
+</HEAD>
+<script language="javascript">
+//禁止退格键 作用于Firefox、Opera
+document.onkeypress=banBackSpace;
+//禁止退格键 作用于IE、Chrome
+document.onkeydown=banBackSpace;
+
+function getagentpmdpay(begindate,enddate)
+{
+    var strItem;
+    var szRef = "currentaccount_show.php?begindate="+begindate+"&enddate="+enddate+"&datetype=0&backurl=month&isshowkickback=0";
+    location.href=szRef;
+}
+</script>
+<body  text="#000000" topmargin="0" leftMargin="2" width="100%">
+<div id="page">
+<center>
+ <form id="form1" name="form1" action="" method=post>
+ <DIV>
+  
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td height="30" class="pagetitle"  colspan="2" valign="middle" align="left">&nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle"><span>刷卡器购销 --> 月报表</span>
+        </td>
+      </tr>
+      <tr>
+         <td align="left" colspan="2"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+      </tr>
+      <tr>
+         <td align="left" colspan="2" height="3"></td>
+      </tr>
+  </table></DIV>
+ <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+         <td align="left" height="25">&nbsp;&nbsp;{condition}&nbsp;&nbsp;&nbsp;&nbsp;日期：{begindate}至{enddate}</td>
+         <td align="right" ><span class=onlyShow>[<span onClick="javascript:location='{gotourl}'" style='cursor:hand'>返回</span>]&nbsp;&nbsp;</span></td>
+      </tr>
+  </table>
+<TABLE class="table" style=word-break:break-all width="99%" align=center>
+  <thead> 
+  <TR class="listtitle">
+    <th height="25" width="30">序号</th>
+    <th height="25">日期</th>
+    <th>进货金额</th>
+	  <th>销售收入</th>
+	  <th>毛利润</th>
+	  <!--<th class=listcelltitle noWrap align=middle>其它收入</th>
+	  <th class=listcelltitle noWrap align=middle>工资</th>
+	  <th class=listcelltitle noWrap align=middle>一般费用</th>-->
+    <th>净利</th>
+	 <!-- <th class=listcelltitle noWrap align=middle>本日往来客户</th>-->
+	  <th>销售成本</th>
+   <!-- <th class=listcelltitle noWrap align=middle>盘点收入</th>
+    <th class=listcelltitle noWrap align=middle>应收款调整收入</th>
+    <th class=listcelltitle noWrap align=middle>帐户调整收入</th>
+    <th class=listcelltitle noWrap align=middle>组装拆卸收入</th>
+    <th class=listcelltitle noWrap align=middle>进货退货差价</th>
+    <th class=listcelltitle noWrap align=middle>商品调价收入</th>
+    <th class=listcelltitle noWrap align=middle>固定资产额外收入</th>
+    <th class=listcelltitle noWrap align=middle>固定资产变卖差价</th>
+    <th class=listcelltitle noWrap align=middle>入库补库存支出</th>
+    <th class=listcelltitle noWrap align=middle>帐户调帐亏损</th>
+    <th class=listcelltitle noWrap align=middle>固定资产折旧</th>
+    <th class=listcelltitle noWrap align=middle>固定资产报废</th>
+    <th class=listcelltitle noWrap align=middle>固定资产盘亏支出</th>-->
+  </TR>
+  </thead>
+  <tbody>
+<!-- BEGIN BXBK -->
+	<TR class=listrow1 onMouseOver="this.style.backgroundColor='#F1F4F9';" onMouseOut="this.style.backgroundColor='{bgcolor}'" bgcolor="{bgcolor}">
+		<TD align="left" height="25">{tdcount}</TD>
+		<TD noWrap align="left" height="25">{listdate}</TD>
+		<TD noWrap align="right"><a herf="javascript:void(0)" onClick="javascript:getagentpmdpay('{listdate}','{listdate}')">{jhmoney}&nbsp;</a></TD>
+		<TD noWrap align="right"><a herf="javascript:void(0)" onClick="javascript:getagentpmdpay('{listdate}','{listdate}')">{xsmoney}&nbsp;</a></TD>
+		<TD   noWrap align="right">{lirun}&nbsp;</TD>
+		<!--<TD align=right  noWrap class=listcellrow>{qtsrmoney}&nbsp;</TD>
+		<TD align=right  noWrap class=listcellrow>{gz}&nbsp;</TD>
+		<TD class=listcellrow  noWrap align=right>{fymoney}&nbsp;</TD>-->
+		<TD align="right"  noWrap >{shengli}</TD>
+		<!--<TD class=listcellrow  noWrap align=right>{cusnum}&nbsp;</TD>-->
+		<TD   noWrap align="right">{xscost}&nbsp;</TD>
+		<!--<TD class=listcellrow  noWrap align=right>{pdlirun}&nbsp;</TD>
+		<TD class=listcellrow  noWrap align=right>{ysktz}&nbsp;</TD>
+		<TD class=listcellrow  noWrap align=right>{zhtzsr}&nbsp;</TD>
+		<TD class=listcellrow  noWrap align=right>{zzcx}&nbsp;</TD>
+		<TD class=listcellrow  noWrap align=right>{jhthlirun}&nbsp;</TD>
+		<TD class=listcellrow  noWrap align=right>{sptjlirun}</TD>
+		<TD class=listcellrow  noWrap align=right>{gdzcewsr}</TD>
+		<TD class=listcellrow  noWrap align=right>{gdzcbmcjsr}</TD>
+		<TD class=listcellrow  noWrap align=right>{rkbkczc}</TD>
+		<TD class=listcellrow  noWrap align=right>{zhtzgs}</TD>
+		<TD class=listcellrow  noWrap align=right>{gdzczj}</TD>
+		<TD class=listcellrow  noWrap align=right>{gdzcbfzc}</TD>
+		<TD class=listcellrow  noWrap align=right>{gdzcpgzc}</TD>-->
+	</TR>
+<!-- END BXBK --> 
+</tbody>
+<tfoot> 
+  <TR vAlign=center >
+    <TD  class="listtail" align="left" height="25" noWrap colspan="2">&nbsp;&nbsp;合计：共&nbsp;{count}&nbsp;条&nbsp;&nbsp;</TD>
+    <TD  class="listtail" noWrap align="right" >{alljhmoney}&nbsp;</TD>
+    <TD  class="listtail" noWrap align="right" >{allxsmoney}&nbsp;</TD>
+    <TD  class="listtail" noWrap align="right" >{alllirun}&nbsp;</TD>
+    <!--<TD align=right noWrap   >{allqtsrmoney}&nbsp;</TD>
+    <TD align=right noWrap   ><span >{allgz}&nbsp;</span></TD>
+    <TD   noWrap align=right >{allfymoney}&nbsp;</TD>-->
+    <TD  align="right" noWrap  class="listtail" >{allshengli}&nbsp;</TD>
+    <!--<TD   noWrap align=right >{allcusnum}&nbsp;</TD>-->
+    <TD  class="listtail" noWrap align="right" >{allxscost}&nbsp;</TD>
+   <!-- <TD   noWrap align=right>{allpdlirun}&nbsp;</TD>
+		<TD   noWrap align=right>{allysktz}&nbsp;</TD>
+		<TD   noWrap align=right>{allzhtzsr}&nbsp;</TD>
+		<TD   noWrap align=right>{allzzcx}&nbsp;</TD>
+		<TD   noWrap align=right>{alljhthlirun}&nbsp;</TD>
+		<TD   noWrap align=right>{allsptjlirun}</TD>
+		<TD   noWrap align=right>{allgdzcewsr}</TD>
+		<TD   noWrap align=right>{allgdzcbmcjsr}</TD>
+		<TD   noWrap align=right>{allrkbkczc}</TD>
+		<TD   noWrap align=right>{allzhtzgs}</TD>
+		<TD   noWrap align=right>{allgdzczj}</TD>
+		<TD   noWrap align=right>{allgdzcbfzc}</TD>
+		<TD   noWrap align=right>{allgdzcpgzc}</TD>-->
+  </TR>
+  </tfoot>
+</TABLE>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+  <td align="right" class="table_bgshow"><span class=onlyShow>[<span onClick="javascript:history.back(-1)" style='cursor:hand'>返回</span>]&nbsp;&nbsp;</span></td>
+  </tr>
+</table>
+</FORM>
+</center>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

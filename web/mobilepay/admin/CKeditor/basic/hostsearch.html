@@ -1,0 +1,94 @@
+<HTML><HEAD><TITLE>热搜设置</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+</HEAD>
+<BODY  topmargin="0" leftMargin="2" width="100%"onload="ckeck()">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+       <td height="30" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	 热搜
+       </td>
+	   <tr>
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+          </tr>	
+  </table>
+<center>
+
+   
+
+   <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+      <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right" >
+         
+          <div align="right" >
+          <input type=button name=rst class=button_recovery value="   返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+        </div></td>
+        <td class=button_labelright></td>
+      </tr>
+  </table> 
+	<!-- BEGIN hostlist -->
+	<form action="" method="post" name="form{fd_host_id}">
+    <input type=hidden name=action value="{action}"> 
+    <table width="900" class=InputFrameMain cellspacing="0" cellpadding="0" border="0" height="auto">
+      <TBODY> 
+        <tr>
+          <td align="left" colspan="4">
+          <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+          <td align="center" class=inputtitle width="150">资料输入</td>
+          <td align="center" class=inputtitleright >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          </tr>
+          </table>
+          </td>
+        </tr>
+      <tr> 
+        <td colspan="4" height="10"></td>
+      </tr>
+      
+      <tr> 
+		
+		
+        <td height="30" class=form_label >纸张类型：</td>
+        <td height="30"> 
+          <input class=input type="text" name="fd_csp_procaname" size="20" maxlength="20" readOnly=true value="{fd_csp_procaname}">
+  	</td>
+        <td height="30" class=form_label >热搜类型：</td>
+        <td height="30" > 
+        	<input class=input type="text" name="fd_host_type" size="20" maxlength="20" readOnly=true value="{fd_host_type}">   
+			<input type=hidden name="fd_host_id" value="{fd_host_id}"></td>
+			</td>
+			
+      </tr>
+      </TBODY> 
+	    <tr> 
+        <td colspan="4">
+		
+        <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+          <td height="30" class=form_label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;内容：</td>
+          <td height="30" > 
+        	<input class=input type="text" name="fd_host_txt" size="92" maxlength="100" value="{fd_host_txt}">   
+			<span class=form_label>想添加多个请在后面加上，</span>	
+			</td>	
+          </tr>
+          </table>
+			</td>	
+      </tr>
+	  <tr >
+     
+       <td height="30" colspan="4" align="center" > 
+	  <input type=submit name=save3 class=buttonsmall value="保存" >
+		</td></tr>
+	</TABLE>
+	  </form>
+	 <!-- END hostlist -->
+
+</center>
+<br>
+<br>
+</BODY>
+</HTML>

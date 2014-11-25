@@ -1,0 +1,121 @@
+<!DOCTYPE html><HTML>
+<HEAD>
+<TITLE>话费充值统计</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+    <LINK href="../css/styles.css" type=text/css rel=stylesheet>
+    <script src="../include/jquery.js" language="javascript"></script>
+    <script type="text/javascript" language="javascript"
+            src="../include/jquery.dataTables.gb2312.js"></script>
+    <script language="javascript">
+
+        $(document).ready(function() {
+            $('a.eidt_ofstate').live('click', function()
+            {
+                var bkntno = $(this).attr("rel");
+                var authorid = $(this).attr("name");
+                $(this).html("");
+                var url = "checkofstate.php"
+                $.ajax({
+                    type: "POST",
+                    url : url   ,
+                    data: "paytype=qqrecharge&bkntno="+bkntno+"&authorid="+authorid ,
+                    success: function(strItem)
+                    {
+
+                        location.reload();
+
+                    }
+                });
+            });
+        });
+     </script>
+
+</HEAD>
+<body  text="#000000" topmargin="0" leftMargin="2" width="100%">
+<div id="page" class="page">
+ <form id=form1 name=form1 action="" method=get>
+     <input type="hidden" name="year" value="{year}" >
+     <input type="hidden" name="month" value="{month}" >
+     <input type="hidden" name="cusid" value="{cusid}" >
+ <DIV>
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="30" class="pagetitle"  colspan=2 valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	<span>qq充值统计
+        </td>
+      </tr>
+      <tr>
+         <td align="left" colspan=2><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+      </tr>
+      <tr>
+         <td align="left" colspan=2 height="3"></td>
+      </tr>
+  </table></DIV>
+ <!--<table width="100%" border="0" cellspacing="0" cellpadding="0">-->
+      <!--<tr>-->
+         <!--<td width="65%" height="25" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月份：{nowdate}</td>-->
+         <!--<td width="35%" align="right" ><span class=onlyShow>{str_page}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>-->
+      <!--</tr>-->
+
+  <!--</table>-->
+     <table class="table" align="center" id="checktables" style="width:100%; word-break:break-all;">
+         <thead>
+         <tr>
+             <th>操作</th>
+             <th>银联订单号</th>
+             <th>明盛公户</th>
+             <th>客户名称</th>
+             <th>交易状态</th>
+             <th>单据日期</th>
+             <th>有效交易日期</th>
+             <th>付款卡号</th>
+             <th>充值qq</th>
+             <th>充值金额</th>
+             <th>支付金额</th>
+             <th>充值状况</th>
+
+         </tr>
+         </thead>
+         <tbody>
+         <!-- BEGIN HEADBXBK -->
+         <tr>
+             <td  align="left">{eidt_ofstate}</td>
+             <td  align="left">{fd_mrclist_bkordernumber}</td>
+             <td  align="left">{fd_sdcr_name}</td>
+             <td  align="left">{fd_author_truename}-{fd_author_username}</td>
+
+             <td  align="left">{fd_mrclist_payrq}</td>
+             <td  align="left">{fd_mrclist_date}</td>
+             <td  align="left">{fd_mrclist_paydate}</td>
+             <td  align="left">{fd_mrclist_bankcardno}</td>
+             <td  align="right">{fd_mrclist_qq}</td>
+             <td  align="right">{fd_mrclist_rechamoney}</td>
+             <td  align="right">{fd_mrclist_paymoney}</td>
+
+             <td  align="left">{ofstate}</td>
+         </tr>
+         <!-- END HEADBXBK -->
+         </tbody>
+         <tfoot>
+         <tr>
+             <td colspan="8" height="28" align="left" >
+                 <!-- <input class="buttonsmall" name="end2" type="button" value="到账审批"  onClick="javascript:submit_sel()" style="font-size:9pt" /> -->
+             </td>
+             <td align="right">{all_rechamoney}</td>
+             <td colspan="6" height="28" align="left" >{all_paymoney}</td>
+         </tr>
+         <tr>
+             <td height="28" colspan="18" align="left" class="listTable_fontfirst">{pagenav}</td>
+         </tr>
+     </table>
+
+  <tbody>
+
+
+
+</FORM>
+</div>
+</BODY></HTML>

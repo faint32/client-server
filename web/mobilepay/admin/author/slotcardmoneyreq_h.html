@@ -1,0 +1,142 @@
+<HTML><HEAD><TITLE>审批额度历史</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!-- Styles -->
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+<!-- 		<link rel="stylesheet" href="../css/framework.css"> -->
+		<!--[if IE 6]>
+			<link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css" />
+<![endif]-->
+<SCRIPT language=javascript src="../include/jquery.js"></SCRIPT>
+
+<style type="text/css">
+<!--
+.STYLE2 {font-size: 12px}
+-->
+</style>
+</HEAD>
+
+
+<BODY   topmargin="0" leftMargin="2" width="100%">
+  <div id="page">
+		<h4 class="icon forms">{menuname} <small></small></h4>
+
+  <form action="" method="post" name="form1">
+    <input type=hidden name=action value="">
+    <input type=hidden name=listid value="{listid}">
+			<div id="top">
+				<ul id="menu">
+
+					<li>
+						<a href="#" AccessKey='q' onClick="javascript:location='{gotourl}'">返回</a>
+					</li>
+				</ul>
+			</div>
+			<div class="wrapper">
+				<div class="panel">
+					<div id="showinfo" class="box box-info" style="display:{show_error}"><p>{error}</p><a class="close">&times;</a></div> 
+					
+					<fieldset class="form">
+						<table  class="table_form">
+							<colgroup><col class="col-name" />
+								<col class="col-value" /></colgroup>
+							<tr >
+								<th >申请编号：</label></th>
+								<td>
+									<input class="input disabled" style="ime-mode:disabled" type="text" name="reqno" readonly size="20" maxlength="40" value="{reqno}">
+									
+								</td>
+								<th>所属用户：</th>
+								<td>
+									<input name="truename"  id="truename" type="text"  readonly  class="input disabled"   size="20" value="{truename}" >
+								</td>
+							</tr>
+							<tr >
+								<th >套餐：</th>
+								<td >
+									<input class="input disabled"  type="text" name="paymsetname" size="10" maxlength="20" readonly value="{paymsetname}"   >
+									
+								</td>
+								<th>卡类型：</th>
+								<td>
+									<input class="input disabled" type="text" name="scope" size="20" readonly  value="{scope}">
+									
+								</td>
+							</tr>
+							<tr >
+								<th >正常额度（万/月）：</th>
+								<td >
+									<input class="input disabled"  type="text" name="nallmoney" size="10" maxlength="20" readonly value="{nallmoney}" >
+									
+								</td>
+								<th >审批金额：</th>
+								<td >
+									<input class="input disabled"  type="text" name="repmoney" size="10" maxlength="20" readonly value="{repmoney}">
+									
+								</td>
+							</tr>
+							<tr >
+								<th >最高审批额度（万/月）：</th>
+								<td >
+									<input class="input disabled"  type="text" name="sallmoney" size="10" maxlength="20" value="{sallmoney}" >		
+								</td>
+								<th>本次申请额度（万/月）：</th>
+								<td>
+									<input class="input disabled" type="text" name="reqmoney" size="20" readonly  value="{reqmoney}">
+									
+								</td>
+							</tr>							
+							<tr >
+
+								<th >申请日期：</th>
+								<td colspan="3">
+									<input class="input disabled"  type="text" name="reqdatetime" size="10" maxlength="20" readonly value="{reqdatetime}">
+									
+								</td>
+							
+							</tr>
+							<tr >
+								<th >审批人：</th>
+								<td >
+									<input class="input disabled"  type="text" name="qrman" size="10" maxlength="20" readonly value="{qrman}" >							
+								</td>
+								<th>审批日期：</th>
+								<td>
+									<input class="input disabled " type="text" name="qrdatetime" size="20" readonly  value="{qrdatetime}">
+									
+								</td>
+							</tr>								
+							<tr  >
+								<th>备注：</th>
+								<td colspan="3">
+									<textarea class="textarea full" name="memo" >{memo}</textarea>
+								</td>
+							</tr>
+						</table>
+					</fieldset>
+				</div>
+			</div>	
+</form>
+<div id="sending" STYLE=" WIDTH: 95%; POSITION: absolute; TOP: 50%;  HEIGHT: 95%;  z-index:101; display:none "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%;  z-index:100; filter: Alpha(Opacity=50);  background-color: #ffffff; display:none "> 
+
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>
+

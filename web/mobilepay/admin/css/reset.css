@@ -1,0 +1,848 @@
+
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video { vertical-align: baseline; background: transparent; font-size: 100%; padding: 0px; outline: 0px; margin: 0px; border: 0px; }
+body { line-height: 1; }
+table { border-collapse: collapse; border-spacing: 0px; }
+body { line-height: 1; }
+a { vertical-align: baseline; background: transparent; font-size: 100%; padding: 0px; margin: 0px; }
+table { border-collapse: collapse; border-spacing: 0px; }
+hr { padding: 0px; margin: 0px; }
+input, select, button { margin: 0px; }
+em { font-style: normal; }
+
+/* Tabs
+---------------------------------------------------------------------*/
+
+/* position:relative prevents IE scroll bug (element with position:relative inside container with overflow:auto appear as "fixed") */
+.ui-tabs {
+	position:relative;
+	padding:.2em 0;
+	zoom:1;
+	margin: 1em 0
+}
+.ui-tabs .ui-tabs-nav {
+	margin:0;
+	padding:0;
+}
+.ui-tabs .ui-tabs-nav li {
+	list-style:none;
+	/*float:left;*/ 
+	display:inline;
+	position:relative;
+	top:0;
+	margin:0;
+	border-bottom:0 !important;
+	padding:0;
+	white-space:nowrap;
+}
+.ui-tabs .ui-tabs-nav li a {
+	/*float:left;*/ 
+	padding:5px 12px 6px 12px;
+	text-decoration:none;
+	background:#999;
+	color:#FFFFFF !important;
+	border-bottom:0 !important;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected {
+	margin-bottom:0;
+	padding-bottom:1px;
+	top:1px;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a,.ui-tabs .ui-tabs-nav li.ui-state-hover a,.ui-tabs .ui-tabs-nav li.ui-state-disabled a,.ui-tabs .ui-tabs-nav li.ui-state-processing a {
+	text-decoration:none;
+	background:#2A7AD2 !important;
+	padding-top:6px
+}
+/* first selector in group seems obsolete,but required to overcome bug in Opera applying cursor:text overall if defined elsewhere... */
+.ui-tabs .ui-tabs-nav li a,.ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a {
+	cursor: pointer;
+}
+.ui-tabs .ui-tabs-panel {
+	display:block;
+	border:0;
+	padding:3px 0;
+	background:none;
+	clear:both;
+	margin-top:5px;
+	border-top:2px solid #2A7AD2;
+}
+.ui-tabs .ui-tabs-hide {
+	display: none !important;
+}
+
+
+
+/* 旧功能的样式 */
+
+#showp {
+	position:absolute;
+	width:900px;
+	height:600px;
+	z-index:232;
+	left: 34px;
+	top: 60px;
+	
+}
+#shows {
+	position:absolute;
+	width:750px;
+	height:403px;
+	z-index:232;
+	left: 34px;
+	top: 60px;
+	
+}
+#sending{position:absolute;width:300px; height:50px;top:0px;right:0px;;margin-left:-150px; font-size:8pt;text-align:center;padding:25px 0 0 0;font:bold 11px Arial, Helvetica, sans-serif;background-color: #F1F4F9;}
+
+/* 旧功能的样式 */
+
+.button_labelleft {
+	background:url(titleleft.jpg) no-repeat;
+	width:8;
+	
+}
+.button_labelright {
+	background:url(titleright.jpg) right center no-repeat;
+	width:8;
+}
+.button_label {
+	background:url(title.jpg) ;
+	margin:0px;
+	
+	height:31px;
+}
+.button_split{
+	background:url(grid-blue-split.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position:bottom;
+	padding-top:5px;
+	width:1px;
+	CURSOR: pointer; 
+	border: thin none;
+	}
+/* 旧功能的样式 */
+.buttton {
+	display: inline-block;
+	padding: 5px 10px;
+	color: #777 !important;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 11px;
+	font-family: Tahoma, Arial, sans-serif;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	text-shadow: 0 1px 1px rgba(255,255,255,0.9);
+	position: relative;
+	cursor: pointer;
+	border:0px solid #ccc !important;
+	background-color:transparent !important;
+	
+}
+
+.buttonsmall{
+   BORDER: #B0B0FF 1px solid; 
+   PADDING: 3px 2px 2px 2px;
+   font: 12px 宋体,"Trebuchet MS", Arial, sans-serif;
+   background-color:#E0F8FE;
+   margin-left:3px;
+   background: url(bottonsmall.jpg);
+   FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#FFFFFF, EndColorStr=#D7E7FA);
+   background-repeat: no-repeat;
+   background-position:2px 2px;
+ 
+   CURSOR: point; COLOR:#333;
+}
+.buttonsmall_on{
+   BORDER: #002D96 1px solid; 
+   PADDING: 3px 2px 2px 2px;
+  font: 12px 宋体,"Trebuchet MS", Arial, sans-serif;
+   background-color:#FFFEF4;
+    margin-left:3px;
+   background: url(bottonsmall.jpg);
+   FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#FFFFFF, EndColorStr=#D6E0FA);
+   background-repeat: no-repeat;
+   background-position:2px 2px;
+   CURSOR: point; color:#C30;
+
+}
+.button {
+   BORDER: #B0B0FF 1px solid; 
+   PADDING: 3px 2px 2px 2px;
+   font: 12px 宋体,"Trebuchet MS", Arial, sans-serif;
+   background-color:#E0F8FE;
+    margin-left:3px;
+   background: url(bottonsmall.jpg);
+   FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#FFFFFF, EndColorStr=#D7E7FA);
+   background-repeat: no-repeat;
+   background-position:2px 2px;
+   CURSOR: point; COLOR:#333;
+}
+.buttonsmall2{
+   BORDER: #002D96 1px solid; 
+   PADDING: 3px 2px 2px 2px;
+  font: 12px 宋体,"Trebuchet MS", Arial, sans-serif;
+   background-color:#FFFEF4;
+    margin-left:3px;
+   background: url(bottonsmall.jpg);
+   FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#FFFFFF, EndColorStr=#D6E0FA);
+   background-repeat: no-repeat;
+   background-position:2px 2px;
+   CURSOR: point; color:#C30;
+
+}
+.button_btn {
+	background-image: url(tbtn_btn.gif);
+	background-repeat: no-repeat;
+    background-color:transparent ;
+	background-position: 0 3px;
+	padding-left:10px;
+	padding-top:5px;
+	CURSOR: pointer; 
+	border: thin none;
+}
+.button_btn_on {
+	background-image: url(tbtn_btn.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 3px;
+	padding-left:10px;
+	padding-top:5px;
+	CURSOR: pointer; 
+	color:#600;
+	BORDER: transparent 0.8pt solid;
+}
+.button_new {
+	background-image: url(tbtn_new.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 5px;
+	padding-left:20px;
+	padding-top:8px;
+	font-weight:normal;
+	CURSOR: pointer; 
+	border: 0px solid;
+	margin-bottom:2px;
+	
+}
+.button_split{
+	background:url(grid-blue-split.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 2px;
+	padding-top:5px;
+	width:1px;
+	CURSOR: pointer; 
+	border: thin none;
+	}
+
+
+.button_edit {
+	background-image: url(tbtn_edit.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 5px;
+	padding-left:20px;
+	padding-top:8px;
+	CURSOR: pointer; 
+	border: thin none;
+}
+.button_edit_on {
+	background-image: url(tbtn_edit.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 5px;
+	padding-left:20px;
+	padding-top:8px;
+	color:#600;
+	BORDER: transparent 0.8pt solid;
+	CURSOR: pointer; 
+}
+.button_help {
+	background-image: url(tbtn_help.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 3px;
+	padding-left:20px;
+	padding-top:6px;
+	CURSOR: pointer; 
+	border: thin none;
+}
+.button_help_on {
+	background-image: url(tbtn_help.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 2px;
+	padding-left:20px;
+	padding-top:6px;
+	color:#600;
+	BORDER: transparent 0.8pt solid;
+	CURSOR: pointer; 
+}
+
+.button_delete 
+{
+	color: #000000;
+	background-image: url(tbtn_delete.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 5px;
+	font-weight:normal;
+	padding-left:20px;
+	padding-top:8px;
+	CURSOR: pointer; 
+	border: thin none;
+}
+.button_delete_on 
+{
+	background-image: url(tbtn_delete.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 5px;
+	padding-left:20px;
+	padding-top:8px;
+	color:#600;
+	BORDER: transparent 0.8pt solid;
+	CURSOR: pointer; 
+}
+.button_recovery {
+
+	color: #000000;
+	background-image: url(tbtn_recovery.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 5px;
+	padding-left:20px;
+	font-weight:normal;
+	padding-top:8px;
+	CURSOR: pointer; 
+	border: thin none;
+}
+.button_recovery_on
+{
+	background-image: url(tbtn_recovery.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position:  2px;
+	padding-left:20px;
+	padding-top:5px;
+	color:#600;
+	BORDER: transparent 0.8pt solid;
+	CURSOR: pointer; 
+}
+.button_save {
+	color: #000000;
+	background-image: url(tbtn_save.gif);
+    background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0px 6px;
+	font-weight:normal;
+	padding-left:20px;
+	padding-top:8px;
+	CURSOR: pointer; 
+	border: thin none;
+}
+.button_save_on {
+	background-image: url(tbtn_save.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 5px;
+	padding-left:20px;
+	padding-top:8px;
+	color:#600;
+	BORDER: transparent 0.8pt solid;
+	CURSOR: pointer; 
+}
+.button_reset 
+{
+	color: #000000;
+	background-image: url(btbn_reset.gif);
+    background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 2px 3px;
+	padding-left:13px;
+	padding-top:5px;
+	CURSOR: pointer; 
+	border: thin none;
+}
+.button_reset_on 
+{
+	background-image: url(btbn_reset.gif);
+    background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 2px  3px;
+	padding-left:13px;
+	padding-top:5px;
+	color:#600;
+	BORDER: transparent 0.8pt solid;
+	CURSOR: pointer; 
+}
+.button_infile {
+    color: #000000;
+	background-image: url(tbtn_input.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 2px;
+	padding-left:10px;
+	padding-top:6px;
+	CURSOR: pointer; 
+	border: thin none;
+}
+.button_infile_on{
+	background-image: url(tbtn_input.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 2px;
+	padding-left:10px;
+	padding-top:6px;
+	color:#600;
+	BORDER: transparent 0.8pt solid;
+	CURSOR: pointer; 
+}
+
+.button_find {
+	background-image: url(tbtn_find.gif);
+    background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 5px;
+	padding-left:10px;
+	padding-top:6px;
+	CURSOR: pointer; 
+	border: thin none;
+}
+.button_find_on {
+	background-image: url(tbtn_find.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 5px;
+	padding-left:20px;
+	padding-top:8px;
+	color:#600;
+	BORDER: transparent 0.8pt solid;
+	CURSOR: pointer; 
+}
+.button_draft {
+
+	color: #000000;
+	background-image: url(tbtn_draft.gif);
+    background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 2px;
+	padding-left:11px;
+	padding-top:5px;
+	CURSOR: pointer; 
+	border: thin none;
+}
+.button_draft_on {
+	background-image: url(tbtn_draft.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 2px;
+	padding-left:11px;
+	padding-top:5px;
+	color:#600;
+	BORDER: transparent 0.8pt solid;
+	CURSOR: pointer; 
+}
+.button_outexcel {
+  color: #000000;
+	background-image: url(tbtn_excel.gif);
+	 background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 2px;
+	padding-left:8px;
+	padding-top:5px;
+	CURSOR: pointer; 
+	border: thin none;
+}
+.button_outexcel_on 
+{
+	background-image: url(tbtn_excel.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+
+	background-position: 0 2px;
+	padding-left:8px;
+	padding-top:5px;
+	color:#600;
+	BORDER: transparent 0.8pt solid;
+	CURSOR: pointer; 
+}
+.button_collect {
+  color: #000000;
+	background-image: url(tbtn_collect.gif);
+	 background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 5px;
+	padding-left:20px;
+	padding-top:8px;
+	CURSOR: pointer; 
+	border: thin none;
+}
+.button_collect_on 
+{
+	background-image: url(tbtn_collect.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 5px;
+	padding-left:20px;
+	padding-top:8px;
+	color:#600;
+	BORDER: transparent 0.8pt solid;
+	CURSOR: pointer; 
+}
+.button_print {
+  color: #000000;
+	background-image: url(tbtn_print.gif);
+	 background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 5px;
+	padding-left:20px;
+	padding-top:8px;
+	CURSOR: pointer; 
+	border: thin none;
+}
+.button_print_on 
+{
+	background-image: url(tbtn_print.gif);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 5px;
+	padding-left:20px;
+	padding-top:8px;
+	color:#600;
+	BORDER: transparent 0.8pt solid;
+	CURSOR: pointer; 
+}
+
+.button_saveas {
+	background-image: url(btbn_saves.png);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 5px;
+	padding-left:20px;
+	padding-top:8px;
+	CURSOR: pointer; 
+	border: thin none;
+	
+}
+.button_saveas_on 
+{
+	background-image: url(btbn_saves.png);
+	background-repeat: no-repeat;
+    background-color:transparent;
+	background-position: 0 5px;
+	padding-left:20px;
+	padding-top:8px;
+	color:#600;
+	BORDER: transparent 0.8pt solid;
+	CURSOR: pointer; 
+}
+.button_submit {
+
+	background-color: #000000;
+	background-image: url(submit.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 25px;
+	width: 70px;
+	border: thin none;
+}
+
+.button_button {
+
+	background-color: #000000;
+	background-image: url(button.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 25px;
+	width: 70px;
+	border: thin none;
+}
+
+.button_copy {
+
+	background-color: #000000;
+	background-image: url(copy.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 31px;
+	width: 60px;
+	border: thin none;
+}
+
+.button_cut {
+
+	background-color: #000000;
+	background-image: url(cut.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 31px;
+	width: 60px;
+	border: thin none;
+}
+
+.button_paste {
+
+	background-color: #000000;
+	background-image: url(paste.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 31px;
+	width: 60px;
+	border: thin none;
+}
+
+.button_refreshit {
+	background-color: #000000;
+	background-image: url(refreshit.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 25px;
+	width: 70px;
+	border: thin none;
+}
+
+.button_stop {
+	background-color: #000000;
+	background-image: url(stop.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 25px;
+	width: 70px;
+	border: thin none;
+}
+
+.button_go{
+	 BORDER-RIGHT: #002D96 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #002D96 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#FFFFFF, EndColorStr=#9DBCEA); BORDER-LEFT: #002D96 1px solid; CURSOR: pointer; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #002D96 1px solid
+}
+
+.first_page{
+	BORDER-RIGHT: #ffffff 0px solid; 
+	BORDER-TOP: #ffffff 0px solid; 
+	LEFT: 0px; BORDER-LEFT: #ffffff 0px solid;
+	BORDER-BOTTOM: #ffffff 0px solid; 
+	background-image:url(first_page.gif); 
+	background-repeat: no-repeat; 
+	background-color:transparent;
+	background-position: center center; 
+	width: 16; height:16;
+	text-align: left
+}
+
+.next_page{
+	BORDER-RIGHT: #ffffff 0px solid; 
+	BORDER-TOP: #ffffff 0px solid; 
+	LEFT: 0px; BORDER-LEFT: #ffffff 0px solid;
+	BORDER-BOTTOM: #ffffff 0px solid; 
+	background-image:url(next_page.gif); 
+	background-repeat: no-repeat; 
+	background-color:transparent;
+	background-position: center center; 
+	width: 16; height:16;
+	text-align: left
+}
+
+.last_page{
+	BORDER-RIGHT: #ffffff 0px solid; 
+	BORDER-TOP: #ffffff 0px solid; 
+	LEFT: 0px; BORDER-LEFT: #ffffff 0px solid;
+	BORDER-BOTTOM: #ffffff 0px solid; 
+	background-image:url(last_page.gif); 
+	background-repeat: no-repeat; 
+	background-position: center center;
+	background-color:transparent;
+	width: 16; height:16;
+	text-align: left
+}
+
+.front_page{
+	BORDER-RIGHT: #ffffff 0px solid; 
+	BORDER-TOP: #ffffff 0px solid; 
+	LEFT: 0px; BORDER-LEFT: #ffffff 0px solid;
+	BORDER-BOTTOM: #ffffff 0px solid; 
+	background-image:url(front_page.gif); 
+	background-repeat: no-repeat; 
+	background-position: center center; 
+	background-color:transparent;
+	width: 16; height:16;
+	text-align: left
+}
+
+.first_page_gray{
+	BORDER-RIGHT: #ffffff 0px solid; 
+	BORDER-TOP: #ffffff 0px solid; 
+	LEFT: 0px; BORDER-LEFT: #ffffff 0px solid;
+	BORDER-BOTTOM: #ffffff 0px solid; 
+	background-image:url(first_page_gray.gif); 
+	background-repeat: no-repeat; 
+	background-position: center center; 
+	background-color:transparent;
+	width: 16; height:16;
+	text-align: left
+}
+
+.front_page_gray{
+	BORDER-RIGHT: #ffffff 0px solid; 
+	BORDER-TOP: #ffffff 0px solid; 
+	LEFT: 0px; BORDER-LEFT: #ffffff 0px solid;
+	BORDER-BOTTOM: #ffffff 0px solid; 
+	background-image:url(front_page_gray.gif); 
+	background-repeat: no-repeat; 
+	background-position: center center;
+	background-color:transparent;
+	width: 16; height:16;
+	text-align: left
+}
+.next_page_gray{
+	BORDER-RIGHT: #ffffff 0px solid; 
+	BORDER-TOP: #ffffff 0px solid; 
+	LEFT: 0px; BORDER-LEFT: #ffffff 0px solid;
+	BORDER-BOTTOM: #ffffff 0px solid; 
+	background-image:url(next_page_gray.gif); 
+	background-repeat: no-repeat; 
+	background-position: center center; 
+	width: 16; height:16;
+	background-color:transparent;
+	text-align: left
+}
+
+.last_page_gray{
+	BORDER-RIGHT: #ffffff 0px solid; 
+	BORDER-TOP: #ffffff 0px solid; 
+	LEFT: 0px; BORDER-LEFT: #ffffff 0px solid;
+	BORDER-BOTTOM: #ffffff 0px solid; 
+	background-image:url(last_page_gray.gif); 
+	background-repeat: no-repeat; 
+	background-position: center center; 
+	width: 16; height:16;
+	background-color:transparent;
+	text-align: left
+}
+
+
+
+.button_changesmall{
+	 BORDER-RIGHT: #002D96 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #002D96 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#FFFFFF, EndColorStr=#9DBCEA); BORDER-LEFT: #002D96 1px solid; CURSOR: pointer; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #002D96 1px solid
+}
+
+.form_button_find{
+	BORDER-RIGHT: #ffffff 1px solid; 
+	BORDER-TOP: #ffffff 1px solid; 
+	LEFT: 0px; 
+	BORDER-LEFT: #ffffff 1px solid;
+	BORDER-BOTTOM: #ffffff 1px solid; 
+	TOP: 0px; HEIGHT: 19px; 
+	background-image: url(form_button_find.gif); 
+	background-repeat: no-repeat; 
+	width: 55px; border-top-width: 0px; 
+	border-right-width: 0px; 
+	border-bottom-width: 0px; 
+	border-left-width: 0px
+}
+.button_search {
+	background: url(icon_arrow.gif);
+	background-position:2px 4px;
+	padding-left:10px;
+	background-repeat: no-repeat;
+    background-color:transparent;
+	BORDER: #600 0.8pt solid;
+	padding-top:2px;
+	CURSOR: point; font: 12px 宋体,"Trebuchet MS", Arial, sans-serif;
+}
+.button_search_on {
+	background: url(icon_arrow.gif);
+	background-position:2px 4px;
+	padding-left:10px;
+	background-repeat: no-repeat;
+    background-color:transparent;
+	BORDER: #B0B0FF 0.8pt solid;
+	padding-top:2px;
+	CURSOR: point; font: 12px 宋体,"Trebuchet MS", Arial, sans-serif;
+}
+
+.button_look {
+	background-image: url(btn_zk2.gif);
+	background-position: 3px;
+	padding-left:8px;
+	background-repeat: no-repeat;
+    background-color:transparent;
+	BORDER: #B0B0FF 0.8pt solid;
+	padding-top:5px;
+	CURSOR: point; font: 12px 宋体,"Trebuchet MS", Arial, sans-serif;
+}
+.button_look_on {
+	background-image: url(btn_zk2.gif);
+	background-position: 3px;
+	padding-left:8px;
+	background-repeat: no-repeat;
+    background-color:transparent;
+	BORDER: #3399FF 0.8pt solid;
+	padding-top:5px;
+	CURSOR: point; font: 12px 宋体,"Trebuchet MS", Arial, sans-serif;
+}
+.button_a_on {
+	background-image: url(btn_zk2.gif);
+	background-position: 4px;
+	padding-left:8px;
+	background-repeat: no-repeat;
+    background-color:#fff;
+	BORDER: #FCC 1pt solid;
+	padding-top:5px;
+	CURSOR: point; font: 12px 宋体,"Trebuchet MS", Arial, sans-serif;
+}
+.button_a {
+	background-image: url(btn_zk2.gif);
+	background-position: 4px;
+	padding-left:8px;
+	background-repeat: no-repeat;
+    background-color:#FFC;
+	BORDER: #FCC 1pt solid;
+	padding-top:5px;
+	CURSOR: point; font: 12px 宋体,"Trebuchet MS", Arial, sans-serif;
+}
+
+.button_other {
+	background-image: url(btn_zk2.gif);
+	background-position: 3px;
+	padding-left:12px;
+	background-position:3px;
+	background-repeat: no-repeat;
+    background-color:transparent;
+	BORDER: #B0B0FF 0.8pt solid;
+	padding-top:5px;
+	CURSOR: point; font: 12px 宋体,"Trebuchet MS", Arial, sans-serif;
+}
+.button_other_on {
+	background-image: url(btn_zk2.gif);
+	background-position: 3px;
+	padding-left:12px;
+	background-position:3px;
+	background-repeat: no-repeat;
+    background-color:transparent;
+	BORDER: #3399FF 0.8pt solid;
+	padding-top:5px;
+	CURSOR: point; font: 12px 宋体,"Trebuchet MS", Arial, sans-serif;
+}
+.button_close_on {
+	background: url(icon_close.gif);
+	background-position:2px 4px;
+	background-repeat: no-repeat;
+    background-color:transparent;
+	BORDER: #B0B0FF 0px solid;
+	padding-top:5px;
+	CURSOR: point; font: 12px 宋体,"Trebuchet MS", Arial, sans-serif;
+}
+.button_nopic_close {
+	background-position:2px 4px;
+	background-repeat: no-repeat;
+    background-color:transparent;
+	font-weight:bold;
+	BORDER: #B0B0FF 0px solid;
+	padding-top:5px;
+	CURSOR: point; font: 12px 宋体,"Trebuchet MS", Arial, sans-serif;
+}
+
+
+

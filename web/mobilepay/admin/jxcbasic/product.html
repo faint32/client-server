@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<HEAD>
+		<TITLE>明盛网站</TITLE>
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<!-- Styles -->
+	<link rel="stylesheet" href="../css/styles.css">
+	<link rel="stylesheet" href="../css/custom.css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+	<link href="../colorbox/colorbox.css" rel="stylesheet" type="text/css">
+	<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT> 
+	<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> 
+	<script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script> 
+	<script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script> 
+	<SCRIPT language=javascript src="../function/function.js"></SCRIPT> 
+	<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 	
+	 <script language=javascript>
+			var requestSubmitted = false;
+			function submit_save(){
+				if(form1.product_name.value==""){
+				 	  alert("商品名称不能为空！");
+				 	  form1.product_name.focus();
+				 	  return;
+				  }
+				  	if(form1.product_no.value==""){
+				 	  alert("商品编号不能为空！");
+				 	  form1.product_no.focus();
+				 	  return;
+				  }
+				
+				showtips('正在保存数据，请稍候...');  
+				form1.submit();
+			}
+			
+			function prosupp(){
+			  if(form1.suppno.value!=""){
+			 likesupp();
+		   }else{
+			     var arrItems=new Array();
+			     var strItem ;
+			     var szRef = "../getdata/getsupp.html";
+			     var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+			     
+			     arrItems = strItem.split("@@@");
+			     form1.suppid.value    = arrItems[0];   
+			     form1.suppno.value    = arrItems[1]; 
+			     form1.suppname.value  = arrItems[2];
+			     }
+			   
+			}
+			function keypresssupp(){
+			  if(event.keyCode==13){
+				 checkisonesupp();
+			  }
+			}
+			function checkisonesupp(){
+  var strsuppno = form1.suppno.value;
+  var postStr = "suppno="+ strsuppno;
+　//需要进行Ajax的URL地址
+　var url = "../ajaxread/checkisonesupp.php";
+　//实例化Ajax对象
+　var ajax = InitAjax();
+　//使用POST方式进行请求
+　ajax.open("POST", url, true);
+  //定义传输的文件HTTP头信息
+　ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+　//发送POST数据
+　ajax.send(postStr);
+　//获取执行状态
+　ajax.onreadystatechange = function() { 
+　　//如果执行是状态正常，那么就把返回的内容赋值给上面指定的层
+　　if (ajax.readyState == 4 && ajax.status == 200) { 
+       var strcommArray = new Array();   
+       strcommArray = ajax.responseText.split("&");  
+       if(strcommArray[0]==0){
+         alert("没有该供应商！请查证！");
+         form1.suppno.focus();
+       }else if(strcommArray[0]==1){
+         form1.suppid.value    = strcommArray[1];   
+         form1.suppno.value    = strcommArray[2]; 
+         form1.suppname.value  = strcommArray[3];
+         
+       }else{
+         likesupp();
+       }
+　　}
+　}
+}
+
+function submit_del(){
+    if (confirm("是否删除该记录？")) {
+ showtips('正在删除数据，请稍候...');  
+	   form1.action.value="delete";
+		form1.submit();
+    }
+} 
+
+function likesupp(){
+     var strsuppno = form1.suppno.value;
+     var arrItems=new Array();
+     var strItem ;
+     var szRef = "../getdata/likegetsupp.php?suppno="+strsuppno;
+     var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+     
+     arrItems = strItem.split("@@@");
+     form1.suppid.value    = arrItems[0];   
+     form1.suppno.value    = arrItems[1]; 
+     form1.suppname.value  = arrItems[2];
+}
+		</script> 
+	</HEAD>
+	<BODY onload=input_focus() topmargin="0" leftMargin="2" width="100%">
+		<div id="page" class="page">
+		<h4 class="icon forms">{menuname} <small></small></h4>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+			<tr>
+				<td class=button_labelleft></td>
+				<td class=button_label>
+					<div align="right" >
+						 <input type=button name=save32 class=button_help value="帮助" AccessKey=h  onClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.className='button_help_on'" onMouseOut="this.className='button_help'">
+						<span class=button_split>&nbsp;</span><input type=button name=save3 class=button_save value="保存" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt" {dissave} onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+						<span class=button_split>&nbsp;</span><input {disdel} class=button_delete name=end type=button value="删除" AccessKey=d   onClick="javascript:submit_del()" onMouseOver="this.className='button_delete_on'" onMouseOut="this.className='button_delete'"  >
+						<span class=button_split>&nbsp;</span><INPUT class=button_reset name=qqq type=reset value="撤销" AccessKey=z style="font-size:9pt" onMouseOver="this.className='button_reset_on'" onMouseOut="this.className='button_reset'">
+						<span class=button_split>&nbsp;</span><input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+					</div>
+				</td>
+				<td class=button_labelright></td>
+			</tr>
+		</table>
+			<!-- Wrapper -->
+			<div class="wrapper">
+				<div class="panel">
+					<form action="" method="post"  name="form1">
+						<input class="input" type="hidden" name="listid" value="{listid}" id="listid">
+						<input class="input" type="hidden" name="action" value="{action}" id="action">
+						<div id="showinfo" class="box box-info" style="display:{show_error}"><p>{error}</p><a class="close">&times;</a></div> 
+						<fieldset class="form">
+							<legend>
+								商品资料 
+								<small>&nbsp;商品资料填写</small>
+							</legend>
+							<table class="table_form">
+								<colgroup>
+									<col class="col-name" />
+									<col class="col-value" />
+								</colgroup>
+								<tr>
+									<th>商品名称：</th>
+									<td >
+										<input class="input" id="product_name" type="text" name="product_name" size="30" maxlength="40" value="{product_name}" >
+									</td>
+									<th>商品编号：</th>
+									<td >
+										<input class="input" id="product_no" type="text" name="product_no" size="30" maxlength="40" value="{product_no}" >
+									</td>
+								</tr>
+								<tr>
+									<th>商品类型：</th>
+									<td>
+										<select name="producttypeid">{producttypeid}</select>
+									</td>
+									<th>商品适用范围：</th>
+									<td>
+										<select name="productscope">{productscope}</select> 信用卡-借记卡
+									</td>
+								</tr>
+								</tr> 
+								<th >所属供应商编号：</th>
+								<td >
+									<input class="input" type="text" name="suppno" size="10" maxlength="20" value="{suppno}" onKeyPress="keypresssupp()"  >
+									<input  type=button name=save2 class=buttonsmall value="查找"  onClick="javascript:prosupp()" style="font-size:9pt" >
+									
+								</td>
+								<th>供应商全称：</th>
+								<td>
+									<input type="hidden" name="suppid" value="{suppid}">
+									<input class=input_disabled type="text" name="suppname" size="20"  value="{suppname}" readonly="1">
+									<span >*</span>
+								</td>
+								</tr> 
+							</table>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+{showtips}	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

@@ -1,0 +1,157 @@
+<HTML>
+<HEAD>
+<TITLE>收支报表</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="dianduo" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<link href="{skin}browse.css" type=text/css rel=stylesheet>
+<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+<script language=javascript>
+function getagentpmdpay(listdate,year,month){
+		var strItem ;
+		var szRef = "./agentpaymoney_detail.php?listdate="+listdate+"&datetype=year&type=ysp&typekind=pay&year="+year+"&month="+month
+		//alert(szRef);
+		location.href=szRef;		
+}
+function getagentpmdcost(listdate,year,month){
+		var strItem ;
+		var szRef = "./agentpaymoney_detail.php?listdate="+listdate+"&datetype=year&type=ysp&typekind=cost&year="+year+"&month="+month
+		//alert(szRef);
+		location.href=szRef;		
+}
+function getagentpmdfee(listdate,year,month){
+		var strItem ;
+		var szRef = "./agentpaymoney_detail.php?listdate="+listdate+"&datetype=year&type=ysp&typekind=fee&year="+year+"&month="+month
+		//alert(szRef);
+		location.href=szRef;		
+}
+function getagentpmdpay2(listdate,year,month){
+		var strItem ;
+		var szRef = "./agentpaymoney_detail.php?listdate="+listdate+"&datetype=year&type=wsp&typekind=pay&year="+year+"&month="+month
+		//alert(szRef);
+		location.href=szRef;		
+}
+function getagentpmdcost2(listdate,year,month){
+		var strItem ;
+		var szRef = "./agentpaymoney_detail.php?listdate="+listdate+"&datetype=year&type=wsp&typekind=cost&year="+year+"&month="+month
+		//alert(szRef);
+		location.href=szRef;		
+}
+function getagentpmdfee2(listdate,year,month){
+		var strItem ;
+		var szRef = "./agentpaymoney_detail.php?listdate="+listdate+"&datetype=year&type=wsp&typekind=fee&year="+year+"&month="+month
+		//alert(szRef);
+		location.href=szRef;		
+}
+function getagentpmdpay1(listdate,year,month){
+		var strItem ;
+		var szRef = "./agentpaymoney_detail.php?listdate="+listdate+"&datetype=year&type=all&typekind=pay&year="+year+"&month="+month
+		//alert(szRef);
+		location.href=szRef;		
+}
+function getagentpmdcost1(listdate,year,month){
+		var strItem ;
+		var szRef = "./agentpaymoney_detail.php?listdate="+listdate+"&datetype=year&type=all&typekind=cost&year="+year+"&month="+month
+		//alert(szRef);
+		location.href=szRef;		
+}
+function getagentpmdfee1(listdate,year,month){
+		var strItem ;
+		var szRef = "./agentpaymoney_detail.php?listdate="+listdate+"&datetype=year&type=all&typekind=fee&year="+year+"&month="+month
+		//alert(szRef);
+		location.href=szRef;		
+}
+</script>
+</HEAD>
+<body  text="#000000" topmargin="0" leftMargin="2" width="100%">
+<center>
+ <form id=form1 name=form1 action="" method=post>
+ <DIV>
+  
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td height="30" class="pagetitle"  colspan=2 valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	<span>资金代付款管理 --> 年报表
+        </td>
+      </tr>
+      <tr>
+         <td align="left" colspan=2><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+      </tr>
+      <tr>
+         <td align="left" colspan=2 height="3"></td>
+      </tr>
+  </table></DIV>
+ <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+         <td align="left" height="25">&nbsp;&nbsp;{condition}&nbsp;&nbsp;&nbsp;&nbsp;日期：{begindate}至{enddate}</td>
+         <td align="right" ><span class=onlyShow>[<span onClick="javascript:location='agentpaymoneyyear_query.php'" style='cursor:hand'>返回</span>]&nbsp;&nbsp;</span></td>
+      </tr>
+  </table>
+<TABLE class=table style="word-break:break-all;width:98%" align=center>
+  <THEAD> 
+  <TR class=listtitle>
+    <TH width="25">序号</TH>
+    <TH width="25">日期</TH>
+    <TH colspan="3">总代付额</TH>
+    <TH colspan="3">已核对出款</TH>
+    <TH colspan="3">未核对出款</TH>
+   </TR>
+   <TR class=listtitle>
+   	<th colspan="2"></th>
+   	<th>代付额</th>
+	<th>成本</th>
+    <th>手续费</th>
+	<th>代付额</th>
+	<th>成本</th>
+    <th>手续费</th>
+    <th>代付额</th>
+	 <th>成本</th>
+    <th>手续费</th>
+  </TR>
+  </THEAD>
+  <TBODY>
+<!-- BEGIN BXBK -->
+	<TR class=listrow1 onMouseOver="this.style.backgroundColor='#F1F4F9';" onMouseOut="this.style.backgroundColor='{bgcolor}'" bgcolor="{bgcolor}">
+		
+		<TD align=left>{tdcount}</TD>
+        <TD align=left>{listdate}</TD>
+		<!--代付总额-->
+		<TD align=right><span style='border-bottom:1px #999 solid;' onClick="javascript:getagentpmdpay1('{listdate}','{year}','{month}')">{quanmoney}</span></TD>
+        <TD align=right><span style='border-bottom:1px #999 solid;' onClick="javascript:getagentpmdcost1('{listdate}','{year}','{month}')">{quanagentfeemoney}</span></TD>
+        <TD align=right><span style='border-bottom:1px #999 solid;' onClick="javascript:getagentpmdfee1('{listdate}','{year}','{month}')">{quanpayfee}</span></TD>
+        <!--已审核出款-->
+		<TD align=right><span style='border-bottom:1px #999 solid;' onClick="javascript:getagentpmdpay('{listdate}','{year}','{month}')">{yskmoney}</span>&nbsp;</TD>
+		<TD align=right><span style='border-bottom:1px #999 solid;' onClick="javascript:getagentpmdcost('{listdate}','{year}','{month}')">{agentfeemoney}</span>&nbsp;</TD>
+		<TD align=right><span style='border-bottom:1px #999 solid;' onClick="javascript:getagentpmdfee('{listdate}','{year}','{month}')">{yskpayfee}</span>&nbsp;</TD>
+        <!--未审核出款-->
+		<TD align=right><span style='border-bottom:1px #999 solid;' onClick="javascript:getagentpmdpay2('{listdate}','{year}','{month}')">{ddspmoney}</span></TD>  
+		<TD align=right><span style='border-bottom:1px #999 solid;' onClick="javascript:getagentpmdcost2('{listdate}','{year}','{month}')">{ddagentfeemoney}</span>&nbsp;</TD>
+		<TD align=right><span style='border-bottom:1px #999 solid;' onClick="javascript:getagentpmdfee2('{listdate}','{year}','{month}')">{ddsppayfee}</span></TD>
+
+	</TR>
+<!-- END BXBK -->  
+  <TR vAlign=center >
+    <TD  class=listtail align=left height="25" noWrap colspan="2">&nbsp;&nbsp;合计：共&nbsp;{count}&nbsp;条&nbsp;&nbsp;</TD>
+    <TD  class=listtail noWrap align=right >{allquanmoney}&nbsp;</TD>
+    <TD  class=listtail noWrap align=right >{allquanagentfeemoney}&nbsp;</TD>
+    <TD  class=listtail noWrap align=right >{allquanpayfee}&nbsp;</TD>
+    <TD  class=listtail noWrap align=right >{allyskmoney}&nbsp;</TD>
+    <TD  class=listtail noWrap align=right >{allagentfeemoney}&nbsp;</TD>
+    <TD  class=listtail noWrap align=right >{allyskpayfee}&nbsp;</TD>
+    <TD  class=listtail noWrap align=right >{allddspmoney}&nbsp;</TD>
+    <TD  class=listtail noWrap align=right >{allddagentfeemoney}&nbsp;</TD>
+    <TD  align=right noWrap  class=listtail >{allddsdpayfee}&nbsp;</TD>
+
+  </TR>
+</TBODY></TABLE>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+  <td align="right" class="table_bgshow"><span class=onlyShow>[<span onClick="javascript:location='agentpaymoneyyear_query.php'" style='cursor:hand'>返回</span>]&nbsp;&nbsp;</span></td>
+  </tr>
+</table>
+</FORM>
+</center>
+</BODY></HTML>

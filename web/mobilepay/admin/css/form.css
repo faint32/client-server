@@ -1,0 +1,182 @@
+@charset "gb2312";
+/* CSS Document */
+
+.input, .textarea {
+	background-color: #ffffff;
+	border: 1px solid #b5bac3;
+	font-family: inherit;
+	color: #525252;
+	font-size: 12px;
+	margin-left: 2px;
+	padding: 6px;
+	width: 200px;
+}/*20130517-*/
+input:focus, textarea:focus, select:focus {
+	outline-width: 0;
+}
+
+input.small {
+	width: 8%;
+}
+textarea.large {
+	width: 80%;
+}
+input.input_160 {
+	width: 160px;
+}
+input.input_240 {
+	width: 240px;
+}
+input.gray{
+	color:#333;}
+input.bggray{
+	background:#EAEAEA;}
+	
+span .logwrong {
+	display: none;
+}
+input.checkinput{	
+    border: 0px solid #b5bac3;
+	font-family: inherit;
+	color: #525252;
+	font-size: 12px;
+    margin:12px 8px 0 0;
+	padding: 6px;
+	width: 15px;}
+input:focus, textarea:focus {
+	-moz-box-shadow: 0 1px 1px rgba(196,196,196,0.5);
+	-webkit-box-shadow: 0 1px 1px rgba(196,196,196,0.5);
+	box-shadow: 0 1px 1px rgba(196,196,196,0.5);
+	-webkit-focus-ring-color: none;
+	border-color: #c4c4c4;
+	background-color: #FFFFF0;
+}
+input#searchvalue:focus{
+	background-color:transparent;
+	}
+.code {
+	font-family: Arial;
+	font-style: italic;
+	color: Red;
+	border: 0;
+	margin: 10px;
+	margin-left: 3px;
+	margin-right: 2px;
+	padding: 4px;
+	width: 80px;
+	letter-spacing: 3px;
+	font-weight: bolder;
+}
+.unchanged {
+	border: 0 solid #F00;
+}
+.hidden {
+	display: none;
+}
+select{ min-width:80px; vertical-align:middle;}/*20130609-*/
+/*==========检测表单===========*/
+.valid{}
+.valid_right {
+	color: #71b83d;	
+	padding:2px;
+	padding-left: 25px;
+	padding-bottom:0px;
+	line-height:35px;
+
+	background: url(../images/valid/right.png) no-repeat 3px center;
+}
+.valid_wrong {
+	color: #F00;
+	padding:2px;
+	padding-left: 25px;
+	padding-bottom:0px;
+	line-height:35px;
+	background: url(../images/valid/error.png) no-repeat 3px center;
+}
+.valid_loading {
+	padding:2px;
+	padding-left: 25px;
+	padding-bottom:0px;
+	line-height:35px;
+	vertical-align:middle;
+	background: url(../images/valid/onLoad.gif) no-repeat 3px center;
+}
+.valid_error {
+	background-color: #FFFFF0;
+	border: 1px #FF0000 solid;
+}
+#Validform_msg {
+	color: #7d8289;
+	font: 12px/1.5 tahoma, arial, \5b8b\4f53, sans-serif;
+	width: 280px;
+	-webkit-box-shadow: 2px 2px 3px #aaa;
+	-moz-box-shadow: 2px 2px 3px #aaa;
+	background: #fff;
+	position: absolute;
+	top: 0px;
+	right: 50px;
+	z-index: 99999;
+	display: none;
+filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#999999');
+}
+#Validform_msg .iframe {
+	position: absolute;
+	left: 0px;
+	top: -1px;
+	z-index: -1;
+}
+#Validform_msg .Validform_title {
+	line-height: 25px;
+	height: 25px;
+	text-align: left;
+	font-weight: bold;
+	padding: 0 8px;
+	color: #fff;
+	position: relative;
+	background-color: #000;
+}
+#Validform_msg a.Validform_close:link, #Validform_msg a.Validform_close:visited {
+	line-height: 22px;
+	position: absolute;
+	right: 8px;
+	top: 0px;
+	color: #fff;
+	text-decoration: none;
+}
+#Validform_msg a.Validform_close:hover {
+	color: #cc0;
+}
+#Validform_msg .Validform_info {
+	padding: 8px;
+	border: 1px solid #000;
+	border-top: none;
+	text-align: left;
+}
+/* 密码强度  */
+.passwordStrength {
+}
+.passwordStrength b {
+	font-weight: normal;
+}
+.passwordStrength b, .passwordStrength span {
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 16px;
+	line-height: 18px\9;
+	height: 16px;
+}
+.passwordStrength span {
+	width: 45px;
+	text-align: center;
+	background-color: #ffd099;
+	color:#fff;
+	border-right: 1px solid #fff;
+}
+.passwordStrength .last {
+	border-right: none;
+}
+.passwordStrength .bgStrength {
+	color: #fff;
+	background-color: #f60;
+}
+

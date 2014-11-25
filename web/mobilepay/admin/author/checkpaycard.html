@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dth XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dth/xhtml1-transitional.dth">
+<HTML>
+	<HEAD>
+		<TITLE>采购单</TITLE>
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!-- Styles -->
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+<!-- 		<link rel="stylesheet" href="../css/framework.css"> -->
+		<!--[if IE 6]>
+			<link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css" />
+			<![endif]-->
+		<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> 
+		<script language=javascript>	
+	function CheckAll(form)
+	{
+		 for (var i=0;i<form.elements.length;i++){ 
+			 var strelement = form.elements[i];
+			 if (strelement.name != 'chkall' && !strelement.disabled){
+				 strelement.checked = form.chkall.checked;
+			 }
+		  }
+	   }
+</script> 
+	</HEAD>
+	<BODY  topmargin="0" leftMargin="2" width="100%">
+	
+		<h4 class="icon forms">{menuname} <small></small></h4>
+		<form action="" method="post" name="form1" >
+			<div id="top">
+				<ul id="menu">
+					<li>
+						<a href="#" AccessKey='q' onClick="javascript:location='{gotourl}'">返回</a>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="wrapper">
+				<div class="panel">
+					
+					
+					<fieldset class="form">
+						<table  class="table_form">
+							<tr >
+								<th >刷卡器编号：</th>
+								<td>
+									<input class="input disabled"  readonly type="text" value="{vpaycardkey}">
+									
+								</td>
+								<th>所属商家：</th>
+								<td>
+									<input  type="text"  readonly  class="input disabled"  value="{authortruename}" >
+								</td>
+							</tr>
+						</table>
+					</fieldset>
+				</div>
+			</div>
+			<div class="wrapper">
+				<div class="panel">
+					<fieldset class="form">
+						<table width="98%" border="0" cellspacing="1"  style="display:{datashow}" class=table>
+							<colgroup><col class="col-name" />
+								<col class="col-value" /></colgroup>
+							<thead >
+							<tr>
+								<th align="center" >
+									<INPUT onclick=CheckAll(this.form) type=checkbox value=on name=chkall>
+								</th>
+								<th align="center" class="white_word">卡号</th>
+								<th align="center" class="white_word">持卡人</th>
+								<th align="center" class="white_word">安全级别</th>
+								<th align="center" class="white_word">最后刷卡时间</th>
+								<th align="center" class="white_word">交易流水号</th>
+								<th align="center" class="white_word">信用卡还款</th>
+								<th align="center" class="white_word">转账汇款</th>
+								<th align="center" class="white_word">贷款还款</th>
+								<th align="center" class="white_word">抵用券购买</th>
+								<th align="center" class="white_word">当月累计刷卡金额</th>
+								<th align="center" class="white_word">当月刷卡总次数</th>								
+								</tr>
+							</thead>
+							<!-- BEGIN prolist -->
+							<tbody onMouseOver="this.style.backgroundColor='#DAE2ED';" onMouseOut="this.style.backgroundColor='{bgcolor}'" bgcolor="{bgcolor}" >
+							<tr>	
+							<td  align="center" ><input type="checkbox" name="checkid[]" value="{vid}" ></td>
+								<td align="center" >&nbsp;{fucardno}</td>
+								<td align="center" >&nbsp;{fucardman}</td>
+								<td align="center" >&nbsp;{level}</td>
+								<td align="center" >{paydate}&nbsp;</td>
+								<td align="center" >{bkntno}&nbsp;</td>
+								<td align="center" >{ccglist}&nbsp;</td>
+								<td align="center" >{tfmglist}&nbsp;</td>
+								<td align="center" >{repmglist}&nbsp;</td>
+								<td align="center" >{couponsale}&nbsp;</td>
+								<td align="center" >{paymoney}&nbsp;</td>
+								<td align="center" >{paycardnum}&nbsp;</td>
+							</tr>	
+							</tbody>
+							<!-- END prolist -->
+							<tfoot>
+							<tr>
+								<th align="center" class=thcolor>汇总</th>
+								<th align="right" class=thcolor></th>
+								<th align="center" class=thcolor></th>
+								<th align="right" class=thcolor></th>
+								<th align="right" class=thcolor></th>
+								<th align="center" class=thcolor></th>
+								<th align="center" class=thcolor>{allccglist}</th>
+								<th align="right" class=thcolor>{alltfmglist} </th>
+								<th align="center" class=thcolor>{allrepmglist}</th>
+								<th align="center" class=thcolor>{allcouponsale}</th> 	
+								<th align="center" class=thcolor></th>
+								<th align="center" class=thcolor>{allpaycardnum}</th>
+							</tr>	
+							</tfoot>
+						</table>
+					</fieldset>
+				</div>
+			</div>
+			<br>
+		</form>
+
+<div id="sending" STYLE=" WIDTH: 95%; POSITION: absolute; TOP: 50%;  HEIGHT: 95%;  z-index:101; display:none "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

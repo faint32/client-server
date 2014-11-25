@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<HTML>
+	<head>
+		<TITLE>资金到帐审批</TITLE>
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="zjw" CONTENT="no-cache">
+		<!-- Styles -->
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../js/custom.css">
+		<!--[if IE 6]>
+			<link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css" />
+		<![endif]-->
+		<script language="javascript" src="../include/editlib.js"></script>
+		<script language="javascript" type="text/javascript" src="../include/ShowCalendar.js"></script>
+		<script src="../include/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+	</head>
+	<script language="javascript" type="text/javascript">
+		function CheckAll(form){
+		   for (var i=0;i<form.elements.length;i++){ 
+		       var strelement = form.elements[i];
+		       if (strelement.name == 'checkid[]'){
+		           strelement.checked = form.chkall.checked;
+		       }
+		    }
+		}
+		
+		function submit_sel(selid,bkordernumber){
+			if(confirm("是否审批银行订单号为"+bkordernumber+"的单据！")){
+		     showtips('正在通过审批，请稍候...');   
+			 form1.selid.value = selid;
+			  form1.action.value = "selmore";
+		   	  form1.submit();
+			}
+		}
+		
+		function sea_click(){
+		   	form1.submit();
+		}
+	</script> 
+	<BODY>
+		
+			<form action="" method="post" name="form1">
+				<input type="hidden" name="action" value="{action}">
+				<input type="hidden" name="listid" value="{listid}">
+				<input type="hidden" name="payorin" value="{payorin}">
+				<input type="hidden" name="selid" value="">
+
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+					<tr>
+						<td height="30" class="pagetitle"  colspan=2 valign="middle">
+							<img src="{skin}nowspace.jpg" align="absmiddle">
+							<span>
+							<b></b>资金代付款管理 --> 资金到帐审批</td>
+					</tr>
+				</table>
+
+				<br>
+
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td align="center">
+							<div align="left">
+								<b>
+									<font color="#FF0000" size="2" class="error">{error}</font>
+								</b>
+							</div>
+						</td>
+					</tr>
+				</table>
+
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" height="15">
+					<tr>
+						<td width="92%" align="left" class="table_bgcolor">
+							查询条件：
+							 
+							<select name="selectpaytype">{selectpaytype}</select>
+							<select name="sel_condit">{conditions}</select>
+							<input name="txtCondit" type="text" class="textfield" size="15" value="{txtCondit}">
+							<input  type="button" name="search" class="buttonsmall" value="查 询" onClick="sea_click();">
+						</td>
+						<td width="8%" align="right" class="table_bgcolor">
+							
+						</td>
+					</tr>
+				</table>
+
+				<table class="table" align="center" id="checktables" style="width:100%; word-break:break-all;">
+					<thead>
+						<tr>
+                            <th>操作</th>
+							<th>银联订单号</th>
+							<th>明盛公户</th>
+							<th>客户名称</th>
+							<th>交易类型</th>
+							<th>交易状态</th>
+							<th>交易日期</th>
+							<th>付款人卡号</th>
+							<th>交易金额</th>
+							<th>手续费支付方向</th>
+							<th>手续费</th>
+							<th>代付金额</th>
+							<th>预计支出日期</th>
+							<th>银行交易流水号</th>
+							<th>刷卡器设备号</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- BEGIN prolist -->
+						<tr>
+							<td  align="left">{action}</td>
+							<td  align="left">{bkordernumber}</td>
+							<td  align="left">{sdcrname}</td>
+							<td  align="left">{author}</td>
+							<td  align="left">{paytype}</td>
+							<td  align="left">{payrq}</td>
+							<td  align="left">{paydate}</td>
+							<td  align="left">{fucardno}</td>
+							<td  align="right">{paymoney}</td>
+							<td  align="right">{payfeedirct}</td>
+							<td  align="right">{payfee}</td>
+							<td  align="right">{money}</td>
+							<td  align="left">{arrivedate}</td>
+							<td  align="left">{bkntno}</td>
+							<td  align="left">{paycardkey}</td>
+						</tr>
+						<!-- END prolist -->
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="8" height="28" align="left" >
+								<!-- <input class="buttonsmall" name="end2" type="button" value="到账审批"  onClick="javascript:submit_sel()" style="font-size:9pt" /> -->
+							</td>
+							<td align="right">{all_paymoney}</td>
+							<td colspan="6" height="28" align="left" ></td>
+						</tr>
+						<tr>
+							<td height="28" colspan="18" align="left" class="listTable_fontfirst">{pagenav}</td>
+						</tr>
+				</table>
+
+				<div id="showmenudate" style="position:absolute;width:32px;height:24px;z-index:2;left: 373px;top: 180px;visibility: hidden;">
+					<a href="#" title="返回" onClick="javascript:location='{gotourl}'">
+						<img src="../images/00043.gif" border="0" width="32" height="24">
+					</a>
+				</div>
+			</form>
+		
+{showtips}	
+	</BODY>
+</HTML>

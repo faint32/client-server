@@ -1,0 +1,247 @@
+<HTML><HEAD><TITLE>版本更新管理</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="updatetime-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+<style type="text/css">
+<!--
+.STYLE2 {font-size: 12px}
+-->
+</style>
+</HEAD>
+<script language=javascript>
+<!-- 
+
+function input_focus(){
+var gg = 1;
+if (gg == 1){
+form1.updatetime.focus();
+ }
+}
+
+
+var requestSubmitted = false;
+
+function submit_save(){
+    	if(form1.no.value==""){
+	 	  alert("请输入版本编号");
+	 	  form1.updatetime.focus();
+	 	  return;
+	     }
+		 if(form1.apptype.value==""){
+	 	  alert("请选择APP类型");
+	 	  form1.name.focus();
+	 	  return;
+	    }
+
+		
+	    
+		
+	 if(requestSubmitted == true){
+    alert("你已经提交，请等待一下");
+    return (false);
+   } 
+  requestSubmitted = true;
+	sending.style.display ="";
+	sendingbg.style.display ="";	  
+	form1.submit();
+}
+
+function submit_del(){
+    if (confirm("是否删除该记录？")) {
+        form1.action.value = "delete";
+			sendingdel.style.display ="";
+			sendingbg.style.display ="";	
+	       form1.submit();
+	   // getNews(form1.id.value);
+    }
+} 
+
+
+function help(){  
+   if(document.getElementById("helpid").style.pixelHeight == 0 &&  document.getElementById("helpid").style.visibility == "hidden"){      
+       document.getElementById("helpid").style.visibility = "visible";
+	  ChS();
+	 
+   }else{   
+	   HhS();    	  
+   }
+}
+
+function ChS(){
+if(helpid.style.pixelHeight<250){helpid.style.pixelHeight+=10;setTimeout("ChS()",0.5);
+} 
+ document.getElementById("apptype").style.display = "updatetimene";
+}
+function HhS(){
+if(helpid.style.pixelHeight > 0){helpid.style.pixelHeight-=10;setTimeout("HhS()",0.5);
+}
+if(helpid.style.pixelHeight == 0){
+ document.getElementById("helpid").style.visibility = "hidden";
+ }
+  document.getElementById("apptype").style.display = "";
+}
+// -->
+</script>
+
+<BODY  onload=input_focus() topmargin="0" leftMargin="2" width="100%">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+                 <td height="30" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	辅助功能 --> 版本更新</td>
+			<tr>
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+          </tr>	
+  </table>
+  <center>
+  <form action="" method="post" name="form1">
+    <input type=hidden name=action value="{action}">
+		<input type=hidden name=stafapptype value="{stafapptype}">
+    <input type=hidden name=id value="{id}">
+    <input type=hidden name=checkid value="">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+      <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right" >
+          <input type=button name=save32 class=button_new value="帮助" AccessKey=h  onClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.style.backgroundImage='url({skin}new_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}new.jpg)'">
+          <input type=button name=save3 class=button_save value="保存" AccessKey=s  onClick
+          ="javascript:submit_save()" style="font-size:9pt" {dissave} onMouseOver
+          ="this.style.backgroundImage='downurl({skin}save_sel.jpg)'"  onmouseout
+          ="this.style.backgroundImage='downurl({skin}save.jpg)'">
+          <input class=button_delete name=end type=button value="删除" AccessKey=d  onMouseOver="this.className='button_delete_on'" onMouseOut="this.className='button_delete'"  onClick="javascript:submit_del()" {disdel}>
+		    <INPUT class=button_reset name=qqq type=reset value="撤销" AccessKey=z style="font-size:9pt" onMouseOver="this.className='button_reset_on'" onMouseOut="this.className='button_reset'">
+          <input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+        </div></td>
+        <td class=button_labelright></td>
+      </tr>
+  </table>  
+    <table width="700" class=InputFrameMain cellspacing="0" cellpadding="0" border="0" height="178">
+      <TBODY> 
+         <tr>
+          <td align="left" colspan="4">
+          <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+          <td align="center" class=inputtitle width="150">版本更新</td>
+          <td align="center" class=inputtitleright >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td align="center" ><font color="#FF0000" ><b>{error}</b></font></td>
+          </tr>
+          </table>          </td>
+        </tr>
+       
+	  <tr> 
+        <td class=form_label width="68" height="24" align="right">版本号：</td>
+        <td align="left"><input class=input type="text" name="no" size="30" maxlength="20" value="{no}">
+                  <span class=form_label>*</span></td>
+	  </tr>
+		<tr> 
+        <td class=form_label width="68" height="24" align="right">APP类型	：</td>
+        <td align="left" width="292"><select name="apptype">
+                                   
+          <option value="" {select0}>选择APP类型</option>
+          <option value="1" {select1}>android_phone</option>
+          <option value="2" {select2}>ios_phone</option>
+          <option value="3" {select3}>android_pad</option>
+          <option value="4" {select4}>ios_pad</option> 
+      
+        </select><span class=form_label>*</span></td>
+        <td align="right" width="73"></td>
+        <td align="left" width="267">         </td>
+	  </tr>
+      <tr> 
+        <td class=form_label width="80" height="24" align="right">版本更新时间:</td>
+        <td colspan="3" align="left">
+        	<input class=input type="text" name="updatetime" size="30" maxlength="20" value="{updatetime}">
+                    </td>
+        </tr>
+      <tr> 
+        <td class=form_label width="68" height="24" align="right">更新时间：</td>
+        <td colspan="3" align="left">
+        	<!--<input class=input type="text" name="datetime" size="30" maxlength="20" value="{datetime}">-->
+         	{datetime}
+         </td>
+        </tr>
+	  <tr> 
+        <td class=form_label width="68" height="24" align="right">最新版本：</td>
+        <td colspan="3" align="left">
+        	<input type="radio" name="isnew" value="1" {checked1} />是
+            <input type="radio" name="isnew" value="0" {checked2} />否
+                    </td>
+        </tr>	  
+	  <tr> 
+        <td class=form_label width="68" height="24" align="right"> 下载地址：</td>
+        <td colspan="3" align="left"> 
+          <input class=input type="text" name="downurl" size="60" maxlength="100" value="{downurl}"></td>
+      </tr>
+      
+       <tr> 
+        <td class=form_label width="100" height="24" align="right"> 清除旧的数据：</td>
+        <td colspan="3" align="left">
+        	<input type="radio" name="clearoldinfo" value="1" {checked5} />是
+            <input type="radio" name="clearoldinfo" value="0" {checked6} />否
+        </td>
+      </tr>
+	  <tr> 
+        <td class=form_label width="68" height="24" align="right"> 更新内容：</td>
+        <td colspan="3" align="left"> 
+          <!--<input class=input type="text" name="newcontent" size="60" maxlength="100" value="{newcontent}">-->
+          <textarea name="newcontent" cols="50" rows="6">{newcontent}</textarea></td>
+      </tr>
+	  <tr> 
+        <td class=form_label width="68" height="24" align="right">强制更新：</td>
+        <td colspan="3" align="left">
+        	<input type="radio" name="strupdate" value="1" {checked3} />是
+            <input type="radio" name="strupdate" value="0" {checked4} />否
+                    </td>
+      </tr>
+      </TBODY> 
+    </table>
+</form>
+<div id="sending" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:20%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingdel" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:20%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在删除数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%;  z-index:100; filter: Alpha(Opacity=50);  background-color: #ffffff; display:none "> 
+
+</div>
+<div id="helpid" STYLE="right: 1%; WIDTH: 450px; POSITION: absolute; TOP: 86px; HEIGHT: 0; visibility: hidden;"> 
+ <div  align="left"   STYLE="position:absolute;left: 15px; top:15px;right:15px" >
+  导航信息在建立职员资料时会使用上。<br><br>
+  操作：基本信息－导航信息；<br><br>
+  保存(Alt+s)：添加新导航信息和修改导航信息；<br><br>
+  删除(Alt+d)：即删除不再使用的导航信息；<br><br>
+  撤销(Alt+z)：撤销回去导航没有修改的状态；<br><br>
+  返回(Alt+q)：返回导航信息列表；<br><br>
+  帮助(Alt+h)：显示帮助信息；
+</div>
+</div>
+</center>
+{showeditdiv}
+</body>
+</html>
+

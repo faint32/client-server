@@ -1,0 +1,50 @@
+---------------------------------------------------------
+2013-12-19 02:14:56##³ÂÖ¾Åô##update web_teller set fd_tel_error = fd_tel_error +1 where fd_tel_name ='cai'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-19 02:14:56##³ÂÖ¾Åô##update web_teller set fd_tel_error = fd_tel_error +1 where fd_tel_name ='cai'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-19 02:15:04##³ÂÖ¾Åô##update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-19 02:15:05##³ÂÖ¾Åô##update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-19 02:40:56##³ÂÖ¾Åô##update web_teller set fd_tel_outtime = now(),fd_tel_isin = 0
+			 where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-19 06:31:51####update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-19 06:31:51####update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-19 06:56:44####update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-19 06:56:44####update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-19 08:41:31##³ÂÔÆÈ«##update web_teller set fd_tel_outtime = now(),fd_tel_isin = 0
+			 where fd_tel_id ='5'
+----------------------------------------------------------

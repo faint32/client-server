@@ -1,0 +1,182 @@
+---------------------------------------------------------
+2013-12-18 00:46:15####update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 00:46:15####update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 00:48:10####update tb_agentpaymoneylist set fd_agpm_state = 1 ,fd_agpm_spman = '',fd_agpm_spdate=now() where fd_agpm_id = '3324'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 00:48:25####insert into tb_listcount(
+	              fd_ltct_count , fd_ltct_date , fd_ltct_ltnrtypeid
+	              )values(
+	              1             , now()        , '9'
+	              )
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 00:48:25####insert into tb_paymoneylist(
+                fd_pymylt_no      ,  fd_pymylt_dealwithman    , fd_pymylt_date   ,
+                fd_pymylt_fkdate  ,  fd_pymylt_memo    ,fd_pymylt_paytype
+                )values(
+                'fkd20131218-001'         , '陈海港'            , '2013-12-18'          ,
+                '2013-12-18'         , ''       ,'recharge'
+                )
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 00:48:25####update tb_paymoneylist set fd_pymylt_money = '' where fd_pymylt_id = '877'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 00:48:31####update tb_agentpaymoneylist set fd_agpm_paystate = 1 where fd_agpm_id = '3324'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 00:48:31####insert tb_paymoneylistdetail set fd_pymyltdetail_agpmid = '3324',
+				                                           fd_pymyltdetail_paymoneylistid = '877'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 00:48:31####update tb_paymoneylist set fd_pymylt_money = '0.00' where fd_pymylt_id = '877'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 00:48:31####update tb_paymoneylist set fd_pymylt_money = '0' where fd_pymylt_id = '877'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 01:59:42####update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 01:59:42####update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 01:59:57####update tb_author set 
+			   fd_author_username='13802501862'  , 
+	           fd_author_truename='蔡久兵' ,
+	           fd_author_mobile='13802501862' ,
+			   fd_author_idcard='432930198305031832',
+			   fd_author_email='1380250186@CC.com',
+			   fd_author_state='9',
+			   fd_author_regtime='2013-09-12 03:32:06',
+			   fd_author_isstop='0',
+			   fd_author_shopid='102',
+			   fd_author_shoucardman = '蔡久兵',
+			   fd_author_shoucardphone = '13802501862',
+			   fd_author_shoucardno='6222023602005991252',
+			   fd_author_shoucardbank='中国工商银行'
+			   where fd_author_id='3'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 01:59:57####update tb_agentpaymoneylist set fd_agpm_shoucardno = '6222023602005991252',fd_agpm_shoucardbank = '中国工商银行',fd_agpm_shoucardman = '蔡久兵',fd_agpm_shoucardmobile = '13802501862' where fd_agpm_authorid = '3' and (fd_agpm_paytype= 'coupon' or fd_agpm_paytype <>'recharge') and fd_agpm_isagentpay!= '1'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 01:59:57####update tb_couponsale  set fd_couponsale_shoucardno = '6222023602005991252',fd_couponsale_shoucardbank = '中国工商银行',fd_couponsale_shoucardman = '蔡久兵',fd_couponsale_shoucardmobile = '13802501862' where fd_couponsale_authorid = '3'  and fd_couponsale_isagentpay!= '1'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:00:47####update tb_listcount set
+	              fd_ltct_count = fd_ltct_count+1
+	              where fd_ltct_id = '320' 
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:00:47####insert into tb_paymoneylist(
+                fd_pymylt_no      ,  fd_pymylt_dealwithman    , fd_pymylt_date   ,
+                fd_pymylt_fkdate  ,  fd_pymylt_memo    ,fd_pymylt_paytype
+                )values(
+                'fkd20131218-002'         , ''            , '2013-12-18'          ,
+                '2013-12-18'         , ''       ,'recharge'
+                )
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:00:47####update tb_paymoneylist set fd_pymylt_money = '' where fd_pymylt_id = '878'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:18:36####update tb_paymoneylist set fd_pymylt_money = '0' where fd_pymylt_id = '877'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:19:10####update tb_author set 
+			   fd_author_username='13811999466'  , 
+	           fd_author_truename='赖朝金' ,
+	           fd_author_mobile='13811999466' ,
+			   fd_author_idcard='441522198306088813',
+			   fd_author_email='laichaojin@sina.cn',
+			   fd_author_state='9',
+			   fd_author_regtime='2013-09-29 00:10:28',
+			   fd_author_isstop='0',
+			   fd_author_shopid='102',
+			   fd_author_shoucardman = '333',
+			   fd_author_shoucardphone = '333',
+			   fd_author_shoucardno='33233',
+			   fd_author_shoucardbank='333'
+			   where fd_author_id='35'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:19:10####update tb_agentpaymoneylist set fd_agpm_shoucardno = '33233',fd_agpm_shoucardbank = '333',fd_agpm_shoucardman = '333',fd_agpm_shoucardmobile = '333' where fd_agpm_authorid = '35' and (fd_agpm_paytype= 'coupon' or fd_agpm_paytype='recharge') and fd_agpm_isagentpay!= '1'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:19:10####update tb_couponsale  set fd_couponsale_shoucardno = '33233',fd_couponsale_shoucardbank = '333',fd_couponsale_shoucardman = '333',fd_couponsale_shoucardmobile = '333' where fd_couponsale_authorid = '35'  and fd_couponsale_isagentpay!= '1'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:19:14####update tb_paymoneylist set fd_pymylt_money = '0' where fd_pymylt_id = '877'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:19:18####update tb_paymoneylist set
+                fd_pymylt_no     = 'fkd20131218-001'   ,  fd_pymylt_dealwithman  = '陈海港'  , fd_pymylt_date = '2013-12-18'   ,
+                fd_pymylt_fkdate = '2013-12-18'   ,  fd_pymylt_memo         = ''     ,fd_pymylt_paytype='recharge' 
+                where fd_pymylt_id = '877'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:19:18####update tb_paymoneylist set fd_pymylt_money = '0' where fd_pymylt_id = '877'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:19:18####update tb_paymoneylist set fd_pymylt_state = 1, fd_pymylt_datetime = now()
+                where fd_pymylt_id = '877'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:19:18####update tb_paymoneylist set fd_pymylt_money = '0' where fd_pymylt_id = '877'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:19:37####update tb_paymoneylist set fd_pymylt_state = 2, fd_pymylt_datetime = now()
+                where fd_pymylt_id = '877'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:23:36####update tb_authoraccount set fd_acc_money = fd_acc_money-0.00 where fd_acc_authorid = '35'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:23:36####insert into tb_authoraccountglist (fd_accglist_authorid,fd_accglist_acctype,fd_accglist_money,fd_accglist_datetime,fd_accglist_paytype,fd_accglist_bkordernumber)values('35','','-0.00','recharge','tfb2013120620432828')
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:24:13####update tb_authoraccount set fd_acc_money = fd_acc_money-0.00 where fd_acc_authorid = '35'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:24:13####insert into tb_authoraccountglist (fd_accglist_authorid,fd_accglist_acctype,fd_accglist_money,fd_accglist_datetime,fd_accglist_paytype,fd_accglist_bkordernumber)values('35','','-0.00','recharge','tfb2013120620432828')
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:25:00####update tb_authoraccount set fd_acc_money = fd_acc_money-0.00 where fd_acc_authorid = '35'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:25:00####insert into tb_authoraccountglist (fd_accglist_authorid,fd_accglist_acctype,fd_accglist_money,fd_accglist_datetime,fd_accglist_paytype,fd_accglist_bkordernumber)values('35','','-0.00',now(),'recharge','tfb2013120620432828')
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:25:07####update tb_authoraccount set fd_acc_money = fd_acc_money-0.00 where fd_acc_authorid = '35'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:25:07####insert into tb_authoraccountglist (fd_accglist_authorid,fd_accglist_acctype,fd_accglist_money,fd_accglist_datetime,fd_accglist_paytype,fd_accglist_bkordernumber)values('35','','-0.00',now(),'recharge','tfb2013120620432828')
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:25:51####update tb_authoraccount set fd_acc_money = fd_acc_money-0.00 where fd_acc_authorid = '35'
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:25:51####insert into tb_authoraccountglist (fd_accglist_authorid,fd_accglist_acctype,fd_accglist_money,fd_accglist_datetime,fd_accglist_paytype,fd_accglist_bkordernumber)values('35','','-0.00',now(),'recharge','tfb2013120620432828')
+----------------------------------------------------------
+---------------------------------------------------------
+2013-12-18 02:25:52####update tb_paymoneylist set fd_pymylt_state = 3, fd_pymylt_datetime = now()
+                where fd_pymylt_id = '877'
+----------------------------------------------------------

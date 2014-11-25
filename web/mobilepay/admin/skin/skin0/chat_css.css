@@ -1,0 +1,70 @@
+BODY {
+	SCROLLBAR-FACE-COLOR: #f4f4f4;
+	SCROLLBAR-SHADOW-COLOR: #595959;
+	SCROLLBAR-3DLIGHT-COLOR: #595959;
+	SCROLLBAR-ARROW-COLOR: #595959;
+	SCROLLBAR-DARKSHADOW-COLOR: #ffffff;
+	SCROLLBAR-BASE-COLOR: #f4f4f4;
+　　
+     a:link   { text-decoration: none;color: blue} 
+　　 a:active { text-decoration:none} 
+　　 a:hover { text-decoration:none;color: red} 
+　　 a:visited { text-decoration: none;color: green} 
+}
+.chtable_css {
+     background-color: #f4f4f4;
+}
+.btn {
+	PADDING-RIGHT: 0.15em;
+	PADDING-LEFT: 0.15em;
+	HEIGHT: 21px;
+	color:#333333;
+	background-color:#D2DDFB;
+	border: 3px double #CCCCCC;
+}
+
+.div_bor {
+     background-color: #f4f4f4;
+	 layer-background-color: #f4f4f4;
+	 background:url(chattitlelist.jpg);
+}
+.contentchosediv_bor {
+     background-color: #EAEAEA;
+	 layer-background-color: #EAEAEA;
+}
+.contentchosediv2_bor {
+     background-color: #f4f4f4;
+	 layer-background-color: #f4f4f4;
+	 BORDER-top:#dddddd 1px solid;
+}
+
+.leftrightdiv_bor {
+     background-color: #f4f4f4;
+	 layer-background-color: #f4f4f4;
+	 BORDER-RIGHT:#dddddd 1px solid;
+	 BORDER-LEFT:#dddddd 1px solid;
+	 BORDER-BOTTOM:#dddddd 1px solid;
+}
+.bottomdiv_bor {
+     background-color: #f4f4f4;
+	 layer-background-color: #f4f4f4;
+	 BORDER-BOTTOM:#dddddd 1px solid;
+}
+.buttonsmall{
+  color:#000000;
+	background-color: #000000;
+	background-image: url(bottonsmall.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 21px;
+	width: 69px;
+	border: thin none;
+	text-align: center;
+}
+
+.table_css {
+   BORDER-TOP:#0000FF 1px solid;
+   BORDER-RIGHT:#0000FF 1px solid;
+   BORDER-BOTTOM:#0000FF 1px solid;
+   BORDER-LEFT:#0000FF 1px solid;
+}

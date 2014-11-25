@@ -1,0 +1,325 @@
+<HTML>
+<HEAD><TITLE>用户管理</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+</HEAD>
+<script language=javascript>
+<!-- 
+function submit_del(){
+    if (confirm("是否删除该记录？")) {
+		sendingdel.style.display ="";
+		sendingbg.style.display ="";	
+        form1.action.value = "delete";
+	form1.submit();
+    }
+} 
+
+function submit_new() {
+   var id        = form1.id.value;
+   var pass      = form1.pass.value;
+   var pass2     = form1.pass2.value;  
+   var selgroup  = form1.selgroup.value; 
+      
+   if (pass == "") 
+   {
+       alert("请输入您的用户密码！");
+       form1.pass.focus();
+       return;
+   }
+
+   
+    if (selgroup == "") 
+   {
+       alert("请选择用户组！");
+       form1.pass.focus();
+       return;
+   }
+   if (pass != pass2) 
+   {
+      alert("两次输入的用户密码不一致！");
+      form1.pass.focus();
+      return;
+   }
+ 
+   if (confirm("是否将该记录另存为新记录？")) 
+   {
+       form1.action.value = "new";
+   }
+   
+
+   			    sending.style.display ="";
+				sendingbg.style.display ="";	
+   form1.submit();
+}
+function putsta(){
+   var arrItems=new Array();
+   var strItem ;
+   var szRef = "../getdata/getallstaffer.html" ;
+   var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+   arrItems = strItem.split("@@@");
+   form1.staid.value = arrItems[0] ;   
+   form1.stano.value = arrItems[1] ;
+   form1.staname.value = arrItems[2] ;    
+}
+function submit_save() {
+   var id    = form1.id.value;
+   var pass  = form1.pass.value;
+   var pass2 = form1.pass2.value;   
+   var isaction = form1.action.value ;
+    var selgroup  = form1.selgroup.value; 
+   if ((id == "") && (isaction != "new") ) 
+   {
+      alert("用户编号不能为空，请输入！");
+      form1.id.focus();
+      return;
+   }
+   if (pass != pass2) 
+   {
+      alert("两次输入的用户密码不一致！");
+      form1.pass.focus();
+      return;
+   }     
+
+   
+    if (selgroup == "") 
+   {
+       alert("请选择用户组！");
+       form1.pass.focus();
+       return;
+   }
+	sending.style.display ="";
+	sendingbg.style.display ="";	
+   form1.submit();
+}
+
+function showhidden(){
+	if(form1.checkterm.value=="2"){
+		trhidden.style.display="";
+	}else{
+		trhidden.style.display="none";
+	}
+}
+
+function getpart(){
+     var arrItems=new Array();
+     var strItem ;
+	  var addbutton = 1;
+     var szRef = "../getdata/getpart.html";
+     var strItem = window.showModalDialog(szRef,addbutton,"Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+     
+	  //if(strItem == "add"){
+      //addrstanew();
+       //}else{
+	 
+     arrItems = strItem.split("@@@");
+     form1.partid.value           = arrItems[0];   
+     form1.partname.value         = arrItems[1];
+     form1.area.value             = arrItems[2]+arrItems[3]+arrItems[4];
+	
+	 //if(form1.partid.value == 17){
+	  // document.getElementById("group").innerHTML ="总管理员组";
+	// }else{
+	 //  document.getElementById("group").innerHTML ="分行管理员组"; 
+	// }
+	// }	   					
+  
+}
+
+-->
+</SCRIPT>
+
+<BODY  topmargin="0" leftMargin="2" width="100%">
+<center>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+       <td height="20" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	用户管理
+       </td>
+       <tr>
+         <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+      </tr>
+  </table>
+  <form action="" method="post" name="form1">
+    <input type=hidden name=action value="{action}">
+    <input type=hidden name=id value="{id}">
+	<table width="98%" border="0" cellspacing="0" cellpadding="0"  class="table_bgcolor">
+        <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right" style="margin:-2px 0px 0px 0px">
+          <input type=button name=save3 class=button_save value="保存"  onClick="javascript:submit_save()" style="font-size:9pt" {dissave} onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+          <input class=button_delete name=end type=button value="删除"  onMouseOver="this.className='button_delete_on'" onMouseOut="this.className='button_delete'"  onClick="javascript:submit_del()" {disdel}>
+		    <INPUT class=button_reset name=qqq type=reset value="撤销" style="font-size:9pt" onMouseOver="this.className='button_reset_on'" onMouseOut="this.className='button_reset'">
+          <input type=button name=rst class=button_recovery value="返回" style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+        </div></td>
+        <td class=button_labelright></td>
+      </tr>
+    </table>
+    
+    <TABLE class=InputFrameMain width=650 align=center>
+      <!--基本信息-->
+      <tr> 
+        <td align="center" valign="middle" class="error">{error} </td>
+      </tr>
+      <TBODY> 
+      <TR> 
+        <TD> 
+          <table style="MARGIN: 5px" cellspacing=0 cellpadding=0 align=center 
+      border=0 width="650">
+            <tbody> 
+            <tr class=listtitle> 
+              <td align=left colspan=4 class=listcelltitle><a style="CURSOR: hand" onClick='vbscript:bb("XX01")'><img id=img01 
+            src="../images/menu_open.gif" border=0 width="16" height="16"></a>&nbsp;用户基本信息</td>
+            </tr>
+            <tbody id=XX01> 
+            <tr class=InputFrameLine> 
+              <td class=form_label align=right width=121 height="30">用户名称：</td>
+              <td  width=225 height="30"> 
+                <input class=input type="text" name="name" size="20" maxlength="20" value="{name}">
+              </td>
+              <td class=form_label align=right width=99 height="30"></td>
+              <td  width=205 height="30">              </td>
+            </tr>
+            <tr class=InputFrameLine> 
+              <td class=form_label align=right width=121 height="30">密码(如不需要修改，请留空)：</td>
+              <td  width=225 height="30" > 
+                <input class=input type="password" name="pass" size="20" maxlength="32" value="">
+              </td>
+              <td class=form_label align=right width=99 height="30">确认密码：</td>
+              <td  width=205 height="30"> 
+                <input class=input type="password" name="pass2" size="20" maxlength="32" value="">
+              </td>
+            </tr>
+            <tr class=InputFrameLine> 
+              <td class=form_label align=right width=121 height="30">用户状态：</td>
+              <td height="30" width="225" > 
+                <select name="recsts">
+				{recsts}
+                </select>
+              </td>
+              <td height="30" class=form_label width="99">需要修改密码：</td>
+              <td height="30" width="205" > 
+                <select name="chgpass">
+				{chgpass}
+                </select>
+              </td>
+            </tr>
+  <tr class=InputFrameLine>
+                  <td class=form_label align=right width=120 height="30">职员编号：</td>
+                  <td height="30" width="200" ><input type=hidden name=staid value="{staid}">
+                    <input class=input_disabled type="text" name="stano" size="10" maxlength="20" value="{stano}" readonly>
+                    <input type="button" name=xuan  onClick="javascript:putsta()" class="buttonsmall" style="font-size:9pt" value="查找"></td>
+                  <td height="30" class=form_label width="120">职员姓名：</td>
+                  <td height="30" width="200" ><input class=input_disabled type="text" name="staname" size="20" maxlength="20" value="{staname}" readonly></td>
+                </tr>
+            <tr class=InputFrameLine> 
+              <td class=form_label align=right width=121 height="30">所属组别：</td>
+              <td height="30" width="225" > <select name="selgroup">
+				           {selgroup}
+               </select></td>
+              <td height="30" class=form_label width="99">用户级别:</td>
+              <td height="30" width="205" > 
+			  
+			  <select name="state">
+				           {state}
+               </select>
+			  
+			               </td>
+            </tr>           
+            </tbody> 
+          </table>
+        </TD>
+      </TR>
+      <!--用户情况-->
+      <TR> 
+        <TD> 
+          <table style="MARGIN: 5px" cellspacing=0 cellpadding=0 align=center border=0 width="650">
+            <tbody> 
+            <tr class=listtitle> 
+              <td align=left colspan=4 class=listcelltitle><a style="CURSOR: hand" 
+            onClick='vbscript:bb("XX03")'><img id=img03 
+            src="../images/menu_open.gif" border=0 width="16" height="16"></a>&nbsp;用户使用情况</td>
+            </tr>
+            <tbody id=XX03> 
+            <tr class=InputFrameLine> 
+              <td class=form_label align=right width=120>最近进入时间：</td>
+              <td  width=200 > {intime} </td>
+              <td class=form_label align=right width=120>最近离开时间：</td>
+              <td  width=200> {outtime} </td>
+            </tr>
+            <tr class=InputFrameLine> 
+              <td class=form_label align=right width=120>登陆IP地址：</td>
+              <td  width=200 > {inip} </td>
+              <td class=form_label align=right width=120>是否已登陆：</td>
+              <td  width=200> {isin} </td>
+            </tr>
+            </tbody> 
+          </table>
+        </TD>
+      </TR>
+    <!--其他--> 
+      <TR> 
+        <TD> 
+          <TABLE style="MARGIN: 5px" cellSpacing=0 cellPadding=0 align=center border=0 width="650">
+            <td height="1"> 
+            <TR class=listtitle> 
+              <TD align=left width=600 colSpan=4 class=listcelltitle> <A style="CURSOR: hand" onclick='vbscript:bb("XX04")'> 
+                <IMG id=img04 src="../images/menu_open.gif" border=0 width="16" height="16"> 
+                </A>其他</TD>
+            </TR>
+            <TBODY id=XX04> 
+            <tr class=InputFrameLine> 
+              <td class=form_label align=right width=120 height="29">密码错误次数：</td>
+              <td width="540" height="30"> 
+                <INPUT class=input type="text" onKeyPress="if ((event.keyCode < 48 && event.keyCode != 46) || event.keyCode > 57 ) event.returnValue = false;"  maxLength=2 size=20 name="errornum" value="{errornum}">
+              </td>
+            </tr>
+            <tr class=InputFrameLine> 
+              <td class=form_label align=right width=120>备注：</td>
+              <td width="530"> 
+                <textarea class=inputarea name="memo"  style="WIDTH: 100%" wrap="virtual"  rows="4">{memo}</textarea>
+              </td>
+            </tr>
+            </TBODY> 
+          </TABLE>
+        </TD>
+      </TR>
+    </TABLE>
+  <SCRIPT language=VBScript>
+<!--
+sub bb(obj)
+    if document.getElementById(obj) is nothing then
+        exit sub
+    end if
+    if document.getElementById(obj).style.display="none" then
+        document.getElementById(obj).style.display="block" 
+        document.getElementById("img" & mid(obj,3)).src="../images/menu_open.gif"
+    else
+        document.getElementById(obj).style.display="none" 
+        document.getElementById("img" & mid(obj,3)).src="../images/menu_close.gif"
+    end if
+end sub
+//-->
+</SCRIPT>
+</form>
+<div id="sending" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingdel" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在删除数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+</div>
+</center>
+</BODY>
+</HTML>

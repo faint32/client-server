@@ -1,0 +1,385 @@
+<HTML><HEAD><TITLE></TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<LINK href="{skin}browse_edit.css" type=text/css rel=stylesheet>
+<SCRIPT language=javaScript src="../include/qshowtitle.js" type=text/javascript></SCRIPT>
+
+<SCRIPT language=JavaScript>
+
+   var tempurl = "{url}" ;
+
+      document.onkeydown=function(){ 
+  try{ 
+    if(event.keyCode==38 || event.keyCode==37){
+      if(document.all.radiocheck.checked||document.all.radiocheck[0].checked){	 
+	  if(form1.now.value == "1" ){	   
+	  }else{
+	  viewPage(form1.now.value-1);
+	  }
+	  }
+	}else if(event.keyCode==40 || event.keyCode==39){	
+      if(document.all.radiocheck.checked||document.all.radiocheck[form1.pagerows.value-1].checked){ 
+	  if(form1.now.value == "{pages}"){          
+	  }else{	  
+	  viewPage(parseInt(form1.now.value)+1);
+	  }
+	  }
+	}
+  }catch(e){ 
+  } 
+} 
+   
+   function CheckAll(form){
+     for (var i=0;i<form.elements.length;i++){ 
+         var e = form.elements[i];
+         if (e.name != 'chkall' && !e.disabled)   e.checked = form.chkall.checked;
+      }
+   }
+   
+   function viewPage(n){
+        form1.now.value = n;
+	form1.submit(); 
+   }
+    function add(){
+     window.returnValue = "add" ;
+     window.close();
+   } 
+   function chgrows(){
+	form1.submit(); 
+   }
+   
+   function getselect(){
+     for(var i =0; i< self.form1.returnvalue.length;i++){
+         if(self.form1.returnvalue[i].checked) { return i }
+     }   
+     return 0
+   }   
+
+   function submit_ok(){
+      hadc = 0 ;
+      for (var i=0;i<form1.elements.length;i++){ 
+         var e = form1.elements[i];
+         if (e.checked) {
+         	hadc = 1;
+         	var str = e.value ;
+         }       
+      }   
+      if(hadc == 1){
+      
+       arrItems = str.split("@@@");
+	     var temptr = "ischild"+arrItems[5];
+	     if(document.getElementById(temptr).value==0){
+	        form1.fatherkey.value=arrItems[6];
+	        form1.submit();
+	     }else{
+	        window.parent.kkit(str);
+	     } 
+      }else{
+	       alert("未选择,请选择一项!");
+      }
+   }
+   
+   function donofind(){;
+      for (var i=0;i<form1.elements.length;i++){ 
+         var e = form1.elements[i];
+         if (e.name == "whatdofind[]")   e.selectedIndex = 0;
+         if (e.name == "howdofind[]")   e.selectedIndex = 0;
+         if (e.name == "findwhat[]")   e.value = "";
+      }
+	    form1.submit();
+   }
+   
+   function submit_order(done){
+    	if(form1.order.value == done){ 
+       	   if(form1.upordown.value == 'asc'){
+       	      form1.upordown.value = "desc";
+       	   }else{ 
+              form1.upordown.value = "asc";
+           }   
+        }else{
+           form1.upordown.value = "asc";
+        } 
+        form1.order.value = done;
+	      form1.submit();
+   }
+     
+    function mainfind(){
+	document.getElementById("whatdofindq").disabled = true;
+document.getElementById("howdofindq").disabled = true;
+document.getElementById("findwhatq").disabled = true;
+document.getElementById("buttonq").disabled = true;
+	layermove.style.visibility='visible';
+    }
+    
+    function selectit(){
+	layermove.style.top = (document.body.offsetHeight - layermove.offsetHeight) / 3;
+	layermove.style.left = (document.body.offsetWidth - layermove.offsetWidth) / 2;
+	document.onmousedown = DownMouse;
+	window.document.onmousemove = MoveLayer;
+	window.document.onmouseup   = UpMouse;
+	  if(typeof(document.all.radiocheck)=="undefined"){
+	  }else if(typeof(document.all.radiocheck[0])=="undefined"){
+	  
+	  document.all.radiocheck.checked = "checked";
+	  document.all.radiocheck.focus();
+	  }else{
+	  document.all.radiocheck[0].checked = "checked";
+	  document.all.radiocheck[0].focus();
+	  }
+    }
+    var down = false; 
+    
+    function UpMouse(){ 
+    	down = false; 
+    } 
+    
+    var startX = 0; startY = 0;startLeft = 0;startTop = 0; 
+    
+    function MoveLayer(){ 
+    	if (down && (event.button==1)){
+    		layerX = startLeft+event.clientX-startX;
+    		layerY = startTop+event.clientY-startY;
+    		if(layerX<0)
+    			layerX = 0;
+    		if(layerY<0)
+    			layerY = 0;
+    		if(layerX + thelayer.offsetWidth > document.body.offsetWidth)
+    			layerX = document.body.offsetWidth - thelayer.offsetWidth;
+    		if(layerY + thelayer.offsetHeight > document.body.offsetHeight)
+    			layerY = document.body.offsetHeight - thelayer.offsetHeight;
+    		thelayer.style.pixelTop = layerY;
+    		thelayer.style.pixelLeft = layerX;
+    	}
+    }
+    
+    function DownMouse(){ 
+    	if (!document.all) return true;
+    	
+    	if ((event.srcElement.id=="tdmove" || event.srcElement.id=="fontmove") && (event.button==1)){//对应要拖动的层的name 
+    		thelayer = layermove; 
+    		down = true; 
+    		startX = event.clientX; 
+    		startY = event.clientY; 
+    		startLeft = thelayer.style.pixelLeft; 
+    		startTop = thelayer.style.pixelTop; 
+    	}
+    }    
+    
+    function hiddenfind(){
+	    	 	document.getElementById("whatdofindq").disabled = "";
+        document.getElementById("howdofindq").disabled = "";
+        document.getElementById("findwhatq").disabled = "";
+        document.getElementById("buttonq").disabled = "";
+    	layermove.style.visibility='hidden';
+    }
+    
+    function selectradio(rowcount){
+        var obj=document.form1.radiocheck;
+        if(form1.allrowcount.value<=1){
+           obj.checked = true;
+        }else{
+           obj[rowcount].checked = true;
+        }
+        hadc = 0 ;
+      for (var i=0;i<form1.elements.length;i++){ 
+         var e = form1.elements[i];
+         if (e.checked) {
+         	hadc = 1;
+         	var str = e.value ;
+         }       
+      }   
+      if(hadc == 1){
+	      window.parent.kkit(str);
+      }else{
+	     alert("未选择,请选择一项!");
+      }
+    }
+    function clickradio(rowcount){
+        var obj=document.form1.radiocheck;
+        if(form1.allrowcount.value<=1){
+		   obj.focus();
+           obj.checked = true;
+          
+        }else{
+		  obj[rowcount].focus();
+          obj[rowcount].checked = true;
+       
+        }
+    }
+   /* function moveradio(rowcount){
+        var obj=document.form1.radiocheck;
+        if(form1.allrowcount.value==0){
+           obj.checked = true;
+        }else{
+           obj[rowcount].checked = true;
+        }
+    }
+    
+    function moveoverradio(rowcount){
+        var obj=document.form1.radiocheck;
+        if(form1.allrowcount.value==0){
+           obj.checked = false;
+        }else{
+           obj[rowcount].checked = false;
+        }
+    }*/
+    
+    function submit_back(){
+      //form1.fatherkey.value = form1.upfatherkey.value;
+      form1.order.value = "";
+      form1.upordown.value = "";
+      form1.allrowcount.value = "";
+	    form1.submit();
+    }
+	function qfind(){
+   document.getElementById("whatdofind").value = ""; 		
+   document.getElementById("howdofind").value = ""; 		
+   document.getElementById("findwhat").value = "";
+   form1.submit()
+}	
+</SCRIPT>
+</HEAD>
+<body bgcolor="#F5F5F5" text="#000000" topmargin="0" leftMargin="2" width="100%" onLoad="return selectit()">
+  <FORM id=form1 name=form1 action="" method=post>
+  <input type="hidden" name="now" value="{nowpage}">
+  <INPUT type=hidden name=url value={url}>
+  <INPUT type=hidden name=act value="">
+  <INPUT type=hidden name=fatherkey value="">
+  <INPUT type=hidden name=order value={order}>
+  <INPUT type=hidden name=allrowcount value={allrowcount}>
+  <input type="hidden" name="upordown" value="{upordown}">
+  <input type="hidden" name="upfatherkey" value="{upfatherkey}">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+       <tr><td class="pagetitle"  valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	{prgname}
+       </td>
+         <td   valign="middle" align="right"><font color="#FF0000"><b>! </b></font>快速查询：<select name="whatdofind[]" id="whatdofindq" class="flat_input" style=" font-size:12px">
+              <option value="">-- 请选择查询类型 --</option>
+                        {whatdofind}                   
+              </select>&nbsp;<input type=hidden name="howdofind[]" id="howdofindq" value="like"  >
+             <input type="text" name="findwhat[]" id="findwhatq" size=20 style=" font-size:12px" onKeyPress="if (event.keyCode == 10 || event.keyCode == 13 ) qfind();" title="输入关键字后,按ENTER或点击“确定”进行查询!" >&nbsp;&nbsp;<INPUT id="buttonq" class=buttonsmall type=button value="确定" AccessKey=s onClick="qfind()"></td>
+       </tr>
+       <tr>
+         <td colspan="2" align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+      </tr>
+  </table>
+<TABLE class=tabletoolbar cellSpacing=1 cellPadding=0 width="98%" align=center border=0>
+  <TBODY>
+ 
+  <TR vAlign=center>
+    <TD vAlign=bottom align=left>
+        <BUTTON class=buttonsmall onClick="javascript:mainfind()" AccessKey=f name=thefind>查询</BUTTON>&nbsp;&nbsp;
+	<BUTTON class=buttonsmall onClick="javascript:submit_ok()" AccessKey=s name=theok>子类</BUTTON>&nbsp;&nbsp;
+	<BUTTON class=buttonsmall onClick="javascript:submit_back()" AccessKey=q name=theback>返回</BUTTON>&nbsp;&nbsp;
+    <BUTTON class=buttonsmall  onClick="add()" AccessKey=n name=theadd style="display:none">新增</BUTTON>
+	注意：双击某一条记录，就会自动选中该记录。
+    </TD>
+    </TR>
+</TBODY></TABLE>
+{findsay}   
+<TABLE class=tableframe width="98%" align=center>
+  <TBODY>
+  <TR class=listtitle>
+    <TD class=listcelltitle align=middle>&nbsp;</TD>
+<!-- BEGIN TITLEBK -->
+    <TD {cols} class={titlecss} noWrap align=middle>{title}</TD>
+<!-- END TITLEBK -->
+  </TR>
+<!-- BEGIN DATABK -->
+	<TR class="listrow1"   onmouseover="this.style.backgroundColor='#DAE2ED';  " onMouseOut="this.style.backgroundColor='{bgcolor}'; " bgcolor="{bgcolor}" onDblClick="selectradio({rowcount})" onClick="clickradio({rowcount})" onKeyPress="if (event.keyCode == 10 || event.keyCode == 13 ) selectradio({rowcount})">
+		{xi}
+	</TR>
+	<input type="hidden" name="ischild{rowcount}" value="{ischildvalue}" >
+<!-- END DATABK -->  
+</TBODY></TABLE>
+<TABLE  cellSpacing=0 cellPadding=0 width="98%" align=center border=0>
+  <TBODY>
+  <TR vAlign=center>
+     <TD  class=listtail vAlign=bottom align=left>
+      共{total}条记录  本页显示从第{recodeform}到第{recodeto}条&nbsp;
+    </TD>
+    <TD  class=listtail align=right>
+      &nbsp;&nbsp;页次：{nowpage}/{pages}页 每页
+      <INPUT class=input maxLength=5 size=4 name=pagerows value={rows}>条记录
+      <input type=button value="转换" class=buttonsmall onclick='chgrows()'>
+      </TD>
+     
+  </TR>
+</TBODY></TABLE>
+<TABLE class=tabletoolbar cellSpacing=1 cellPadding=0 width="98%" align=center border=0>
+  <TBODY>
+  <TR vAlign=center>
+    <TD vAlign=bottom align=left>
+    </TD>
+    <TD align=right>
+      分页：
+            {showviewpage}
+            转到:<input class=input type=text name=Pageu size=3 maxlength=10  value='1'>
+            <input type=button value="转到" class=buttonsmall onclick='viewPage(this.form.Pageu.value)'>
+      </TD>
+    </TR>
+</TBODY></TABLE>
+<TABLE id=layermove style="Z-INDEX: 1; VISIBILITY: hidden; LEFT: 128px;WIDTH: 600px; POSITION: absolute; TOP: 81px;
+	 HEIGHT: 180px"  height=147 cellSpacing=0 cellPadding=0 width=243 border=0 class=tableframe>
+  <TBODY>
+  <TR>
+    <td>
+    <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0 >
+     <tr class=listtitle>
+     <TD id=tdmove title=移动 style="CURSOR: move" >
+       <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0 >
+        <tr > 
+          <TD  width="80" class="inputtitle" align="center"> 
+             查询
+          </TD>
+          <TD  class="inputtitleright" width="24" > 
+          </td>
+           <td class="titlefont">&nbsp;
+           
+          </TD>
+        </tr>
+      </TABLE>
+     </tr>
+     </TABLE>
+    </td>
+  </TR>
+  <TR>
+    <TD vAlign=top class="titlefont" height=*>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>		
+            <tr class="titlefont">
+                <td width=100% align="center"><b>查询类型</b></td>
+                <td width=100% align="center"><b>查询方式</b></td>
+                <td width=100% align="center"><b>查询内容</b></td>
+            </tr>
+<!-- BEGIN FINDBK -->            
+            <tr bgcolor="#DDDDDD">
+                <td width=100%>
+                    <select name="whatdofind[]" id="whatdofind"  style="width=100%">
+                        <option value=""></option>
+                        {whatdofind}
+                    </select>     
+                </td>
+                <td width=100%>
+                    <select name="howdofind[]" id="howdofind">
+                    	<option value=""></option>
+                    	{howdofind}
+                    </select>
+                </td>
+                <td width=100%>
+                    <input type="text" name="findwhat[]" id="findwhat" size="40" value="{findwhat}" >
+                </td>
+            </tr>
+<!-- END FINDBK -->
+         </TBODY></TABLE>
+    </TD></TR>
+    <TR  ><TD class=listtail align=center height="30" >
+         <INPUT class=buttonsmall type=submit value="确定" AccessKey=s >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <INPUT class=buttonsmall onClick="javascript:hiddenfind()" type=reset value="取消" AccessKey=z>
+    </TD></TR>
+    </TBODY></TABLE></FORM>
+</BODY></HTML>

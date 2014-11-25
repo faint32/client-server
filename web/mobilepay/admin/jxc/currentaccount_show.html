@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<HTML>
+  <HEAD>
+    <TITLE>往来对帐单</TITLE>
+    <meta http-equiv=Content-Type content="text/html; charset=gb2312">
+    <meta HTTP-EQUIV="dianduo" CONTENT="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+    <link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+    <LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <!-- <link rel="stylesheet" href="../css/table_css.css" type="text/css">
+    <link href="../colorbox/colorbox.css" rel="stylesheet" type="text/css"> -->
+    <script type="text/javascript" src="../js/jquery.min.1.7.1.js"></script>
+    <script type="text/javascript" src="../js/global.js"></script>
+    <script type="text/javascript" src="../colorbox/jquery.colorbox.js"></script>
+    <script language="javascript" src="../js/global.js"></script>
+  </HEAD>
+<script language="javascript">
+<!--
+//禁止退格键 作用于Firefox、Opera
+document.onkeypress=banBackSpace;
+//禁止退格键 作用于IE、Chrome
+document.onkeydown=banBackSpace;
+function chaxun(pagename,idname,listid,obj)
+{
+  var szRef = pagename+"?"+idname+"="+listid;
+  //var strItem = window.showModelessDialog(szRef,"","Help=no;status:no;dialogWidth=800px;dialogHeight=600px;scroll=yes;");
+  $(obj).colorbox({href:szRef,iframe:true, innerWidth:800, innerHeight:500});
+}
+// -->
+</script>
+<BODY text="#000000" topmargin="0" leftMargin="2" width="100%">
+<center>
+<form id="form1" name="form1" action="" method="post">
+  <div>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="30" class="pagetitle" colspan="2" valign="middle" align="left">&nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle"><span>往来对帐单</span></td>
+      </tr>
+      <tr>
+        <td align="left" colspan="2"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" /></div></td>
+      </tr>
+      <tr>
+        <td align="left" colspan="2" height="3"></td>
+      </tr>
+    </table>
+  </div>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="left" height="25">&nbsp;&nbsp;时间段:{showtime}&nbsp;&nbsp;<span style="display: {display};">类型:{clienttype}&nbsp;&nbsp;名称:{cusname}</span></td>
+      <td align="right" ><span class="onlyShow">[<a href="{gotourl}" >返回</a>]&nbsp;&nbsp;</span></td>
+    </tr>
+  </table>
+
+  <table class="table" style="word-break:break-all;width:98%" align="center">
+    <THEAD>
+      <tr class="listtitle">
+        <th>日期</th>
+        <th>单据编号</th>
+        <th>单据类型</th>
+        <th>单据日期</th>
+        <th>应收款增加</th>
+        <th>应收款减少</th>
+        <th>余额</th>
+        <th>制单人</th>
+        <th>摘要</th>
+        <th>查看</th>
+      </tr>
+      <tr class="listtitle">
+        <th colspan="6">开始日期之前的余额为：</th>
+        <th>{ctatbalance}&nbsp;</th>
+        <th colspan="3">&nbsp;</th>
+      </tr>
+    </THEAD>
+    <TBODY>
+      <!-- BEGIN BXBK -->
+      <tr class="listrow1" onMouseOver="this.style.backgroundColor='#F1F4F9';" onMouseOut="this.style.backgroundColor='{bgcolor}'" bgcolor="{bgcolor}">
+        <td align="center">{vdate}</td>
+        <td align="left">&nbsp;{vlistno}</td>
+        <td align="left">&nbsp;{vlisttype}</td>
+        <td align="left">&nbsp;{vlistdate}</td>
+        <td align="right">{vaddmoney}&nbsp;</td>
+        <td align="right">{vlessen}&nbsp;</td>
+        <td align="right">{vbalance}&nbsp;</td>
+        <td align="right">{vmakename}&nbsp;</td>
+        <td align="left">&nbsp;{vmemo}</td>
+        <td align="left">&nbsp;{viewname}</td>
+      </tr>
+      <!-- END BXBK -->
+      <tr>
+          <td align="center" class="tdcolor">共&nbsp;{count}</font>&nbsp;条&nbsp;合计：</td>
+          <td align="center" class="tdcolor" ></td>
+          <td align="center" class="tdcolor" ></td>
+          <td align="center" class="tdcolor" ></td>
+          <td align="right" class="tdcolor" >{alladdmoney}&nbsp;</td>
+          <td align="right" class="tdcolor" >{alllessen}&nbsp;</td>
+          <td align="center" class="tdcolor" ></td>
+          <td align="center" class="tdcolor" ></td>
+          <td align="center" class="tdcolor" ></td>
+          <td align="center" class="tdcolor" ></td>
+      </tr>
+      <tr style="display: {display};">
+          <td align="center" class="tdcolor" colspan="10">当前应收款：{nowysmoney}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前应付款：{nowyfmoney}</td>
+      </tr>
+    </TBODY>
+  </table>
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="left" height="30" class="table_bgshow">&nbsp;&nbsp;时间段:{showtime}&nbsp;&nbsp;<span style="display: {display};">类型:{clienttype}&nbsp;&nbsp;名称:{cusname}</span></td>
+      <td align="right" class="table_bgshow"><span class="onlyShow">[<a href="{gotourl}" >返回</a>]&nbsp;&nbsp;</span></td>
+    </tr>
+  </table>
+</form>
+</center>
+</BODY>
+</HTML>

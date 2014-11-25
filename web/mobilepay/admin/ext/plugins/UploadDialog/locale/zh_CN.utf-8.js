@@ -1,0 +1,31 @@
+﻿Ext.apply(
+        Ext.ux.UploadDialog.Dialog.prototype.i18n,
+        {
+            err_file_type_not_permitted: '选择的文件类型不正确.<br/>请选择以下的文件类型: {1}',
+            state_col_title: '状态',
+            filename_col_title: '文件名',
+            note_col_title: '备注',
+            add_btn_text: '添加',
+            add_btn_tip: '将文件添加到上传列表中',
+            remove_btn_text: '删除',
+            remove_btn_tip: '将文件从上传列表中删除',
+            reset_btn_text: '重置',
+            reset_btn_tip: '将上传列表中的数据清空',
+            upload_btn_start_text: '开始上传',
+            upload_btn_stop_text: '中断上传',
+            upload_btn_start_tip: '开始文件的上传',
+            upload_btn_stop_tip: '中止文件的上传',
+            close_btn_text: '关闭',
+            close_btn_tip: '关闭上传窗口',
+            progress_waiting_text: '请等待...',
+            progress_uploading_text: '上传中    : 已上传 {0} 个文件, 总共 {1} 个文件.',
+            error_msgbox_title: '出错了',
+            note_queued_to_upload: '等待上传.',
+            note_processing: '正在上传...',
+            note_upload_error: '上传时发生了一个错误',
+            note_upload_failed: '上传失败,请检查您的Excel格式是否正确.',
+            note_upload_success: '上传完毕.',
+            note_aborted: '上传被用户中断.',
+            note_canceled: '上传被用户取消'
+        }
+);

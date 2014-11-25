@@ -1,0 +1,146 @@
+<HTML><HEAD><TITLE>已激活刷卡器</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+
+</HEAD>
+<script>
+
+</script>
+<BODY  topmargin="0" leftMargin="2" width="100%">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+                   <td height="30" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	刷卡器管理 --> 已激活刷卡器</td>
+			 <tr>
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+          </tr>	
+  </table>
+  <center>
+<form action="" method="post" name="form1">
+    <input type=hidden name=action value="{action}"> 
+    <input type=hidden name=repaymoneysetid value="{repaymoneysetid}">
+ 
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+      <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right" >
+         
+          <div align="right" >
+<!-- 		  <input class=button_save name=end type=button   value="   保存" AccessKey=d  onclick="sub_save();" style="font-size:9pt" onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+		  <input class=button_delete name=end type=button   value="   删除" AccessKey=d  onClick="javascript:submit_del();" style="font-size:9pt" onMouseOver="this.style.backgroundImage='url({skin}delete_sel.jpg)'"  onClick="javascript:submit_del()">
+ -->          <input type=button name=rst class=button_recovery value="   返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+        </div></td>
+        <td class=button_labelright></td>
+      </tr>
+  </table> 
+    <table width="700" class=InputFrameMain cellspacing="0" cellpadding="0" border="0" height="100">
+      <TBODY> 
+     <tr>
+          <td align="left" colspan="4">
+          <table width="700" cellspacing="0" cellpadding="0" border="0" >
+          <tr >
+          <td align="center" class=inputtitle width="150">已激活刷卡器</td>
+          <td align="center" class=inputtitleright >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		  <td align="center" ><font color="#FF0000" ><b>{error}</b></font></td>
+          </tr>
+          </table>          </td>
+        </tr>
+      <tr> 
+        <td colspan="4" height="10"></td>
+      </tr>
+      <tr > 
+    
+        <td   align="right" class=form_label>刷卡器设备号：</td>
+        <td  class=span_label  > 
+
+		         {paycardkey}
+
+			
+			</td>
+      </tr>
+	 <tr > 
+    
+        <td   align="right" class=form_label>刷卡器类型：</td>
+        <td  class=span_label > 
+		         {paycardtype}
+ 		
+			</td>
+      </tr>  
+    <tr > 
+    
+        <td   align="right" class=form_label>所属银行：</td>
+        <td  class=span_label >{bankname}</td>
+      </tr>
+	   <tr > 
+    
+        <td  align="right" class=form_label>网导名：</td>
+        <td  class=span_label > 
+        {salertruename}
+			</td>
+      </tr>
+	  <tr > 
+    
+        <td   align="right" class=form_label>激活操作人：</td>
+        <td  class=span_label > 	
+		         {authortruename}
+			</td>
+      </tr>
+	  <tr > 
+    
+        <td   align="right" class=form_label>激活时间：</td>
+        <td  class=span_label > 	
+		         {activedate}
+			</td>
+      </tr>
+      <TR> 
+        <td colspan="4" class=InputLabelCell height="10"></td>
+      </TR>
+      </TBODY> 
+    </TABLE>
+	 </form>
+<div id="sending" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingdel" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在删除数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+</div>
+
+<div id="helpid" STYLE="right: 1%; WIDTH: 450px; POSITION: absolute; TOP: 86px; HEIGHT: 0; display: none"> 
+ <div  align="left"   STYLE="position:absolute;left: 15px; top:15px;right:15px" >
+  1.操作：基本信息－商品信息；<br><br>
+  保存(Alt+s)：添加新商品信息和修改商品信息；<br><br>
+  删除(Alt+d)：即删除不再使用的商品信息；<br><br>
+  撤销(Alt+z)：撤销回去商品没有修改的状态；<br><br>
+  返回(Alt+q)：返回商品信息列表；<br><br>
+  帮助(Alt+h)：显示帮助信息；<br><br>
+  2.基本信息：<br><br>
+  类别：为了录入快捷和便于查询，您可为商品选择商品类别；<br><br>
+  销售单价：定义销售单价之后，做销售单时，选择了该商品，就会自动带出销售单价；<br><br>
+  库存上限：定义库存上限之后，如果该商品的库存大于库存上限，在仓库管理中的库存上限就会自动显示出该商品；<br><br>
+  库存下限：定义库存下限之后，如果该商品的库存小于库存下限，在仓库管理中的库存下限就会自动显示出该商品；<br><br>
+</div>
+</div>
+</center>
+<br />
+<br />
+<br />
+<br />
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<TITLE>对外付款单</TITLE>
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../js/custom.css">
+		<!--[if IE 6]>
+			<link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css" />
+			<![endif]-->
+		<SCRIPT language=javascript src="../include/dateobject.js"></SCRIPT> <SCRIPT language=javascript src="../include/datepicker.js"></SCRIPT> <script language="javascript" type="text/javascript"
+			src="../include/ShowCalendar.js"></script> <script src="../ext/jquery-1.3.2.js" type="text/javascript"
+			charset="utf-8"></script> <script src="../ext/jquery.elastic-1.6.js" type="text/javascript"
+			charset="utf-8"></script> <SCRIPT language=javascript src="../include/editlib.js"></SCRIPT> <script type="text/javascript">$(document).ready(function(){			
+			$('textarea').elastic();
+			});</script> 
+	</HEAD>
+	<script language=javascript>
+	<!-- 
+		function input_focus(){
+		var gg = 1;
+		if (gg == 1){
+		
+		readuppermoney(form1.payallmoney.value);
+		 }
+		}
+		
+		var requestSubmitted = false;
+		
+		function InitAjax()
+		{
+		　var ajax=false; 
+		　try { 
+		　　ajax = new ActiveXObject("Msxml2.XMLHTTP"); 
+		　} catch (e) { 
+		　　try { 
+		　　　ajax = new ActiveXObject("Microsoft.XMLHTTP"); 
+		　　} catch (E) { 
+		　　　ajax = false; 
+		　　} 
+		　}
+		　if (!ajax && typeof XMLHttpRequest!='undefined') { 
+		　　ajax = new XMLHttpRequest(); 
+		　} 
+		　return ajax;
+		}
+		
+		
+		function selfinetype(){
+		   if(form1.clienttype.value==1){
+		      procus();
+		   }else{
+		      prosupp();
+		   }
+		}
+		
+		function keypressclienttype(){
+		   if(form1.clienttype.value==1){
+		      keypresscus();
+		   }else{
+		      keypresssupp();
+		   }
+		}
+		
+		function procus(){
+		   if(form1.cusno.value!=""){
+		     likecus();
+		   }else{
+		     var arrItems=new Array();
+		     var strItem ;
+		     var szRef = "../getdata/getcus.html";
+		     var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+		     
+		     arrItems = strItem.split("@@@");
+		     form1.cusid.value    = arrItems[0];   
+		     form1.cusno.value    = arrItems[1]; 
+		     form1.cusname.value  = arrItems[2];
+			 form1.dealwithman.value = arrItems[8] ; 
+		     yfmoneyshow(form1.cusid.value,1);
+		   }
+		}
+		
+		function keypresscus(){
+		  if(event.keyCode==13){
+		     checkisonecus();
+		  }
+		}
+		
+		function likecus(){
+		     var strcusno = form1.cusno.value;
+		     var arrItems=new Array();
+		     var strItem ;
+		     var szRef = "../getdata/likegetcus.php?cusno="+strcusno;
+		     var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+		     
+		     arrItems = strItem.split("@@@");
+		     form1.cusid.value    = arrItems[0];   
+		     form1.cusno.value    = arrItems[1]; 
+		     form1.cusname.value  = arrItems[2];
+			 form1.dealwithman.value = arrItems[8] ; 
+		     yfmoneyshow(form1.cusid.value,1);
+		}
+		
+		function checkisonecus(){
+		  form1.cusid.value="";
+		  var strcusno = form1.cusno.value;
+		  var postStr = "cusno="+ strcusno;
+		　//需要进行Ajax的URL地址
+		　var url = "../ajaxread/checkisonecus.php";
+		　//实例化Ajax对象
+		　var ajax = InitAjax();
+		　//使用POST方式进行请求
+		　ajax.open("POST", url, true);
+		  //定义传输的文件HTTP头信息
+		　ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+		　//发送POST数据
+		　ajax.send(postStr);
+		　//获取执行状态
+		　ajax.onreadystatechange = function() { 
+		　　//如果执行是状态正常，那么就把返回的内容赋值给上面指定的层
+		　　if (ajax.readyState == 4 && ajax.status == 200) { 
+		       var strcommArray = new Array();   
+		       strcommArray = ajax.responseText.split("&");  
+		       if(strcommArray[0]==0){
+		         alert("没有该客户！请查证！");
+		         form1.cusno.focus();
+		       }else if(strcommArray[0]==1){
+		         form1.cusid.value    = strcommArray[1];   
+		         form1.cusno.value    = strcommArray[2]; 
+		         form1.cusname.value  = strcommArray[3];
+				 form1.dealwithman.value  = strcommArray[10];
+		         yfmoneyshow(form1.cusid.value,1);
+		       }else{
+		         
+		         likecus();
+		       }
+		　　}
+		　}
+		}
+		
+		function prosupp(){
+		   if(form1.cusno.value!=""){
+		     likesupp();
+		   }else{
+		     var arrItems=new Array();
+		     var strItem ;
+		     var szRef = "../getdata/getsupp.html";
+		     var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+		     
+		     arrItems = strItem.split("@@@");
+		     form1.cusid.value    = arrItems[0];   
+		     form1.cusno.value    = arrItems[1]; 
+		     form1.cusname.value  = arrItems[2];
+			 form1.dealwithman.value = arrItems[6] ; 
+		     yfmoneyshow(form1.cusid.value,2);
+		   }
+		}
+		
+		function keypresssupp(){
+		    if(event.keyCode==13){
+		    checkisonesupp();
+		  }  
+		}
+		
+		function likesupp(){
+		     var strcusno = form1.cusno.value;
+		     var arrItems=new Array();
+		     var strItem ;
+		     var szRef = "../getdata/likegetsupp.php?suppno="+strcusno;
+		     var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+		     
+		     arrItems = strItem.split("@@@");
+		     form1.cusid.value    = arrItems[0];   
+		     form1.cusno.value    = arrItems[1]; 
+		     form1.cusname.value  = arrItems[2];
+			 form1.dealwithman.value = arrItems[6] ; 
+		     yfmoneyshow(form1.cusid.value,2);
+		}
+		
+		function checkisonesupp(){
+		  var strcusno = form1.cusno.value;
+		  var postStr = "suppno="+ strcusno;
+		　//需要进行Ajax的URL地址
+		　var url = "../ajaxread/checkisonesupp.php";
+		　//实例化Ajax对象
+		　var ajax = InitAjax();
+		　//使用POST方式进行请求
+		　ajax.open("POST", url, true);
+		  //定义传输的文件HTTP头信息
+		　ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+		　//发送POST数据
+		　ajax.send(postStr);
+		　//获取执行状态
+		　ajax.onreadystatechange = function() { 
+		　　//如果执行是状态正常，那么就把返回的内容赋值给上面指定的层
+		　　if (ajax.readyState == 4 && ajax.status == 200) { 
+		       var strcommArray = new Array();   
+		       strcommArray = ajax.responseText.split("&");  
+		       if(strcommArray[0]==0){
+		         alert("没有该供应商！请查证！");
+		         form1.cusno.focus();
+		       }else if(strcommArray[0]==1){
+		         form1.cusid.value    = strcommArray[1];   
+		         form1.cusno.value    = strcommArray[2]; 
+		         form1.cusname.value  = strcommArray[3];
+				 form1.dealwithman.value = strcommArray[6] ; 
+		         yfmoneyshow(form1.cusid.value,2);
+		       }else{
+		         
+		        // likesupp();
+		       }
+		　　}
+		　}
+		}
+		
+		
+		function submit_savet() {
+			 
+			 form1.submit();
+		}
+		
+		function submit_save() {
+		
+			 if(confirm("是否提交，提交后到复核，不能更改？")) {
+			   form1.end_action.value = "endsave";
+			    if(requestSubmitted == true){
+		      alert("你已经提交，请等待一下");
+		      return (false);
+		     } 
+		     requestSubmitted = true;  
+		     sending.style.display ="";
+			   sendingbg.style.display ="";
+			   form1.submit();
+			 }
+		}	 
+		 
+		
+		function submit_del(){
+		    if (confirm("是否删除整条单据？")) {
+		        form1.end_action.value = "dellist";
+		        sendingbg.style.display ="";  
+		        sendingdel.style.display ="";
+			      form1.submit();
+		    }
+		}
+		
+		function changelistno(){
+			form1.ischangelistno.value="1";
+		}
+		
+		function help(){  
+		   if(document.getElementById("helpid").style.pixelHeight == 0 &&  document.getElementById("helpid").style.display == "none"){      
+		     document.getElementById("helpid").style.display ="";
+			   ChS();
+		   }else{   
+			   HhS();    	  
+		   }
+		}
+		
+		function ChS(){
+		  if(helpid.style.pixelHeight<550){
+		     helpid.style.pixelHeight+=10;setTimeout("ChS()",0.5);
+		  } 
+		}
+		
+		function HhS(){
+		  if(helpid.style.pixelHeight > 0){
+		    helpid.style.pixelHeight-=10;setTimeout("HhS()",0.5);
+		  }
+		  if(helpid.style.pixelHeight == 0){
+		    document.getElementById("helpid").style.display ="none";
+		  }
+		}
+		
+		
+		
+		function putsta(){
+		   var arrItems=new Array();
+		   var strItem ;
+		   var szRef = "../getdata/seljbstaffer.html" ;
+		   var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+		   arrItems = strItem.split("@@@");
+		   form1.dealwithman.value = arrItems[2] ;    
+		}
+		
+		
+		//金额只能输入小数点后两位
+		function checkmoney(){
+		  var tmppay = form1.payallmoney.value;
+		  var dotPos = tmppay.indexOf(".",0);
+		  var strLen = tmppay.length;
+		  if (dotPos == -1){
+		　}else{
+		     if(event.keyCode == 46){
+		        event.returnValue = false;
+		     }
+		     if(strLen>(dotPos+2)){
+		        event.returnValue = false;
+		     }
+		  }
+		}
+		
+		
+		function yfmoneyshow(suppid,strcompanytype)
+		{
+		  var postStr = "companyid="+ suppid+"&companytype="+strcompanytype;
+		　var url = "../ajaxread/readysyfmoney.php";
+		　//实例化Ajax对象
+		　var ajax = InitAjax();
+		　//使用POST方式进行请求
+		　ajax.open("POST", url, true); 
+		  //定义传输的文件HTTP头信息
+		　ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+		　//发送POST数据
+		　ajax.send(postStr);
+		　//获取执行状态
+		　ajax.onreadystatechange = function() { 
+		　　//如果执行是状态正常，那么就把返回的内容赋值给上面指定的层
+		　　if (ajax.readyState == 4 && ajax.status == 200) { 
+		        if(ajax.responseText !=""){
+		           form1.yfk_show.value = ajax.responseText;
+		        }else{
+		           form1.yfk_show.value ="0";
+		        }
+		　　}
+		　}
+		}
+		
+		function submit_checkdel1(){
+		   if (confirm("是否删除所选记录？")) {
+		        form1.action.value = "del1";
+			    form1.submit();
+		    }
+		}
+		
+		function CheckAll(form){
+		   for (var i=0;i<form.elements.length;i++){ 
+		       var strelement = form.elements[i];
+		       if (strelement.name == 'checkid[]'){
+		           strelement.checked = form.chkall.checked;
+		       }
+		    }
+		}
+		
+		
+		
+		// -->
+	</script> 
+	<BODY onload=input_focus() topmargin="0" leftMargin="2" width="100%">
+		
+		<form action="" method="post" name="form1">
+			<input type=hidden
+				name=action value="{action}">
+			<input type=hidden
+				name=end_action value="">
+			<input type=hidden name=listid
+				value="{listid}">
+			<input type=hidden name=ischangelistno
+				value="{ischangelistno}">
+			<div id="page">
+		<h4 class="icon forms">{menuname} <small></small></h4>
+			<div id="top">
+				<ul id="menu">
+					<li>
+						<a href="#" AccessKey='s' onClick="javascript:submit_save()"
+							title='提交数据到审批环节(ALT+s)'>审批</a>
+					</li>
+					<li>
+						<a href="#" AccessKey='b' onClick="javascript:submit_back()"
+							title='提交数据到审批环节(ALT+b)'>反审</a>
+					</li>
+					<li class="dropdown">
+						<a href="#"><span class="caret">
+							</span></a>
+					<li>
+						<a href="#" AccessKey='q' onClick="javascript:location='{gotourl}'">返回</a>
+					</li>
+				</ul>
+			</div>
+			<div class="wrapper">
+				<div class="panel">
+					<span style="color: red">{error}</span>
+					<fieldset class="form">
+						<legend>代付款申请 
+							<small>
+								&nbsp;单据输入 
+							</small></legend>
+						<table width="98%" class=table_form cellspacing="0" cellpadding="0"
+							border="0">
+							<tbody>
+								<tr>
+									<th>单据编号：</th>
+									<td>
+										<input class=input style="ime-mode: disabled" type="text"
+											name="listno" size="30" maxlength="40" value="{listno}"
+											onChange="changelistno()">
+									</td>
+									<th>单据日期</th>
+									<td>
+										<input name="date" type="text" id="date"
+											onClick="SetDate(this);" class="input" size="30" value="{date}">
+									</td>
+								</tr>
+								<tr>
+									<th>业务员：</th>
+									<td>
+										<input class="input find" type="text" name="dealwithman"
+											size="30" maxlength="20" value="{dealwithman}" readonly>
+										<input
+											type="button" name=xuan onClick="javascript:putsta()"
+											class="btn_find">
+									</td>
+									<th>录单人：</th>
+									<td>
+										<input class="input" _disabled type="text" name="staname"
+											size="30" maxlength="20" value="{staname}" readonly>
+									</td>
+								</tr>
+								<tr>
+									<th>备注：</span></th>
+									<td colspan='3'>
+										<textarea name="memo_z" class="input full"
+											wrap="virtual">{memo_z}</textarea>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</fieldset>
+					<fieldset class="form">
+						<legend>已选择代付帐号 
+							<small>
+								&nbsp;单据输入 
+							</small></legend>
+					
+					<TABLE class="table"  width="98%" align=center id="checktables">
+						<thead>
+							<tr>
+								<th>
+									<INPUT onClick="CheckAll(this.form)" type="checkbox" value="on" name="chkall">
+								</th>
+								<th>交易流水号</th>
+								<th >银行名</th>
+								<th >银行卡号</th>
+								<th >执卡人</th>
+								<th >联系电话</th>
+								<th >支付金额</th>
+								<th >支付日期</th>
+								<th >交易方式</th>
+								<th >查看详细</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- BEGIN prolist -->
+							<tr>
+								<td   height="25" width="10" align="center"><input type="checkbox" name="checkid[]" value="{agpmid}"></td>
+								<td  align="left">{bkntno}</td>
+								<td  align="left">{shoucardbank}</td>
+								<td  align="left">{shoucardno}</td>
+								<td  align="left">{shoucardman}</td>
+								<td  align="left">{shoucardmobile}</td>
+								<td  align="left">{paymoney}</td>
+								<td  align="right">{paydate}</td>
+								<td  align="right">{paytype}</td>
+								<td  align="right">详细-待做</td>
+							</tr>
+							<!-- END prolist -->
+						</tbody>
+						<tfoot>
+							<tr>
+								<td align="left" class=tdcolor>&nbsp;</td>
+								<td align="left" colspan="8" class=tdcolor>
+									<input
+										class=buttonsmall  name=end2 type=button
+										value="删除" onClick="javascript:submit_checkdel1()"
+										style="font-size: 9pt">
+									&nbsp;&nbsp;共&nbsp;{count1}&nbsp;条&nbsp;合计： 
+								</td>
+								<td class=tdcolor>
+									<input type=button name="save78"
+										class=buttonsmall  value="选择代付帐号"
+										{tijiao_dis} onClick="window.location='selagentbkno.php?linkstr=paymoneylist&listid={listid}&companyid={cusid}&paymode=1'"
+										style="font-size: 9pt">
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+					</fieldset>
+				</div>
+			</div>
+			<br>
+		</form>
+		<div id="addnewconcentbg"
+			style="position: absolute; width: 100%; height: 100%; left: 0px; top: 0px; z-index: 230; display: none"></div>
+		<div id="addnewconcent"
+			style="position: absolute; left: 10px; top: 30px; z-index: 231; display: none"></div>
+		<div id="sending"
+			STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none">
+			<table width=400 height=80 border=0 cellspacing=2 cellpadding=0>
+				<tr>
+					<td bgcolor=#F1F4F9 align=center>正在保存单据，请稍候...</td>
+				</tr>
+			</table>
+		</div>
+		<div id="sendingdel"
+			STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none">
+			<table width=400 height=80 border=0 cellspacing=2 cellpadding=0>
+				<tr>
+					<td bgcolor=#F1F4F9 align=center>正在删除单据，请稍候...</td>
+				</tr>
+			</table>
+		</div>
+		<div id="sendingbg"
+			STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"></div>
+		<div id="helpid"
+			STYLE="right: 1%; WIDTH: 450px; POSITION: absolute; TOP: 86px; HEIGHT: 0; display: none">
+			<div align="left"
+				STYLE="position: absolute; left: 15px; top: 15px; right: 15px">
+				付款单用于先售货后付款的处理，可以直接录入，也可以采用按单结算业务。 
+				<br>
+				<br>
+				操作如下： 
+				<br>
+				在付款单中，选择付款单位后，系统会自动跳出对此单位未结算完成的销售单以及销售退货单。用户可以对销售单进行对勾，以达到分单结算的目。 
+				<br>
+				自动分配：在录入本次付款的账户与金额后，自动分配可以将此笔付款自动对应未结清的、账龄最长的几笔单据。 
+				<br>
+				付款单也可用于其它非销售业务的付款处理，付款单过账后现金或银行存款将增加，应付账款减少。 
+				<br>
+				<br>
+				选择客户或者供应商时，系统就会自动带出该客户或者供应商的所有未付款单据；在付款金额中填上付款的金额，然后按下自动分配，系统就会把付款金额的数额分配到各条单据之中。 如果不喜欢自动分配，也可以手动分配。在各单据中输入的金额之和要与付款金额相等。 
+				<br>
+				<br>
+				确认后，请按暂存保存。 
+				<br>
+				<br>
+				保存(Alt+s)：将付款单转为历史付款单，并进行相应的应付款操作。历史付款单不能删除及修改，只能红字反冲；月结存后不能红字反冲。帐户流水帐中能反映相应该单相应帐户金额的变动。往来对帐单中能反映相应该单据中的往来单位的往来变动。 
+				<br>
+				<br>
+				删除(Alt+d)：即删除不再使用的付款单信息； 
+				<br>
+				<br>
+				返回(Alt+q)：返回付款登记列表； 
+				<br>
+				<br>
+				帮助(Alt+h)：显示帮助信息； 
+				<br>
+				<br>
+				暂存(Alt+t)：添加新草稿付款单，草稿付款单可以修改及删除； 
+				<br>
+				<br>
+			</div>
+		</div>
+		{showeditdiv} </center> 
+	</BODY>
+</HTML>

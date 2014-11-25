@@ -1,0 +1,161 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<SCRIPT language=JavaScript>
+   var tempurl = "{url}" ;
+</SCRIPT>
+<script src="../include/browse.js" type="text/javascript" language="javascript"></script>
+
+<style type="text/css">
+<!--
+.flat_input {  border: #999999; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+findbox_close {  background-image: url({skin}images/browse_findbox_close.gif); height: 30px; width: 30px}
+.findbox_close { border: 0px #999999 none; background-image: url({skin}guanbi.gif); height: 30px; width: 30px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px}
+-->
+</style>
+</HEAD>
+<body bgcolor="E9EDF2" text="#000000" topmargin="0" leftMargin="2" width="100%" onLoad="return selectit()">
+ <form id=form1 name=form1 action="" method=post>
+ <DIV>
+  
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td height="30" class="pagetitle"  colspan=2 valign="middle">
+          &nbsp;&nbsp;<img src="{skin}top_banner_1.gif" align="absmiddle">
+        	{prgtitle}
+        </td>
+      </tr>
+      <tr> 
+        <td height="30"  colspan=2 valign="middle">
+          &nbsp;&nbsp;
+        	{prglist}
+        </td>
+      </tr>
+    <tr> 
+      <td  height="34">&nbsp;</td>
+      <td height="34" align="right"> 
+                <table class=tabletoolbar cellspacing=0 cellpadding=0 width="100%" align=center border=0>
+                  <input type="hidden" name="now" value="{nowpage}">
+                  <input type=hidden name=url value={url}>
+                  <input type=hidden name=action value="">
+                  <input type=hidden name=order value={order}>
+                  <input type="hidden" name="upordown" value="{upordown}">
+                  {showhidden}   <!-----2005-10-31------->
+                  <tr valign=center> 
+                    <td valign=bottom align=left> <button class=button_find onClick="javascript:mainfind()" name=thefind>查询</button>&nbsp;&nbsp; 
+                      <button class=button_new onClick="javascript:newdata('{shownew}')" name=thenew {disnew}>新增</button>&nbsp;&nbsp; 
+                      <button class=button_delete onClick="javascript:submit_del()" name=thedel {disdel}>删除</button> 
+                    </td>
+                    <td align=right>
+                      分页：{showviewpage} 转到: 
+                      <input class=input type=text name=Page size=3 maxlength=10  value='{nowpage}'>
+                      <input type=button value="" class=button onClick='viewPage(this.form.Page.value)' name="button">
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    </td>
+                  </tr>
+                </table>
+        </td>
+    </tr>
+  </table>
+  {findsay} </DIV>
+<TABLE class=tableframe style=word-break:break-all width="99%" align=center>
+  <TBODY> 
+  <TR class=listtitle>
+    <TD class=listcelltitle align=middle><INPUT onclick=CheckAll(this.form) type=checkbox value=on name=chkall></TD>
+<!-- BEGIN TITLEBK -->
+    <TD {cols} class={titlecss} noWrap align=middle>{title}</TD>
+<!-- END TITLEBK -->
+  </TR>
+<!-- BEGIN DATABK -->
+	<TR class=listrow1 onMouseOver="this.style.backgroundColor='#F2FCED';" onMouseOut="this.style.backgroundColor='{bgcolor}'" bgcolor="{bgcolor}">
+		{xi}
+	</TR>
+	{td_content}
+<!-- END DATABK -->  
+</TBODY></TABLE>
+<TABLE  class=tableend cellSpacing=0 cellPadding=0 width="100%" align=center border=0>
+  <TBODY> 
+  <TR vAlign=center>
+    <TD  class=listtail align=left>&nbsp;&nbsp;页码：{nowpage}/{pages}页&nbsp;&nbsp;
+      共{total}条记录  本页显示从第{recodeform}条到第{recodeto}条&nbsp;
+      </TD>
+    <TD  class=listtail vAlign=bottom align=right>
+      每页显示
+      <INPUT class=input maxLength=5 size=4 name=pagerows value={rows}>条记录
+      <input type=button value="" class=button onclick='chgrows()' title="更改行数">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </TD>
+  </TR>
+</TBODY></TABLE>
+
+<TABLE id=layermove style="Z-INDEX: 1; VISIBILITY: hidden; LEFT: 90px;WIDTH: 500px; POSITION: absolute; TOP: 227px;
+	 HEIGHT: 180px"  height=147 cellSpacing=0 cellPadding=0 width=243 border=0 class=tableframe>
+  <TBODY> 
+  <TR> 
+    <td align="left" valign="top" height="20"> 
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0 height="20" class=tableframe>
+        <tr class=listtitle> 
+          <TD id=tdmove title=移动 style="CURSOR: move" > 
+            <b><font size=2 color="#000000">&nbsp;查询</font></b></TD>
+          <TD style="CURSOR: hand; width=5" align=right  valign="top" > 
+            <input title=关闭 type=button align=right class=findbox_close onclick='javascript:hiddenfind()'>
+          </TD>
+        </tr>
+      </TABLE>
+    </td>
+  </TR>
+  <TR> 
+      <TD vAlign=top height=* align="center" bgColor=#E9EDF2> 
+        <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+          <TBODY> 
+         <tr bgcolor="#DDDDDD"> 
+            <td colspan=3 bgcolor="#E9EDF2" align="center">
+            	<input type="radio" name="allcondition" value="1" {isallcheck}>满足所有的条件&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            	<input type="radio" name="allcondition" value="0" {iseithercheck}>满足任一条件</td>
+         </tr>
+        <tr bgcolor="#DDDDDD"> 
+            <td width=40% align="center" bgcolor="#E9EDF2">字段</td>
+            <td width=20% align="center" bgcolor="#E9EDF2" >运算</td>
+            <td width=40% align="center" bgcolor="#E9EDF2">值</td>
+        </tr>
+        <!-- BEGIN FINDBK -->
+        <tr bgcolor="#DDDDDD"> 
+            <td width=100% bgcolor="#E9EDF2" align="center"> 
+              <select name="whatdofind[]" style="width=95%" class="flat_input">
+              <option value=""></option>
+                        {whatdofind}                   
+              </select>
+            </td>
+            <td width=100% bgcolor="#E9EDF2" align="center"> 
+              <select name="howdofind[]" class="flat_input" >
+                <option value=""></option>
+                    	{howdofind}
+             </select>
+            </td>
+            <td width=100% bgcolor="#E9EDF2"> 
+              <input type="text" name="findwhat[]" size="40" value="{findwhat}" class="flat_input">
+          </td>
+        </tr>
+        <!-- END FINDBK -->
+        </TBODY> 
+      </TABLE>
+    </TD>
+  </TR>
+  <tr bgcolor="#DDDDDD"> 
+      <td bgcolor="#E9EDF2">&nbsp;</td>
+   </tr>
+  <TR vAlign=top>
+    <TD bgColor=#E9EDF2 align=center valign="top" height="40"> 
+      <INPUT class=button onClick="javascript:dofind()" type=button value="&nbsp;&nbsp;&nbsp;&nbsp;确定">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+      <input class=button_reset onClick="javascript:hiddenfind()" type=reset value="&nbsp;&nbsp;&nbsp;&nbsp;取消" name="reset">
+    </TD>
+  </TR>
+  </TBODY>
+</TABLE></FORM>
+</BODY></HTML>

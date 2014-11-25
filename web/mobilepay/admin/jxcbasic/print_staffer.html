@@ -1,0 +1,344 @@
+<HTML><HEAD><TITLE>打印简历</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<SCRIPT language=javascript src="../include/dateobject.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/datepicker.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+.STYLE3 {font-size: 16}
+.STYLE4 {
+	font-size: 14px;
+	font-weight: bold;
+}
+-->
+</style></HEAD>
+
+
+<BODY topmargin="0" leftMargin="2" width="100%">
+<center>
+
+    <table width=700 align=center>
+      <!--基本信息-->
+      <tbody class=table_bgcolor>
+       
+        <tr>
+          <td colspan=2>
+            <table width="98%" border=0 align=center cellpadding=0 cellspacing=1 bgcolor="#999999" style="MARGIN: 5px">
+              <tbody>
+                <tr class=listtitle>
+                  <td height="30" colspan=5 align=left bgcolor="#E8EAEA" class=listcelltitle STYLE3 STYLE1>&nbsp;<span class="STYLE4">基本信息</span></td>
+                </tr>
+              <tbody id=XX01>
+                <tr class=InputFrameLine>
+                  <td width=86 height="20" align="right" bgcolor="#FFFFFF" class=form_label>员工姓名：</td>
+                  <td width="192" height="20" align=left bgcolor="#FFFFFF">
+&nbsp;{name}</td>
+                  <td width=94 height="20" align="right" bgcolor="#FFFFFF" class=form_label>英文名：</td>
+                  <td width="168" height="20" align=left bgcolor="#FFFFFF">
+                  &nbsp;{ename}                  </td>
+                  <td  width="128" height="20" rowspan="7" align="center" valign="middle" bgcolor="#CCCCCC"> 
+				  <div id="showpic">
+				  {pic}				  </div>                  </td>
+                </tr>
+                <tr bgcolor="#FFFFFF" class=InputFrameLine>
+                  <td width=86 height="20" align="right" class=form_label>员工编号：</td>
+                  <td width="192" height="20" >
+&nbsp;{staffno}</td>
+                  <td width=94 height="20" align="right" class=form_label>性别：</td>
+                  <td width="168" height="20" >
+                    &nbsp;{sex} </td>
+                </tr>
+                <tr bgcolor="#FFFFFF" class=InputFrameLine>
+                  <td height="20" align="right" class=form_label>所在部门：</td>
+                  <td height="20"><span id="spanorganid">&nbsp;{dept}</span></td>
+                  <td height="20" align="right" class=form_label>有无驾照：</td>
+                  <td height="20"  >&nbsp;{driver}</td>
+                </tr>
+                <tr bgcolor="#FFFFFF" class=InputFrameLine>
+                  <td width=86 height="20" align="right" class=form_label>职位：</td>
+                  <td height="20"  >
+                    &nbsp;{duty}</td>
+                  <td height="20" align="right"  class=form_label>是否在职：</td>
+                  <td height="20">&nbsp;{dimission}</td>
+                </tr>
+               
+                <tr bgcolor="#FFFFFF" class=InputFrameLine>
+                  <td height="20" align=right class=form_label>工作性质：</td>
+                  <td height="20">&nbsp;{worktype}</td>
+                  <td height="20" align="right" class=form_label>员工类型：</td>
+                  <td height="20">&nbsp;{type} </td>
+                </tr>
+                <tr bgcolor="#FFFFFF" class=InputFrameLine>
+                  <td width=86 height="20" align=right class=form_label>出生时间：</td>
+                  <td width="192" height="20"><script language=javascript>
+			var date=createDatePicker("birthday","{byear}","{bmonth}","{bday}",0)
+	              </script></td>
+                  <td width=94 height="20" align="right" class=form_label>账号：</td>
+                  <td width="168" height="20">{account}</td>
+                </tr>
+				 <tr bgcolor="#FFFFFF" class=InputFrameLine>
+                  <td width=86 height="20" align=right class=form_label>身份证号码：</td>
+                  <td height="20" colspan="3">&nbsp;{idcard}</td>
+                </tr>
+                <tr bgcolor="#FFFFFF" class=InputFrameLine>
+                  <td height="20" align=right class=form_label>现在住址：</td>
+                  <td height="20" colspan="4">&nbsp;{nowaddress}</td>
+                </tr>
+              </tbody>
+          </table></td>
+        </tr>
+        <!--员工信息-->
+        <tr>
+          <td colspan=2>
+            <table width="98%" 
+      border=0 align=center cellpadding=0 cellspacing=1 bgcolor="#999999" style="MARGIN: 5px">
+              <tbody>
+                <tr class=listtitle>
+                  <td height="30" colspan=4 align=left bgcolor="#E8EAEA" class=listcelltitle>&nbsp;<span class="STYLE4">员工信息 </span></td>
+                </tr>
+              <tbody id=XX02 >
+                <tr valign="middle" class=InputFrameLine>
+                  <td width=13% height="20" align=right bgcolor="#FFFFFF" class=form_label>国籍：</td>
+                  <td  width="36%" height="20" bgcolor="#FFFFFF">
+                  &nbsp;{nationality}</td>
+                  <td width=16% height="20" align=right bgcolor="#FFFFFF" class=form_label>籍贯：</td>
+                  <td width="35%" height=20 bgcolor="#FFFFFF"><span id="nativecity">
+                    <label>
+                  &nbsp;{nativeplace}</label></span></td>
+                </tr>
+                <tr valign="middle" class=InputFrameLine>
+                  <td width=13% height="20" align=right bgcolor="#FFFFFF" class=form_label>
+                  <div align="right">出生地：</div></td>
+                  <td  width="36%" height="20" bgcolor="#FFFFFF"><span id="nativecity">
+                    <label></label>
+                  </span>                  <span id="homeplacecity">
+                  &nbsp;{homeplace}</span></td>
+                  <td width=16% height="20" align=right bgcolor="#FFFFFF" class=form_label>
+                  <div align="right">户口城市：</div></td>
+                  <td width="35%" height=20 bgcolor="#FFFFFF"><span id="hkcity">
+                  &nbsp;{hkcity}
+                </span></td>
+                </tr>
+                <tr valign="middle" class=InputFrameLine>
+                  <td width=13% height="20" align=right bgcolor="#FFFFFF" class=form_label>政治面貌：</td>
+                  <td width="36%" height="20" bgcolor="#FFFFFF">&nbsp;{polity}</td>
+                  <td width=16% height="20" align="right" bgcolor="#FFFFFF" class="form_label">民族：</td>
+                  <td width="35%" height="20" bgcolor="#FFFFFF"><span class="reg_480">
+                  &nbsp;{nation}
+                  </span></td>
+                </tr>
+                <tr valign="middle" class=InputFrameLine>
+                  <td height="20" align=right bgcolor="#FFFFFF" class=form_label><div align="right">体重(kg)：</div></td>
+                  <td height="20" bgcolor="#FFFFFF"><span id="nativecity">
+                    <label>
+                  &nbsp;{weight}                    </label></span> </td>
+                  <td height="20" align=right bgcolor="#FFFFFF" class=form_label><div align="right">身高(cm)：</div></td>
+                  <td height=20 bgcolor="#FFFFFF"><span id="hkcity">
+                    &nbsp;{tall}
+                  </span></td>
+                </tr>
+                <tr valign="middle" class=InputFrameLine>
+                  <td width=13% height=20 align=right bgcolor="#FFFFFF" class=form_label>
+                  <div align="right">宗教信仰：</div></td>
+                  <td width="36%" height=20 bgcolor="#FFFFFF">&nbsp;{faith}</td>
+                  <td width=16% height="20" align=right bgcolor="#FFFFFF" class=form_label>
+                  <div align="right">社会团体：</div></td>
+                  <td width="35%" height="20" bgcolor="#FFFFFF">
+                  &nbsp;{group}</td>
+                </tr>
+                <tr class=InputFrameLine>
+                  <td width=13% height="20" align=right bgcolor="#FFFFFF" class=form_label>
+                  <div align="right">婚姻状况：</div></td>
+                  <td width="36%" height="20" valign="middle" bgcolor="#FFFFFF">&nbsp;{marriage}</td>
+                  <td width=16% height="20" align="right" bgcolor="#FFFFFF" class="form_label">
+                  <div align="right">配偶姓名：</div></td>
+                  <td width="35%" height="20" valign="middle" bgcolor="#FFFFFF">&nbsp;{consortname}</td>
+                </tr>
+                <tr class=InputFrameLine>
+                  <td width=13% height="20" align=right valign="middle" bgcolor="#FFFFFF" class=form_label>档案城市：</td>
+                  <td width="36%" height="20" valign="middle" bgcolor="#FFFFFF"><span id="caseplace">
+                    &nbsp;{caseplace}
+                  </span></td>
+                  <td width=16% height="20" align="right" valign="middle" bgcolor="#FFFFFF" class="form_label">档案托管机构：</td>
+                  <td width="35%" height="20" valign="middle" bgcolor="#FFFFFF">
+                  &nbsp;{filesorg}                  </td>
+                </tr>
+                <tr class=InputFrameLine>
+                  <td width=13% height="20" align=right valign="middle" bgcolor="#FFFFFF" class=form_label>
+                  <div align="right">公司托管：</div></td>
+                  <td width="36%" height="20" valign="middle" bgcolor="#FFFFFF">&nbsp;{bind}
+                  <span class="form_label">(档案和社会保险)</span></td>
+                  <td width=16% height="20" align="right" valign="middle" bgcolor="#FFFFFF" class="form_label">是否外聘：</td>
+                  <td width="35%" height="20" valign="middle" bgcolor="#FFFFFF">&nbsp;{out}</td>
+                </tr>
+                <tr class=InputFrameLine>
+                  <td width=13% height="110" align=right bgcolor="#FFFFFF" class=form_label>
+                  <div align="right">家庭情况：</div></td>
+                  <td height="110" colspan="3" valign="middle" bgcolor="#FFFFFF">
+                    &nbsp;{homememo}                  </td>
+                </tr>
+              </tbody>
+          </table></td>
+        </tr>
+        <!--入职离职信息-->
+        <tr>
+          <td colspan=2>
+            <table width="98%" 
+      border=0 align=center cellpadding=0 cellspacing=1 bgcolor="#999999" style="MARGIN: 5px">
+              <tbody>
+                <tr class=listtitle>
+                  <td height="30" colspan=4 align=left bgcolor="#E8EAEA" class=listcelltitle><span class="STYLE4">&nbsp;入职离职信息 </span> </td>
+                </tr>
+              <tbody id=XX03 style="DISPLAY: ">
+                <tr class=InputFrameLine>
+                  <td width=83 height="20" align=right bgcolor="#FFFFFF" class=form_label>
+                  <div align="right"><nobr>入职时间：</nobr> </div></td>
+                  <td width="222" height="20" bgcolor="#FFFFFF"><script language=javascript>
+		  var date=createDatePicker("jobtime","{jyear}","{jmonth}","{jday}",0)
+	      </script>                  </td>
+                  <td width=132 height="20" bgcolor="#FFFFFF" class=form_label>
+                  <div align="right">重新录用：</div></td>
+                  <td width="231" height="20" bgcolor="#FFFFFF">
+                    &nbsp;{rehire}                  </td>
+                </tr>
+                <tr class=InputFrameLine>
+                  <td width=83 height="20" align=right bgcolor="#FFFFFF" class=form_label>
+                  <div align="right">离职日期：</div></td>
+                  <td width="222" height="20" bgcolor="#FFFFFF">&nbsp;没有
+				             </td>
+                  <td width="132" height="20" align="right" bgcolor="#FFFFFF" class="form_label">Email地址：</td>
+                  <td width="231" height="20" bgcolor="#FFFFFF">
+                    &nbsp;{nbemail}
+                  <span class="form_label">(公司内部)</span> </td>
+                </tr>
+                <tr class=InputFrameLine>
+                  <td width=83 height="20" align=right bgcolor="#FFFFFF" class=form_label>
+                  <div align="right">入职渠道：</div></td>
+                  <td height="20" colspan="3" bgcolor="#FFFFFF">
+                    &nbsp;{jobchannel}                  </td>
+                </tr>
+                <tr class=InputFrameLine>
+                  <td width=83 height="110" align=right bgcolor="#FFFFFF" class=form_label>
+                  <div align="right"><nobr>离职原因：</nobr> </div></td>
+                  <td height="110" colspan="3" valign="middle" bgcolor="#FFFFFF">
+                  
+                  &nbsp;{dimimemo}                </td>
+                </tr>
+              </tbody>
+          </table></td>
+        </tr>
+        <!--联系方式-->
+        <tr>
+          <td colspan=2>
+            <table width="98%" 
+      border=0 align=center cellpadding=0 cellspacing=1 bgcolor="#999999" style="MARGIN: 5px">
+              <tbody>
+                <tr class=listtitle>
+                  <td height="30" colspan=4 align=left bgcolor="#E8EAEA" class=listcelltitle><span class="STYLE4">&nbsp;联系方式 </span> </td>
+                </tr>
+              <tbody id=XX04 style="DISPLAY: ">
+                <tr class=InputFrameLine>
+                  <td height="20" align=right bgcolor="#FFFFFF" class=form_label><div align="right">邮政编码：</div></td>
+                  <td height="20" bgcolor="#FFFFFF">&nbsp;{postalcode}                               </td>
+                  <td width=163 height="20" align=right bgcolor="#FFFFFF" class=form_label>单位电话：</td>
+                  <td  width="229" height="20" bgcolor="#FFFFFF">&nbsp;{companyphone} </td>
+                </tr>
+                <tr class=InputFrameLine>
+                  <td width=98 height="20" align=right bgcolor="#FFFFFF" class=form_label>
+                  <div align="right">住宅电话：</div></td>
+                  <td  width="178" height="20" bgcolor="#FFFFFF">
+                    &nbsp;{phone}</td>
+                  <td width=163 height="20" align=right bgcolor="#FFFFFF" class=form_label>
+                  <div align="right">手机号码：</div></td>
+                  <td width="229" height="20" bgcolor="#FFFFFF">&nbsp;{mobile}</td>
+                </tr>
+                <tr class=InputFrameLine>
+                  <td width=98 height="20" align=right bgcolor="#FFFFFF" class=form_label>
+                  <div align="right">Email地址：</div></td>
+                  <td height="20" colspan="3" bgcolor="#FFFFFF">&nbsp;{wbemail} <span class="form_label">(个人)</span>
+                    <div align="right"></div></td>
+                </tr>
+                <tr class=InputFrameLine>
+                  <td height="20" align=right bgcolor="#FFFFFF" class=form_label>住宅地址： </td>
+                  <td height="20"  colspan="3" bgcolor="#FFFFFF">&nbsp;{address}
+*</td>
+                </tr>
+                <tr class=InputFrameLine>
+                  <td width="98" height="20" align=right bgcolor="#FFFFFF" class=form_label> 其它联系方式： </td>
+                  <td height="20"  colspan="3" bgcolor="#FFFFFF">
+                    &nbsp;{otherlink}
+                  <span class="form_label">(注明联系人) </span></td>
+                </tr>
+              </tbody>
+          </table></td>
+        </tr>
+        <!--备注信息-->
+        <tr>
+          <td colspan=2>
+            <table width=98%  border=0 align=center cellpadding=0 cellspacing=1 bgcolor="#999999" style="MARGIN: 5px">
+              <tr class=listtitle>
+                <td height="30" colspan=4 align=left bgcolor="#E8EAEA" class=listcelltitle>&nbsp;<span class="STYLE4">履历信息</span></td>
+              </tr>
+              <tbody id=XX06 style="DISPLAY: ">
+                
+                      <tr>
+                        <td width=96 height="20" align="right" bgcolor="#FFFFFF" class=form_label>毕业院校：</td>
+                        <td width="178" height="20" bgcolor="#FFFFFF" >
+                        &nbsp;{school}                        </td>
+                        <td width=167 height="20" align="right" bgcolor="#FFFFFF" class=form_label>专业类别：</td>
+                        <td width="222" height="20" bgcolor="#FFFFFF" >
+                        &nbsp;{specialtytype}                        </td>
+                      </tr>
+                      <tr>
+                        <td width=96 height="20" align="right" bgcolor="#FFFFFF" class=form_label>工作年限：</td>
+                        <td height="20" bgcolor="#FFFFFF"  >
+                          &nbsp;{worktime}</td>
+                        <td width=167 height="20" align="right" bgcolor="#FFFFFF" class=form_label>开始工作时间：</td>
+                        <td height="20" bgcolor="#FFFFFF"  >
+                        <script language=javascript>
+			                var date=createDatePicker("beginjobtime","{bjyear}","{bjmonth}","{bjday}",0)
+			             </script>                        </td>
+                      </tr>
+                      <tr>
+                        <td width=96 height="20" align="right" bgcolor="#FFFFFF" class=form_label>最高学历：</td>
+                        <td height="20" bgcolor="#FFFFFF"  >
+                          &nbsp;{degree}</td>
+                        <td width=167 height="20" align="right" bgcolor="#FFFFFF" class=form_label>学位：</td>
+                        <td height="20" bgcolor="#FFFFFF"  >  {degreexw}</td>
+                      </tr>
+                      <tr class=InputFrameLine>
+                        <td width="96" height="20" align="right" bgcolor="#FFFFFF"  class=form_label>英语级别：</td>
+                        <td height="20" colspan="3" bgcolor="#FFFFFF" >
+                          &nbsp;{english}                         </td>
+                      </tr>
+                      <tr>
+                        <td width=96 height="110" align="right" bgcolor="#FFFFFF" class=form_label>
+                        <div align="right">学习经历：</div></td>
+                        <td height="110" colspan="3" bgcolor="#FFFFFF" class=InputAreaCell>
+                          &nbsp;{studyexperience}                        </td>
+                      </tr>
+                      <tr>
+                        <td width="96" align="right" bgcolor="#FFFFFF" class="form_label"> 
+                        <div align="right">工作经历：</div></td>
+                        <td height="110" colspan="4" bgcolor="#FFFFFF" class=InputAreaCell > &nbsp;{workexperience}</td>
+                </tr>
+              </tbody>
+          </table></td>
+        </tr>
+    </table>
+
+  
+
+
+
+
+
+</center>
+</BODY>
+</HTML>

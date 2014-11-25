@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<HTML><HEAD><TITLE>商品流水帐</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="zjw" CONTENT="no-cache">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!-- Styles -->
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+		<!--[if IE 6]>
+			<link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css" />
+			<![endif]-->
+<link href="../colorbox/colorbox.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../js/jquery.min.1.7.1.js"></script>
+<script type="text/javascript" src="../js/global.js"></script>
+<script type="text/javascript" src="../colorbox/jquery.colorbox.js"></script>
+<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+</HEAD>
+<script language=javascript>
+//禁止退格键 作用于Firefox、Opera
+document.onkeypress=banBackSpace;
+//禁止退格键 作用于IE、Chrome
+document.onkeydown=banBackSpace;
+<!-- 
+function chaxun(pagename,idname,listid,obj){
+  var szRef = pagename+"?"+idname+"="+listid;
+	$(obj).colorbox({href:szRef,iframe:true, innerWidth:800, innerHeight:500}); 
+}
+
+// -->
+</script>
+<BODY>
+<div id="page">
+			<div id="top">
+				<ul id="menu">
+					<li>
+						<a href="#" AccessKey='q' onClick="javascript:location='{gotourl}'">返回</a>
+					</li>
+				</ul>
+			</div>
+<div class="wrapper">
+<div class="panel">
+<fieldset class="form">
+<legend>
+	商品流水帐 
+	<small>&nbsp;商品编码:{commbar}&nbsp;&nbsp;商品名称:{commname}</small>
+</legend>
+<br>
+<table width="100%" border="0" cellspacing="1" class="table">
+<thead>
+	<tr>
+        <th align="center" >日期</th>
+        <th align="center" >单据编号</th>
+        <th align="center" >单据类型</th>
+        <th align="center" >单据日期</th>
+        <th align="center" >数量增加</th>
+        <th align="center" >数量减少</th>
+        <th align="center" >剩余数量</th>
+        <th align="center" >制单人</th>
+        <th align="center" >摘要</th>
+        <th align="center" >查看</th>
+	  </tr>
+	  <tr onMouseOver="this.style.backgroundColor='#DAE2ED';" onMouseOut="this.style.backgroundColor='#F1F4F9'" bgcolor="#F1F4F9">
+        <td align="center" colspan=6 >开始日期之前的剩余数量为： </td>
+        <td align="right" >{cogebalance}&nbsp;</td>
+        <td align="left" colspan=3>&nbsp;</td>
+	  </tr>
+</thead>	  
+      <!-- BEGIN BXBK -->
+	  <tbody >
+        <tr>
+		<td align="center" ><font >{vdate}</font></td>
+        <td align="left" ><font >&nbsp;{vlistnourl}</font></td>
+        <td align="left" ><font >&nbsp;{vlisttype}</font></td>
+        <td align="left" ><font >&nbsp;{vlistdate}</font></td>
+        <td align="right" ><font >{vaddquantity}&nbsp;</font></td>
+        <td align="right" ><font >{vlessen}&nbsp;</font></td>
+        <td align="right" ><font >{vbalance}&nbsp;</font></td>
+        <td align="right" ><font >{vmakename}&nbsp;</font></td>
+        <td align="left" ><font >&nbsp;{vmemo}</font></td>
+        <td align="center" >&nbsp;{viewname}</td>
+		</tr>
+	 </tbody>
+	<!-- END BXBK -->
+     <tr>
+        <td align="center" ></td>
+        <td align="left" ></td>
+        <td align="left" ></td>
+        <td align="left" ></td>
+        <td align="right" >{alladdnum}&nbsp;</td>
+        <td align="right" >{alllessen}&nbsp;</font></td>
+        <td align="right" >{allbalance}&nbsp;</td>
+        <td align="right" ></td>
+        <td align="left" ></td>
+        <td align="center" >&nbsp;</td>
+	  </tr>
+<tfoot>   
+   <tr>
+        <td align="center" class=tdcolor>
+        共&nbsp;{count}</font>&nbsp;条&nbsp;合计：</td>
+        <td align="center" class=tdcolor colspan=9>当前库存数量：{nowquantity}</td>
+    </tr>
+</tfoot>	
+ </table>
+					</fieldset>
+				</div>
+			</div>
+</div>	</div>			
+</BODY>
+</HTML>

@@ -1,0 +1,137 @@
+table { font-family: Verdana, Arial, Helvetica, sans-serif,宋体; font-size: 9pt}
+.table_bgcolor{
+  background-color: #FFFFFF;
+	font-size: 12px; 
+	width: auto;
+	height: 30px;
+}
+.pagetitlehead{
+  	font-size: 16px; 
+}
+.listtail{
+    background-color: #FFFFFF;
+	font-size: 12px; 
+	width: auto;
+	height: 30px;
+	border: 1px solid #000000;
+}
+.listcellrow1{
+    background-color: #FFFFFF;
+	font-size: 12px; 
+	width: auto;
+	font-family:宋体; 
+	border: 1px solid #000000;
+}
+
+.listcellrow2{
+    background-color: #FFFFFF;
+	font-size: 12px; 
+	width: auto;
+	font-family:宋体; 
+	BORDER-top: #000000 1px solid;
+	BORDER-right: #000000 1px solid;
+
+}
+
+.listcellrow3{
+    background-color: #FFFFFF;
+	font-size: 12px; 
+	width: auto;
+	font-family:宋体; 
+	BORDER-right: #000000 1px solid;
+
+}
+
+.listcellrow4{
+    background-color: #FFFFFF;
+	font-size: 12px; 
+	width: auto;
+	font-family:宋体; 
+	BORDER-bottom: #000000 1px solid;
+
+}
+
+.listcellrow5{
+    background-color: #FFFFFF;
+	font-size: 16px; 
+	width: auto;
+	font-family:宋体;
+	BORDER-top: #000000 1px solid;
+	BORDER-right: #000000 1px solid;
+	BORDER-left: #000000 1px solid;
+}
+
+.listcellrow{
+    background-color: #FFFFFF;
+	font-size: 16px; 
+	width: auto;
+	font-family:宋体;
+	border: 1px solid #000000;
+}
+
+.listcellrow0{
+    background-color: #FFFFFF;
+	font-size: 16px; 
+	width: auto;
+	font-family:宋体;
+}
+
+.listcelltitle{
+  background-color: #FFFFFF;
+	font-size: 13px; 
+		font-weight: bold; 
+	width: auto;
+	height: 30px;
+	border: 1px solid #000000;
+}
+
+.listcelltitle2{
+  background-color: #FFFFFF;
+	font-size: 13px; 
+		font-weight: bold; 
+	width: auto;
+	height: 30px;
+
+	BORDER-right: #000000 1px solid;
+   
+	
+}
+
+.table_browse_titlebar_bg{
+  background-color: #cccccc;
+	font-size: 13px; 
+	font-weight: bold; 
+	width: auto;
+	height: 28px;
+}
+.page_titlebar_head{
+ background:url(headpic.jpg) center;
+ background-repeat: no-repeat;
+ 	width: 25px;
+	height: 40px;
+}
+.page_titlebar_bg{
+  background-color: #FFFFFF;
+	font-size: 15px; 
+	font-weight: bold; 
+	width: auto;
+	height: 30px;
+}
+.listtitle{
+font-size: 13px; 
+height: 25px;
+font-weight: bold;
+ background-color: #F4F4F4;
+}
+
+.tableframe{
+    border: 1px solid #000000;
+}
+
+.tableframe2{
+    BORDER-top: #000000 1px solid;
+	BORDER-bottom: #000000 1px solid;
+	BORDER-left: #000000 1px solid;
+}
+
+

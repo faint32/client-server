@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<TITLE>代付款月报表详细</TITLE>
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../js/custom.css">
+        <link rel="stylesheet" href="../colorbox/colorbox.css" />
+		<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT>
+        <script src="../colorbox/jquery.colorbox.js"></script>
+		<script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script>
+        <script language="javascript">
+        	function setbkordernum(url,bkordernumber,obj){
+				var szRef='../paycard/'+url+'.php?bkordernumber='+bkordernumber;
+				//alert(szRef);exit;
+				  $(obj).colorbox({href:szRef,iframe:true, innerWidth:800, innerHeight:500});
+			}
+        </script>
+		</HEAD>
+	<BODY topmargin="0" leftMargin="2" width="100%">
+		<form action="" method="post" name="form1">
+			<input type=hidden
+				name=action value="{action}">
+			<input type=hidden
+				name=end_action value="">
+			<input type=hidden name=listid
+				value="{listid}">
+			<input type=hidden name=ischangelistno
+				value="{ischangelistno}">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0"
+				height="25">
+				<td height="25" class="pagetitle" width="100%" valign="middle">
+					&nbsp;&nbsp; 
+					<img
+						src="{skin}nowspace.jpg" align="absmiddle">
+					{tabtype} 
+				</td>
+				</tr> 
+			</table>
+			<div id="top">
+				<ul id="menu">
+					<li>
+						<a href="#" AccessKey='q' onClick="javascript:location='agentpaymoneyyear_view.php?year={year}'">返回</a>
+					</li>
+				</ul>
+			</div>
+					
+					<TABLE class="table"  width="98%" align=center id="checktables">
+						<thead>
+							<tr>
+								<th>编号</th>
+								<th>银联订单号</th>
+								<th >终端商户</th>
+								<th >{thname}</th>
+								<th >交易类型</th>
+								<th >收款人<br>账号</th>
+								<th >收款人<br>开户银行</th>
+								<th >收款<br>人姓名</th>
+								<th >收款人<br>手机</th>
+								<th >刷卡器<br>设备号</th>
+								<th >交易时间</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- BEGIN prolist -->
+							<tr>
+								<td   height="25" align="center">{agpmid}</td>
+								<td  align="center"><span style='border-bottom:1px #999 solid;' onClick="javascript:setbkordernum('{url}','{bkordernumber}',this)">{bkordernumber}</span></td>
+								<td  align="center">{author}</td>                               
+								<td  align="center">{money}</td>
+								<td  align="center">{paytype}</td>
+								<td  align="center">{shoucardno}</td>
+								<td  align="center">{shoucardbank}</td>
+								<td  align="center">{shoucardman}</td>
+								<td  align="center">{shoucardmobile}</td>
+                                <td  align="center">{paycardkey}</td> 
+								<td  align="center">{paydate}</td>
+							</tr>
+							<!-- END prolist -->
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="3" align="left" class=tdcolor>&nbsp;&nbsp;&nbsp;合计： </td>
+								<td align="center" class=tdcolor>{allmoney}</td>
+								<td colspan="9" align="right" class=tdcolor>&nbsp;</td>
+							</tr>
+						</tfoot>
+					</table>
+					<div id="addnewconcentbg"
+			style="position: absolute; width: 100%; height: 100%; left: 0px; top: 0px; z-index: 230; display: none"></div>
+		<div id="addnewconcent"
+			style="position: absolute; left: 10px; top: 30px; z-index: 231; display: none"></div>
+<div id="sending" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:40%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在通过审批，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingdel" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:30%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在退回，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%;  z-index:100; filter: Alpha(Opacity=50);  background-color: #ffffff; display:none "> 
+
+</div>
+		<div id="helpid"
+			STYLE="right: 1%; WIDTH: 450px; POSITION: absolute; TOP: 86px; HEIGHT: 0; display: none">
+			<div align="left"
+				STYLE="position: absolute; left: 15px; top: 15px; right: 15px">
+				付款单用于先售货后付款的处理，可以直接录入，也可以采用按单结算业务。 
+				<br>
+				<br>
+				操作如下： 
+				<br>
+				在付款单中，选择付款单位后，系统会自动跳出对此单位未结算完成的销售单以及销售退货单。用户可以对销售单进行对勾，以达到分单结算的目。 
+				<br>
+				自动分配：在录入本次付款的账户与金额后，自动分配可以将此笔付款自动对应未结清的、账龄最长的几笔单据。 
+				<br>
+				付款单也可用于其它非销售业务的付款处理，付款单过账后现金或银行存款将增加，应付账款减少。 
+				<br>
+				<br>
+				选择客户或者供应商时，系统就会自动带出该客户或者供应商的所有未付款单据；在付款金额中填上付款的金额，然后按下自动分配，系统就会把付款金额的数额分配到各条单据之中。 如果不喜欢自动分配，也可以手动分配。在各单据中输入的金额之和要与付款金额相等。 
+				<br>
+				<br>
+				确认后，请按暂存保存。 
+				<br>
+				<br>
+				保存(Alt+s)：将付款单转为历史付款单，并进行相应的应付款操作。历史付款单不能删除及修改，只能红字反冲；月结存后不能红字反冲。帐户流水帐中能反映相应该单相应帐户金额的变动。往来对帐单中能反映相应该单据中的往来单位的往来变动。 
+				<br>
+				<br>
+				删除(Alt+d)：即删除不再使用的付款单信息； 
+				<br>
+				<br>
+				返回(Alt+q)：返回付款登记列表； 
+				<br>
+				<br>
+				帮助(Alt+h)：显示帮助信息； 
+				<br>
+				<br>
+				暂存(Alt+t)：添加新草稿付款单，草稿付款单可以修改及删除； 
+				<br>
+				<br>
+			</div>
+		</div>
+</center> 
+	</BODY>
+</HTML>

@@ -1,0 +1,72 @@
+<HTML>
+<HEAD>
+<TITLE>公众假期查看</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="dianduo" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+</HEAD>
+<script>
+//禁止退格键 作用于Firefox、Opera
+document.onkeypress=banBackSpace;
+//禁止退格键 作用于IE、Chrome
+document.onkeydown=banBackSpace;
+
+function isstop(id)
+{
+	
+	location.href='holiday.php?type=check&listid='+id;
+}
+</script>
+<body  text="#000000" topmargin="0" leftMargin="2" width="100%">
+<center>
+ <form id=form1 name=form1 action="" method=post>
+ <DIV>
+  
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td height="30" class="pagetitle"  colspan=2 valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	<span>基本设置 --> 公众假期查看
+        </td>
+      </tr>
+      <tr>
+         <td align="left" colspan=2><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+      </tr>
+      <tr>
+         <td align="left" colspan=2 height="3"></td>
+      </tr>
+  </table></DIV>
+ <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+         <td align="left" height="25">&nbsp;&nbsp;日期：{year}年</td>
+         <td align="right" ><span class=onlyShow>[<span onClick="javascript:location='{gotourl}'"  style='cursor:hand'>返回</span>]&nbsp;&nbsp;</span></td>
+      </tr>
+  </table>
+<TABLE class=tableframe style=word-break:break-all width="99%" align=center>
+  <TBODY> 
+  <TR class=listtitle>
+    <TD class=listcelltitle noWrap align=middle height="25" width="2%">序号</TD>
+    <TD class=listcelltitle noWrap align=middle height="25"width="5%">月份</TD>
+    <TD class=listcelltitle noWrap align=middle width="80%">公众假期</TD>
+  </TR>
+<!-- BEGIN BXBK -->
+	<TR class=listrow1 onMouseOver="this.style.backgroundColor='#F1F4F9';" onMouseOut="this.style.backgroundColor='{bgcolor}'" bgcolor="{bgcolor}">
+		
+		<TD class=listcellrow  align=left height="25">{tdcount}</TD>
+		<TD class=listcellrow  noWrap align=center height="25">{listdate}</TD>
+		<TD class=listcellrow  noWrap align=left>{showcontent}</TD>
+
+	</TR>
+<!-- END BXBK -->  
+</TBODY></TABLE>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+  <td align="right" class="table_bgshow"><span class=onlyShow>[<span onClick="javascript:location='{gotourl}'"  style='cursor:hand'>返回</span>]&nbsp;&nbsp;</span></td>
+  </tr>
+</table>
+</FORM>
+</center>
+</BODY></HTML>

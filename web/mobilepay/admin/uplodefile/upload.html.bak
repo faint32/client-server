@@ -1,0 +1,110 @@
+<HTML>
+
+<base target="_self">
+
+
+
+<HEAD>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+<link href="{skin}upload.css" rel="stylesheet" type="text/css">
+<script language=javascript src="../js/jquery.min.1.7.1.js"></script>
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+<SCRIPT language=JavaScript>
+$(document).ready(function(){
+	
+	$('img[rel="images"]').live('click', function() 
+	{
+		$(this).next('input:radio[name="display"]').attr("checked","checked");
+		var radio=$('input:radio[name="display"]:checked').val();
+		switch(radio)
+		{  
+		case '0':
+			$("#no").attr("src","../skin/skin0/radio_checked.jpg");
+			$("#yes").attr("src","../skin/skin0/radio.jpg");
+			
+	    break;
+		case '1':
+		    $("#yes").attr("src","../skin/skin0/radio_checked.jpg");
+			$("#no").attr("src","../skin/skin0/radio.jpg");
+			
+		break;
+		}
+	});
+	
+	var radio=$('input:radio[name="display"]:checked').val();
+	switch(radio)
+	{  
+	    
+		case '0':
+			$("#no").attr("src","./css/radio_checked.jpg");
+	    break;
+		case '1':
+			
+			$("#yes").attr("src","./css/radio_checked.jpg");
+			
+		break;
+	}
+	
+});
+function sub_upload()
+{
+	if(document.getElementById("uploadfile").value=="")
+	{
+		alert("请上传图片");
+		return false;
+	}
+	document.getElementById("form").submit();	
+}
+</SCRIPT>
+
+
+<BODY>
+<form name="uploadForm" method="post" id="form" action="" enctype="multipart/form-data">
+
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="fd_cat_id" value="{fd_cat_id}">
+<input type="hidden" name="fid" value="{fid}">
+<input type="hidden" name="scatid" value="{scatid}">
+<input type="hidden" name="dateid" value="{dateid}">
+<input type="hidden" name="getvalid" value="{getvalid}">
+<input type="hidden" name="cb" value="{cb}">
+<input type="hidden" name="act" value="{act}">
+<input type="hidden" name="uploadtype" value="{uploadtype}">
+
+    <div id="top">
+    <div class="line first"></div>
+	<div class="div filename">
+         文本描述：<input class=form_label type="text" name="filename" size="85"  value="{filename}">
+    </div>	
+	<div class="clear"></div>
+	</div>
+	<div id="middle">
+	<div class="line"></div>
+	<div class="div upload" id="file">
+	<input class="form_label text"   type="text" readOnly="true"  name="show" id="show" value="浏览文件名">
+	<input class="form_label liulang" onclick=upload.click() type="button" name="button" value="浏览" >
+	<input class="form_label uploads" type="file" name="upload" id="uploadfile" hidefocus="true" size="88" maxlength="20" onChange="javascript:document.getElementById('show').value=this.value;"  >   
+	 <div id="showdow1"></div>
+	</div>
+	  <div class="clear"></div>
+	 
+	</div>
+    	<div id="display" >
+		<div class="line"></div>
+	   <span id="content">
+	  是否默认:	<img src="{skin}radio.jpg" id="yes" rel="images"/><input type="radio" name="display"  value="1" style="display:none"  {default} {fpcheck1}/>  是
+	  <img src="{skin}radio.jpg" id="no" rel="images" /><input type="radio" name="display" style="display:none" value="0" {fpcheck2} />  否
+	    <div id="showdow2"></div>
+	  </span>
+     <input class="form_label shangzhuang" type="button"  size="20"  maxlength="20" onClick="sub_upload()"value="上传">
+	<div class="clear"></div>		  
+	   </div>
+    
+	
+		
+
+  </form>
+</BODY>
+
+</HTML>

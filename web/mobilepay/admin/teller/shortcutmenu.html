@@ -1,0 +1,67 @@
+<HTML><HEAD>
+<TITLE>用户程序</TITLE>
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<SCRIPT language=javascript src="../function/function.js"></SCRIPT>
+</HEAD>
+
+<SCRIPT language=JavaScript>
+   
+    function checkcode(code){
+      thisid = "code" + code ;
+      if(!thisid.checked){
+         document.getElementById(thisid).checked = "checked;";
+      }
+    }
+   
+
+</SCRIPT>
+<BODY topmargin="0" leftMargin="2" width="100%" >
+<FORM action="" method=post name=form1>
+<center>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+                 <td height="30" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	权限快捷方式设置</td>
+			<tr>
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+          </tr>	
+</table>
+<input type=hidden name=id value="{id}">
+<table width="98%" border="0" cellspacing="0" cellpadding="0"  class="table_bgcolor">
+        <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right" >
+          <INPUT class=button_save name=end type=submit value="保存" AccessKey=s   style="font-size:9pt" onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'" {dissave}>
+		      <INPUT class=button_reset name=qqq type=reset value="撤销" AccessKey=z style="font-size:9pt" onMouseOver="this.className='button_reset_on'" onMouseOut="this.className='button_reset'">
+          <input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+        </div></td>
+        <td class=button_labelright></td>
+      </tr>
+</table>
+<table width="98%" border="0" cellspacing="0" cellpadding="0"  class=InputFrameMain>
+  <tr>
+      <td height="30" align="left" class=inputtitle >&nbsp;&nbsp;用户组程序({name})</td>
+      <td height="30" align="center" class=inputtitleright width="10">&nbsp;</td>
+      <td align="left"  ><font color="#283B5B" ><b>选中本页所有程序</b></font>
+      <INPUT onclick=CheckAll(this.form) type=checkbox value=on name=chkall>
+      <input type="hidden" name="done" value="save">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </td>
+  </tr>
+<tr>
+  <td colspan="3" >
+{show}
+  </td></tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+<tr>
+<td align="left" height="10"></td>
+</tr>	
+</table>
+</center>
+</form>
+</BODY></HTML>

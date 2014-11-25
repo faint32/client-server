@@ -1,0 +1,22 @@
+---------------------------------------------------------
+2014-02-27 05:49:02####update web_teller set fd_tel_error = fd_tel_error +1 where fd_tel_name ='cai'
+----------------------------------------------------------
+---------------------------------------------------------
+2014-02-27 05:49:02####update web_teller set fd_tel_error = fd_tel_error +1 where fd_tel_name ='cai'
+----------------------------------------------------------
+---------------------------------------------------------
+2014-02-27 05:49:07####update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2014-02-27 05:49:08####update web_teller set 			           
+	        		  fd_tel_lasttime = fd_tel_intime, fd_tel_intime = now(),fd_tel_outtime = now(),
+	        		  fd_tel_error = 0,fd_tel_isin  = 1 , fd_tel_onlinetime = now()
+	              where fd_tel_id ='2'
+----------------------------------------------------------
+---------------------------------------------------------
+2014-02-27 06:04:25####update web_teller set fd_tel_outtime = now(),fd_tel_isin = 0
+			 where fd_tel_id =''
+----------------------------------------------------------

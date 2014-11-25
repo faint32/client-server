@@ -1,0 +1,165 @@
+<HTML>
+	<HEAD>
+		<TITLE>交易手续费报表</TITLE>
+		<meta http-equiv="Refresh" content="60;" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+	<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+	<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+	<link rel="stylesheet" href="../css/styles.css">
+		<!-- Scripts -->
+		<script src="../include/jquery.js" language="javascript"></script> 
+		<script type="text/javascript" language="javascript" src="../include/jquery.dataTables.gb2312.js"></script>
+		<script language="javascript">
+			$(document).ready(function() {
+				var gotourl="../ajaxread/readauthorpaycardpayfeelist.php";
+
+				$('#basictable').dataTable({
+					"sDom": '<"wrapper"flipt>rt<"bottom"ip><"clear">',
+					"bStateSave": true,
+					"aLengthMenu": [[5,10, 25, 50,600], [5,10, 25, 50,600]],
+					"bLengthChange": true,
+					"bProcessing": true,
+					"iDisplayLength": 10,
+					"bServerSide":true,
+					"sAjaxSource":gotourl,
+					"sPaginationType": "full_numbers",
+					"aaSorting":[[1,'desc'],[2,'desc']],
+					"bSort": true
+				});
+
+				function changeorderby(obj,count)
+				{
+					if(count !=0 && count !=1 && count !=2)
+					{
+						$("#showimg1").remove();
+						$("#showimg0").remove();
+						$("#showimg2").remove();
+					}
+					if (count==0 || count==1 || count==2 )
+					{
+						if (count==0)
+						{
+							$("#showimg2").remove();
+							$("#showimg1").remove();
+						} else if(count==1) {
+							$("#showimg2").remove();
+							$("#showimg0").remove();
+						} else {
+							$("#showimg0").remove();
+							$("#showimg1").remove();
+						}
+						if($(obj).attr("class") != 'orderbydown sorting_asc')
+						{
+							if ($("#showimg"+count).attr("src"))
+							{
+								$("#showimg"+count).attr("src",'../skin/skin0/images/btn_up.gif');
+							} else {
+								$(obj).append("<img src='../skin/skin0/images/btn_up.gif' id='showimg"+count+"'></img>");
+							}
+							$(obj).addClass("orderbydown").removeClass("orderbyup");
+						}
+						else
+						{
+							$(obj).addClass("orderbyup").removeClass("orderbydown");
+							$("#showimg"+count).attr("src",'../skin/skin0/images/btn_kz.gif');
+						}
+					}
+				}
+			});
+
+			function changeorderby(obj,count)
+			{
+				if(count !=0 && count !=1 && count !=2)
+				{
+					$("#showimg1").remove();
+					$("#showimg0").remove();
+					$("#showimg2").remove();
+				}
+				if(count==0 || count==1 || count==2 )
+				{
+					if(count==0)
+					{
+						$("#showimg2").remove();
+						$("#showimg1").remove();
+					}else if(count==1){
+						$("#showimg2").remove();
+						$("#showimg0").remove();
+					}else{
+						$("#showimg0").remove();
+						$("#showimg1").remove();
+					}
+
+					if($(obj).attr("class") != 'orderbydown sorting_asc')
+					{
+						if($("#showimg"+count).attr("src"))
+						{
+							$("#showimg"+count).attr("src",'../skin/skin0/images/btn_up.gif');
+						}
+						else
+						{
+							$(obj).append("<img src='../skin/skin0/images/btn_up.gif' id='showimg"+count+"'></img>");
+						}
+						$(obj).addClass("orderbydown").removeClass("orderbyup");
+					}
+					else
+					{
+						$(obj).addClass("orderbyup").removeClass("orderbydown");
+						$("#showimg"+count).attr("src",'../skin/skin0/images/btn_kz.gif');
+					}
+				}
+			}
+		</script>
+	</HEAD>
+	<BODY>
+		<div id="page">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0"
+				height="30">
+				<td height="30" class="pagetitle" width="100%" valign="middle">
+					&nbsp;&nbsp; 
+					<img src="{skin}nowspace.jpg" align="absmiddle">
+					财务报表 --> 交易手续费报表
+				</td>
+				<tr>
+					<td align="left">
+						<div style="margin: 0px 0px 0px 12px;"><img src="{skin}line.jpg"></div>
+					</td>
+				</tr>
+			</table>
+
+			<!-- Wrapper -->
+			<form action="" method="post" id="form3" name="form3">
+			<input class="input" type="hidden" name="authorid" id="authorid" value="{listid}">
+				<div class="wrapper">
+					<div class="panel">
+
+						<fieldset class="form">
+						<legend>总手续费:{allpayfee}   总利润额:{allyingli}
+						</legend>
+						</fieldset>
+					</div>
+					<div class="panel" id="showbasictable">
+						<table border="0" cellspacing="1" class="table" id="basictable">
+							<thead>
+								<tr>
+									{theadth} 
+								</tr>
+								<tr>
+									{theadth1}
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan="8" class="dataTables_empty">加载数据中...</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</form>
+		</div>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

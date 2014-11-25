@@ -1,0 +1,145 @@
+<HTML><HEAD>
+<TITLE>用户程序</TITLE>
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+
+</HEAD>
+
+<SCRIPT language=JavaScript>
+    
+    function checkcode(code){
+      thisid = "code" + code ;
+      if(!thisid.checked){
+         document.getElementById(thisid).checked = "checked;";
+      }
+    }
+   
+   function CheckAll(form){
+     for (var i=0;i<form.elements.length;i++){ 
+         var e = form.elements[i];
+         if (e.name != 'chkall')   e.checked = form.chkall.checked;
+     }
+   }
+
+   function Checkdept(obj){
+             var codenum		 
+			  codenum = obj.name;
+			  if(codenum <10){codenum = codenum + "0" ;}		 			 
+			 for(var i=1;i<100;i++){           			 		   
+				  var codeid = "code"+codenum+ i;				 			  
+				  try{			  
+                     document.getElementById(codeid).checked=obj.checked;				  
+ 					  	for(var j=1;j<4;j++){ 
+						  var str = document.getElementById("opt"+codenum+ i + j )	;						  				  
+						  if(str == null){
+						    continue;
+						  }else{						                     
+						   document.getElementById("opt"+codenum+ i + j ).checked=obj.checked;						  
+						  } 	
+				      }				       
+                  }catch(e){continue;}   
+           } 		 
+ }
+
+function submit_save() {
+  if(confirm("是否保存权限，保存后，该用户要重新登录，他的权限才能生效？")) {  
+    sending.style.display="";
+	  sendingbg.style.display="";     
+    form1.submit();
+  }
+}
+
+function help(){  
+   if(document.getElementById("helpid").style.pixelHeight == 0 &&  document.getElementById("helpid").style.display == "none"){      
+     document.getElementById("helpid").style.display ="";
+	   ChS();
+   }else{   
+	   HhS();    	  
+   }
+}
+
+function ChS(){
+  if(helpid.style.pixelHeight<100){
+     helpid.style.pixelHeight+=10;setTimeout("ChS()",0.5);
+  } 
+}
+
+function HhS(){
+  if(helpid.style.pixelHeight > 0){
+    helpid.style.pixelHeight-=10;setTimeout("HhS()",0.5);
+  }
+  if(helpid.style.pixelHeight == 0){
+    document.getElementById("helpid").style.display ="none";
+  }
+}
+</SCRIPT>
+<BODY topmargin="0" leftMargin="2" width="100%" >
+<FORM action="" method=post name=form1>
+<center>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+                 <td height="30" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	用户权限设置</td>
+			   <tr>
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+         </tr>	
+</table>
+<table width="98%" border="0" cellspacing="0" cellpadding="0"  class="table_bgcolor">
+        <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right" >
+          <input type=button name=save32 class=button_new value="帮助" AccessKey=h  onClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.style.backgroundImage='url({skin}new_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}new.jpg)'">
+          <INPUT class=button_save name=end type=button value="保存" AccessKey=s   style="font-size:9pt" onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'" onClick="submit_save()">
+          <input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'"  onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+        </div></td>
+        <td class=button_labelright></td>
+      </tr>
+</table>
+<input type=hidden name=telid value="{telid}">
+<table width="98%" border="0" cellspacing="0" cellpadding="0"  class=InputFrameMain>
+  <tr>
+      <td height="30" align="left" class=inputtitle >&nbsp;&nbsp;用户组程序({name})</td>
+      <td height="30" align="center" class=inputtitleright width="10">&nbsp;</td>
+      <td align="left"  ><font color="#283B5B" ><b>选中本页所有程序</b></font>
+      <INPUT onclick=CheckAll(this.form) type=checkbox value=on name=chkall>
+      <input type="hidden" name="done" value="save">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </td>
+  </tr>
+  <tr>
+  <td colspan="3" >
+  {show}
+  </td></tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+<tr>
+<td align="left" height="10"></td>
+</tr>	
+</table>
+<div id="sending" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+</div>
+<div id="helpid" STYLE="right: 1%; WIDTH: 450px; POSITION: absolute; TOP: 86px; HEIGHT: 0; display: none"> 
+ <div  align="left"   STYLE="position:absolute;left: 15px; top:15px;right:15px" >
+  操作：分配系统权限给该用户，在权限前面的多选框中打勾，该用户就有该权限。<br><br>
+  <font color="#ff0000">注意：</font>每次分完权限之后，该用户要重新登录，权限才能生效。
+</div>
+</div>
+</center>
+</form>
+</div>
+</div>
+</center>
+{showeditdiv}
+</body>
+</html>

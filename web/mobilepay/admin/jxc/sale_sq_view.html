@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<HTML><HEAD><TITLE>销售历史单</TITLE>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta HTTP-equiv="empiresoft" CONTENT="no-cache">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!-- Styles -->
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="../css/custom.css">
+<!--[if IE 6]>
+	<link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css" />
+	<![endif]-->
+<LINK href="../include/DatePicker.css" rel="stylesheet" type="text/css">
+<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/dateobject.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/datepicker.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+<SCRIPT language=javascript src="../getdata/changeunit.js"></SCRIPT>
+<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+</HEAD>
+<script language=javascript>
+<!-- 
+//禁止退格键 作用于Firefox、Opera
+document.onkeypress=banBackSpace;
+//禁止退格键 作用于IE、Chrome
+document.onkeydown=banBackSpace;
+function CheckAll(form){
+     for (var i=0;i<form.elements.length;i++){ 
+         var strelement = form.elements[i];
+         if (strelement.name != 'chkall' && !strelement.disabled){
+             strelement.checked = form.chkall.checked;
+         }
+      }
+   }
+function bb(obj1,obj2)
+{
+		if(obj1.style.display == "none"){
+			obj1.style.display = "";
+			obj2.src = "../Images/menu_open.gif";
+		}else{
+			obj1.style.display="none";
+			obj2.src = "../Images/menu_close.gif";
+		}
+}
+
+
+
+
+var kk=0;
+var imgb,imgb1;
+
+function viewall(count)
+{
+	if(kk == 0){
+		for (i=1;i<=count;i++){
+			temptr = "tr" + i;
+			tempimg = "img" + i;
+				document.getElementById(temptr).style.display = "";
+				document.getElementById(tempimg).src = "../Images/menu_open.gif";
+		}
+		imgb = "imgb";
+		imgb1 = "imgb1";
+		document.getElementById(imgb).src = "../Images/openb.gif";
+	     document.getElementById(imgb1).src = "../Images/openb.gif";
+		kk = 1;
+	}else{
+		for (i=1;i<=count;i++){
+			temptr = "tr" + i;
+			tempimg = "img" + i;
+				document.getElementById(temptr).style.display = "none";
+				document.getElementById(tempimg).src = "../Images/menu_close.gif";
+		}
+		imgb = "imgb";
+		imgb1 = "imgb1";
+		document.getElementById(imgb).src = "../Images/closeb.gif";
+		document.getElementById(imgb1).src = "../Images/closeb.gif";
+	    kk = 0;
+	}
+}
+
+		function showcomm(listdate,tid,cid,listid,rowcount){
+		   
+		   var zk_id   = "zk_"+listdate;
+		   var paycard_id = "paycard_"+tid;
+		    var type = "check";
+
+			 var showcontent='<tr id="tr_'+paycard_id+'"><td colspan="6" align="center">加载中.....</td></tr>';
+			$("#"+zk_id).attr("disabled",true);
+			 $("#"+tid).after(showcontent);
+		   if(!document.getElementById(paycard_id)){
+			 $.ajax({
+			    url: "../ajaxread/readsavepaycard.php?showtype=sale&stdetail_id="+listdate+"&type="+type+"&paycard_id="+paycard_id+"&rowcount="+rowcount,
+			   success: function(data) {
+			     var  arr_strItem=data.split("@@");
+				if(arr_strItem[1]==1)
+				{	
+					$("#s_"+paycard_id).hide();
+					   $("#tr_"+paycard_id).hide();
+					 $("#"+tid).after($(arr_strItem[0]).show());
+					  $("#"+zk_id).attr("disabled",false)
+					 document.getElementById(zk_id).innerHTML = "收起";
+				 }
+			   }
+			 });   
+		  
+		   }
+		   
+		   if(document.getElementById(paycard_id).style.display == "none"){
+		     document.getElementById(paycard_id).style.display = "";
+			 document.getElementById(zk_id).innerHTML = "收起";
+			  $("#tr_"+paycard_id).hide();
+			  $("#"+zk_id).attr("disabled",false);
+		   }else{
+		     document.getElementById(paycard_id).style.display = "none";
+			 document.getElementById(zk_id).innerHTML = "展开";
+			 $("#tr_"+paycard_id).hide();
+			  $("#"+zk_id).attr("disabled",false);
+		   }
+		}	
+// -->
+</script>
+<BODY topmargin="0" leftMargin="2" width="100%">
+<div id="page">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="25">
+               <td height="25" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">刷卡器购销 --> 销售办理 --> 销售查看</td>
+		   <tr>
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+          </tr>		
+  </table>
+
+<form action="" method="post" name="form1">
+    <input type=hidden name=action value="{action}"> 
+    <input type=hidden name=listid value="{listid}">  
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+      <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right">
+          <input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'"></div></td>
+        <td class=button_labelright></td>
+      </tr>
+    </table>
+   <div class="wrapper">
+    <div class="panel">
+	<span style="color:red">{error}</span>
+	  <fieldset class="form">
+          <legend>刷卡器销售 <small>&nbsp;单据输入</small> </legend>
+		  <br/>
+    <table width="98%" class=table_form cellspacing="0" cellpadding="0" border="0" >
+      <tbody>
+        <tr >
+          <td width=115 height="25" align=right class=form_label>单据编号：</td>
+          <td height="25" class=span_label>{listno}          </td>
+          <td width=113 height="25" align="right" class=form_label>单据日期：</td>
+          <td height="25" class=span_label>
+		  {date}
+		 </td>
+        </tr>
+		 <tr class=InputFrameLine>
+          <td width=115 height="25" align=right class=form_label>客户编号：</td>
+          <td height="25"  class=span_label>{cusno}          </td>
+          <td width=113 height="25" align="right" class=form_label>客户全称：</td>
+          <td  height="25" class=span_label>{cusname}</td>
+        </tr>
+
+		  <tr class=InputFrameLine >
+
+          <td width=113 height="25" align="right" class=form_label>收款金额：</td>
+          <td  height="25" class=span_label>{vallmoney}</td>
+		 <td width=115 height="25" align=right class=form_label>收款方式：</td>
+          <td height="25" class=span_label>
+              {skfs}
+          </td>
+        </tr>
+        <tr class=InputFrameLine>
+          <td width=115 height="25" align="right" valign="middle" class=form_label>备注：</td>
+          <td height="25" class=span_label>{memo_z}</td>
+		            <td width=115 height="25" align=right class=form_label></td>
+          <td height="25" class=span_label>
+              </td>
+        </tr>
+      </tbody>
+    </table>
+	
+	        </fieldset>
+   
+    </div>
+  </div>
+    
+			<div class="wrapper">
+				<div class="panel">
+					<fieldset class="form">
+						<legend>刷卡器销售 
+							<small>
+								&nbsp;已暂存刷卡器
+							</small></legend>
+							<br/>
+						<table width="98%" border="0" cellspacing="1"  style="display:{datashow}" class=table>
+							<thead >
+								<tr>
+									<th >商品名</th>
+									<th >数量</th>
+									<th >单价</th>
+									<th >总价</th>
+									<th >操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- BEGIN prolist -->
+								<tr bgcolor="{bgcolor}" id="jqtrid_{rowcount}" >
+									<td align="center">&nbsp;{vproductid}</td>
+									<td align="right">{vquantity}&nbsp;</td>
+									<td align="right">{vprice}&nbsp;</td>
+									<td align="right">{vmoney}&nbsp;</td>
+									<td align="center">
+										<span  onClick="showcomm({vid},'jqtrid_{rowcount}','c_{rowcount}','{listid}','{rowcount}')" id="zk_{vid}" style=" cursor:pointer" >展开</span>
+									</td>
+								</tr>
+								<!-- END prolist -->
+							</tbody>
+							<tfoot>
+								<th class=thcolor>共&nbsp;{count}</font>&nbsp;条&nbsp;合计：</th>
+								<th align="right">
+									<span id="spanallghquantityid">{vallquantity}</span>
+									
+								</th>
+								
+								<th align="right" class=thcolor></th>
+								<th align="right">
+									<span id="spanallmoneyid">{vallmoney}</span>
+									
+								</th>
+								<th align="right" class=thcolor></th>
+							</tfoot>
+						</table>
+					</fieldset>
+				</div>
+			</div>	
+<br>
+</form>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

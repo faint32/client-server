@@ -1,0 +1,10 @@
+<?
+require ("../include/get.variable.inc.php");
+include ("../include/config.inc.php");
+require ("../include/template.inc.php");
+require ("../include/json.php");
+require ("../include/function.inc.php");
+$weburl = 'http://14.18.207.56/mobilepay/';
+$g_weburlip = '14.18.207.56';
+$picurl = 'http://14.18.207.56/'
+?>

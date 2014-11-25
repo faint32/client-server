@@ -1,0 +1,256 @@
+<HTML><HEAD><TITLE>销售退货单</TITLE>
+
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+
+<SCRIPT language=javascript src="../include/dateobject.js"></SCRIPT>
+
+<SCRIPT language=javascript src="../include/datepicker.js"></SCRIPT>
+
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+
+<SCRIPT language=javascript src="../function/function.js"></SCRIPT>
+
+</HEAD>
+
+<script language=javascript>
+
+<!-- 
+
+
+
+function submit_save(){
+
+	sendingbg.style.display ="";  
+
+    sending.style.display ="";
+
+	form1.toaction.value = "save";
+
+	form1.submit();
+
+}
+
+
+
+// -->
+
+</script>
+
+<BODY onload=input_focus() topmargin="0" leftMargin="2" width="100%">
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+
+                 <td height="30" class="pagetitle"  width="100%" valign="middle">
+
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">品牌介绍</td>
+
+		   <tr>
+
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+
+          </tr>		
+
+  </table>
+
+<center>
+
+<form action="" method="post" name="form1">
+
+    <input type=hidden name=toaction value="{toaction}"> 
+
+    <input type=hidden name=id value="{id}">  
+
+    <input type=hidden name=vid value=""> 
+
+    <input type=hidden name=listid value="{listid}">
+
+    <input type=hidden name=brandid value="{brandid}">
+
+    <input type=hidden name=procaid value="{procaid}">
+
+ <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+
+      <tr>
+
+        <td class=button_labelleft></td>
+
+        <td class=button_label><div align="right">
+
+          <input type=button name=save32 class=button_new value="     帮助" AccessKey=h  onClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.style.backgroundImage='url({skin}new_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}new.jpg)'">     <input type=button name=save3 class=button_save value="    保存" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt" {dissave} onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+
+          <input type=button name=rst class=button_recovery value="     返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+
+        </div></td>
+
+        <td class=button_labelright></td>
+
+      </tr>
+
+    </table>
+
+    <table width="98%" class=InputFrameMain cellspacing="0" cellpadding="0" border="0"  >
+
+      <tbody>
+
+	     <tr>
+
+          <td align="left" colspan="4">
+
+          <table width="700" cellspacing="0" cellpadding="0" border="0">
+
+          <tr>
+
+          <td align="center" class=inputtitle width="150">单据输入</td>
+
+          <td   align="center" class=inputtitleright >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+          <td   align="center" ><b><font color="#FF0000" class="error">{error}</font></b></td>
+
+          </tr>
+
+          </table>
+
+          </td>
+
+        </tr>
+
+			<tr> 
+
+        <td colspan="4" height="10"></td>
+
+      </tr>
+
+        <tr >
+
+          <td  height="25" align=right class=form_label>品牌：</td>
+
+          <td height="25" ><input class=input_disabled style="ime-mode:disabled" type="text" name="brandname"  value="{brandname}" readonly>
+
+         </td>
+
+          
+
+        </tr>
+
+<tr >
+
+          <td  height="25" align=right class=form_label>类型</td>
+
+          <td height="25" ><input class=input_disabled style="ime-mode:disabled" type="text" name="procaname"  value="{procaname}" readonly>
+
+         </td>
+
+          
+
+        </tr>
+
+         <tr >
+
+          <td  height="25" align=right class=form_label>基本介绍：</td>
+
+          <td height="25" >
+
+          {fckeditor}
+
+         </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+</form>
+
+
+
+<div id="addnewconcentbg" style="position:absolute; width:100%;height:100%; left:0px;top:0px;z-index:230; display:none"></div>
+
+<div id="addnewconcent"  style="position:absolute; left:10px;top:30px;z-index:231; display:none"></div> 
+
+
+
+<div id="sending" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在保存单据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingdel" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在删除单据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+
+</div>
+
+<div id="helpid" STYLE="right: 1%; WIDTH: 450px; POSITION: absolute; TOP: 86px; HEIGHT: 0; display: none"> 
+
+ <div  align="left"   STYLE="position:absolute;left: 15px; top:15px;right:15px" >
+
+经常活动离不开销售，系统则通过销售单来处理。销售单一方面将商品销售出库，一方面可以进行支付影响应收应付和现金银行，实现物流和钱流同步处理；<br><br>
+
+输入商品的资料时，可以在商品编号中直接查找，也可以在输入框输入，如果输入时只输前一位或几位按回车可以有相应的资料供查找。<br><br>
+
+选择商品后，商品的其他资料会自动显示出来，但需要销售的数量和销售的单价需要您输入；<br><br>
+
+但需要销售数量和销售单价需要您输入；<br><br>
+
+该仓库库存均价等于零及该商品没有入库记录时，您需要输入库存均价。<br><br>
+
+如果某商品的销售单价抵于最进的进货单价，系统会提示是否还要过帐。<br><br>
+
+确认后，请按暂存保存。
+
+  <br><br>
+
+  保存(Alt+s)：将销售单转为历史销售单，并进行相应的库存操作。历史销售单不能删除及修改，只能红字反冲；月结存后不能红字反冲。商品流水帐中能反映相应该单相应商品的变动。往来对帐单中能反映相应该单据中的往来单位的往来变动。<br><br>
+
+  删除(Alt+d)：即删除不再使用的销售单信息；<br><br>
+
+  返回(Alt+q)：返回销售登记列表；<br><br>
+
+  帮助(Alt+h)：显示帮助信息；<br><br>
+
+  暂存(Alt+t)：添加新草稿销售单，草稿销售单可以修改及删除，但不会修改库存；<br><br>
+
+  撤销(Alt+z)：撤销回去商品资料没有查找出来的状态；<br><br>
+
+</div>
+
+ </div>
+
+</center>
+
+</BODY>
+
+</HTML>
+

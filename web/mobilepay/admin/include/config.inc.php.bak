@@ -1,0 +1,51 @@
+<?
+require ("../include/dbsql.inc.php");
+require ("../include/fileOperation.php");
+
+ class DB_log 
+{
+	function DB_log($Query_String)
+	{
+		global $loginstaname;
+		$file=new fileOperation();
+		$file->createFile();
+		$newdate=date("Y-m-d H:i:s",time());
+		$file->fileconten .="---------------------------------------------------------\r\n";
+		$file->fileconten .="$newdate##$loginstaname##$Query_String\r\n";
+		$file->fileconten .="----------------------------------------------------------\r\n";
+		$file->writeFile();
+	}
+} 
+
+class DB_test extends DB_Sql {
+  var $Host     = "localhost";              
+  var $Database = "db_mobilepay";   
+  var $User     = "webshop";              
+  var $Password = ""; 
+ // var $output = "re";  
+  var $log_class = "DB_log";  //日志类
+  var $log_array=array("insert","update","delete");//生成日志
+  var $Debug=1;
+  }
+
+class DB_shop extends DB_Sql {
+	var $Host = "localhost";
+	var $Database = "webshop";
+	var $User = "webshop";
+	var $Password = "";
+	//var $output = "re"; 
+	var $log_class = "DB_log";  //日志类
+	var $log_array=array("insert","update","delete");//生成日志
+	var $Debug=1;
+}
+class DB_file extends DB_Sql {
+	var $Host = "localhost";
+	var $Database = "db_mobilepay";
+	var $User = "webshop";
+	var $Password = "";
+	//var $output = "re"; 
+	var $log_class = "DB_log";  //日志类
+	var $log_array=array("insert","update","delete");//生成日志
+	var $Debug=1;
+}
+?>

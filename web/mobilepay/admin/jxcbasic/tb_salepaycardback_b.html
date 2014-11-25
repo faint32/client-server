@@ -1,0 +1,94 @@
+<HTML>
+	<HEAD>
+		<TITLE> 商户消费统计表</TITLE>
+		<meta http-equiv="Refresh" content="60;" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+	<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+	<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+	<link rel="stylesheet" href="../css/styles.css">
+		<!-- Scripts -->
+		
+		<script src="../include/jquery.js" language="javascript"></script>
+		<script src="../js/orderby.js" language="javascript"></script>
+		<script type="text/javascript" language="javascript"
+			src="../include/jquery.dataTables.gb2312.js"></script> <script language="javascript"> 
+			
+			$(document).ready(function() {
+			
+			var gotourl="../ajaxread/readsalepaycardback.php";
+			
+			$('#basictable').dataTable({   
+			     "sDom": '<"wrapper"flipt>rt<"bottom"ip><"clear">',
+				 "bStateSave": true,
+				  "aLengthMenu": [[5,10, 25, 50,600], [5,10, 25, 50,600]],
+				 "bLengthChange": true, 
+				 "bProcessing": true,        
+				 "iDisplayLength": 10,        
+				 "bServerSide":true,
+				 "sAjaxSource":gotourl,
+				 "sPaginationType": "full_numbers"			
+			    });
+			
+			
+			
+			});	
+			function changestate(paycardid)
+			{
+				$.ajax({
+				 type: "POST",
+				 url : "../ajaxread/changespaycardtate.php?paycardid="+paycardid,
+				 success: function(strItem){
+					alert("已成功上架!");
+					 location.reload();
+					 }
+					});
+			}	
+		</script> 
+	</HEAD>
+	<BODY>
+		<div id="page">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0"
+				height="30">
+				<td height="30" class="pagetitle" width="100%" valign="middle">
+					&nbsp;&nbsp; 
+					<img src="{skin}nowspace.jpg" align="absmiddle">
+					刷卡器管理 -->  销售退货刷卡器
+				</td>
+				<tr>
+					<td align="left">
+						<div style="margin: 0px 0px 0px 12px;"><img src="{skin}line.jpg"></div>
+					</td>
+				</tr>
+			</table>
+			<!-- Wrapper -->
+			<form action="" method="post" id="form3" name="form3">
+				<div class="wrapper">
+					<div class="panel">
+
+						<fieldset class="form">
+						<legend> 
+						</legend>
+						</fieldset>
+					</div>
+					<div class="panel" id="showbasictable">
+						<table border="0" cellspacing="1" class="table" id="basictable">
+							<thead><tr>
+									{theadth} 
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan="8" class="dataTables_empty">加载数据中...</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</form>
+		</div>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

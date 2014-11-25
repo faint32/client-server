@@ -1,0 +1,543 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>系统登陆</title>
+<style type="text/css">
+<!--
+body {
+	background-color: #FFFFFF;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.style4 {
+	font-family: "宋体";
+	font-weight: bold;
+	font-size: 12px;
+}
+.style6 {
+	color: #A2A2A2;
+	font-size: 12px;
+	font-family: "宋体";
+}
+.style7 {
+	font-size: 12px;
+	color: #B7B7B7;
+	font-family: "宋体";
+}
+.style8 {
+	color: #666666;
+	font-size: 12px;
+	font-family: "宋体";
+}
+.style12 {font-size: 12px; font-family: "宋体";}
+.style13 {font-size: 12px}
+.style15 {font-size: 12px; color: #a5bcff; }
+.style10 {font-size: 14px}
+.keyclass{
+background-color:#eaeaea
+}
+#softkeyboard{
+  width:463px;
+  z-index:180;
+  background-color:#000000;
+   BORDER-TOP:#cccccc 1px solid;
+   BORDER-RIGHT:#cccccc 1px solid;
+   BORDER-BOTTOM:#cccccc 1px solid;
+   BORDER-LEFT:#cccccc 1px solid;
+}
+-->
+</style>
+
+<script language="JavaScript">
+<!--
+if (top.frames.length!=0) top.location=self.document.location;
+
+self.moveTo(0,0)
+self.resizeTo(screen.availWidth,screen.availHeight)
+
+function CheckData(){
+  if (logon.username.value == ""){
+    alert("必须输入用户名！");
+    logon.username.focus();
+    return false;
+  }
+  logon.submit();
+}
+// -->
+</script>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+//定义当前是否大写的状态
+var CapsLockValue=0;
+
+var check;
+function setVariables() {
+tablewidth=630;  // logo width, in pixels
+tableheight=20;  // logo height, in pixels
+if (navigator.appName == "Netscape") {
+horz=".left";
+vert=".top";
+docStyle="document.";
+styleDoc="";
+innerW="window.innerWidth";
+innerH="window.innerHeight";
+offsetX="window.pageXOffset";
+offsetY="window.pageYOffset";
+}
+else {
+horz=".pixelLeft";
+vert=".pixelTop";
+docStyle="";
+styleDoc=".style";
+innerW="document.body.clientWidth";
+innerH="document.body.clientHeight";
+offsetX="document.body.scrollLeft";
+offsetY="document.body.scrollTop";
+   }
+}
+function checkLocation() {
+if (check) {
+objectXY="softkeyboard";
+var availableX=eval(innerW);
+var availableY=eval(innerH);
+var currentX=eval(offsetX);
+var currentY=eval(offsetY);
+x=availableX-tablewidth+currentX;
+//y=availableY-tableheight+currentY;
+y=currentY;
+
+evalMove();
+}
+setTimeout("checkLocation()",0);
+}
+function evalMove() {
+//eval(docStyle + objectXY + styleDoc + horz + "=" + x);
+eval(docStyle + objectXY + styleDoc + vert + "=" + y);
+}
+
+
+	self.onError=null;
+	currentX = currentY = 0;  
+	whichIt = null;           
+	lastScrollX = 0; lastScrollY = 0;
+	NS = (document.layers) ? 1 : 0;
+	IE = (document.all) ? 1: 0;
+	function heartBeat() {
+		if(IE) { diffY = document.body.scrollTop; diffX = document.body.scrollLeft; }
+	    if(NS) { diffY = self.pageYOffset; diffX = self.pageXOffset; }
+		if(diffY != lastScrollY) {
+	                percent = .1 * (diffY - lastScrollY);
+	                if(percent > 0) percent = Math.ceil(percent);
+	                else percent = Math.floor(percent);
+					if(IE) document.all.softkeyboard.style.pixelTop += percent;
+					if(NS) document.softkeyboard.top += percent; 
+	                lastScrollY = lastScrollY + percent;}
+		if(diffX != lastScrollX) {
+			percent = .1 * (diffX - lastScrollX);
+			if(percent > 0) percent = Math.ceil(percent);
+			else percent = Math.floor(percent);
+			if(IE) document.all.softkeyboard.style.pixelLeft += percent;
+			if(NS) document.softkeyboard.left += percent;
+			lastScrollX = lastScrollX + percent;	}		}
+	function checkFocus(x,y) { 
+	        stalkerx = document.softkeyboard.pageX;
+	        stalkery = document.softkeyboard.pageY;
+	        stalkerwidth = document.softkeyboard.clip.width;
+	        stalkerheight = document.softkeyboard.clip.height;
+	        if( (x > stalkerx && x < (stalkerx+stalkerwidth)) && (y > stalkery && y < (stalkery+stalkerheight))) return true;
+	        else return false;}
+	function grabIt(e) {
+	    check = false;
+		if(IE) {
+			whichIt = event.srcElement;
+			while (whichIt.id.indexOf("softkeyboard") == -1) {
+				whichIt = whichIt.parentElement;
+				if (whichIt == null) { return true; } }
+			whichIt.style.pixelLeft = whichIt.offsetLeft;
+		    whichIt.style.pixelTop = whichIt.offsetTop;
+			currentX = (event.clientX + document.body.scrollLeft);
+	   		currentY = (event.clientY + document.body.scrollTop); 	
+		} else { 
+	        window.captureEvents(Event.MOUSEMOVE);
+	        if(checkFocus (e.pageX,e.pageY)) { 
+	                whichIt = document.softkeyboard;
+	                StalkerTouchedX = e.pageX-document.softkeyboard.pageX;
+	                StalkerTouchedY = e.pageY-document.softkeyboard.pageY;} }
+	    return true;	}
+	function moveIt(e) {
+		if (whichIt == null) { return false; }
+		if(IE) {
+		    newX = (event.clientX + document.body.scrollLeft);
+		    newY = (event.clientY + document.body.scrollTop);
+		    distanceX = (newX - currentX);    distanceY = (newY - currentY);
+		    currentX = newX;    currentY = newY;
+		    whichIt.style.pixelLeft += distanceX;
+		    whichIt.style.pixelTop += distanceY;
+			if(whichIt.style.pixelTop < document.body.scrollTop) whichIt.style.pixelTop = document.body.scrollTop;
+			if(whichIt.style.pixelLeft < document.body.scrollLeft) whichIt.style.pixelLeft = document.body.scrollLeft;
+			if(whichIt.style.pixelLeft > document.body.offsetWidth - document.body.scrollLeft - whichIt.style.pixelWidth - 20) whichIt.style.pixelLeft = document.body.offsetWidth - whichIt.style.pixelWidth - 20;
+			if(whichIt.style.pixelTop > document.body.offsetHeight + document.body.scrollTop - whichIt.style.pixelHeight - 5) whichIt.style.pixelTop = document.body.offsetHeight + document.body.scrollTop - whichIt.style.pixelHeight - 5;
+			event.returnValue = false;
+		} else { 
+			whichIt.moveTo(e.pageX-StalkerTouchedX,e.pageY-StalkerTouchedY);
+	        if(whichIt.left < 0+self.pageXOffset) whichIt.left = 0+self.pageXOffset;
+	        if(whichIt.top < 0+self.pageYOffset) whichIt.top = 0+self.pageYOffset;
+	        if( (whichIt.left + whichIt.clip.width) >= (window.innerWidth+self.pageXOffset-17)) whichIt.left = ((window.innerWidth+self.pageXOffset)-whichIt.clip.width)-17;
+	        if( (whichIt.top + whichIt.clip.height) >= (window.innerHeight+self.pageYOffset-17)) whichIt.top = ((window.innerHeight+self.pageYOffset)-whichIt.clip.height)-17;
+	        return false;}
+	    return false;	}
+	function dropIt() {whichIt = null;
+	    if(NS) window.releaseEvents (Event.MOUSEMOVE);
+	    return true;	}
+	if(NS) {window.captureEvents(Event.MOUSEUP|Event.MOUSEDOWN);
+		window.onmousedown = grabIt;
+	 	window.onmousemove = moveIt;
+		window.onmouseup = dropIt;	}
+	if(IE) {
+		document.onmousedown = grabIt;
+	 	document.onmousemove = moveIt;
+		document.onmouseup = dropIt;	}
+	if(NS || IE) action = window.setInterval("heartBeat()",1);
+
+
+
+document.write ('    <DIV align=center id=\"softkeyboard\" name=\"softkeyboard\" style=\"position:absolute; left:53%; top:63%;z-index:20;display:none\">');
+document.write ('  <table width=\"348\" border=\"0\" bgcolor=#ffffff align=\"center\" cellpadding=\"3\" cellspacing=\"1\" class=keyclass  >');
+document.write ('    <FORM name=Calc action=\"\" method=post autocomplete=\"off\">');
+document.write ('      <INPUT type=hidden value=ok name=action2>');
+document.write ('      <tr> ');
+document.write ('        <td align=\"left\" class=keyclass align=\"center\"> <INPUT class=td1b type=password size=20 value=\"\" name=password   onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) OverInput(curEditName);\" > ');
+document.write ('          <INPUT class=button type=button value=输入完毕 name=\"Submit3\" onclick=\"OverInput(curEditName);\"> <INPUT class=button type=reset value=输错重来 name=\"Submit23\"> ');
+document.write ('          <input class=button type=button value=\"关闭\" name=\"Submit222\" onclick=\"closekeyboard(curEditName);\"> <font color=#666666 size="2"><b><<密码输入 </font></b> </td>');
+document.write ('      </tr>');
+document.write ('      <tr> ');
+document.write ('        <td align=\"center\" bgcolor=\"#FFFFFF\" align=\"center\"> <table align=\"center\" width=\"98%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">');
+document.write ('            <tr align=\"left\" valign=\"middle\"> ');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'1\');\" value=\" 1 \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'2\');\" value=\" 2 \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'3\');\" value=\" 3 \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'4\');\" value=\" 4 \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'5\');\" value=\" 5 \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'6\');\" value=\" 6 \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'7\');\" value=\" 7 \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'8\');\" value=\" 8 \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'9\');\" value=\" 9 \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'0\');\" value=\" 0 \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'-\');\" value=\" - \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td><input name=\"button10\" type=button value=\" BackSpace\" onclick=\"setpassvalue();\"> ');
+document.write ('              </td>');
+document.write ('              <td>&nbsp;</td>');
+document.write ('            </tr>');
+document.write ('            <tr align=\"left\" valign=\"middle\"> ');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'q\');\" value=\" q \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'w\');\" value=\" w \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'e\');\" value=\" e \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'r\');\" value=\" r \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'t\');\" value=\" t \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'y\');\" value=\" y \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'u\');\" value=\" u \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'i\');\" value=\" i \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'o\');\" value=\" o \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'p\');\" value=\" p \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input name=\"button6\" type=button onClick=\"addValue(\':\');\" value=\" : \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td><input name=\"button12\" type=button onclick=\"OverInput(curEditName);\" value=\"   Enter  \"> ');
+document.write ('              </td>');
+document.write ('              <td> ');
+document.write ('                </td>');
+document.write ('            </tr>');
+document.write ('            <tr align=\"left\" valign=\"middle\"> ');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'a\');\" value=\" a \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'s\');\" value=\" s \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'d\');\" value=\" d \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'f\');\" value=\" f \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'g\');\" value=\" g \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'h\');\" value=\" h \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'j\');\" value=\" j \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'k\');\" value=\" k \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'l\');\" value=\" l \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input name=\"button8\" type=button onClick=\"addValue(\'[\');\" value=\" [ \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input name=\"button9\" type=button onClick=\"addValue(\']\');\" value=\" ] \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td colspan=\"2\"><input name=\"button9\" type=button onClick=\"setCapsLock();\" value=\"切换大/小写\"></td>');
+document.write ('            </tr>');
+document.write ('            <tr align=\"left\" valign=\"middle\"> ');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'z\');\" value=\" z \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'x\');\" value=\" x \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'c\');\" value=\" c \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'v\');\" value=\" v \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'b\');\" value=\" b \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'n\');\" value=\" n \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'m\');\" value=\" m \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input name=\"button3\" type=button onClick=\"addValue(\'<\');\" value=\" < \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input name=\"button4\" type=button onClick=\"addValue(\'>\');\" value=\" > \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input name=\"button5\" type=button onClick=\"addValue(\'(\');\" value=\" ( \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input name=\"button7\" type=button onClick=\"addValue(\')\');\" value=\" ) \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td colspan=\"2\"> ');
+document.write ('                <input name=\"showCapsLockValue\" type=reset  value=\"当前是小写 \"></td>');
+document.write ('            </tr>');
+document.write ('            <tr align=\"left\" valign=\"middle\"> ');
+document.write ('              <td> ');
+document.write ('                <input name=\"button2\" type=button onClick=\"addValue(\',\');\" value=\" , \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'~\');\" value=\" ~ \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'!\');\" value=\" ! \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'@\');\" value=\" @ \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'#\');\" value=\" # \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'$\');\" value=\" $ \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'%\');\" value=\" % \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'^\');\" value=\" ^ \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'*\');\" value=\" * \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'|\');\" value=\" | \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td> ');
+document.write ('                <input type=button onclick=\"addValue(\'?\');\" value=\" ? \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('              <td colspan=\"2\"><input name=\"button\" type=button onClick=\"addValue(\'=\');\" value=\"    =     \" onKeyPress=\"if (event.keyCode == 10 || event.keyCode == 13 ) return false;\"></td>');
+document.write ('            </tr>');
+document.write ('          </table></td>');
+document.write ('      </tr>');
+document.write ('    </FORM>');
+document.write ('  </table>');
+document.write ('</DIV>');
+
+//给输入的密码框添加新值
+	function addValue(newValue)
+	{
+		if (CapsLockValue==0)
+		{
+			Calc.password.value += newValue;
+		}
+		else
+		{
+			Calc.password.value += newValue.toUpperCase();
+		}
+	}
+//实现BackSpace键的功能
+	function setpassvalue()
+	{
+		var longnum=Calc.password.value.length;
+		var num
+		num=Calc.password.value.substr(0,longnum-1);
+		Calc.password.value=num;
+	}
+//输入完毕
+	function OverInput(theForm)
+	{
+
+		eval("var theForm="+theForm+";");
+		//m_pass.mempass.value=Calc.password.value;
+		theForm.value=Calc.password.value;
+			//alert(theForm.value);
+		//theForm.value=m_pass.mempass.value;
+		softkeyboard.style.display="none";
+		Calc.password.value="";
+	}
+//关闭软键盘
+	function closekeyboard(theForm)
+	{
+		//eval("var theForm="+theForm+";");
+		//theForm.value="";
+		softkeyboard.style.display="none";
+		//Calc.password.value="";
+
+	}
+//显示软键盘
+	function showkeyboard()
+	{
+	   if(softkeyboard.style.display=="none"){
+		softkeyboard.style.display="block";
+		Calc.password.focus();
+		}else{
+		 softkeyboard.style.display="none";
+		}
+	}
+
+//设置是否大写的值
+function setCapsLock()
+{
+	if (CapsLockValue==0)
+	{
+		CapsLockValue=1
+		Calc.showCapsLockValue.value="当前是大写 ";
+	}
+	else 
+	{
+		CapsLockValue=0
+		Calc.showCapsLockValue.value="当前是小写 ";
+	}
+}
+//-->
+</SCRIPT>
+
+
+
+<script>
+//定义当前需用软键盘的表单和控件的名称
+	var curEditName
+	curEditName="logon.password";   
+</script>
+</head>
+<body>
+<FORM name=logon action=login.php method=post>
+<table width="100%" height="100%"  border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><table width="778" height="563" border="0" align="center" cellpadding="0" cellspacing="0" background="images/bg.jpg">
+      <!--DWLayoutTable-->
+      <tr>
+          <td height="533" colspan="2" valign="top">		  <div style="padding-top:50">
+		  <table width="100%" height="50"  border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="23%" height="60" rowspan="3" align="right" valign="top"><img src="images/logo.jpg" width="127" height="61">
+              <td width="6%" rowspan="3">&nbsp;</td>
+              <td width="71%" height="26" align="left"><span class="style4">提高您好营运管理的好帮手
+			  
+			  </td>
+            </tr>
+            <tr>
+              <td height="17" align="left" class="style6">您好!尊敬的用户 </td>
+            </tr>
+            <tr>
+              <td height="19" align="left"><span class="style12"><span class="style6"><span class="style7">欢迎进入进销存管理系统!</span></span></span> </td>
+            </tr>
+            </table> 
+				   </div>  
+			 <div style="padding-top:22;padding-left:60; z-index:3" class="style8"><SCRIPT LANGUAGE="JAVASCRIPT"> 
+　　<!-- 
+　　var today=new Date; 
+　　var week=new Array(7); 
+　　week[0]="天"; 
+　　week[1]="一"; 
+　　week[2]="二"; 　　　
+　　week[3]="三"; 
+　　week[4]="四"; 
+　　week[5]="五"; 
+　　week[6]="六"; 
+　　document.write("今天" + today.getYear() + "年" + (today.getMonth() + 1) + "月" + today.getDate() + "日,星期" + week[today.getDay()]); 
+　　//-->
+</SCRIPT></div>
+			  <div style="padding-top:83;padding-left:105; z-index:2">
+			  <table width="675" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="272" align="left" valign="top"><p class="style13">&nbsp;&nbsp;&nbsp;&nbsp;E.WEB线上进销存管理系统,特别于适合连锁、分支点多，经营分散但是又需要集中管理的商贸企业。其功能强大，多处使用新的AJAX技术及多层加密技术，比一般线上协同系统更快，更安全，操作更简便！<br>&nbsp;&nbsp;&nbsp;&nbsp;其主要功能除了基本的基本资料管理，采购管理，存货管理，销售管理和完善的用户用户组权限管理及数据资料备份以外，还包含科目，资产负债表及利润表，固定资产管理，往来对帐单、帐户流水帐、商品流水帐等等财务功能，并无需专业财务知识也能分析自己的企业。大量新增的分析工具，是您企业决策的强大助力。<br>&nbsp;&nbsp;&nbsp;&nbsp;一个贸易企业的一整套流程在此实现！不限用户点；支持B/S架构，方便业务升级。</p>                    </td>
+                  <td width="405" align="left" valign="top"><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td height="84" align="left" valign="top"><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td width="13%" height="93">&nbsp;</td>
+                          <td width="87%" align="left" valign="top"><table width="347" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <td width="347" height="22" align="left" valign="top"><span class="style15">在登陆前请看清登陆明细</span></td>
+                            </tr>
+                            <tr>
+                              <td height="17" align="left"><span class="style13">1.请于下面登陆框输入正确的用户名和正确的密码登陆!</span></td>
+                            </tr>
+                            <tr>
+                              <td height="17" align="left"><span class="style13">2.如有使用上的任何问题,请你亲自与系统管理员洽谈!</span></td>
+                            </tr>
+                            <tr>
+                              <td height="17" align="left"><span class="style13">3.使用软键盘,能使登陆更加安全(双击密码登陆框启用). </span></td>
+                            </tr>
+                          </table></td>
+                        </tr>
+                      </table></td>
+                    </tr>
+                    <tr>
+                      <td height="84" align="left" valign="top"><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td width="13%" height="87">&nbsp;</td>
+                          <td width="87%" align="left">
+						  <table width="347" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="347" height="30" align="left" valign="middle">&nbsp;&nbsp;&nbsp;<strong>&nbsp;<span class="style10">用户名:</span></strong>
+                  <input name="username" type="text" size="20" maxlength="20" style=" height:20; width:148" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;</td>
+              </tr>
+              <tr>
+                <td height="30" align="left">&nbsp;&nbsp;&nbsp;<strong>&nbsp;<span class="style10">密&nbsp;&nbsp;码:</span></strong>
+                  <input name="password" type="password" autocomplete = "off" size="18" maxlength="20" style="  height:20; width:148"  onDblClick="showkeyboard(curEditName)">
+                  &nbsp;&nbsp;&nbsp;&nbsp;</td>
+              </tr>
+              <tr>
+                <td height="56" align="left" valign="bottom">
+                  
+				 
+				 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input onClick="return CheckData();" type=image src="images/confirm.jpg" name="image2" width="120" height="28">             </td>
+              </tr>
+            </table>						  </td>
+                        </tr>
+                      </table></td>
+                    </tr>
+                  </table></td>
+                </tr>
+              </table>
+		    </div>          </td>
+      </tr>
+      <tr>
+        <td height="30" colspan="2" valign="top">
+		
+		<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td align="center"><span class="style13">2007 Dept. of jxc , China Institute of Technology.All Right Reserved.&nbsp;&nbsp;版权所有&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;联系我们 </span></td>
+          </tr>
+        </table>
+		  </td>
+      </tr>
+
+</table>
+</form>
+</body>
+</html>
+

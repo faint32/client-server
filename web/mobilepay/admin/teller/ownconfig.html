@@ -1,0 +1,169 @@
+<HTML><HEAD><TITLE>个人设置</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="ljz" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<SCRIPT language=javascript src="../include/dateobject.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/datepicker.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+<SCRIPT language=javascript src="../function/function.js"></SCRIPT>
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+-->
+</style></HEAD>
+<script language=javascript>
+<!-- 
+function input_focus(){
+var gg = 1
+if (gg == 1){
+form1.smtp.focus();
+ }
+}
+var requestSubmitted = false;
+
+function submit_save() {
+   form1.action.value = "new";
+  	if(requestSubmitted == true){
+    alert("你已经提交，请等待一下");
+    return (false);
+   } 
+
+   if (confirm("是否确定提交?")) {	 
+     sending.style.visibility="visible";
+	   requestSubmitted = true;	
+	 form1.submit(); 
+   }	
+}
+
+
+
+// -->
+</script>
+
+<BODY topmargin="0" leftMargin="2" width="100%" onLoad="input_focus()">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+       <tr>
+       <td height="30" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	 个人设置
+       </td>
+       </tr>
+       <tr>
+         <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+      </tr>
+  </table>
+<center>
+<form action="" method="post" name="form1">
+    <input type=hidden name=action value="{action}"> 
+    <input type=hidden name=id value="{id}">
+    <input type="hidden" name="content" value="">
+    <table width="98%" border="0" cellspacing="0" cellpadding="0"  class="table_bgcolor">
+        <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right" >
+          <input type=button name=save3 class=button_save value="     保存" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt" {dissave} onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+		      <INPUT class=button_reset name=qqq type=reset value="     撤销" AccessKey=z style="font-size:9pt" onMouseOver="this.className='button_reset_on'" onMouseOut="this.className='button_reset'">
+        </div></td>
+        <td class=button_labelright></td>
+      </tr>
+    </table>
+    <table width="700" cellspacing="0" cellpadding="0" border="0" height="100" class=InputFrameMain>
+      <tbody>
+        <tr>
+          <td align="left" colspan="4">
+          <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+          <td align="center" class=inputtitle width="150">邮箱设置</td>
+          <td align="center" class=inputtitleright >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td align="center" ><font color="#FF0000" ><b>{error}</b></font></td>
+          </tr>
+          </table>          </td>
+        </tr>
+        <tr>
+          <td  height="10"></td>
+        </tr>
+        <tr>
+          <td >
+            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+              <tr >
+                <td width=15% height="30" align=right class=form_label>SMTP服务器：</td>
+                <td width=35% height="30" ><input class=input type="text" name="smtp" size="20" maxlength="100" value="{smtp}">
+                </td>
+                <td width=15% height="30" align=right class=form_label>pop服务器：</td>
+                <td width=35% height="30" ><input class=input type="text" name="pop" size="20" maxlength="100" value="{pop}">
+                </td>
+              </tr>
+              <tr >
+                <td width=15% height="30" align=right class=form_label>邮箱：</td>
+                <td width=35% height="30" ><input class=input type="text" name="email" size="20" maxlength="100" value="{email}">
+                </td>
+                <td width=15% height="30" align=right class=form_label>邮箱密码：</td>
+                <td width=35% height="30"><input class=input type="password" name="password" size="20" maxlength="100" value="{password}">
+                </td>
+              </tr>
+              <tr >
+                <td width=15% height="30" align=right class=form_label>发送者姓名：</td>
+                <td width=35% height="30" ><input class=input type="text" name="sendname" size="20" maxlength="100" value="{sendname}">
+                </td>
+                <td width=15% height="30" align=right class=form_label></td>
+                <td width=35% height="30"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+         
+		
+       
+      </tbody>
+    </table>
+    <table width="700" cellspacing="0" cellpadding="0" border="0"  class=InputFrameMain>
+      <tbody>
+
+        <tr>
+          <td height="13" colspan="4" align="left"><table cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td align="center" class=inputtitle width="150">个人习惯设置</td>
+                <td align="center" class=inputtitleright >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="center" >&nbsp;</td>
+              </tr>
+          </table></td>
+        </tr>
+        <tr>
+          <td height="19" ><table width="100%" cellspacing="0" cellpadding="0" border="0">
+              <tr >
+                <td width=15% height="30" align=right class=form_label>浏览记录数：</td>
+                <td width=35% height="30"><input class=input type="text" name="browline2" size="20" maxlength="100" value="{browline}">                </td>
+                <td width=15% height="30" align=right class=form_label>选用皮肤：</td>
+                <td width=35% height="30"><select name=telskin>
+                  
+                  
+                  
+                  
+		         {telskin}
+		      
+                
+                
+                
+                </select>                </td>
+              </tr>
+          </table></td>
+        </tr>
+       
+      </tbody>
+    </table>
+    <p>&nbsp;</p>
+</form>
+<div id="sending" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; visibility: hidden"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在提交，请稍候...</td>
+          </tr>
+       </table>
+</div> 
+</center>
+</BODY>
+</HTML>

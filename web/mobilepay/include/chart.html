@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>广州市店多软件开发有限公司图表分析</title>
+<link rel="stylesheet" href="../Contents/Style.css" type="text/css" />
+<script language="JavaScript" src="../include/FusionCharts.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript1.1">
+<!--
+// U can change this number to check specific version of flash
+
+var MM_contentVersion = 8;
+
+var plugin = (navigator.mimeTypes && navigator.mimeTypes["application/x-shockwave-flash"]) ?
+                     navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin : 0;
+
+if ( plugin ) {
+    var words = navigator.plugins["Shockwave Flash"].description.split(" ");
+    for (var i = 0; i < words.length; ++i){
+        if (isNaN(parseInt(words[i])))
+            continue;
+        var MM_PluginVersion = words[i]; 
+    }
+    var MM_FlashCanPlay = MM_PluginVersion >= MM_contentVersion;
+}
+else if( navigator.userAgent && navigator.userAgent.indexOf("MSIE")>=0 && 
+        (navigator.appVersion.indexOf("Win") != -1) ) {
+    //FS hide this from IE4.5 Mac by splitting the tag
+    document.write('<SCR' + 'IPT LANGUAGE=VBScript\> \n');
+    document.write('on error resume next \n');
+    document.write('MM_FlashCanPlay = ( IsObject(CreateObject("ShockwaveFlash.ShockwaveFlash." & MM_contentVersion)))\n');
+    document.write('</SCR' + 'IPT\> \n');
+}
+
+
+
+function showdownload(){
+ 
+  if ( MM_FlashCanPlay ) {
+    //alert("Flash Detection OK. U can play.");	
+	
+  }else{
+    alert("需要安装Flash播放控件才能正常使用!请下载Flash Player 8以上的版本");
+	document.getElementById("flashplayer1").style.visibility = "visible"; 
+  }
+}  
+
+//-->
+
+</SCRIPT>
+
+
+</head>
+
+<body onload=showdownload()>
+ <form action="" method="post" name="form1">
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td valign="top" class="text" align="center">	
+	 <div id="chartdiv" align="center" style="z-index:1"> 
+        FusionCharts. </div>
+      <script type="text/javascript">
+	      
+		   var chart = new FusionCharts("{charttype}", "ChartId", "{chart_width}", "{chart_height}", "0", "0");
+		   chart.setDataXML("{strXML}");	
+		   chart.render("chartdiv");
+		</script> </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text" align="center"><div id="flashplayer1" style="visibility:hidden"><a href="../include/install_flash_player_active_x.exe">点击下载FLASH播放器</a></div></td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text" align="center"></td>
+  </tr>
+</table>
+ </form>
+</body>
+</html>

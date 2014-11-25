@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<HTML><HEAD><TITLE>销售历史单</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!-- Styles -->
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="../css/custom.css">
+
+
+
+<!--[if IE 6]>
+	<link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css" />
+	<![endif]-->
+	<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> 
+	<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+</HEAD>
+<script language=javascript>
+<!-- 
+//禁止退格键 作用于Firefox、Opera
+document.onkeypress=banBackSpace;
+//禁止退格键 作用于IE、Chrome
+document.onkeydown=banBackSpace;
+
+function showcomm(listdate,tid,cid,listid,rowcount){
+   
+   var zk_id   = "zk_"+listdate;
+   var paycard_id = "paycard_"+tid;
+	 var type = "check";
+	  var showcontent='<tr id="tr_'+paycard_id+'"><td colspan="6" align="center">加载中.....</td></tr>';
+	$("#"+zk_id).attr("disabled",true);
+	 $("#"+tid).after(showcontent);
+   if(!document.getElementById(paycard_id)){
+	 $.ajax({
+	    url: "../ajaxread/readsavepaycard.php?showtype=saleback&stdetail_id="+listdate+"&type="+type+"&paycard_id="+paycard_id+"&rowcount="+rowcount,
+	   success: function(data) {
+		var  arr_strItem=data.split("@@");
+		if(arr_strItem[1]==1)
+		{	
+			$("#s_"+paycard_id).hide();
+			   $("#tr_"+paycard_id).hide();
+			 $("#"+tid).after($(arr_strItem[0]).show());
+			  $("#"+zk_id).attr("disabled",false)
+			 document.getElementById(zk_id).innerHTML = "收起";
+		 }
+	   }
+	 });   
+  
+   }
+   
+   if(document.getElementById(paycard_id).style.display == "none"){
+     document.getElementById(paycard_id).style.display = "";
+	 document.getElementById(zk_id).innerHTML = "收起";
+	  $("#tr_"+paycard_id).hide();
+	  $("#"+zk_id).attr("disabled",false);
+   }else{
+     document.getElementById(paycard_id).style.display = "none";
+	 document.getElementById(zk_id).innerHTML = "展开";
+	  $("#tr_"+paycard_id).hide();
+	  $("#"+zk_id).attr("disabled",false);
+   }
+}
+// -->
+</script>
+<BODY topmargin="0" leftMargin="2" width="100%">
+<div id="page">
+  <h4 class="icon forms">{menuname} <small></small></h4>
+
+<form action="" method="post" name="form1">
+    <input type=hidden name=action value="{action}"> 
+    <input type=hidden name=listid value="{listid}">  
+				<div id="top">
+				<ul id="menu">
+					<li>
+						<a href="#" AccessKey='q' onClick="javascript:location='{gotourl}'">返回</a>
+					</li>
+				</ul>
+			</div>
+			<div class="wrapper">
+				<div class="panel">
+					<div id="showinfo" class="box box-info" style="display:{show_error}">
+						<p>{error}</p>
+						<a class="close">&times;</a>
+					</div>
+					<fieldset class="form">
+						<legend>刷卡器销售 
+							<small>
+								&nbsp;单据输入
+							</small></legend>
+						<table  class="table_form">
+							<colgroup><col class="col-name" />
+								<col class="col-value" /></colgroup>
+							<tr >
+								<th >单据编号：</th>
+								<td>
+									<input class="input disabled" readonly style="ime-mode:disabled" type="text" name="listno" size="20" maxlength="40" value="{listno}" onChange="changelistno()">
+								<th>单据日期：</th>
+								<td>
+									<input name="date"  id="date" type="text"  readonly  class="input disabled"   size="20" value="{date}"readonly="1" >
+								</td>
+							</tr>
+							<tr >
+								<th >客户编号：</th>
+								<td >
+									<input class="input disabled" type="text" name="cusno" size="10" maxlength="20" value="{cusno}"readonly="1"  >
+								</td>
+								<th>客户全称：</th>
+								<td>
+									<input type="hidden" name="cusid" value="{cusid}">
+									<input class="input disabled" type="text" name="cusname" size="20"  value="{cusname}" readonly>
+								</td>
+							</tr>
+							<tr >
+								<th >收款金额：</th>
+								<td >
+									<input class="input disabled" type="text" name="vallmoney" size="10" maxlength="20" value="{vallmoney}"readonly="1"  >
+								</td>
+								<th>收款方式：</th>
+								<td>{skfs} </td>
+							</tr>
+                            <tr >
+								<th class="required">录单人：</th>
+								<td >
+									<input class="input disabled"  type="text" name="ldr" size="10" maxlength="20" value="{ldr}" readonly="1">
+																</td>
+								<th class="required">经手人：</th>
+								<td>
+									<input class="input disabled" type="text" name="dealwithman"
+											size="30" maxlength="20" value="{dealwithman}" readonly>	
+											
+																	</td>
+							</tr>
+							<tr  >
+								<th >备注：</th>
+								<td colspan="3">
+									<textarea class="textarea disabled full" name="memo_z" rows="3" readonly >{memo_z}</textarea>
+								</td>
+							</tr>
+						</table>
+					</fieldset>
+				</div>
+			</div>
+ 			<div class="wrapper">
+				<div class="panel">
+					<fieldset class="form">
+						<table class=table>
+							<thead >
+								<tr>
+                                <th >序号</th>
+								<th >商品名</th>
+								<th >数量</th>
+<!-- 								<th >单价</th>
+								<th >总价</th> -->
+								<th >操作</th>
+								</tr>
+							</thead>
+							<tbody>
+							<!-- BEGIN prolist -->
+							<tr bgcolor="{bgcolor}" id="jqtrid_{rowcount}" >
+                            <td align="center">&nbsp;{count}</td>
+								<td align="center">&nbsp;{vproductid}</td>
+								<td align="right">{vquantity}&nbsp;</td>
+<!-- 								<td  >{vprice}&nbsp;</td>
+								<td  >{vmoney}&nbsp;</td> -->
+								<td align="center" >
+									<span  onClick="showcomm({vid},'jqtrid_{rowcount}','c_{rowcount}','{listid}','{rowcount}')" id="zk_{vid}" style=" cursor:pointer" >展开</span>
+								</td>
+							</tr>
+							<!-- END prolist -->
+							</tbody>
+							<tfoot>
+								<th colspan="2">共&nbsp;{count}</font>&nbsp;条&nbsp;合计：</th>
+								<th align="right">
+									<span id="spanallghquantityid">{vallquantity}</span>
+									
+								</th>
+<!--								<th align="right" class=thcolor></th>
+ 								<th  class=thcolor>
+									<span id="spanallmoneyid">{vallmoney}</span>
+									&nbsp;
+								</th> -->
+								<th></th>
+							</tfoot>
+						</table>
+					</fieldset>
+				</div>
+			</div>	
+<br>
+</form>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

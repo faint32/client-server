@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>右侧内容</title>
+<head>
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<link href="../colorbox/colorbox.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../js/jquery.min.1.7.1.js"></script>
+<script type="text/javascript" src="../js/global.js"></script>
+<script type="text/javascript" src="../colorbox/jquery.colorbox.js"></script>
+<style>
+.lpagebm{float:left; width:100%; height:30px;  line-height:30px; font-size:12px; font-family:"宋体"; margin:40px 0;*padding-bottom:40px;_padding-bottom:0px; display:inline; overflow:hidden;}
+.lpbmlnol,.lpbmlnow,.lpbmlno{width:auto; margin-right:10px; display:inline; overflow:hidden;}
+.lpbmlnol,.lpbmlno{border:#d9d9d9 solid 1px;color:#d9d9d9;background:#fff;}
+.lpbmlnol{padding:4px;}
+.lpbmlnow{border:#d3d3d3 solid 1px; background:#e9e9e9; padding:4px 8px;}
+.lpbmlnow a{color:#d31172; text-decoration:none; cursor:pointer;}
+.lpbmlno{padding:4px 8px;}
+.lpbmlno a{color:#085c9c; text-decoration:none; cursor:pointer;}
+.lpbmlno:hover{color:#085c9c;border:#d3d3d3 solid 1px; background:#e9e9e9;text-decoration:underline;} 
+img{border:none;}
+</style>
+<script language=javascript>
+<!-- 
+function submit_search(){
+  form1.search.value="search";
+  form1.submit();
+}
+function edit_p(lid2,values){
+       
+		form1.vid.value =lid2;
+		form1.tuijian.value =values;
+
+		form1.toaction.value ="setdef";
+
+		form1.submit();
+
+}
+function refeedback(scatid,dateid,act,getvalid,imgid)
+{	
+	
+	var strItems
+	  	strItems = $("#"+getvalid).val();
+	var arr_value =new Array();
+	 	arr_value= strItems.split('@@');
+		
+	if(strItems=="" && act!="delete")  
+	{
+		return false;
+	}
+	switch(act)
+	{
+		case 'new':
+		      $("#"+getvalid+dateid).html("<img src="+arr_value[0]+"  width=120 height=50 />");
+			  break;
+		
+	}
+}
+// -->
+</script>
+</head>
+<body  text="#000000" topmargin="0" leftMargin="2" width="100%">
+
+ <form id=form1 name=form1 action="" method=post>
+  <input type=hidden name=vid value=""> 
+  <input type=hidden name=tuijian value=""> 
+  <input type=hidden name=toaction value=""> 
+  
+	<input type="hidden" name="search" name="">
+	<input type="hidden" name="uploadfile" id="uploadfile">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td height="30" class="pagetitle"  colspan=2 valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	<span><b></b>供应商LOGO列表
+        </td>
+      </tr>
+      <tr>
+         <td align="left" colspan=2><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+      </tr>
+      <tr>
+         <td align="left" colspan=2 height="3"></td>
+      </tr>
+  </table>
+   <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+         <td height="25">名:
+          <input class=input type="text" name="content" size="20" maxlength="20" value="">
+          <input type=button name=save3  value="搜索"  onClick="javascript:submit_search()" style="font-size:9pt" size="10">
+          </td>
+	</tr>
+  </table>
+<TABLE class=tableframe style="word-break:break-all;" width="98%">
+  <TBODY> 
+  <TR class=listtitle>
+    <TD class=listcelltitle noWrap align=middle height="25"width="20%">ID</TD>
+    <TD class=listcelltitle noWrap align=middle height="25"width="20%"> 供应商名称</TD>
+	<TD class=listcelltitle noWrap align=middle height="25"width="20%"> 供应商LOGO</TD>
+    <TD class=listcelltitle noWrap align=middle height="25"width="20%"> 推荐</TD>
+    <TD class=listcelltitle noWrap align=middle width="25%">操作</TD>
+  </TR>
+<!-- BEGIN BXBK -->
+	<TR class=listrow1 onMouseOver="this.style.backgroundColor='#F1F4F9';" onMouseOut="this.style.backgroundColor='#FFFFFF'" >
+		<TD class=listcellrow  align=center height="25" >{fd_supplierlogo_id}</TD>
+        <TD class=listcellrow  align=center height="25" >{fd_supplogo_suppname}</TD>
+      
+		<TD class=listcellrow  align=center height="25" id="uploadfile{fd_supplierlogo_id}">{thum}</TD> 
+         <TD class=listcellrow  align=center height="25" >{tuijian}</TD>
+		<TD class=listcellrow noWrap align=center><span>{edit}</span></TD>
+	</TR>
+<!-- END BXBK --> 
+</TBODY>
+  <TABLE class=tableframe style="word-break:break-all;" width="50%" >
+  <TR vAlign=center >
+    <td>  {pagenav}</td>
+  </TR>
+</TABLE>
+</TABLE> 
+
+
+</FORM>
+
+<br>
+<br>
+</body>
+</html>

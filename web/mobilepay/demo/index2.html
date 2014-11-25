@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>API测试：</title>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$.ajaxSetup ({cache: false });	
+
+	$('#ffff').live('click', function() {   //保存seesionid
+	 	var urls = $("#interface_id").val();
+		var xmlcontent = $("#xmlcontent").val();
+	     $.ajax({
+             type: "POST",
+             url : "../sever/androidapidemo.php",
+             data: "xmlcontent="+escape(xmlcontent)+"&interface_id="+urls,
+             success: function(strItem){
+				 $("#secc").text(strItem);
+				 // alert(strItem);
+				
+	        }
+		 });
+      });
+});
+</script>
+
+</head>
+
+<body style=" padding:20px;margin:auto;">
+	<form name="form1" method="get">
+    <div>接口选择：<select name="interface_id" id="interface_id" class="urlselect" onchange="form1.submit();">
+    	{interface_id}
+    </select></div>
+   <div>xml案例：<textarea cols="50" rows="15" id="xmlcontent">{apiname}</textarea> <input type="button" class="kpgldyfcsub" value="提交" name="button1" id ="ffff" ></div>
+  
+   </form>
+   提交结果：
+   <textarea id="secc"></textarea>
+</html>

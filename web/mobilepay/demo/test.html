@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="robots" content="all" />
+<meta name="author" content="mobile.com.cn" />
+<link rel="stylesheet" type="text/css" href="tc.css" />
+<link rel="stylesheet" type="text/css" href="chosen.css" />
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="chosen.jquery.min.js"></script>
+<title>mobile在线测试工具 V2</title>
+<script type="text/javascript">
+$(document).ready(function(){
+	$.ajaxSetup ({cache: false });	
+	 var reg1=new RegExp("<","g"); //创建正则RegExp对象
+	 var reg2=new RegExp(">","g"); //创建正则RegExp对  
+// var editor = CodeMirror.fromTextArea(document.getElementById("TestCode"), {mode: {name: "xml", htmlMode: true}});
+	
+	$('#submitTryit').live('click', function() {   //保存seesionid
+	 	var urls = $("#interface_id").val();
+		var xmlcontent = $("#TestCode").val();
+		xmlcontent=xmlcontent.replace(/\+/g,"%2B");
+		xmlcontent=xmlcontent.replace(/\&/g,"%26");
+		$("#secc").attr("value","");
+	     $.ajax({
+             type: "POST",
+			 dataType: "html", 
+			 timeout: 2000, 
+             url : "SinHttpClient.php",
+             data: "xmlcontent="+escape(xmlcontent)+"&interface_id="+urls,
+             success: function(xml){
+				 var xmlcontent = xml.replace(reg1,"&lt;");
+				     xmlcontent = xmlcontent.replace(reg2,"&gt;");
+					 
+				 $("#secc").html(""+xmlcontent+"");
+				 //xmlcontent = formatXml(xmlcontent)
+				// $("code#xml").html(""+xmlcontent+"");
+				 //alert(xmlcontent);
+				 // alert(strItem);
+				
+	        }
+		 });
+      });
+	$("#interface_id").live('change', function()
+	 {
+	 	window.location="index.php?interface_id="+$("#interface_id").val();
+	});
+	
+	$('#tj').live('click', function() {
+	 	var urls = $("#interface_id").val();
+		var xmlcontent = $("#TestCode").val();
+		$("#secc").attr("value","");
+		 $.ajax({
+             type: "POST",
+			 dataType: "html", 
+			 timeout: 2000, 
+             url : "subtj.php",
+             data: "xmlcontent="+xmlcontent+"&interface_id="+urls,
+             success: function(xml){
+				 var xmlcontent = xml.replace(reg1,"&lt;");
+				     xmlcontent = xmlcontent.replace(reg2,"&gt;");
+					 
+				 $("#secc").html(""+xmlcontent+"");
+				
+	        }
+		 });
+		})
+	});
+</script>
+
+  
+</head>
+
+<body id="editor">
+<div id="wrapper">
+  <div id="header">
+    <h1>通付宝支付API测试</h1>
+  </div>
+  <form action="" method="get" id="tryitform" name="tryitform"  target="i">
+    <div id="butt"> 接口选择：
+      <select name="interface_id" id="interface_id" class="urlselect chosen" >
+    	{interface_id}
+      </select>
+      <input type="button" value="提交代码" id="submitTryit" />
+	  <input type="button" value="切换到加密页面"  class="button" onclick = "javascript:location.href='entcy.php'"/>
+	  <input type="button" value="删除测试帐号"  class="button" onclick = "javascript:location.href='deluser.php'"/>
+	  
+    </div>
+    <div id="CodeArea">
+      <h2>编辑您的代码：<input type="button" value="保存" id="tj" style="background-image:url(../admin/skin/skin0/save.jpg); float:right;margin-right:30px;" /></h2>
+   <textarea id="TestCode" wrap="logical">{apiname}
+</textarea>
+    </div>
+    <input type="hidden" id="code" name="code"  />
+    <input type="hidden" id="bt" name="bt" />
+  </form>
+
+  <div id="result">
+    <h2>查看结果:</h2>
+    <pre ><code id="secc"></code></pre>
+  </div>
+  <div id="footer">
+    <p>请在上面的文本框中编辑您的代码，然后单击提交按</p>
+  </div>
+</div>
+<body>
+<pre><code id="xml">
+</code></pre>
+</body>
+</html>

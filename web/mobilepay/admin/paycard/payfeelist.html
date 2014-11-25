@@ -1,0 +1,114 @@
+<HTML>
+<HEAD>
+<TITLE>交易手续费报表</TITLE>
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+
+<link href="{skin}reset.css" rel="stylesheet" type="text/css">
+
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<link rel="stylesheet" href="{skin}browse_view.css" type="text/css" />
+
+<style></style>
+
+<!-- Scripts -->
+
+<script src="../include/jquery.js" language="javascript" ></script>
+<script type="text/javascript" language="javascript" src="../include/jquery.dataTables.gb2312.js"></script>
+<script type="text/javascript" charset="utf-8" src="../jquery/ZeroClipboard.js"></script>
+<script type="text/javascript" charset="utf-8" src="../jquery/TableTools.js"></script>
+<script language="javascript"> 
+
+		  $(document).ready(function() {
+
+		  $.ajaxSetup ({cache: false });	
+
+		  getdataTable("basictable0","tb_repaymoneyglist");
+		  getdataTable("basictable1","tb_creditcardglist");
+		  getdataTable("basictable2","tb_transfermoneyglist");
+			
+		  });
+function  getdataTable(id,tabname)
+{
+		 
+		  var gotourl="../ajaxread/readpayfeelist.php?tabname="+tabname;
+			  $('#'+id).dataTable({ 
+					 "bProcessing": true,
+					  "aLengthMenu": [[5,10, 25, 50,600, -1], [5,10, 25, 50,600,"全部"]],
+					  "sPaginationType": "full_numbers",
+					  "bServerSide":true,
+					  "sAjaxSource":gotourl,
+					   "sDom":   'Tlrtip<"clear">',  
+		             "oTableTools": {
+				     "aButtons": [
+							{
+								"sExtends": "download",
+								"sButtonText": "excel",
+								"sUrl":"excelwritervouchercollect.php?tabname="+tabname
+							}],
+			        "sSwfPath": "../jquery/swf/copy_cvs_xls_pdf.swf"
+		             }
+					 
+                   
+                  });
+}		  
+		</script>
+</HEAD>
+
+<BODY>
+<div id="page">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+    <td height="30" class="pagetitle"  width="100%" valign="middle">&nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle"> 财务报表 --> 交易手续费报表</td>
+    <tr>
+      <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+    </tr>
+  </table>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+    <tr>
+      <td class=button_labelleft></td>
+      <td class=button_label><div align="left" > &nbsp; </div></td>
+      <td class=button_labelright></td>
+    </tr>
+  </table>
+  
+  <!-- Wrapper -->
+  
+  <div class="wrapper">
+    <div class="panel">
+      <form action="" method="post" id="form3" name="form2">
+        <input class="input" type="hidden" name="listid" value="{listid}" id="id">
+		 
+        <fieldset class="form">
+          
+          <table class="table_form">
+            <colgroup>
+            <col class="col-name" />
+            <col class="col-value" />
+            </colgroup>
+            <tr>
+              <th>手续费总额：</th>
+              <td>{allmoney}</td>
+            </tr>
+		
+
+          </table>
+        </fieldset>
+      </form>
+    </div>
+	 <legend>手续费流水表 <small>&nbsp;如果有,会显示信用卡还款,贷款还款,转账汇款相应的水流表</small> </legend>
+	{showcontent}
+
+</div>
+</div>
+</center>
+{showeditdiv}
+</body>
+</html>

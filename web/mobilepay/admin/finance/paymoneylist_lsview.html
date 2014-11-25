@@ -1,0 +1,166 @@
+<HTML>
+	<HEAD>
+		<TITLE>资金到帐查看</TITLE>
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="zjw" CONTENT="no-cache">
+		<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+		<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+		<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+		<link rel="stylesheet" href="{skin}reset.css" type="text/css" />
+		<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT> <script language="javascript" type="text/javascript" src="../include/ShowCalendar.js"></script> <script src="../include/jquery.js" type="text/javascript" charset="utf-8"></script> 
+	</HEAD>
+	<script language=javascript>
+		function CheckAll(form){
+		   for (var i=0;i<form.elements.length;i++){ 
+		       var strelement = form.elements[i];
+		       if (strelement.name == 'checkid[]'){
+		           strelement.checked = form.chkall.checked;
+		       }
+		    }
+		}
+		
+		function submit_sel(){
+			 $("#checktables").hide();
+			 var obj = document.getElementsByName('checkid[]'); //获取多选框数组
+		     var objLen= obj.length; //获取数据长度
+		     for (var i=0;i<objLen;i++){ 
+		      	if(obj[i].checked==false){
+		      		obj[i].checked=true;
+		       		obj[i].value="";
+		       	}
+		    }
+			
+			if(confirm("是否退回选择的记录！")){
+			    sending.style.display ="";
+				sendingbg.style.display ="";				
+			form1.action.value = "selmore";
+		   	  form1.submit();
+			}else{
+			  $("#checktables").show();
+			} 
+		}
+		
+		function sea_click(){
+		   	form1.submit();
+		}
+	</script> 
+	<BODY>
+		<center>
+			<form action="" method="post" name="form1">
+				<input type=hidden name=action value="{action}">
+				<input type=hidden name=listid value="{listid}">
+				<input type=hidden name=payorin value="{payorin}">
+				<table style="width:100%;" border="0" cellspacing="0" cellpadding="0" height="30">
+					<tr>
+						<td height="30" class="pagetitle"  colspan=2 valign="middle">
+							<img src="{skin}nowspace.jpg" align="absmiddle">
+							<span>
+							<b></b>资金代付款管理 --> 资金到帐查看</td>
+					</tr>
+				</table>
+				<br>
+				<table style="width:100%;" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td align="center">
+							<div align="left">
+								<b>
+									<font color="#FF0000" size="2" class="error">{error}</font>
+								</b>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<table style="width:100%;" border="0" cellspacing="0" cellpadding="0" height="15">
+					<tr>
+						<td width="92%" align="left" class="table_bgcolor">
+							查询条件： 
+							<select name="sel_condit">{conditions}</select>
+							<input name="txtCondit" type="text" class="textfield" size="15" value="{txtCondit}">
+							<input  type="button" name="search" class="buttonsmall" value="查 询" onClick="sea_click();">
+						</td>
+						<td width="8%" align="right" class="table_bgcolor">
+							
+						</td>
+					</tr>
+				</table>
+				<table class="table" style="width:100%; word-break:break-all;" align="center" id="checktables">
+					<thead>
+						<tr>
+							<th>
+								<input onClick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" />
+							</th>
+							<th>序号</th>
+							<th>银联订单号</th>
+							<th>银行交易流水号</th>
+							<th>刷卡器设备号</th>
+							<th>客户名称</th>
+							<th>转账类型</th>
+							<th>交易状态</th>
+							<th>交易日期</th>
+							<th>付款人卡号</th>
+							<th>交易金额</th>
+							<th>手续费支付方向</th>
+							<th>预计支出日期</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- BEGIN prolist -->
+						<tr>
+							<td  height="25" width="10" align="center">
+								<input type="checkbox" name="checkid[]" value="{agpm_id}" />
+							</td>
+							<td  align="left">{count}</td>
+							<td  align="left">{bkordernumber}</td>
+							<td  align="left">{bkntno}</td>
+							<td  align="left">{paycardkey}</td>
+							<td  align="left">{author}</td>
+							<td  align="left">{paytype}</td>
+							<td  align="left">{payrq}</td>
+							<td  align="left">{paydate}</td>
+							<td  align="left">{fucardno}</td>
+							<td  align="right">{paymoney}</td>
+							<td  align="right">{payfeedirct}</td>
+							<td  align="left">{arrivedate}</td>
+						</tr>
+						<!-- END prolist -->
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="6" height="28" align="left" >
+								<input class="buttonsmall" name="end2" type="button" value="退回"  onClick="javascript:submit_sel()" style="font-size:9pt" />
+							</td>
+							<td colspan="5" height="28" align="right" ></td>
+							<td  align="right" >{all_paymoney}</td>
+							<td colspan="2" height="28" align="right" ></td>
+
+				      </tr>
+						<tr>
+							<td height="28" colspan="18" align="left" class="listTable_fontfirst">{pagenav}</td>
+						</tr>
+				</table>
+				<div id="showmenudate" style="position:absolute;width:32px;height:24px;z-index:2;left: 373px;top: 180px;visibility: hidden;">
+					<a href="#" title="返回" onClick="javascript:location='{gotourl}'">
+						<img src="../images/00043.gif" border="0" width="32" height="24">
+					</a>
+				</div>
+			</form>
+		</center>
+<div id="sending" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:20%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在退回，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%;  z-index:100; filter: Alpha(Opacity=50);  background-color: #ffffff; display:none "> 
+
+</div>		
+	</BODY>
+</HTML>

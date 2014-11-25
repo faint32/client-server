@@ -1,0 +1,343 @@
+<HTML>
+<HEAD>
+<TITLE>往来对帐单</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="dianduo" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css>
+<SCRIPT language=javascript src="../include/dateobject.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/datepicker.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+</HEAD>
+<script language=javascript>
+<!-- 
+//禁止退格键 作用于Firefox、Opera
+document.onkeypress=banBackSpace;
+//禁止退格键 作用于IE、Chrome
+document.onkeydown=banBackSpace;
+function InitAjax()
+{
+　var ajax=false; 
+　try { 
+　　ajax = new ActiveXObject("Msxml2.XMLHTTP"); 
+　} catch (e) { 
+　　try { 
+　　　ajax = new ActiveXObject("Microsoft.XMLHTTP"); 
+　　} catch (E) { 
+　　　ajax = false; 
+　　} 
+　}
+　if (!ajax && typeof XMLHttpRequest!='undefined') { 
+　　ajax = new XMLHttpRequest(); 
+　} 
+　return ajax;
+}
+
+
+function selfinetype(){
+   if(form1.clienttype.value==1){
+      procus();
+   }else{
+      prosupp();
+   }
+}
+
+function keypressclienttype(){
+   if(form1.clienttype.value==1){
+      keypresscus();
+   }else{
+      keypresssupp();
+   }
+}
+
+function procus(){
+   if(form1.cusno.value!=""){
+     likecus();
+   }else{
+     var arrItems=new Array();
+     var strItem ;
+     var szRef = "../getdata/getcus.html";
+     var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+     
+     arrItems = strItem.split("@@@");
+     form1.cusid.value    = arrItems[0];   
+     form1.cusno.value    = arrItems[1]; 
+     form1.cusname.value  = arrItems[2];
+   }
+}
+
+function keypresscus(){
+  if(event.keyCode==13){
+     checkisonecus();
+  }
+}
+
+function likecus(){
+     var strcusno = form1.cusno.value;
+     var arrItems=new Array();
+     var strItem ;
+     var szRef = "../getdata/likegetcus.php?cusno="+strcusno;
+     var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+     
+     arrItems = strItem.split("@@@");
+     form1.cusid.value    = arrItems[0];   
+     form1.cusno.value    = arrItems[1]; 
+     form1.cusname.value  = arrItems[2];
+}
+
+function checkisonecus(){
+  var strcusno = form1.cusno.value;
+  var postStr = "cusno="+ strcusno;
+　//需要进行Ajax的URL地址
+　var url = "../ajaxread/checkisonecus.php";
+　//实例化Ajax对象
+　var ajax = InitAjax();
+　//使用POST方式进行请求
+　ajax.open("POST", url, true);
+  //定义传输的文件HTTP头信息
+　ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+　//发送POST数据
+　ajax.send(postStr);
+　//获取执行状态
+　ajax.onreadystatechange = function() { 
+　　//如果执行是状态正常，那么就把返回的内容赋值给上面指定的层
+　　if (ajax.readyState == 4 && ajax.status == 200) { 
+       var strcommArray = new Array();   
+       strcommArray = ajax.responseText.split("&");  
+       if(strcommArray[0]==0){
+         alert("没有该客户！请查证！");
+         form1.cusno.focus();
+       }else if(strcommArray[0]==1){
+         form1.cusid.value    = strcommArray[1];   
+         form1.cusno.value    = strcommArray[2]; 
+         form1.cusname.value  = strcommArray[3];
+       }else{
+         
+         likecus();
+       }
+　　}
+　}
+}
+
+function prosupp(){
+   if(form1.cusno.value!=""){
+     likesupp();
+   }else{
+     var arrItems=new Array();
+     var strItem ;
+     var szRef = "../getdata/getsupp.html";
+     var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+     
+     arrItems = strItem.split("@@@");
+     form1.cusid.value    = arrItems[0];   
+     form1.cusno.value    = arrItems[1]; 
+     form1.cusname.value  = arrItems[2];
+   }
+}
+
+function keypresssupp(){
+  if(event.keyCode==13){
+     checkisonesupp();
+  }
+}
+
+function likesupp(){
+     var strcusno = form1.cusno.value;
+     var arrItems=new Array();
+     var strItem ;
+     var szRef = "../getdata/likegetsupp.php?suppno="+strcusno;
+     var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+     
+     arrItems = strItem.split("@@@");
+     form1.cusid.value    = arrItems[0];   
+     form1.cusno.value    = arrItems[1]; 
+     form1.cusname.value  = arrItems[2];
+}
+
+function checkisonesupp(){
+  var strcusno = form1.cusno.value;
+  var postStr = "suppno="+ strcusno;
+　//需要进行Ajax的URL地址
+　var url = "../ajaxread/checkisonesupp.php";
+　//实例化Ajax对象
+　var ajax = InitAjax();
+　//使用POST方式进行请求
+　ajax.open("POST", url, true);
+  //定义传输的文件HTTP头信息
+　ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+　//发送POST数据
+　ajax.send(postStr);
+　//获取执行状态
+　ajax.onreadystatechange = function() { 
+　　//如果执行是状态正常，那么就把返回的内容赋值给上面指定的层
+　　if (ajax.readyState == 4 && ajax.status == 200) { 
+       var strcommArray = new Array();   
+       strcommArray = ajax.responseText.split("&");  
+       if(strcommArray[0]==0){
+         alert("没有该供应商！请查证！");
+         form1.cusno.focus();
+       }else if(strcommArray[0]==1){
+         form1.cusid.value    = strcommArray[1];   
+         form1.cusno.value    = strcommArray[2]; 
+         form1.cusname.value  = strcommArray[3];
+       }else{
+         
+         likesupp();
+       }
+　　}
+　}
+}
+
+function selectquery(){
+  if(form1.cusname.value=="" || form1.cusid.value==""){
+     alert("请选择往来单位");
+     return;
+  }
+  sending.style.display ="";
+	sendingbg.style.display ="";
+  form1.submit();
+}
+
+
+// -->
+</script>
+<BODY>
+<div id="page">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td colspan="2" >&nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">往来对帐单</td>
+    </tr>
+	<tr>
+	 <td height="10" align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+	</tr>
+</table>
+<center>
+   <form action="currentaccount_show.php" method="post" name="form1">
+ 
+  <table width="700" class=InputFrameMain cellspacing="0" cellpadding="0" border="0">
+      <tbody>
+     <tr>
+          <td align="left" colspan="4">
+          <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+          <td align="center" class=inputtitle width="150">往来对帐单</td>
+          <td align="center" class=inputtitleright >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td align="center" ><font color="#FF0000" ><b>{error}</b></font></td>
+          </tr>
+          </table>
+          </td>
+        </tr>
+       <tr>
+          <td width="34" height="23"  align="left" class = titlefont >&nbsp;</td>
+          <td height="13" colspan="2"  align="left" class = titlefont >按客户/供应商</td>
+          <td width="566" align="left">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="4" height="5" align="left" valign="top"><img src="{skin}shortline.jpg" ></td>
+        </tr>
+        <tr>
+          <td height="19" colspan="3" align="right"  class="form_label">单位类型：</td>
+           <td width="566" class="span_label"> 
+            <select name="clienttype" >
+            {clienttype}
+			      </select></td>
+       </tr>	
+       <tr>
+          <td height="19" colspan="3" align="right"  class="form_label">编号：</td>
+           <td width="566" class="span_label"> 
+           <input class=input type="text" name="cusno" size="10" maxlength="20" value="" onKeyPress="keypressclienttype()">  
+            名称：
+           <input type=hidden name=cusid value="">
+          <input class=input_disabled  name=cusname size="20" value="" readonly>
+			    <input type="button" name=query  onClick="javascript:selfinetype()" class=buttonsmall style="font-size:9pt" value="查找">  
+			 </td>
+     </tr>
+     <tr>
+          <td width="34" height="23"  align="left" class = titlefont >&nbsp;</td>
+          <td height="13" colspan="2"  align="left" class = titlefont >按显示类型</td>
+          <td width="566" align="left">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="4" height="5" align="left" valign="top"><img src="{skin}shortline.jpg" ></td>
+        </tr>
+        <tr>
+          <td height="19" colspan="3" align="right"  class="form_label">显示反冲单据：</td>
+           <td width="566"> 
+           <input type="checkbox" name="isshowkickback" value="1" checked>
+           </td>
+     </tr>	     		
+		<tr>
+		  <td height="23"  align="right"  class = titlefont>&nbsp;</td>
+		  <td align="left"  class = titlefont>按时间</td>
+		  <td height="13" align="right">&nbsp;</td>
+		  <td align="left">&nbsp;</td>
+	    </tr>
+		<tr>
+		  <td height="5" colspan="4" valign="top"><img src="{skin}shortline.jpg" ></td>
+	    </tr>
+	  <tr>
+		  <td height="19" colspan="3" align="right"  class="form_label">日期类型：</td>
+		  <td width="566"> 
+       <input type="radio" name="datetype" value="0" checked>单据日期&nbsp;&nbsp;&nbsp;&nbsp;
+		   <input type="radio" name="datetype" value="1" >过帐日期
+		  </td>
+	  </tr>
+		<tr>
+		  <td height="19" colspan="3" align="right"  class="form_label">开始日期：</td>
+		   
+              <td width="566"> 
+          <script language=javascript>
+			var date=createDatePicker("begindate",{byear},{bmonth},{bday})
+			</script>              </td>
+	    </tr>
+		<tr>
+          <td height="19" colspan="3" align="right" class="form_label">结束日期：</td>
+          <td align="left"><script language=javascript>
+			var date=createDatePicker("enddate",{eyear},{emonth},{eday})
+			</script></td>
+        </tr>
+		<tr>
+		  <td  height="13" colspan="4" >&nbsp;</td>
+	    <tr>
+          <td  height="20" colspan="4" class=bottombotton><div align="center" >
+            <input type="button" name=save onClick="selectquery()"   class=buttonsmall style="font-size:9pt" value="查询">
+
+          </div></td>
+    </table> 
+  </form>
+<div id="sending" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:40%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingdel" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:30%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在删除数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+</div>
+</center>
+</div>
+</BODY>
+</HTML>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<TITLE>通付宝业功能接口</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}reset.css" type=text/css rel=stylesheet>
+<LINK href="../include/DatePicker.css" rel=stylesheet type=text/css> 
+<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT>
+<script language="javascript">
+var requestSubmitted = false;
+function updatesave(intfid,listid,obj){
+		var strItem ;
+		var szRef = "interf_updateid.php?intfid="+intfid+"&listid="+listid+"&type=save";
+		location.href=szRef;
+}
+function updatejb(intfid,listid,obj){
+	if(confirm("是否确定要把该接口解绑")){
+		var strItem ;
+		var szRef = "interf_updateid.php?intfid="+intfid+"&listid="+listid+"&type=jb";
+		location.href=szRef;
+	}
+}
+function updatedel(intfid,listid,obj){
+	if(confirm("是否确定删除整条信息")){
+		var strItem ;
+		var szRef = "interf_updateid.php?intfid="+intfid+"&listid="+listid+"&type=delete";
+		location.href=szRef;
+	}
+}
+</script>
+</HEAD>
+
+<BODY  topmargin="0" leftMargin="2" width="100%">
+<div id="page" class="page">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+                   <td height="30" class="pagetitle"  width="100%" valign="middle">
+          &nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	基础设置 --> 通付宝业务功能接口</td>
+			 <tr>
+           <td align="left"><div style="margin:0px 0px 10px 12px;"><img src="{skin}line.jpg" ></div></td>
+          </tr>
+   </table>
+   <table  width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+          <tr>
+          	<td class=button_labelleft></td>
+             <td class=button_label>
+             	<div align="right" style=" margin:5px 10px 0px 0px;">
+                    <input type=button name=thenew class=button_new value=" 新增" AccessKey=s  onClick="javascript:location='app_interface.php?listid={listid}'" style="font-size:9pt"  onMouseOver="this.className='button_new_on'" onMouseOut="this.className='button_new'">
+                    <span class=button_split>&nbsp;</span>&nbsp;
+                    <input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+       			</div>
+             </td>
+             <td class=button_labelright></td>
+          </tr>
+     </table>
+     <table width="100%" border="0" cellspacing="0" cellpadding="0">
+     	<tr height="25px"></tr>
+     </table>	
+  <center>
+<form action="" method="post" name="form1">
+
+    <table width="500" border="0" cellspacing="1"  class="table" cellpadding="2" id="basictable">
+        <thead> 
+        <tr bgcolor="#e7e7e7" height=23px align=center> 
+        	<th>接口编号</th>
+            <th>接口名称</th>
+            <th>接口连接名</th>
+            <th>接口类文件</th>
+            <th>是否激活</th>
+            <th>需要商户认证</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+       <tbody>
+       <!-- BEGIN prolist -->
+       		<tr>
+       		<td>{intfno}</td>
+            <td>{intfname}</td>
+            <td>{apinamefunc}</td>
+            <td>{apiname}</td>
+            <td>{active}</td>
+            <td>{ischeck}</td>
+            <td align="center">
+            	<a href="app_interface.php?intfid={intfid}&listid={listid}">编辑</a>&nbsp;|
+                <span color='#FF0000' style='border-bottom:1px #999 solid;' onClick=javascript:updatedel({intfid},{listid},this)>删除</span>&nbsp;|
+                <span color='#FF0000' style='border-bottom:1px #999 solid;' onClick=javascript:updatejb({intfid},{listid},this)>解绑</span>
+             </td>
+            </tr>
+         <!-- END prolist -->
+      </tbody>
+      </table>
+	 </form>
+	<br />
+    <br />
+    <br />
+      <table width="500" border="0" cellspacing="1"  class="table" cellpadding="2" id="basictable">
+        <thead> 
+        <tr bgcolor="#e7e7e7" height=23px align="left"> 
+        	<th colspan="7" align="left">尚未绑定的功能接口</th>
+        </tr>
+        </thead>
+       <tbody>
+       <!-- BEGIN prolisti -->
+       		<tr>
+       		<td>{intfno}</td>
+            <td>{intfname}</td>
+            <td>{apinamefunc}</td>
+            <td>{apiname}</td>
+            <td>{active}</td>
+            <td>{ischeck}</td>
+            <td align="center"><span color='#FF0000' style='border-bottom:1px #999 solid;' onClick=javascript:updatesave({intfid},{listid},this)>绑定到该接口</span></td>
+            </tr>
+         <!-- END prolisti -->
+      </tbody>
+      </table>
+   </form>
+   
+<div id="sending" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingdel" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在删除数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+</div>
+
+<div id="helpid" STYLE="right: 1%; WIDTH: 450px; POSITION: absolute; TOP: 86px; HEIGHT: 0; display: none"> 
+ <div  align="left"   STYLE="position:absolute;left: 15px; top:15px;right:15px" >
+  1.操作：基本信息－商品信息；<br><br>
+  保存(Alt+s)：添加新商品信息和修改商品信息；<br><br>
+  删除(Alt+d)：即删除不再使用的商品信息；<br><br>
+  撤销(Alt+z)：撤销回去商品没有修改的状态；<br><br>
+  返回(Alt+q)：返回商品信息列表；<br><br>
+  帮助(Alt+h)：显示帮助信息；<br><br>
+  2.基本信息：<br><br>
+  类别：为了录入快捷和便于查询，您可为商品选择商品类别；<br><br>
+  销售单价：定义销售单价之后，做销售单时，选择了该商品，就会自动带出销售单价；<br><br>
+  库存上限：定义库存上限之后，如果该商品的库存大于库存上限，在仓库管理中的库存上限就会自动显示出该商品；<br><br>
+  库存下限：定义库存下限之后，如果该商品的库存小于库存下限，在仓库管理中的库存下限就会自动显示出该商品；<br><br>
+</div>
+</div>
+</center>
+
+<br />
+<br />
+<br />
+<br />
+
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

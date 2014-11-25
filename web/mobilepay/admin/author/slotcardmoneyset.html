@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<HEAD>
+	<TITLE>授权刷卡额度</TITLE>
+	<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<!-- Styles -->
+	<link rel="stylesheet" href="../css/styles.css">
+	<link rel="stylesheet" href="../css/custom.css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+	<link href="../colorbox/colorbox.css" rel="stylesheet" type="text/css">
+	<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT> 
+	<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> 
+	<script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script> 
+	<script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script> 
+	<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 	
+	<script language=javascript>
+		var requestSubmitted = false;
+		function submit_save(){
+			if(form1.auindustryid.value==""){
+			 	  alert("商户类型不能为空！");
+			 	  form1.auindustryid.focus();
+			 	  return;
+			  }
+			if(form1.no.value==""){
+			 	  alert("编号不能为空！");
+			 	  form1.no.focus();
+			 	  return;
+			  }	  
+		showtips('正在保存数据，请稍候...');  
+		    requestSubmitted = true; 
+			form1.submit();
+		}
+		function submit_del()
+		{
+			if(confirm("是否确定删除整条信息")){
+			  showtips('正在删除数据，请稍候...');  
+			form1.action.value="delete";
+			form1.submit();
+			}
+		}
+	</script> 
+</HEAD>
+<BODY onload=input_focus() topmargin="0" leftMargin="2" width="100%">
+	<div id="page" class="page">
+		<h4 class="icon forms">{menuname} <small></small></h4>
+
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+			<tr>
+				<td class=button_labelleft></td>
+				<td class=button_label>
+					<div align="right" >
+						<input type=button name=save32 class=button_help value="帮助" AccessKey=h  onClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.className='button_help_on'" onMouseOut="this.className='button_help'">
+						<span class=button_split>&nbsp;</span>
+						<input type=button name=save3 class=button_save value="保存" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt" {dissave} onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+						<span class=button_split>&nbsp;</span>
+						<input class=button_delete name=end type=button value="删除" AccessKey=d   onClick="javascript:submit_del()" onMouseOver="this.className='button_delete_on'" onMouseOut="this.className='button_delete'" {disdel}  >
+						<span class=button_split>&nbsp;</span>
+						<INPUT class=button_reset name=qqq type=reset value="撤销" AccessKey=z style="font-size:9pt" onMouseOver="this.className='button_reset_on'" onMouseOut="this.className='button_reset'">
+						<span class=button_split>&nbsp;</span>
+						<input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+					</div>
+				</td>
+				<td class=button_labelright></td>
+			</tr>
+		</table>
+		<!-- Wrapper -->
+		<div class="wrapper">
+			<div class="panel">
+				<form action="" method="post" listid="form3" name="form1">
+					<input class="input" type="hidden" name="listid" value="{listid}" id="listid">
+					<input class="input" type="hidden" name="action" value="{action}" id="action">
+					<div id="showinfo" class="box box-info" style="display:{show_error}">
+						<p>{error}</p>
+						<a class="close">&times;</a>
+					</div>
+					<fieldset class="form">
+						<legend>
+							授权刷卡额度 
+							<small>&nbsp;额度分为每日限额和每月限额</small>
+						</legend>
+						<table class="table_form">
+							<colgroup><col class="col-name" />
+								<col class="col-value" /></colgroup>
+							<tr>
+								<th>套餐号：</th>
+								<td>
+									<input class="input" id="no" type="text" name="no" size="30" maxlength="40" value="{no}" >
+								</td>
+								</tr>
+							<tr>
+								<th>套餐名：</th>
+								<td>
+									<input class="input" id="name" type="text" name="name" size="30" maxlength="40" value="{name}" >
+								</td>
+								</tr>
+						
+							<tr>
+								<th>商户类型：</th>
+								<td>
+									<select name="auindustryid">{auindustryid}</select>
+								</td>
+								</tr>
+							<tr>
+								<th>卡类型：</th>
+								<td>
+									
+									<select name="scope">{scope}</select>
+								</td>
+							</tr>
+						</table>
+					</fieldset>
+					<fieldset>
+						<legend>正常额度 
+							<small>
+								&nbsp;
+							</small></legend>
+						<table class="table_form">
+							<colgroup><col class="col-name" />
+								<col class="col-value" /></colgroup>
+							<tr>
+								<th>日额度（元）：</th>
+								<td>
+									<input class="input num" id="neverymoney" type="text" name="neverymoney" size="30" maxlength="40" value="{neverymoney}" style="ime-mode:disabled" onKeyPress="if (event.keyCode < 40 || event.keyCode == 44 || event.keyCode > 57 )event.returnValue = false;">
+									
+								</td>
+								<th>月额度（元）：</th>
+								<td>
+									<input class="input num" id="nallmoney" type="text" name="nallmoney" size="30" maxlength="40" value="{nallmoney}" style="ime-mode:disabled" onKeyPress="if (event.keyCode < 40 || event.keyCode == 44 || event.keyCode > 57 )event.returnValue = false;">
+								</td>
+							</tr>
+							<tr>
+								<th>每日每笔限额：</th>
+								<td>
+									<input class="input num" id="everymoney" type="text"  name="everymoney" size="30" maxlength="40" value="{everymoney}" style="ime-mode:disabled" onKeyPress="if (event.keyCode < 40 || event.keyCode == 44 || event.keyCode > 57 )event.returnValue = false;">
+								</td>
+								<th>每日刷卡次数：</th>
+								<td>
+									<input class="input num" id="everycounts" type="text" name="everycounts" size="30" maxlength="40" value="{everycounts}" style="ime-mode:disabled" onKeyPress="if (event.keyCode < 40 || event.keyCode == 44 || event.keyCode > 57 )event.returnValue = false;">
+								</td>
+							</tr>
+							<tr>
+								<th>刷卡器可绑定卡数：</th>
+								<td>
+									<input class="input num" id="bkcount" type="text"  name="bkcount" size="30" maxlength="40" value="{bkcount}" style="ime-mode:disabled" onKeyPress="if (event.keyCode < 40 || event.keyCode == 44 || event.keyCode > 57 )event.returnValue = false;">
+								</td>
+								<th>每自然月可更换卡数：</th>
+								<td>
+									<input class="input num" id="changebkcount" type="text" name="changebkcount" size="30" maxlength="40" value="{changebkcount}" style="ime-mode:disabled" onKeyPress="if (event.keyCode < 40 || event.keyCode == 44 || event.keyCode > 57 )event.returnValue = false;">
+								</td>
+							</tr>							
+						</table>
+					</fieldset>
+					<fieldset>
+						<legend>审批额度 
+							<small>
+								&nbsp;
+							</small></legend>
+						<table class="table_form">
+							<colgroup><col class="col-name" />
+								<col class="col-value" /></colgroup>
+							<tr>
+								<th>日额度（元）：</th>
+								<td>
+									<input class="input num" id="severymoney" type="text" name="severymoney" size="30" maxlength="40" value="{severymoney}" style="ime-mode:disabled" onKeyPress="if (event.keyCode < 40 || event.keyCode == 44 || event.keyCode > 57 )event.returnValue = false;">
+								</td>
+								<th>月额度（元）：</th>
+								<td>
+									<input class="input num" id="sallmoney" type="text" name="sallmoney" size="30" maxlength="40" value="{sallmoney}" style="ime-mode:disabled" onKeyPress="if (event.keyCode < 40 || event.keyCode == 44 || event.keyCode > 57 )event.returnValue = false;">
+								</td>
+							</tr>
+						</table>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+{showtips}
+</div>
+{showeditdiv}
+</BODY>
+</HTML> 

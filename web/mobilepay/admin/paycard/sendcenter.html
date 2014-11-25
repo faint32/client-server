@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<TITLE>交易公户设置</TITLE>
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!-- Styles -->
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+		<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT>
+		<SCRIPT language=javascript src="../js/global.js"></SCRIPT>
+			<script language=javascript>
+			var requestSubmitted = false;
+			function submit_save(){
+				if(form1.sdcr_provcode.value=="0"){
+				 	  alert("请选择省份！");
+				 	  form1.sdcr_provcode.focus();
+				 	  return;
+				  }
+				  if(form1.sdcr_citycode.value==""){
+				 	  alert("请选择城市！");
+				 	  form1.sdcr_citycode.focus();
+				 	  return;
+				  }
+				  if(form1.sdcr_name.value==""){
+				 	  alert("公司名不能为空！");
+				 	  form1.sdcr_name.focus();
+				 	  return;
+				  }
+				 if(form1.sdcr_merid.value==""){
+				    alert("请输入银联商户号!");
+					form1.sdcr_merid.focus();
+					return;
+				 }
+				  if(form1.sdcr_securitykey.value==""){
+				    alert("请输入银联商户密钥!");
+					form1.sdcr_securitykey.focus();
+					return;
+				 }
+			 showtips('正在保存数据，请稍候...');  	
+			    requestSubmitted = true; 
+				form1.submit();
+			}
+			function submit_del(){
+				if(confirm("是否确定删除整条信息")){
+						 showtips('正在删除数据，请稍候...');  	
+						form1.action.value="delete";
+					    requestSubmitted = true; 
+						form1.submit();
+					}
+					}
+		</script> 
+	</HEAD>
+	<BODY>
+		<div id="page" class="page">
+		<h4 class="icon forms">{menuname} <small></small></h4>
+			<form action="" method="post" listid="form3" name="form1">
+			<input class="input" type="hidden" name="listid" value="{listid}" id="listid">
+		     <input class="input" type="hidden" name="action" value="{action}" id="action">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+				<tr>
+					<td class=button_labelleft></td>
+					<td class=button_label>
+						<div align="right" >
+							<input type=button name=save3 class=button_save value="保存" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt" {dissave} onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+							<span class=button_split>&nbsp;</span>
+							<input class=button_delete name=end type=button value="删除" AccessKey=d   onClick="javascript:submit_del()" onMouseOver="this.className='button_delete_on'" onMouseOut="this.className='button_delete'" {disdel}  >
+							<span class=button_split>&nbsp;</span>
+							<input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+						</div>
+					</td>
+					<td class=button_labelright></td>
+				</tr>
+			</table>
+			<!-- Wrapper -->
+			<div class="wrapper">
+				<div class="panel">
+					
+	
+						<div id="showinfo" class="box box-info" style="display:{show_error}">
+							<p>{error}</p>
+							<a class="close">&times;</a>
+						</div>
+						<fieldset class="form">
+							<legend>
+								交易公户设置 
+								<small>&nbsp;交易公户填写</small>
+							</legend>
+							<table class="table_form">
+								<colgroup>
+									<col class="col-name" />
+									<col class="col-value" />
+								</colgroup>
+								<tr>
+									<th>所属省份：</th>
+									<td>
+										<select name="sdcr_provcode" onchange="show_newcity(this.value)">
+										<option value="0">请选择</option>
+										{sdcr_provcode}
+										</select>
+									</td>
+									<th>所属城市：</th>
+									<td>
+									<select name="sdcr_citycode" id="show_scity" >
+										<option value="0">请选择</option>
+										{sdcr_citycode}
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>公司名：</th>
+									<td>
+										<input class="input" id="sdcr_name" type="text"
+											name="sdcr_name" size="30" maxlength="40" value="{sdcr_name}">
+									</td>
+										<th>是否启用：</th>
+									<td>
+										<select name="sdcr_active">
+										{sdcr_active}
+										</select>
+									</td>
+								</tr>
+								<tr>
+								<th>银联商户号：</th>
+									<td>
+										<input name="sdcr_merid" type="text" id="sdcr_merid" class="input"
+											size="30" value="{sdcr_merid}">
+									</td>
+									<th>银联商户密钥：</th>
+									<td>
+										<input name="sdcr_securitykey" type="text" id="sdcr_securitykey" class="input"
+											size="30" value="{sdcr_securitykey}">
+									</td>
+								
+								</tr>
+								<tr>
+								<th>银联交易URL：</th>
+									<td>
+										<input name="tradeurl" type="text" id="tradeurl" class="input"
+											size="30" value="{tradeurl}">
+									</td>
+									<th>银联查询URL：</th>
+									<td>
+										<input name="queryurl" type="text" id="queryurl" class="input"
+											size="30" value="{queryurl}">
+									</td>
+								
+								</tr>
+								<tr>
+									<th>银联收明盛手续费：</th>
+									<td>
+										<input name="payfee" type="text" id="payfee" class="input"
+											size="30" value="{payfee}">%
+									</td>
+									<th>银联收明盛最低手续费：</th>
+									<td>
+											<input name="minpayfee" type="text" id="minpayfee" class="input num"
+											size="30" value="{minpayfee}"> 填写固定值：
+									</td>
+								</tr>
+								<tr>
+						
+									<th>资金代付手续费：</th>
+									<td colspan=3>
+											<input name="agentfee" type="text" id="agentfee" class="input num"
+											size="30" value="{agentfee}">
+									</td>
+								</tr>
+							</table>
+						</fieldset>
+					
+				</div>
+			</div>
+{showtips}			
+		</div>
+		</form>
+</div>
+</div>
+</center>
+{showeditdiv}
+</body>
+</html>

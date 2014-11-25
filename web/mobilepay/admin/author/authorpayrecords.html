@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<TITLE>额度套餐查看</TITLE>
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!-- Styles -->
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+		<link href="../colorbox/colorbox.css" rel="stylesheet" type="text/css">
+		<!-- 	<link rel="stylesheet" href="../css/framework.css"> -->
+		<!--[if IE 6]>
+			<link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css" />
+			<![endif]-->
+		<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+		<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT>
+		<script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script>
+		<script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script>
+		<script type="text/javascript" src="../colorbox/jquery.colorbox.js"></script>
+		<script type="text/javascript" language="javascript" src="../include/jquery.dataTables.gb2312.js"></script> 
+		<script type="text/javascript" src="../colorbox/jquery.colorbox.js"></script>
+	</HEAD>
+	<script language=javascript>
+		$(document).ready(function() {
+			
+		var authorid=$("#authorid").val();
+		var scope=$("#scope").val();
+		var scdmsetid=$("#scdmsetid").val();
+		var type=$("#type").val();
+		var gotourl="../ajaxread/readauthorpayrecords.php?authorid="+authorid+"&scope="+scope+"&scdmsetid="+scdmsetid+"&type="+type;
+			$('#bkcardscdmsetid').dataTable({ 
+				"sDom": '<"wrapper"flipt>rtss<"bottom"ip><"clear">',
+				 "bStateSave": false,
+				  "aLengthMenu": [[5,10, 25, 50], [5,10, 25, 50]],
+				 "bLengthChange": true, 
+				 "bProcessing": true,        
+				 "iDisplayLength": 10,        
+				 "bServerSide":true,
+				 "sAjaxSource":gotourl,
+				 "sPaginationType": "full_numbers",
+				 "bFilter": false,
+				 "bSort": true,
+				 "bPaginate": true
+			 
+			});
+			});
+	</script> 
+	<BODY  topmargin="0" leftMargin="2" width="100%">
+	<input type="hidden" id="authorid" name="authorid" value="{authorid}" >
+	<input type="hidden" id="scope" name="scope" value="{scope}" >
+	<input type="hidden" id="scdmsetid" name="scdmsetid" value="{scdmsetid}" >
+	<input type="hidden" id="type" name="type" value="{type}" >
+		<div id="page">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+				<td height="30" class="pagetitle"  width="100%" valign="middle">
+					&nbsp;&nbsp; 
+					<img src="{skin}nowspace.jpg" align="absmiddle">
+					财务报表 --> 额度套餐查看 
+				</td>
+				<tr>
+					<td align="left">
+						<div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div>
+					</td>
+				</tr>
+			</table>
+			<form action="" method="post" name="form1">
+				<div class="wrapper">
+					<div class="panel">
+						<fieldset class="form">
+						<legend>{title}额度套餐 
+							</legend>
+							<table width="100%" border="0" cellspacing="1"  class=table id="bkcardscdmsetid">{theadth}</table>
+						</fieldset>
+					</div>
+				</div>	
+			</form>
+		</div>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

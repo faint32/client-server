@@ -1,0 +1,176 @@
+<?php
+class PublicClass {
+	//获取手机短信接口		    
+	// Xml 转 数组, 包括根键 
+	function xml_to_array($xml) {
+		$reg = "/<(\w+)[^>]*>([\\x00-\\xFF]*)<\\/\\1>/";
+		if (preg_match_all ( $reg, $xml, $matches )) {
+			$count = count ( $matches [0] );
+			for($i = 0; $i < $count; $i ++) {
+				$subxml = $matches [2] [$i];
+				$key = $matches [1] [$i];
+				if (preg_match ( $reg, $subxml )) {
+					$arr [$key] = $this->xml_to_array ( $subxml );
+				} else {
+					$arr [$key] = $subxml;
+				}
+			}
+		}
+		return $arr;
+	}
+	// Xml 转 数组, 不包括根键 
+	function xmltoarray($xml) {
+		$arr = $this->xml_to_array ( $xml );
+		$key = array_keys ( $arr );
+		return $arr [$key [0]];
+	}
+}
+
+function Get($url) {
+	if (function_exists ( 'file_get_contents' )) {
+		$file_contents = file_get_contents ( $url );
+	} else {
+		$ch = curl_init ();
+		$timeout = 5;
+		curl_setopt ( $ch, CURLOPT_URL, $url );
+		curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
+		curl_setopt ( $ch, CURLOPT_CONNECTTIMEOUT, $timeout );
+		$file_contents = curl_exec ( $ch );
+		curl_close ( $ch );
+	}
+	return $file_contents;
+}
+function getCode($num, $w, $h) //生成随机码 
+{
+	$code = "";
+	for($i = 0; $i < $num; $i ++) {
+		$code .= rand ( 0, 9 );
+	}
+	return $code;
+}
+// xml编码
+function xml_encode($data, $encoding = 'utf-8') {
+	$xml = '<?xml version="1.0" encoding="' . $encoding . '"?>';
+	$xml .= data_to_xml ( $data );
+	return $xml;
+}
+
+function data_to_xml($data) {
+	$xml = '';
+	if ($data) {
+		foreach ( $data as $key => $val ) {
+			is_numeric ( $key ) && $key = "msgchild id=\"$key\"";
+			$xml .= "<$key>";
+			$xml .= (is_array ( $val ) || is_object ( $val )) ? data_to_xml ( $val ) : $val;
+			list ( $key, ) = explode ( ' ', $key );
+			$xml .= "</$key>";
+		}
+	}
+	return $xml;
+}
+function unescape($str) {
+	preg_match_all ( "/%u[0-9A-Za-z]{4}|%.{2}|[0-9a-zA-Z.+-_]+/", $str, $matches ); //prt($matches);
+	$ar = &$matches [0];
+	$c = "";
+	foreach ( $ar as $val ) {
+		if (substr ( $val, 0, 1 ) != "%") { //如果是字母数字+-_.的ascii码
+			$c .= $val;
+		} elseif (substr ( $val, 1, 1 ) != "u") { //如果是非字母数字+-_.的ascii码
+			$x = hexdec ( substr ( $val, 1, 2 ) );
+			$c .= chr ( $x );
+		} else { //如果是大于0xFF的码
+			$val = intval ( substr ( $val, 2 ), 16 );
+			if ($val <= 0x7F) { // 0000-007F
+				$c .= chr ( $val );
+			} elseif ($val <= 0x800) { // 0080-0800
+				$c .= chr ( 0xC0 | ($val / 64) );
+				$c .= chr ( 0x80 | ($val % 64) );
+			} else { // 0800-FFFF
+				$c .= chr ( 0xE0 | (($val / 64) / 64) );
+				$c .= chr ( 0x80 | (($val / 64) % 64) );
+				$c .= chr ( 0x80 | ($val % 64) );
+			}
+		}
+	}
+	return $c;
+}
+function my_error_handler($errno, $errstr, $errfile, $errline) {
+	switch ($errno) {
+		case E_ERROR :
+			$returns = "ERROR: [ID $errno] $errstr (Line: $errline of $errfile) \n";
+			
+			//遇到Error级错误时退出脚本  
+			$return = "<?xml version='1.0' encoding='UTF-8' ?>";
+			$return .= "<operation_response>
+					 <msgheader version='1.0'>
+					 <req_seq>21</req_seq>                  
+					 <ope_seq>21</ope_seq>                
+                     <retinfo>                               
+					 <rettype>500</rettype>                
+			         <retcode>errcode</retcode>                  
+			         <retmsg>$returns</retmsg>               
+		             </retinfo>
+	                 </msgheader>";
+			$return .= "</operation_response>";
+			
+			echo $return;
+			exit ();
+			break;
+		
+		case E_WARNING :
+			$returns = "WARNING: [ID $errno] $errstr (Line: $errline of $errfile) \n";
+			$return = "<?xml version='1.0' encoding='UTF-8' ?>";
+			$return .= "<operation_response>
+					 <msgheader version='1.0'>
+					 <req_seq>21</req_seq>                  
+					 <ope_seq>21</ope_seq>                
+                     <retinfo>                               
+					 <rettype>500</rettype>                
+			         <retcode>errcode</retcode>                  
+			         <retmsg>$returns</retmsg>               
+		             </retinfo>
+	                 </msgheader>";
+			$return .= "</operation_response>";
+			
+			echo $return;
+			exit ();
+			break;
+		
+		default :
+			break;
+	}
+}
+//获得T+N的工作日期
+function getfeedate($now, $n) {
+	$diff = strtotime ( $now ) + ($n * 86400);
+	$dayweek = date ( "w", $diff );
+	if ($dayweek == "6") {
+		$res = date ( "Y-m-d", ($diff + 172800) );
+	} elseif ($dayweek == "0") {
+		$res = date ( "Y-m-d", ($diff + 86400) );
+	} else {
+		$res = date ( "Y-m-d", $diff );
+		$computeWeek = computeWeek ( $now, $res );
+		if ($computeWeek > 0) {
+			$res = strtotime ( $res ) + ($computeWeek * 172800);
+			$dayweek2 = date ( "w", $res );
+			if ($dayweek2 == "6") {
+				$res = date ( "Y-m-d", ($res + 172800) );
+			} elseif ($dayweek2 == "0") {
+				$res = date ( "Y-m-d", ($res + 86400) );
+			} else {
+				$res = date ( "Y-m-d", $res );
+			}
+		} else {
+			$res = date ( "Y-m-d", $diff );
+		}
+	}
+}
+//获得T+N的工作日期调用
+function computeWeek($date1, $date2) {
+	$diff = strtotime ( $date2 ) - strtotime ( $date1 );
+	$res = floor ( $diff / (24 * 60 * 60 * 7) );
+	return $res;
+}
+
+?>

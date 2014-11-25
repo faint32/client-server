@@ -1,0 +1,60 @@
+.DPFrame {
+	BACKGROUND-COLOR: transparent; BORDER-BOTTOM: silver 1px solid; BORDER-LEFT: silver 1px solid; BORDER-RIGHT: silver 1px solid; BORDER-TOP: silver 1px solid; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; LINE-HEIGHT: normal; WIDTH: 140px
+}
+#dpDropDownTable {
+	BACKGROUND-COLOR: #ffffff; BORDER-BOTTOM: black 1px solid; BORDER-LEFT: lightgrey 1px solid; BORDER-RIGHT: black 1px solid; BORDER-TOP: lightgrey 1px solid; CURSOR: default; DISPLAY: none; POSITION: absolute
+}
+.DPTitle {
+	BACKGROUND-COLOR: #E6EDFF; COLOR: #FFFFFF; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; LINE-HEIGHT: normal; TEXT-ALIGN: center
+}
+.DPWeekName {
+	BORDER-BOTTOM: black 1px solid; COLOR: #123C66; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; LINE-HEIGHT: normal; TEXT-ALIGN: center
+}
+.DPCellOther {
+	COLOR: silver; CURSOR: hand; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; LINE-HEIGHT: normal; TEXT-ALIGN: center
+}
+.DPCell {
+	COLOR: #123C66; CURSOR: hand; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; LINE-HEIGHT: normal; TEXT-ALIGN: center
+}
+.DPCellSelect {
+	BACKGROUND-COLOR: #ffa07a; COLOR: #000000; CURSOR: hand; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; LINE-HEIGHT: normal; TEXT-ALIGN: center
+}
+.DPYear {
+	BACKGROUND-COLOR: transparent; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-RIGHT: 0px; BORDER-TOP: 0px; COLOR: #123C66; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; LINE-HEIGHT: normal; TEXT-ALIGN: right
+}
+.DPYearDes {
+	BACKGROUND-COLOR: transparent
+}
+.DPMonth {
+	BACKGROUND-COLOR: transparent; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-RIGHT: 0px; BORDER-TOP: 0px; COLOR: #123C66; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; LINE-HEIGHT: normal; TEXT-ALIGN: right
+}
+.DPMonthDes {
+	BACKGROUND-COLOR: transparent
+}
+.DPDay {
+	BACKGROUND-COLOR: transparent; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-RIGHT: 0px; BORDER-TOP: 0px; COLOR: #123C66; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; LINE-HEIGHT: normal; TEXT-ALIGN: right
+}
+.DPDayDes {
+	BACKGROUND-COLOR: transparent
+}
+.DPSep {
+	BACKGROUND-COLOR: transparent; WIDTH: 10px
+}
+A.DPDropBtn:link {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A.DPDropBtn:visited {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A.DPDropBtn:hover {
+	COLOR: #123C66; TEXT-DECORATION: none
+}
+.DPBtn {
+	BACKGROUND-COLOR: silver; BORDER-BOTTOM: black 1px solid; BORDER-LEFT: white 1px solid; BORDER-RIGHT: black 1px solid; BORDER-TOP: white 1px solid; COLOR: black; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; LINE-HEIGHT: normal; WIDTH: 16px
+}
+.clsTD {
+	BORDER-BOTTOM: #dddddd 1px solid; BORDER-RIGHT: #dddddd 1px solid; COLOR: #000000; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; LINE-HEIGHT: normal; TEXT-ALIGN: left; WIDTH: 150px
+}
+.clsTR {
+	BACKGROUND-COLOR: #ffffff; COLOR: #FFFFFF; CURSOR: hand; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; LINE-HEIGHT: normal; TEXT-ALIGN: left; WIDTH: 300px
+}

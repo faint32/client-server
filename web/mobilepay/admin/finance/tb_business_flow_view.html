@@ -1,0 +1,107 @@
+<HTML><HEAD><TITLE>商户流水监控</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+<script language="javascript" type="text/javascript" src="../include/ShowCalendar.js"></script>
+<script language="javascript">
+<!--
+function changedata($val){
+  var searchval = document.getElementById("searchval").value;
+  if(searchval=='搜商户'){
+    document.getElementById("searchval").focus();
+    alert("请输入商户");  
+    return false; 
+  }else{
+    document.getElementById("changeday").value = $val;
+    form1.submit(); 
+	return false; 
+  }
+
+}
+
+function chectsubmit(){
+  var searchval = document.getElementById("searchval").value;
+
+  if(searchval=='搜商户'){
+    document.getElementById("searchval").focus();
+    alert("请输入商户");  
+	return false;	
+  }else{
+    document.getElementById("changeday").value = "";
+    return true;  
+  }
+
+}
+// -->
+</script>
+</HEAD>
+<body  text="#000000" topmargin="0" leftMargin="2" width="100%">
+<center>
+  <form id=form1 name=form1 action="" method=post onSubmit="return chectsubmit();">
+    <DIV>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td height="30" class="pagetitle"  colspan=2 valign="middle">&nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle"> <span>商户流水监控 </td>
+        </tr>
+        <tr>
+          <td align="left" colspan=2 height="3">{error}</td>
+        </tr>
+      </table>
+    </DIV>
+	<input name="changeday" id="changeday" type="hidden" value="">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td align="left" height="25"> 
+&nbsp;&nbsp;<input id="searchval" name="searchval" type="text" value="{searchval}" onBlur="if(!this.value){this.value = '搜商户';}" onFocus="if(this.value == '搜商户'){this.value = '';}">&nbsp;&nbsp;<input name="" type="submit" value="查询"></td>
+        <td align="right" ><input name="startday" type="text" onClick="SetDate(this,'yyyy-MM-dd');"  class=textfield   size="20" value="{startday}" >-<input name="endday" type="text" onClick="SetDate(this,'yyyy-MM-dd');"  class=textfield   size="20" value="{endday}" >&nbsp;&nbsp;<a href="javascript:changedata('1');void(0);">当天</a>&nbsp;&nbsp;<a href="javascript:changedata('2');void(0);">一周前</a>&nbsp;&nbsp;<a href="javascript:changedata('3');void(0);">一月前</a>&nbsp;&nbsp;<a href="javascript:changedata('4');void(0);">三月前</a></td>
+      </tr>
+    </table>
+	</form>	
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td align="left" height="25">商户名称：{authorname}        时间：{startday} 至 {endday}       刷卡器（台）：{paycarnum}                              累计： {allmoney}</td>
+      </tr>
+    </table>
+	
+    <TABLE class=tableframe style=word-break:break-all width="99%" align=center>
+      <TBODY>
+        <TR class=listtitle>
+          <TD class=listcelltitle noWrap align=middle height="25" width="30">序号</TD>
+          <TD class=listcelltitle noWrap align=middle height="25">日期</TD>
+          <TD class=listcelltitle noWrap align=middle>星期</TD>
+          <TD class=listcelltitle noWrap align=middle style="width:120px;">刷卡器</TD>
+          <TD class=listcelltitle noWrap align=middle style="width:120px;">转账汇款</TD>
+          <TD class=listcelltitle noWrap align=middle style="width:120px;">贷款还款</TD>
+          <TD class=listcelltitle noWrap align=middle style="width:120px;">信用卡还款</TD>
+          <TD class=listcelltitle noWrap align=middle style="width:120px;">优惠券</TD>
+        </TR>
+        <!-- BEGIN BXBK -->
+        <TR style="display:{hasdateshow}" class=listrow1 onMouseOver="this.style.backgroundColor='#F1F4F9';" onMouseOut="this.style.backgroundColor='{bgcolor}'" bgcolor="{bgcolor}">
+          <TD class=listcellrow  align=left height="25" style="{fcolor}">{tdcount}</TD>
+          <TD class=listcellrow  noWrap align=left height="25" style="{fcolor}">{curData}</TD>
+		  <TD class=listcellrow  noWrap align=left height="25" style="{fcolor}">{curDataWeek}</TD>
+          <TD class=listcellrow  noWrap align=right colspan="5">
+		     <TABLE class=tableframe style=word-break:break-all width="100%" align=center>
+			 <!-- BEGIN BXBK2 -->
+			    <tr class=listrow1>
+				  <td class=listcellrow  align=left height="25" style="width:120px;">{paycardid}</td>
+				  <td class=listcellrow  align=left height="25" style="width:120px;">{Repaymoneygpaymoney}</td>
+				  <td class=listcellrow  align=left height="25" style="width:120px;">{Transfermoneygpaymoney}</td>
+				  <td class=listcellrow  align=left height="25" style="width:120px;">{Creditcardgpaymoney}</td>
+				  <td class=listcellrow  align=left height="25" style="width:120px;">{Couponglidepaymoney}</td>
+				</tr>
+			 <!-- END BXBK2 -->	
+			 </TABLE> 
+		  </TD>
+        </TR>
+        <!-- END BXBK -->
+		<tr style="display:{nodateshow}"><td colspan="8">没有数据</td></tr>
+      </TBODY>
+    </TABLE>
+    
+  </FORM>
+</center>
+</BODY>
+</HTML>

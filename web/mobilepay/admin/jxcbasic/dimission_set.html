@@ -1,0 +1,148 @@
+<HTML><HEAD><TITLE>离职设置</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="{skin}browse_edit.css" type="text/css" />
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+<script language="javascript" type="text/javascript" src="../include/ShowCalendar.js"></script>
+</HEAD>
+<script src="../ext/jquery-1.3.2.js" type="text/javascript" charset="utf-8"></script>
+<script src="../ext/jquery.elastic-1.6.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+  $(document).ready(function(){			
+  $('textarea').elastic();
+  });	
+</script>
+<script language=javascript>
+<!-- 
+
+
+var requestSubmitted = false;
+
+function submit_save(){
+
+if(confirm("是否将此员工设置为离职？")) {		 		
+  if(requestSubmitted == true){
+    alert("你已经提交，请等待一下");
+    return (false);
+   } 
+  requestSubmitted = true;
+   sending.style.display ="";
+	 sendingbg.style.display ="";  
+	form1.submit();
+}
+}
+
+function submit_del(){
+    if (confirm("是否删除该记录？")) {
+        getNews(form1.id.value);
+    }
+} 
+
+
+function help(){  
+   if(document.getElementById("helpid").style.pixelHeight == 0 &&  document.getElementById("helpid").style.display == "none"){      
+       document.getElementById("helpid").style.display ="";
+	  ChS();
+   }else{   
+	   HhS();    	  
+   }
+}
+
+function ChS(){
+if(helpid.style.pixelHeight<250){helpid.style.pixelHeight+=10;setTimeout("ChS()",0.5);
+} 
+}
+function HhS(){
+if(helpid.style.pixelHeight > 0){helpid.style.pixelHeight-=10;setTimeout("HhS()",0.5);
+}
+if(helpid.style.pixelHeight == 0){
+ document.getElementById("helpid").style.display ="none";
+ }
+}
+// -->
+</script>
+
+<BODY   topmargin="0" leftMargin="2" width="100%">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="25">
+  <td height="25" class="pagetitle"  width="100%" valign="middle">&nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle">
+        	离职设置</td>
+			<tr>
+           <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+          </tr>	
+  </table>
+  <center>
+  <form action="" method="post" name="form1">
+    <input type=hidden name=action value="{action}">
+    <input type=hidden name=id value="{id}">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+      <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label><div align="right" >
+          <input type=button name=save32 class=button_help value="帮助" AccessKey=h  onClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.className='button_help_on'" onMouseOut="this.className='button_help'"><span class=button_split>&nbsp;</span>
+          <input type=button name=save3 class=button_save value="设置" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt" {dissave} onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'"><span class=button_split>&nbsp;</span>
+          <INPUT class=button_reset name=qqq type=reset value="撤销" AccessKey=z style="font-size:9pt" onMouseOver="this.className='button_reset_on'" onMouseOut="this.className='button_reset'"><span class=button_split>&nbsp;</span>
+          <input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl2}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+        </div></td>
+        <td class=button_labelright></td>
+      </tr>
+  </table>  
+    <div id="cls_ul">
+<fieldset> <div id="cls_error" style="display:{show_error}">
+	  <IMG class=topAlert_close onClick="javascript:document.getElementById('cls_error').style.display='none';"
+src="{skin}cls_error1.gif">
+<p>{error}</div><LEGEND align="top"><strong>离职设置</strong></LEGEND> <ul class="center-style ellipsis" id="ul_list">
+<li>
+<div class="cls_title" ><span id="clsalgin">员工编号：</span></div>
+<div class="cls_content"><span id="cls_left">{staffno}</span></div>
+<div class="line">&nbsp;</div>
+<div class="cls_title" ><span id="clsalgin">员工姓名：</span></div>
+<div class="cls_content"><span id="cls_left">{staffname}</span></div>
+</li>
+<li>
+<div class="cls_title" ><span id="clsalgin">离职时间：</span></div>
+<div class="cls_content"><span id="cls_left">
+<input name="dimissiondate" type="text" onClick="SetDate(this,'yyyy-MM-dd');"  class=textfield   size="30" value="{dimissiondate}" ></span></div>
+</li>
+<li>
+<div class="cls_title" ><span id="clsalgin">离职原因：</span></div>
+<div class="area"><span id="cls_left"><textarea name="dimimemo" cols="50"  rows="5"   wrap="virtual" class=textfieldarea>{dimimemo}</textarea></span></div>
+</li></ul>
+</fieldset>
+</div>
+</form>
+<div id="sending" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingdel" STYLE="LEFT: 0px; WIDTH: 95%; POSITION: absolute; TOP: 50%; HEIGHT: 95%; display: none"> 
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+          <tr> 
+               <td bgcolor=#F1F4F9 align=center>正在删除数据，请稍候...</td>
+          </tr>
+       </table>
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+</div>
+<div id="helpid" STYLE="right: 1%; WIDTH: 450px; POSITION: absolute; TOP: 86px; HEIGHT: 0; display: none"> 
+ <div  align="left"   STYLE="position:absolute;left: 15px; top:15px;right:15px" >
+  部门信息在建立职员资料时会使用上。<br><br>
+  操作：基本信息－部门信息；<br><br>
+  保存(Alt+s)：添加新部门信息和修改部门信息；<br><br>
+  删除(Alt+d)：即删除不再使用的部门信息；<br><br>
+  撤销(Alt+z)：撤销回去部门没有修改的状态；<br><br>
+  返回(Alt+q)：返回部门信息列表；<br><br>
+  帮助(Alt+h)：显示帮助信息；
+</div>
+</div>
+</center>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>
+

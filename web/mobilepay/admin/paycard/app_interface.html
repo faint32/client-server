@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<TITLE>商户资料管理</TITLE>
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<!-- Styles -->
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+		<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+		<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT> 
+		<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT>
+		 <script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script> 
+		 <script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script> 
+		 <SCRIPT language=javascript src="../function/function.js"></SCRIPT>
+
+<script language=javascript>
+<!-- 
+
+function input_focus(){
+var gg = 1;
+if (gg == 1){
+form1.no.focus();
+ }
+}
+
+var requestSubmitted = false;
+	  
+function submit_save(){
+	
+	if(form1.intfname.value==""){
+		  alert("接口名称不能为空！");
+		  form1.name.focus();
+		  return;
+	  }
+	 if(form1.apinamefunc.value==""){
+		  alert("接口连接名不能为空！");
+		  form1.name.focus();
+		  return;
+	  }
+	 if(form1.apiname.value==""){
+		  alert("接口类文件不能为空！");
+		  form1.name.focus();
+		  return;
+	  }
+	sending.style.display ="";
+	sendingbg.style.display ="";
+	requestSubmitted = true;
+	form1.submit();
+}
+function submit_del(){
+	if(confirm("是否确定删除整条信息")){
+			 sendingdel.style.display ="";
+			sendingbg.style.display ="";	
+			form1.action.value="delete";
+			requestSubmitted = true; 
+			form1.submit();
+		}
+}
+// -->
+</script>
+
+</HEAD>
+	<BODY>
+		<div id="page" class="page">
+		<h4 class="icon forms">{menuname} <small></small></h4>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+				<tr>
+					<td class=button_labelleft></td>
+					<td class=button_label>
+						<div align="right" >
+		   <input type=button name=save class=button_save value="保存" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt"  onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+							<span class=button_split>&nbsp;</span>
+							<input class=button_delete name=end type=button value="删除" AccessKey=d   onClick="javascript:submit_del()" onMouseOver="this.className='button_delete_on'" onMouseOut="this.className='button_delete'"  >
+							<span class=button_split>&nbsp;</span>
+           <input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+       </div>
+					</td>
+					<td class=button_labelright></td>
+				</tr>
+			</table>
+			<!-- Wrapper -->
+			<div class="wrapper">
+				<div class="panel">
+					<form action="" method="post" listid="form3" name="form1">
+						<input class="input" type="hidden" name="listid" value="{listid}" id="listid">
+						<input class="input" type="hidden" name="action" value="{action}" id="action">
+                        <input class="input" type="hidden" name="intfid" value="{intfid}" id="intfid">
+						<div id="showinfo" class="box box-info" style="display:{show_error}">
+							<p>{error}</p>
+							<a class="close">&times;</a>
+						</div>
+						<fieldset class="form">
+							<legend>
+								基本设置 
+								<small>&nbsp;APP功能设置</small>
+							</legend>
+							<table class="table_form">
+								<colgroup>
+									<col class="col-name" />
+									<col class="col-value" />
+								</colgroup>
+       
+	  <tr> 
+        <th>接口编号：</th>
+        <td><input class="input" id="intfno" type="text" name="intfno" size="30" maxlength="40" value="{intfno}" ></td> 
+        <th>接口名称：</th>
+        <td><input class="input" id="intfname" type="text" name="intfname" size="30" maxlength="40" value="{intfname}" ></td>
+	  </tr>
+	  <tr> 
+        <th>接口连接名：</th>
+        <td><input class="input" id="apinamefunc" type="text" name="apinamefunc" size="30" maxlength="40" value="{apinamefunc}" ></td>
+        <th>接口类文件：</th>
+        <td><input class="input" id="apiname" type="text" name="apiname" size="30" maxlength="40" value="{apiname}" ></td>
+	  </tr>	  
+	   <tr> 
+        <th>是否激活：</th>
+        	<td>
+        		<input type="radio" name="active" value ='1' {checkactive1}> 是 
+				<input type="radio" name="active" value ='0' {checkactive2}> 否 
+        	</td>
+        <th>是否需要认证：</th>
+        	<td>
+        		<input type="radio" name="ischeck" value ='1' {checkischeck1}> 是 
+				<input type="radio" name="ischeck" value ='0' {checkischeck2}> 否 
+        	</td>
+	  </tr>
+      <tr>
+      	<th>默认排序编号：</th>
+        <td>
+        <input class="input" id="orderby" type="text" name="orderby" size="30" maxlength="40" value="{orderby}" ></td>
+      </tr>
+      <tr>
+      	<th>默认接口查询语句：</th>
+        <td align="left"><textarea rows="15" cols="50" name="demo">{demo}</textarea></td>
+
+      	<th>完整的xml语句：</th>
+        <td align="left"><textarea rows="15" cols="50" name="intfxml">{intfxml}</textarea></td>
+      </tr>
+      </TBODY> 
+    </table>
+    <table width="700" class=InputFrameMain cellspacing="0" cellpadding="0" border="0"  style="font-size:13px">
+      <TBODY> 
+        					
+      </TBODY> 
+    </table>
+
+						</fieldset>
+					</form>
+				</div>
+			</div>
+			<div id="sending" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:40%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingdel" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:30%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在删除数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%;  z-index:100; filter: Alpha(Opacity=50);  background-color: #ffffff; display:none "> 
+
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

@@ -1,0 +1,141 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>明盛网站</TITLE>
+
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+
+<link href="{skin}reset.css" rel="stylesheet" type="text/css">
+<!-- Scripts -->
+<script src="../include/jquery.js" ></script>
+<SCRIPT language=javascript src="../My97DatePicker/WdatePicker.js"></SCRIPT>
+
+
+ <script>
+
+   $.ajaxSetup ({cache: false }); 
+
+   $(document).ready(function(){
+
+
+	$("#save_button").click(function(){
+		if($("#money").val()=="")
+		{
+			alert("请输入提成比例/金额!");
+			actform.money.focus();
+			return false;
+		}
+		
+		if($("#bmonth").val()=="")
+		{
+			alert("请输入开始时间!");
+			actform.bmonth.focus();
+			return false;
+		}
+		if($("#emonth").val()=="")
+		{
+			alert("请输入结束时候!");
+			actform.emonth.focus();
+			return false;
+		}
+		if($("#bmonth").val()>$("#emonth").val())
+		{
+			alert("提成有效时间的结束时候不能小于开始时间");
+			return false;
+		}
+		$("#actform").submit();
+	});
+});
+
+
+
+</script>
+
+</HEAD>
+
+<BODY>
+
+ <form action="" method="post" id="actform" name="actform">
+
+      <input type="hidden" name="act" value='{act}' id="act">
+    <input type="hidden" name="rewardsid" value='{rewardsid}' id="rewardsid">
+
+
+
+<div id="page"> 
+
+  <!-- Wrapper -->
+
+  <div class="wrapper">
+
+   <div class="column width6 first">
+
+      <div class="panel">
+
+     
+
+          <fieldset class="form" >
+
+          
+
+            <legend style="width:120px;">网导提成机制 </legend>
+
+            <table class="table_form" style="margin-left:200px;margin-top:10px;" >
+
+              <tbody >
+				<tr class=InputFrameLine> 
+				<td width=116 height="25" align="right" class=form_label>提成比例/金额：</td>
+				<td height="25" class=span_label > <input class=input type="text" name="money" id="money" value="{money}"  /> </td>
+				</tr>
+				<tr class=InputFrameLine> 
+				<td width=116 height="25" align="right" class=form_label>提成有效时间：</td>
+				<td height="25" class=span_label > <input class=input type="text" name="bmonth" id="bmonth"  value="{bmonth}" onClick="WdatePicker({dateFmt:'yyyy-MM'})";  /> - <input class=input type="text" name="emonth"  value="{emonth}" id="emonth"  onClick="WdatePicker({dateFmt:'yyyy-MM'})"; /> </td>
+				</tr>              
+				<tr class=InputFrameLine> 
+				<td width=116 height="25" align="right" class=form_label>提成发放时间：</td>
+				<td height="25" class=span_label >每个月<select name="tcsendtime">{tcsendtime}</select>号发放 </td>
+				</tr>
+				<tr class=InputFrameLine> 
+				<td width=116 height="25" align="right" class=form_label>编辑手机信息：</td>
+				<td height="25" class=span_label ><textarea rows="8" cols="60" name="sendphonemsg">{sendphonemsg}</textarea></td>
+				</tr>
+				<tr class=InputFrameLine> 
+				<td width=116 height="25" align="right" class=form_label></td>
+				<td height="25" class=span_label align="center" ><input type="button" name="save_button" id="save_button" value="确 定"></td>
+				</tr>
+              </tbody>
+
+             
+
+            </table>
+
+          </fieldset>
+
+        </form>
+
+      </div>
+
+    </div>
+
+
+ 
+
+  </div>
+
+</div>
+
+</BODY>
+
+</HTML>
+
+
+

@@ -1,0 +1,137 @@
+<HTML>
+	<HEAD>
+		<TITLE>刷卡器消费统计表</TITLE>
+		<meta http-equiv="Refresh" content="60;" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+		<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+		<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+		<LINK href="{skin}browse.css" type=text/css rel=stylesheet>
+		<link rel="stylesheet" href="../css/styles.css">
+		<!-- Scripts -->
+		<script src="../include/jquery.js" language="javascript"></script>
+		<script type="text/javascript" language="javascript" src="../include/jquery.dataTables.gb2312.js"></script>
+		<script language="javascript">
+			$(document).ready(function() {
+				var listid=$("#listid").val();
+				var type=$("#type").val();
+				var paytype=$("#paytype").val();
+				var gotourl="../ajaxread/readconspdetails.php?type="+type+"&listid="+listid+"&paytype="+paytype;
+				$('#basictable').dataTable({
+					"sDom": '<"wrapper"flipt>rt<"bottom"ip><"clear">',
+					"bStateSave": true,
+					"aLengthMenu": [[5,10, 25, 50,600] , [5,10, 25, 50,600]],
+					"bLengthChange": true,
+					"bProcessing": true,
+					"iDisplayLength": 10,
+					"bServerSide": true,
+					"sAjaxSource": gotourl,
+					"sPaginationType": "full_numbers"
+				});
+			});
+		</script>
+	</HEAD>
+	<BODY>
+		<div id="page">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0"
+				height="30">
+				<td height="30" class="pagetitle" width="100%" valign="middle">
+					&nbsp;&nbsp; 
+					<img src="{skin}nowspace.jpg" align="absmiddle" />
+					{title}
+				</td>
+				<tr>
+					<td align="left">
+						<div style="margin: 0px 0px 0px 12px;"><img src="{skin}line.jpg"></div>
+					</td>
+				</tr>
+			</table>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" height="31" {display} >
+				<tr>
+					<td class="button_labelleft"></td>
+					<td class="button_label">
+						<div align="right" >
+							<input type="button" name="rst" class="button_recovery" value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+						</div>
+					</td>
+					<td class="button_labelright"></td>
+				</tr>
+			</table>
+			<!-- Wrapper -->
+			<form action="" method="post" id="form3" name="form3">
+				<input class="input" type="hidden" name="listid" id="listid" value="{listid}">
+				<input class="input" type="hidden" name="type" id="type" value="{type}">
+				<input class="input" type="hidden" name="paytype" id="paytype" value="{paytype}">
+				<div class="wrapper">
+					<div class="panel">
+						<fieldset class="form"></fieldset>
+					</div>
+					<div class="panel" id="showbasictable">
+						<table border="0" cellspacing="1" class="table" id="basictable">
+							<thead>
+								<tr>
+									{theadth}
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan="8" class="dataTables_empty">加载数据中...</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</form>
+		</div>
+</div>
+</div>
+{showeditdiv}
+<script type="text/javascript" language="javascript">
+	function s_addpro(element)
+	{
+		var bkordernumber2 = element.innerHTML;
+		var isagentpay2 = element.paytype;
+		var file = '';
+		$.post("../finance/paymoneylistajax_view.php", { bkordernumber: bkordernumber2, isagentpay: isagentpay2 },
+			function(data){
+				switch (isagentpay2) {
+					case 'coupon':
+						file = '../paycard/couponsale_view.php?listid='+data;
+						break;
+					case 'creditcard':
+						file = '../paycard/creditcard_sp.php?type=check&listid='+data;
+						break;
+					case 'recharge':
+						file = '../paycard/rechargeglist_sp.php?type=check&listid='+data;
+						break;
+					case 'repay':
+						file = '../paycard/repaymoney_sp.php?type=check&listid='+data;
+						break;
+					case 'tfmg':
+						file = '../paycard/transfermoney_sp.php?type=check&listid='+data;
+						break;
+					case 'suptfmg':
+						file = '../paycard/transfermoney_sp.php?type=check&listid='+data;
+						break;
+					default:
+						break;
+				}
+				$("#showp").css( "display" , "" );
+				document.frmp.location.href = file;
+		});
+	}
+
+	function closep()
+	{
+		$("#showp").css( "display" , "none" );
+	}
+</script>
+<div id="showp" style="display:none">
+	<center>
+		<input type="button" name="save" class="button" value="关闭" AccessKey="t" onClick="javascript:closep()" style="font-size:9pt" />
+	</center>
+	<iframe id="frmp" width="100%" height="100%" name="frmp"  src="#" scrolling="auto"></iframe>
+</div>
+
+</BODY>
+</HTML>

@@ -1,0 +1,163 @@
+<HTML>
+<HEAD>
+<TITLE>明盛网站</TITLE>
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<link href="{skin}button_css.css" rel="stylesheet" type="text/css">
+
+<link href="{skin}page_title.css" rel="stylesheet" type="text/css">
+
+<link href="{skin}reset.css" rel="stylesheet" type="text/css">
+<style></style>
+
+<!-- Scripts -->
+
+<script src="../include/jquery.js" language="javascript" ></script>
+<script type="text/javascript" language="javascript" src="../include/jquery.dataTables.gb2312.js"></script>
+<script language="javascript"> 
+
+		  $(document).ready(function() {
+
+		  $.ajaxSetup ({cache: false });	
+
+		  
+
+		  var gotourl="../ajaxread/readsalerlist.php";
+
+		  $('#basictable').dataTable({   
+                     "sDom": '<"wrapper"flipt>rt<"bottom"ip><"clear">',
+					 "bStateSave": true,
+					  "aLengthMenu": [[5,10, 25, 50,600, -1], [5,10, 25, 50,600,"全部"]],
+					 "bLengthChange": true, 
+					 "bProcessing": true,        
+					 "iDisplayLength": 25,        
+                     "bServerSide":true,
+                     "sAjaxSource":gotourl,
+					 "sPaginationType": "full_numbers"	
+
+                  });
+
+			
+
+		  });
+
+		   function edit(id)
+
+           {
+
+	         $("#id").attr("value",id);
+
+			 $("#form3").submit();
+
+           }
+
+		   function submit_save()
+
+		   {
+
+			 $("#action").attr("value","save");
+
+			 $("#form3").submit();
+
+		   }
+
+		   function del(id)
+
+		   {
+
+			 $("#id").attr("value",id);
+
+			 $("#action").attr("value","del");
+
+			 $("#form3").submit();
+
+		   }
+
+		</script>
+</HEAD>
+
+<BODY>
+<div id="page">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="30">
+    <td height="30" class="pagetitle"  width="100%" valign="middle">&nbsp;&nbsp;<img src="{skin}nowspace.jpg" align="absmiddle"> 网导审批</td>
+    <tr>
+      <td align="left"><div style="margin:0px 0px 0px 12px;"><img src="{skin}line.jpg" ></div></td>
+    </tr>
+  </table>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+    <tr>
+      <td class=button_labelleft></td>
+      <td class=button_label><div align="left" > &nbsp; </div></td>
+      <td class=button_labelright></td>
+    </tr>
+  </table>
+  
+  <!-- Wrapper -->
+  
+  <div class="wrapper">
+    <div class="panel">
+      <form action="" method="post" id="form3" name="form2">
+        <input class="input" type="hidden" name="id" value="{id}" id="id">
+        <input class="input" type="hidden" name="action" value="" id="action">
+        <fieldset class="form">
+          <legend>资料修改 <small>&nbsp;网导基本资料填写</small> </legend>
+          <table class="table_form">
+            <colgroup>
+            <col class="col-name" />
+            <col class="col-value" />
+            </colgroup>
+            <tr>
+              <th>真实姓名：</th>
+              <td><input class="input"id="truename" type="text" name="truename" size="30" maxlength="40" value="{truename}" ></td>
+            </tr>
+            <tr>
+              <th>身份证号码：</th>
+              <td><input name="idcard" type="text" style="ime-mode:disabled" id="idcard"   class="input" size="30" value="{idcard}" ></td>
+            </tr>
+            <tr>
+              <th><label class="" for="listtype">网导等级：</label></th>
+              <td><select id="salerlevel" name="salerlevel">
+                  {salerlevel}
+                </select></td>
+            </tr>
+            <tr>
+              <th>手机：</th>
+              <td><input name="phone" type="text" id="phone"   class="input" size="30" value="{phone}" ></td>
+            </tr>
+
+            <tr>
+              <th>用户名：</th>
+              <td><input name="username" type="text" id="username"   class="input" size="30" value="{username}" ></td>
+            </tr>
+            <tr>
+              <th><label class="required" for="listtype">密码：</label></th>
+              <td><input name="password" type="password" id="password"   class="input" size="30" value="{password}" > //不是修改密码不用填写</td>
+            </tr>
+            <tr>
+              <th></th>
+              <td ><input type="button" id="z_save" class="btn" value="保存"  onclick="submit_save()" AccessKey=s>
+                <span>or</span>
+                <input type="reset" class="btn" value="取消" AccessKey=q></td>
+            </tr>
+          </table>
+        </fieldset>
+      </form>
+    </div>
+    <div class="panel">
+      <table width="98%" border="0" cellspacing="1"  class="table" id="basictable">
+        <thead>
+          <tr> {theadth} </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</BODY>
+</HTML>

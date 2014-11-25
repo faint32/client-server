@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<TITLE>销售单</TITLE>
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!-- Styles -->
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/custom.css">
+		<!-- 				<link rel="stylesheet" href="../css/framework.css"> -->
+		<!--[if IE 6]>
+			<link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css" />
+			<![endif]-->
+		<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+		<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT> <SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> <script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script> <script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script> <script type="text/javascript" src="../colorbox/jquery.colorbox.js"></script> <script type="text/javascript" language="javascript" src="../include/jquery.dataTables.gb2312.js"></script> 
+	<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+	</HEAD>
+	<script language=javascript>
+	//禁止退格键 作用于Firefox、Opera
+document.onkeypress=banBackSpace;
+//禁止退格键 作用于IE、Chrome
+document.onkeydown=banBackSpace;
+		$(document).ready(function() {
+		var productid=$("#productid").val();
+		var tmpid=$("#tmpid").val();
+		var seltid=$("#listid").val();
+		var vid=$("#vid").val();
+		if(productid)
+		{
+		  var gotourl="../ajaxread/readtmppaycard.php?productid="+productid+"&tmpid="+tmpid+"&seltid="+seltid+"&vid="+vid;
+					  $('#showtable').dataTable({ 
+							"sDom": '<"wrapper"flipt>rtss<"bottom"ip><"clear">',
+							 "bStateSave": false,
+							  "aLengthMenu": [[5,10, 25, 50], [5,10, 25, 50]],
+							 "bLengthChange": true, 
+							 "bProcessing": true,        
+							 "iDisplayLength": 5,        
+		                     "bServerSide":true,
+		                     "sAjaxSource":gotourl,
+							 "sPaginationType": "full_numbers",
+							 "bFilter": true,
+							 "bSort": false,
+						     "bPaginate": true,
+							 "fnDrawCallback": function() {
+							  var ischoose;
+							  $(".checkpaycard").each(function(){
+									
+									if(!$(this).attr("checked"))
+									{
+										ischoose=0;
+									}else{
+										ischoose=1;
+									}
+								});
+								if(ischoose==0)
+								{
+									$(".checkall").attr("checked",false);
+								}else if(ischoose==1){
+									$(".checkall").attr("checked",true);
+								}		
+							  
+						   }
+		                  });
+		}
+		});
+		function CheckAll(form){
+				var ischoose=0,paycardid,count=0,savenum=0;
+				var tmpid=$("#tmpid").val();
+				var  quantity=eval($("#quantity").val());
+				if(!quantity){quantity=0;}
+				$(".checkpaycard").each(function(){
+					if(paycardid)
+					{
+						paycardid=paycardid+","+$(this).val();
+					}else{
+						paycardid=$(this).val();
+					}
+					if(!$(this).attr("checked"))
+					{
+						savenum++;
+					}
+					count++;
+				});
+				
+				if(form.chkall.checked)
+				{
+					ischoose=1;
+				}else{
+					
+					quantity=quantity-count;
+					$("#quantity").attr("value",quantity);
+				}
+					
+					if(paycardid)
+					{
+						if(quantity+savenum>100)
+						{
+							alert('选择的刷卡器已经超过100个,如果想在添加重新生成一张明细单!');
+							$(".checkall").attr('checked',false);
+						}else{
+							$.ajax({
+							type: "POST", 
+							url:"../ajaxread/readpaycard.php?type=all&tmpid="+tmpid+"&paycardid="+paycardid+"&ischoose="+ischoose,
+							 success: function(strItem){
+							 arr_value= strItem.split('@@');
+								$("#tmpid").attr("value",arr_value[0]);
+								$("#quantity").attr("value",arr_value[1]);
+								countAll();
+								
+							 }
+							});
+								
+							for (var i=0;i<form.elements.length;i++){ 
+							 var strelement = form.elements[i];
+							 if (strelement.name != 'chkall' && !strelement.disabled){
+								 strelement.checked = form.chkall.checked;
+							 }
+						  }	
+						}	
+					}
+
+		   }
+		   
+		function checkone(paycardid,obj){
+			
+			var ischoose=0,isall=1;
+				var tmpid=$("#tmpid").val();
+				var quantity=eval($("#quantity").val());
+				if(!quantity){quantity=0;}
+				if(obj.checked)
+				{
+					ischoose=1;
+				}else{
+					quantity=quantity-1;
+					$("#quantity").attr("value",quantity);
+				}
+				$(".checkpaycard").each(function(){
+					if(!$(this).attr("checked"))
+					{
+						isall=0;
+					}
+				});
+				
+				if(isall==0)
+				{
+					$(".checkall").attr("checked",false);
+				}
+				
+				
+				if(quantity+1>100)
+				{
+					alert('选择的刷卡器已经超过100个,如果想在添加重新生成一张明细单!');
+						$(obj).attr('checked',false);
+						
+				}else{
+					$.ajax({
+						type: "POST", 
+						url:"../ajaxread/readpaycard.php?type=one&tmpid="+tmpid+"&paycardid="+paycardid+"&ischoose="+ischoose,
+						 success: function(strItem){
+							arr_value= strItem.split('@@');
+							$("#tmpid").attr("value",arr_value[0]);
+							$("#quantity").attr("value",arr_value[1]);
+							countAll();
+						 }
+						});
+				}
+		}
+		
+		function submit_save() {
+		   if(form1.price.value==""){
+			 	  alert("请输入价格");
+			 	  form1.price.focus();
+			 	  return;
+			 }
+			  if(form1.tmpid.value==""){
+			 	  alert("请选择刷卡器");
+			 	  return;
+			 }
+			 
+			showtips('正在保存数据，请稍候...');
+			   form1.submit();
+		
+			 
+		}
+		
+		function checkproduct()
+		{
+			form1.action.value="";
+			form1.submit();
+		}
+		
+		function countAll() {
+			
+		   var Readout = $("#price").val();
+		  
+		   var Readout1 = form1.quantity.value;
+		
+		   
+		   if(Readout1!="" && Readout!="" ){
+			
+		   Readout = eval(Readout);
+		
+		   Readout1 = eval(Readout1);
+		
+		   form1.money.value = Math.round(Readout*Readout1*10000 )/10000;    
+		   }
+		}
+	</script> 
+	<BODY  topmargin="0" leftMargin="2" width="100%">
+		<div id="page">
+			<h4 class="icon forms">{menuname} <small></small></h4>
+			<form action="" method="post" name="form1">
+				<input type=hidden name=tmpid id="tmpid" value="{tmpid}">
+				<input type=hidden name=action id="action" value="{action}">
+				<input type=hidden name=listid id="listid" value="{listid}">
+				<input type=hidden name=vid id="vid" value="{vid}">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+					<tr>
+						<td class=button_labelleft></td>
+						<td class=button_label>
+							<div align="right" >
+								<input type=button name=save32 class=button_help value="帮助" AccessKey=h  onClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.className='button_help_on'" onMouseOut="this.className='button_help'">
+								<span class=button_split>&nbsp;</span>
+								<input type=button name=save3 class=button_save value="保存" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt" {dissave} onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+								<span class=button_split>&nbsp;</span>
+								<input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}?listid={listid}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+							</div>
+						</td>
+						<td class=button_labelright></td>
+					</tr>
+				</table>
+				<div class="wrapper">
+					<div class="panel">
+						<div id="showinfo" class="box box-info" style="display:{show_error}">
+							<p>{error}</p>
+							<a class="close">&times;</a>
+						</div>
+						<div  class="box box-warn" style="display:">
+							<p>请先选择商品,否则选择不了刷卡器</p>
+							<a class="close">&times;</a>
+						</div>
+						<fieldset class="form">
+							<legend>
+								刷卡器销售 
+								<small>&nbsp;刷卡器信息</small>
+							</legend>
+							<table width="98%" class=table_form cellspacing="0" cellpadding="0" border="0" >
+								<colgroup>
+									<col class="col-name" />
+									<col class="col-value" />
+								</colgroup>
+								<tr>
+									<th>商品选择：</th>
+									<td>
+										<select onchange="checkproduct(this)" name="productid" id="productid">
+											{productname} 
+										</select>
+									</td>
+									<th ></th>
+									<td ></td>
+								</tr>
+								<tr>
+									<th>单价：</th>
+									<td>
+										<input class="input num " style="ime-mode:disabled" onKeyPress="if (event.keyCode < 40 || event.keyCode == 44 || event.keyCode > 57 )event.returnValue = false;" name="price" id="price" type="text" value="{price}" size="10" onChange="countAll()">
+									</td>
+									<th >数量：</th>
+									<td >
+										<input class="input visiabled num" readonly="1" style="ime-mode:disabled" name="quantity" id="quantity" type="text"   value="{quantity}" size="10">
+									</td>
+								</tr>
+								<tr>
+									<th >总价：</th>
+									<td colspan="3">
+										<input class="input visiabled num" name="money" type="text" value="{money}"  size="10" readonly="1">
+									</td>
+								</tr>
+							</table>
+						</fieldset>
+					</div>
+				</div>
+				<div class="wrapper">
+					<div class="panel">
+						<fieldset class="form">
+							<legend>
+								刷卡器销售 
+								<small style="color:red;font-size:12px;">&nbsp;</small>
+							</legend>
+							<table width="100%" border="0" cellspacing="1"  class=table id="showtable">{theadth}</table>
+						</fieldset>
+					</div>
+				</div>
+			</form>
+{showtips}		
+		</div>
+	</BODY>
+</HTML>

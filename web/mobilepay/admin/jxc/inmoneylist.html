@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<TITLE> 刷卡器入库</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META HTTP-EQUIV="empiresoft" CONTENT="no-cache">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!-- Styles -->
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="../css/custom.css">
+<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+<SCRIPT language=javascript src="../js/jquery.min.1.7.1.js"></SCRIPT> 
+<script language="javascript" type="text/javascript" src="../js/jquery-ui-datepicker.js"></script> 
+<script language="javascript" type="text/javascript" src="../js/jquery-ui.js"></script>
+<SCRIPT language=javascript src="../include/datepicker.js"></SCRIPT>
+<SCRIPT language=javascript src="../include/editlib.js"></SCRIPT>
+<SCRIPT language=javascript src="../js/global.js"></SCRIPT> 
+<SCRIPT language=javascript src="../include/dateobject.js"></SCRIPT> 
+
+<script language=javascript>
+<!-- 
+//禁止退格键 作用于Firefox、Opera
+document.onkeypress=banBackSpace;
+//禁止退格键 作用于IE、Chrome
+document.onkeydown=banBackSpace;
+function input_focus(){
+var gg = 1;
+if (gg == 1){
+form1.listno.focus();
+ }
+}
+
+var requestSubmitted = false;
+
+function InitAjax()
+{
+　var ajax=false; 
+　try { 
+　　ajax = new ActiveXObject("Msxml2.XMLHTTP"); 
+　} catch (e) { 
+　　try { 
+　　　ajax = new ActiveXObject("Microsoft.XMLHTTP"); 
+　　} catch (E) { 
+　　　ajax = false; 
+　　} 
+　}
+　if (!ajax && typeof XMLHttpRequest!='undefined') { 
+　　ajax = new XMLHttpRequest(); 
+　} 
+　return ajax;
+}
+
+
+function selfinetype(){
+   if(form1.clienttype.value==1){
+      procus();
+   }else{
+      prosupp();
+   }
+}
+
+function keypressclienttype(){
+   if(form1.clienttype.value==1){
+      keypresscus();
+   }else{
+      keypresssupp();
+   }
+}
+
+function procus(){
+   
+     var arrItems=new Array();
+     var strItem ;
+     var szRef = "../getdata/getcus.html";
+     var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+     
+     arrItems = strItem.split("@@@");
+     form1.cusid.value    = arrItems[0];   
+     form1.cusno.value    = arrItems[1]; 
+     form1.cusname.value  = arrItems[2];
+     yfmoneyshow(form1.cusid.value,1);
+   
+}
+
+function keypresscus(){
+  if(event.keyCode==13){
+     checkisonecus();
+  }
+}
+
+function likecus(){
+     var strcusno = form1.cusno.value;
+     var arrItems=new Array();
+     var strItem ;
+     var szRef = "../getdata/likegetcus.php?cusno="+strcusno;
+     var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+     
+     arrItems = strItem.split("@@@");
+     form1.cusid.value    = arrItems[0];   
+     form1.cusno.value    = arrItems[1]; 
+     form1.cusname.value  = arrItems[2];
+     yfmoneyshow(form1.cusid.value,1);
+}
+
+function checkisonecus(){
+  var strcusno = form1.cusno.value;
+  var postStr = "cusno="+ strcusno;
+　//需要进行Ajax的URL地址
+　var url = "../ajaxread/checkisonecus.php";
+　//实例化Ajax对象
+　var ajax = InitAjax();
+　//使用POST方式进行请求
+　ajax.open("POST", url, true);
+  //定义传输的文件HTTP头信息
+　ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+　//发送POST数据
+　ajax.send(postStr);
+　//获取执行状态
+　ajax.onreadystatechange = function() { 
+　　//如果执行是状态正常，那么就把返回的内容赋值给上面指定的层
+　　if (ajax.readyState == 4 && ajax.status == 200) { 
+       var strcommArray = new Array();   
+       strcommArray = ajax.responseText.split("&");  
+       if(strcommArray[0]==0){
+         alert("没有该客户！请查证！");
+         form1.cusno.focus();
+       }else if(strcommArray[0]==1){
+         form1.cusid.value    = strcommArray[1];   
+         form1.cusno.value    = strcommArray[2]; 
+         form1.cusname.value  = strcommArray[3];
+         yfmoneyshow(form1.cusid.value,1);
+       }else{
+         
+         likecus();
+       }
+　　}
+　}
+}
+
+function prosupp(){
+   if(form1.cusno.value!=""){
+     likesupp();
+   }else{
+     var arrItems=new Array();
+     var strItem ;
+     var szRef = "../getdata/getsupp.html";
+     var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+     
+     arrItems = strItem.split("@@@");
+     form1.cusid.value    = arrItems[0];   
+     form1.cusno.value    = arrItems[1]; 
+     form1.cusname.value  = arrItems[2];
+     yfmoneyshow(form1.cusid.value,2);
+   }
+}
+
+function keypresssupp(){
+  if(event.keyCode==13){
+     checkisonesupp();
+  }
+}
+
+function likesupp(){
+     var strcusno = form1.cusno.value;
+     var arrItems=new Array();
+     var strItem ;
+     var szRef = "../getdata/likegetsupp.php?suppno="+strcusno;
+     var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+     
+     arrItems = strItem.split("@@@");
+     form1.cusid.value    = arrItems[0];   
+     form1.cusno.value    = arrItems[1]; 
+     form1.cusname.value  = arrItems[2];
+     yfmoneyshow(form1.cusid.value,2);
+}
+
+function checkisonesupp(){
+  var strcusno = form1.cusno.value;
+  var postStr = "suppno="+ strcusno;
+　//需要进行Ajax的URL地址
+　var url = "../ajaxread/checkisonesupp.php";
+　//实例化Ajax对象
+　var ajax = InitAjax();
+　//使用POST方式进行请求
+　ajax.open("POST", url, true);
+  //定义传输的文件HTTP头信息
+　ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+　//发送POST数据
+　ajax.send(postStr);
+　//获取执行状态
+　ajax.onreadystatechange = function() { 
+　　//如果执行是状态正常，那么就把返回的内容赋值给上面指定的层
+　　if (ajax.readyState == 4 && ajax.status == 200) { 
+       var strcommArray = new Array();   
+       strcommArray = ajax.responseText.split("&");  
+       if(strcommArray[0]==0){
+         alert("没有该供应商！请查证！");
+         form1.cusno.focus();
+       }else if(strcommArray[0]==1){
+         form1.cusid.value    = strcommArray[1];   
+         form1.cusno.value    = strcommArray[2]; 
+         form1.cusname.value  = strcommArray[3];
+         yfmoneyshow(form1.cusid.value,2);
+       }else{
+         
+         likesupp();
+       }
+　　}
+　}
+}
+ $(document).ready(function() {  
+	$(".searchdate").datepicker({dateFormat: $.datepicker.W3C});
+ })
+function submit_savet() {
+	 if(form1.listno.value==""){
+	 	  alert("请输入单据编号");
+	 	  form1.listno.focus();
+	 	  return;
+	 }
+	
+	 if(form1.cusid.value=="" || form1.cusno.value=="" || form1.cusname.value=="" ){
+	 	  alert("请选择往来单位！");
+	 	  form1.cusno.focus();
+	 	  return;
+	 }
+	 if(form1.payallmoney.value==""){
+	 	  alert("收款金额不能为空");
+	 	  form1.payallmoney.focus();
+	 	  return;
+	 }
+	 if(form1.cusname.value==""){
+	 	  alert("付款单位不能为空");
+	 	  form1.cusname.focus();
+	 	  return;
+	 }
+	 sending.style.display ="";
+	sendingbg.style.display ="";
+	 form1.submit();
+}
+
+function submit_save() {
+   if(form1.listno.value==""){
+	 	  alert("请输入单据编号");
+	 	  form1.listno.focus();
+	 	  return;
+	 }
+	 
+	 if(form1.payallmoney.value==""){
+	 	  alert("收款金额不能为空");
+	 	  form1.payallmoney.focus();
+	 	  return;
+	 }
+	 if(form1.cusid.value=="" || form1.cusno.value=="" || form1.cusname.value=="" ){
+	 	  alert("请选择往来单位！");
+	 	  form1.cusno.focus();
+	 	  return;
+	 }
+	 if(form1.dealwithman.value==""){
+	 	  alert("请输入收款人");
+	 	  form1.dealwithman.focus();
+	 	  return;
+	 }
+	 if(confirm("是否保存，保存后就变成历史单据，不能更改？")) {
+	   form1.end_action.value = "endsave";
+	    if(requestSubmitted == true){
+      alert("你已经提交，请等待一下");
+      return (false);
+     } 
+     requestSubmitted = true;  
+     sending.style.display ="";
+	   sendingbg.style.display ="";
+	   form1.submit();
+	 }
+}	 
+
+
+function submit_del(){
+    if (confirm("是否删除整条单据？")) {
+        form1.end_action.value = "dellist";
+        sendingbg.style.display ="";  
+        sendingdel.style.display ="";
+	      form1.submit();
+    }
+} 
+
+
+function changelistno(){
+	form1.ischangelistno.value="1";
+}
+
+function help(){  
+   if(document.getElementById("helpid").style.pixelHeight == 0 &&  document.getElementById("helpid").style.display == "none"){      
+     document.getElementById("helpid").style.display ="";
+	   ChS();
+   }else{   
+	   HhS();    	  
+   }
+}
+
+function ChS(){
+  if(helpid.style.pixelHeight<550){
+     helpid.style.pixelHeight+=10;setTimeout("ChS()",0.5);
+  } 
+}
+
+function HhS(){
+  if(helpid.style.pixelHeight > 0){
+    helpid.style.pixelHeight-=10;setTimeout("HhS()",0.5);
+  }
+  if(helpid.style.pixelHeight == 0){
+    document.getElementById("helpid").style.display ="none";
+  }
+}
+
+function changetype(){
+  form1.cusid.value    = "";   
+  form1.cusno.value    = ""; 
+  form1.cusname.value  = "";
+}
+
+function putsta(){
+   var arrItems=new Array();
+   var strItem ;
+   var szRef = "../getdata/seljbstaffer.html" ;
+   var strItem = window.showModalDialog(szRef,"","Help=no;status:no;dialogWidth=700px;dialogHeight=500px;scroll=yes;");
+   arrItems = strItem.split("@@@");
+   form1.dealwithman.value = arrItems[2] ;    
+}
+
+//金额只能输入小数点后两位
+function checkmoney(){
+  var tmppay = form1.payallmoney.value;
+  var dotPos = tmppay.indexOf(".",0);
+  var strLen = tmppay.length;
+  if (dotPos == -1){
+　}else{
+     if(event.keyCode == 46){
+        event.returnValue = false;
+     }
+     if(strLen>(dotPos+2)){
+        event.returnValue = false;
+     }
+  }
+}
+
+function yfmoneyshow(suppid,strcompanytype)
+{
+  var postStr = "companyid="+ suppid+"&companytype="+strcompanytype;
+　var url = "../ajaxread/readysyfmoney.php";
+　//实例化Ajax对象
+　var ajax = InitAjax();
+　//使用POST方式进行请求
+　ajax.open("POST", url, true); 
+  //定义传输的文件HTTP头信息
+　ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+　//发送POST数据
+　ajax.send(postStr);
+　//获取执行状态
+　ajax.onreadystatechange = function() { 
+　　//如果执行是状态正常，那么就把返回的内容赋值给上面指定的层
+　　if (ajax.readyState == 4 && ajax.status == 200) { 
+        if(ajax.responseText !=""){
+           form1.yfk_show.value = ajax.responseText;
+        }else{
+           form1.yfk_show.value ="0";
+        }
+　　}
+　}
+}
+// -->
+</script>
+</HEAD>
+<BODY  topmargin="0" leftMargin="2" width="100%">
+    <div id="page">
+    <h4 class="icon forms">{menuname} <small></small></h4>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" height="31">
+    <tr>
+        <td class=button_labelleft></td>
+        <td class=button_label>
+    <div align="right">
+        <input type=button name=save32 class=button_new value="帮助" AccessKey=h  onClick="javascript:help()" style="font-size:9pt"  onMouseOver="this.style.backgroundImage='url({skin}new_sel.jpg)'"  onmouseout="this.style.backgroundImage='url({skin}new.jpg)'">
+          <span class=button_split>&nbsp;</span><input type=button name=save3e class=button_save value="暂存" onClick="javascript:submit_savet()" style="font-size:9pt" onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'" {dissave}>
+          <span class=button_split>&nbsp;</span><input type=button name=save3 class=button_save value="提交" AccessKey=s  onClick="javascript:submit_save()" style="font-size:9pt" {isend_save} onMouseOver="this.className='button_save_on'" onMouseOut="this.className='button_save'">
+          <span class=button_split>&nbsp;</span><input type=button name=rst class=button_recovery value="返回" AccessKey=q style="font-size:9pt" onClick="javascript:location='{gotourl}'" onMouseOver="this.className='button_recovery_on'" onMouseOut="this.className='button_recovery'">
+    </div>
+    </td>
+    <td class=button_labelright></td>
+</tr>
+</table>
+<!-- Wrapper -->
+<form action="" method="post" name="form1">
+<input type=hidden name=action value="{action}"> 
+<input type=hidden name=end_action value=""> 
+<input type=hidden name=listid value="{listid}">
+<input type=hidden name=ischangelistno value="{ischangelistno}"> 
+<input type=hidden name=paylistcount value="{count}">
+<div class="wrapper">
+<div class="panel">
+<div id="showinfo" class="box box-info" style="display:{show_error}"><p>{error}</p><a class="close">&times;</a></div> 
+<fieldset class="form">
+    <legend>
+        收款办理 
+        <small>&nbsp;收款详细</small>
+    </legend>
+    <br/>
+   <table  class="table_form">
+    <colgroup>
+    <col class="col-name" />
+    <col class="col-value" />
+    </colgroup>
+        <tr>
+          <th><label class="required">单据编号：</label></th>
+          <td>
+          <input class=input style="ime-mode:disabled" type="text" name="listno" size="20" maxlength="40" value="{listno}" onChange="changelistno()">
+          </td>
+          <th  class="required">单据日期：</th>
+          <td>
+              <input name="date"  id="date" type="text"  readonly  class="input searchdate"   size="20" value="{date}" >
+           </td>
+        </tr>
+        <tr>
+          <th>单位类型：</th>
+          <td>
+          	<select name="clienttype" {downdistable} onChange="changetype()">
+            {clienttype}
+			</select>
+           </td>
+          <th>当前应收款：</th>
+          <td >
+          	<input class="input visiabled" type="text" name="yfk_show" size="10" maxlength="20" value="{yfk_show}" readonly="1">
+          </td>
+        </tr>
+        <tr>
+          <th><label class="required">单位编号：</label></th>
+          <td>
+          <input class=input type="text" name="cusno" size="10" maxlength="20" value="{cusno}"> 
+          <input  type="button" name="selcustomer" class="btn_find" value=""  onClick="javascript:selfinetype()" style="font-size:9pt" {downdistable}>
+          </td>
+          <th>付款单位：</th>
+          <td>
+          <input class="input visiabled" type="text" name="cusname" size="20" value="{cusname}" readonly>
+          <input type="hidden" name="cusid"  value="{cusid}">
+          </td>
+        </tr>
+        <tr>
+         <!-- <th>帐户：</td>
+          <td >
+            <select name="accountid">
+            {accountid}
+			      </select> </td>-->
+          <th><label class="required">收款人：</label></th>
+          <td>
+          <input class="input" type="text" name="dealwithman" size="10" maxlength="20" value="{dealwithman}" readonly>
+          <input type="button" name="xuan"  onClick="javascript:putsta()" class="btn_find" style="font-size:9pt" value="">
+          </td>
+          <th>录单人：</th>
+          <td>
+          	<input class="input visiabled" type="text" name="staname" size="10" maxlength="20" value="{staname}" readonly>   
+		  </td>
+        </tr>
+        <tr>
+          <th><label class="required">收款金额：</label></th>
+          <td>
+          <input class="input num" style="ime-mode:disabled" type="text" name="payallmoney" size="10" maxlength="20" value="{payallmoney}" onKeyPress="checkmoney();if ((event.keyCode < 48 && event.keyCode != 46) || event.keyCode > 57 ) event.returnValue = false;">
+        </td>
+        </tr>
+        <tr>
+          <th>备注：</th>
+          <td colspan="3"><textarea class="textarea full" name="memo_z"   wrap="virtual"  rows="4">{memo_z}</textarea></td>
+        </tr>
+          </table>
+        </fieldset>
+    </div>
+</div>
+<br>
+</form>
+
+<div id="addnewconcentbg" style="position:absolute; width:100%;height:100%; left:0px;top:0px;z-index:230; display:none"></div>
+<div id="addnewconcent"  style="position:absolute; left:10px;top:30px;z-index:231; display:none"></div> 
+
+<div id="sending" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:20%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在保存数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+
+<div id="sendingdel" STYLE=" WIDTH: 50%; POSITION: absolute; TOP: 50%; left:30%; HEIGHT: 95%;  z-index:101; display:none;font-size:13px; "> 
+
+       <table width=400 height=80 border=0 cellspacing=2 cellpadding=0 >
+
+          <tr> 
+
+               <td bgcolor=#F1F4F9 align=center>正在删除数据，请稍候...</td>
+
+          </tr>
+
+       </table>
+
+</div>
+<div id="sendingbg" STYLE="LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; display: none"> 
+</div>
+<div id="helpid" STYLE="right: 1%; WIDTH: 450px; POSITION: absolute; TOP: 86px; HEIGHT: 0; display: none"> 
+ <div  align="left"   STYLE="position:absolute;left: 15px; top:15px;right:15px" >
+收款单用于先售货后收款的处理，可以直接录入，也可以采用按单结算业务。<br><br>
+操作如下： 
+<br>
+　　在收款单中，选择付款单位后，系统会自动跳出对此单位未结算完成的销售单以及销售退货单。用户可以对销售单进行对勾，以达到分单结算的目。 
+<br>
+　　自动分配：在录入本次收款的账户与金额后，自动分配可以将此笔收款自动对应未结清的、账龄最长的几笔单据。   
+<br>
+　　收款单也可用于其它非销售业务的收款处理，收款单过账后现金或银行存款将增加，应收账款减少。
+<br><br>
+选择客户或者供应商时，系统就会自动带出该客户或者供应商的所有未付款单据；在付款金额中填上付款的金额，然后按下自动分配，系统就会把付款金额的数额分配到各条单据之中。
+如果不喜欢自动分配，也可以手动分配。在各单据中输入的金额之和要与付款金额相等。<br><br>
+确认后，请按暂存保存。
+  <br><br>
+  保存(Alt+s)：将收款单转为历史收款单，并进行相应的应收款操作。历史收款单不能删除及修改，只能红字反冲；月结存后不能红字反冲。帐户流水帐中能反映相应该单相应帐户金额的变动。往来对帐单中能反映相应该单据中的往来单位的往来变动。<br><br>
+  删除(Alt+d)：即删除不再使用的收款单信息；<br><br>
+  返回(Alt+q)：返回收款登记列表；<br><br>
+  帮助(Alt+h)：显示帮助信息；<br><br>
+  暂存(Alt+t)：添加新草稿收款单，草稿收款单可以修改及删除；<br><br>
+</div>
+</div>
+</center>
+</div>
+</div>	
+</div>
+{showeditdiv}
+</BODY>
+</HTML>

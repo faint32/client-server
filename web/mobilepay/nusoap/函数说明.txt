@@ -1,0 +1,21 @@
+basicfunction require所有上传图片的函数
+AdUploaddelete.php广告位图片上传和删除处理函数
+addelete($dateid,$scatid) 删除函数,dateid广告位ID号,scatid二级类ID号
+clearFilepath($id)id广告位ID号这函数是清空广告位数据表中的图片路径
+cleardate($dateid,$scatid)dateid广告位ID号,scatid二级类ID号,这函数是在上传图片时,检查图片列表中是否有该对应的数据如果有删除数据
+
+UploadAction.php 公用的图片上传的增删改
+uploadnew($dateid,$fid,$scatid,$picurl,$display,$filename,$thumurl)//增加数据
+uploadshow($dateid,$scatid)//显现数据
+uploadedit($dateid,$scatid,$filename,$display=0,$picurl=0,$thumurl=0)编辑图片
+uploaddelete($dateid,$scatid)删除图片
+   fd_cat_dateid                 数据ID
+   fd_cat_name                   文件名        
+   fd_cat_fcatid                 一级ID
+   fd_cat_scatid                 二级ID
+   fd_cat_url                    图片路径      
+   fd_cat_thumurl                缩略图路径           
+   fd_cat_display                是否默认显示    
+getimageid($picurl)$picurl图片路径,此函数为了获取上传图片的ID
+Noidedit($fd_cat_id,$filename,$display=0,$picurl=0,$thumurl=0)$fd_cat_id图片ID,没有ID上传修改图片的操作
+function Noiddelete($fd_cat_id)没有ID上传删除图片的操作 
